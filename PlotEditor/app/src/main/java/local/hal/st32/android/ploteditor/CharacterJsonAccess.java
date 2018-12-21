@@ -1,5 +1,6 @@
 package local.hal.st32.android.ploteditor;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -48,6 +49,10 @@ public class CharacterJsonAccess extends AsyncTask<String, String, String> {
      * 解析したJSONデータを格納する配列
      */
     private static HashMap<String, String> _character;
+    /**
+     * 現在表示している画面に対応したアクティビティ
+     */
+    private static String NOW_CHARACTER_ACTIVITY;
 
     /**
      * コンストラクタ
@@ -207,9 +212,45 @@ public class CharacterJsonAccess extends AsyncTask<String, String, String> {
 
                     if(no.equals( characterNow.getString("no")) ) {
                         plot = characterNow.getString("plot");
+                        phonetic = characterNow.getString("phonetic");
+                        name = characterNow.getString("name");
+                        another = characterNow.getString("another");
+                        imagePath = characterNow.getString("image_path");
+                        age = characterNow.getString("age");
+                        gender = characterNow.getString("gender");
+                        birthday = characterNow.getString("birthday");
+                        height = characterNow.getString("height");
+                        weight = characterNow.getString("weight");
+                        firstPerson = characterNow.getString("first_person");
+                        secondPerson = characterNow.getString("second_person");
+                        belongs = characterNow.getString("belongs");
+                        skill = characterNow.getString("skill");
+                        profile = characterNow.getString("profile");
+                        livedProcess = characterNow.getString("lived_process");
+                        personality = characterNow.getString("personality");
+                        appearance = characterNow.getString("appearance");
+                        other = characterNow.getString("other");
 
                         map.put("no", no);
-
+                        map.put("plot", plot);
+                        map.put("phonetic", phonetic);
+                        map.put("name", name);
+                        map.put("another", another);
+                        map.put("image_path", imagePath);
+                        map.put("age", age);
+                        map.put("gender", gender);
+                        map.put("birthday", birthday);
+                        map.put("height", height);
+                        map.put("weight", weight);
+                        map.put("first_person", firstPerson);
+                        map.put("second_person", secondPerson);
+                        map.put("belongs", belongs);
+                        map.put("skill", skill);
+                        map.put("profile", profile);
+                        map.put("lived_process", livedProcess);
+                        map.put("personality", personality);
+                        map.put("appearance", appearance);
+                        map.put("other", other);
                         setCharacter(map);
 
                         break;
