@@ -16,8 +16,8 @@
         android:id="@+id/ivCharacterIcon"
         android:layout_width="85dp"
         android:layout_height="85dp"
-        android:contentDescription="@string/character_icon"
-        android:src="@drawable/toa_ypba2" />
+        android:background="@drawable/ic_launcher_foreground"
+        android:contentDescription="@string/character_icon" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,7 +30,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="ルーク"
             android:textSize="18sp" />
 
         <TextView
@@ -38,7 +37,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="本作の主人公。キムラスカ王国・ファブレ公爵家の一人息子で、第3位王位継承権を持つ。左利き。「ルーク」は古代イスパニア語で「聖なる焔の光」という意味。"
             android:textSize="14sp" />
     </LinearLayout>
 </LinearLayout>
