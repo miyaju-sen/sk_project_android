@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CharacterActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".CharacterActivity">
+
+
+            <ImageView
+                android:id="@+id/ivCharacterIcon"
+                android:layout_width="128dp"
+                android:layout_height="128dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:contentDescription="@string/character_icon"
+                android:src="@drawable/toa_ypba2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvPhonetic" />
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:text="ルーク・フォン・ファブレ"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvPhonetic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:text="るーくふぉんふぁぶれ"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvName" />
+
+            <TextView
+                android:id="@+id/tvProfile"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:text="本作の主人公。キムラスカ王国・ファブレ公爵家の一人息子で、第3位王位継承権を持つ。左利き。「ルーク」は古代イスパニア語で「聖なる焔の光」という意味。"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivCharacterIcon" />
+
+            <TableLayout
+                android:id="@+id/tlOutline"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvProfile">
+
+                <TableRow
+                    android:id="@+id/trOutline"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#000000">
+
+                    <TextView
+                        android:id="@+id/tvOutline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:gravity="center_horizontal"
+                        android:text="@string/tv_outline"
+                        android:textSize="18sp" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/trAgeFirstPerson"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#000000">
+
+                    <TextView
+                        android:id="@+id/age"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:layout_weight="1"
+                        android:background="#DCDCDC"
+                        android:text="@string/tv_age"
+                        tools:layout_editor_absoluteX="8dp"
+                        tools:layout_editor_absoluteY="260dp" />
+
+                    <TextView
+                        android:id="@+id/tvAge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:text="17歳"
+                        tools:layout_editor_absoluteX="58dp"
+                        tools:layout_editor_absoluteY="260dp" />
+
+                    <TextView
+                        android:id="@+id/firstPerson"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:layout_weight="1"
+                        android:background="#DCDCDC"
+                        android:text="@string/tv_first_person"
+                        tools:layout_editor_absoluteX="126dp"
+                        tools:layout_editor_absoluteY="260dp" />
+
+                    <TextView
+                        android:id="@+id/tvFirstPerson"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:text="俺"
+                        tools:layout_editor_absoluteX="204dp"
+                        tools:layout_editor_absoluteY="260dp" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/trGenderSecondPerson"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#000000">
+
+                    <TextView
+                        android:id="@+id/gender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#DCDCDC"
+                        android:text="@string/tv_gender"
+                        tools:layout_editor_absoluteX="22dp"
+                        tools:layout_editor_absoluteY="287dp" />
+
+                    <TextView
+                        android:id="@+id/tvGender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:text="男"
+                        tools:layout_editor_absoluteX="58dp"
+                        tools:layout_editor_absoluteY="287dp" />
+
+                    <TextView
+                        android:id="@+id/secondPerson"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#DCDCDC"
+                        android:text="@string/tv_second_person"
+                        tools:layout_editor_absoluteX="154dp"
+                        tools:layout_editor_absoluteY="287dp" />
+
+                    <TextView
+                        android:id="@+id/tvSecondPerson"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:text="お前"
+                        tools:layout_editor_absoluteX="204dp"
+                        tools:layout_editor_absoluteY="287dp" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/trBirthdayHeightWeight"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#000000">
+
+                    <TextView
+                        android:id="@+id/birthday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="1dp"
+                        android:layout_weight="1"
+                        android:background="#DCDCDC"
+                        android:text="@string/tv_birthday"
+                        tools:layout_editor_absoluteX="8dp"
+                        tools:layout_editor_absoluteY="314dp" />
+
+                    <TextView
+                        android:id="@+id/tvBirthday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="1dp"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:text="13月48日"
+                        tools:layout_editor_absoluteX="58dp"
+                        tools:layout_editor_absoluteY="314dp" />
+
+                    <TextView
+                        android:id="@+id/heightWeight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="1dp"
+                        android:layout_weight="1"
+                        android:background="#DCDCDC"
+                        android:text="@string/tv_height_weight"
+                        tools:layout_editor_absoluteX="126dp"
+                        tools:layout_editor_absoluteY="314dp" />
+
+                    <TextView
+                        android:id="@+id/tvHeightWeight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="1dp"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:text="171cm 68kg"
+                        tools:layout_editor_absoluteX="204dp"
+                        tools:layout_editor_absoluteY="314dp" />
+                </TableRow>
+            </TableLayout>
+
+            <TextView
+                android:id="@+id/belongs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:text="@string/tv_belongs"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvCharacterAbout" />
+
+            <TextView
+                android:id="@+id/tvBelongs"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:text="キムラスカ王国"
+                app:layout_constraintBaseline_toBaselineOf="@+id/belongs"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/belongs" />
+
+            <TextView
+                android:id="@+id/tvCharacterAbout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:text="@string/tv_character_about"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tlOutline" />
+
+            <TextView
+                android:id="@+id/skill"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:text="@string/tv_skill"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/belongs" />
+
+            <TextView
+                android:id="@+id/tvSkill"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:text="使用武器は剣。いわゆる温室育ちのおぼっちゃまであるがヴァンに鍛えられていたため、基礎的な身体能力は高く剣の腕もそこそこ良い。流派はアルバート流。 "
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/skill" />
+
+            <TextView
+                android:id="@+id/livedProcess"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:text="@string/tv_lived_process"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvSkill" />
+
+            <TextView
+                android:id="@+id/tvLivedProcess"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:text="7年前、敵国マルクトに誘拐されたショックから、それまでの記憶を全て失った。  誘拐以降、王命により身の安全を図るという理由で屋敷に軟禁され、外界と交流を持たされずに育ったため、非常に極端な世間知らず。また、情緒的にも非常に幼い。  時折発症する頭痛を伴う幻聴に悩まされている。 "
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/livedProcess" />
+
+            <TextView
+                android:id="@+id/personality"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:text="@string/tv_personality"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvLivedProcess" />
+
+            <TextView
+                android:id="@+id/tvPersonality"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:text="前半と後半で大きく性格が異なる。ストーリー的に非常に極端な性格をしているため、ファンからの好き嫌いが非常に激しい主人公の一人であるが、公式人気投票でも上位に食い込んだりなどキャラクターとしての人気自体は非常に高い。"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/personality" />
+
+            <TextView
+                android:id="@+id/appearance"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:text="@string/tv_appearance"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvPersonality" />
+
+            <TextView
+                android:id="@+id/tvAppearance"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:text="赤い長髪に緑の瞳"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/appearance" />
+
+            <TextView
+                android:id="@+id/other"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:text="@string/tv_other"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvAppearance" />
+
+            <TextView
+                android:id="@+id/tvOther"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="24dp"
+                android:text="近年(2015年現在)でのテイルズオブシリーズのエスコートタイトル作品、及びコラボレーション企画でのルークは、本編でのネタバレ防止のためか、物語冒頭と同じ世間知らずでわがままな性格＋長髪で描かれることが多い。 "
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/other" />
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

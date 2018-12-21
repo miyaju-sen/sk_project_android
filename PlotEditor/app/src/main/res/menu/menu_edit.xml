@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--削除-->
+    <item
+        android:id="@+id/menuDelete"
+        android:title="@string/menu_delete"
+        android:icon="@android:drawable/ic_menu_delete"
+        app:showAsAction="ifRoom"
+        android:visible="false"/>
+
+    <!--保存-->
+    <item
+        android:id="@+id/menuSave"
+        android:title="@string/menu_save"
+        android:icon="@android:drawable/ic_menu_save"
+        app:showAsAction="ifRoom"
+        android:visible="false"/>
+
+    <!--更新-->
+    <item
+        android:id="@+id/menuReload"
+        android:icon="@android:drawable/ic_popup_sync"
+        android:title="@string/menu_reload"
+        app:showAsAction="ifRoom"
+        android:visible="false"/>
+
+    <!--追加-->
+    <item
+        android:id="@+id/menuInsert"
+        android:title="@string/menu_insert"
+        android:icon="@android:drawable/ic_menu_add"
+        app:showAsAction="ifRoom"
+        android:visible="false"/>
+
+    <!--編集-->
+    <item
+        android:id="@+id/menuEdit"
+        android:title="@string/menu_edit"
+        android:icon="@android:drawable/ic_menu_edit"
+        app:showAsAction="ifRoom"
+        android:visible="false"/>
+
+    <!--画像選択-->
+    <item
+        android:id="@+id/menuImage"
+        android:title="@string/menu_image"
+        android:icon="@android:drawable/ic_menu_gallery"
+        app:showAsAction="ifRoom"
+        android:visible="false"/>
+</menu>

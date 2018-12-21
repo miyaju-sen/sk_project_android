@@ -1,0 +1,111 @@
+<resources>
+    <string name="app_name">プロットエディタ</string>
+
+    <!-- メニュー用 -->
+    <string name="menu_save">保存</string>
+    <string name="menu_insert">追加</string>
+    <string name="menu_edit">編集</string>
+    <string name="menu_delete">削除</string>
+    <string name="menu_image">画像選択</string>
+    <string name="menu_reload">更新</string>
+
+    <!-- NavigationViewのメニュー用 -->
+    <string name="menu_back">プロット一覧に戻る</string>
+    <string name="menu_outline">概要</string>
+    <string name="menu_character">登場人物</string>
+    <string name="menu_world">世界観</string>
+    <string name="menu_story">構想</string>
+    <string name="menu_memo">メモ</string>
+
+    <!-- NavigationView用 -->
+    <string name="drawable_open">開く</string>
+    <string name="drawable_close">閉じる</string>
+
+    <!-- ダイアログ用 -->
+    <string name="dialog_insert">プロット新規作成</string>
+    <string name="dialog_title_hint">作品タイトルを入力</string>
+    <string name="dialog_create">作成</string>
+    <string name="dialog_cancel">キャンセル</string>
+    <string name="dialog_idea_hint">大まかな話の流れ</string>
+    <string name="dialog_save">保存</string>
+    <string name="dialog_confirm">確認！</string>
+    <string name="dialog_confirm_text">変更された項目があります。\n保存せずにこのまま移動しますか？</string>
+    <string name="dialog_yes">はい</string>
+    <string name="dialog_no">いいえ</string>
+    <string name="dialog_delete_text">「%1$s」のプロットを削除します。\nよろしいですか？</string>
+    <string name="dialog_delete">削除</string>
+
+    <!-- 概要画面用 -->
+    <string name="tv_title">作品タイトル</string>
+    <string name="tv_slogan">キャッチコピー</string>
+    <string name="tv_summary">あらすじ</string>
+    <string name="tv_advertising">宣伝文章（Twitter用）</string>
+    <string name="tv_slogan_text">一言で読者の心をグッと掴みましょう</string>
+    <string name="tv_summary_text">物語を簡略化してみましょう</string>
+
+    <!-- 構想画面用 -->
+    <string name="idea_0">起</string>
+    <string name="idea_1">承</string>
+    <string name="idea_2">転</string>
+    <string name="idea_3">結</string>
+
+    <!-- 登場人物一覧画面用 -->
+    <string name="character_icon">キャラクターイメージ</string>
+
+    <!-- 登場人物画面用 -->
+    <string name="tv_outline">概要</string>
+    <string name="tv_character_about">・・この人物について・・</string>
+    <string name="tv_character_image_icon">イメージ画像</string>
+    <string name="tv_file_select">ファイルを選択</string>
+    <string name="tv_file_path">何も選択されていません</string>
+    <string name="tv_character_info">人物情報</string>
+    <string name="tv_character_name">名前</string>
+    <string name="tv_phonetic">フリガナ</string>
+    <string name="tv_another_name">別名</string>
+    <string name="tv_age">年齢</string>
+    <string name="tv_sai">歳</string>
+    <string name="tv_unknown">不明</string>
+    <string name="tv_gender">性別</string>
+    <string name="tv_man">男</string>
+    <string name="tv_woman">女</string>
+    <string name="tv_both_sexes">両性</string>
+    <string name="tv_asexual">無性</string>
+    <string name="tv_birthday">誕生日</string>
+    <string name="tv_month">月</string>
+    <string name="tv_day">日</string>
+    <string name="tv_height_weight">身長・体重</string>
+    <string name="tv_centimeter">cm</string>
+    <string name="tv_kilogram">kg</string>
+    <string name="tv_first_person">一人称</string>
+    <string name="tv_second_person">二人称</string>
+    <string name="tv_belongs">所属</string>
+    <string name="tv_skill">能力</string>
+    <string name="tv_profile">人物紹介</string>
+    <string name="tv_prelusion_text">紹介文</string>
+    <string name="tv_lived_process">生い立ち</string>
+    <string name="tv_personality">性格</string>
+    <string name="tv_appearance">容姿</string>
+    <string name="tv_other">その他</string>
+
+    <!-- スピナー用 -->
+    <string-array name="age_list">
+        <item>10歳</item>
+        <item>20歳</item>
+        <item>30歳</item>
+        <item>40歳</item>
+    </string-array>
+
+    <!-- 世界観編集画面 -->
+    <string name="tv_stage">舞台</string>
+    <string name="tv_parlance">設定・用語</string>
+    <string name="tv_parlance_name">名称</string>
+    <string name="tv_explanation">説明</string>
+
+    <!-- メモ編集画面用 -->
+    <string name="memo_background">メモ背景</string>
+
+    <!-- アウトプット用 -->
+    <string name="msg_err_send">サーバ通信に失敗しました。もう一度送信をお願いします。</string>
+    <string name="msg_err_timeout">サーバ通信がタイムアウトしました。もう一度送信をお願いします。</string>
+    <string name="msg_err_parse">サーバからの返信内容の解析に失敗しました。もう一度送信をお願いします。</string>
+</resources>

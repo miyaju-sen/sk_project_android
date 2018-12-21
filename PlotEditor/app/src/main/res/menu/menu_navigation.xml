@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+就職作品
+NavigationView用のメニュー
+-->
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/menuNavigationTop"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/menuOutline"
+            android:title="@string/menu_outline"/>
+        <item
+            android:id="@+id/menuCharacter"
+            android:title="@string/menu_character"/>
+        <item
+            android:id="@+id/menuWorld"
+            android:title="@string/menu_world"/>
+        <item
+            android:id="@+id/menuStory"
+            android:title="@string/menu_story"/>
+        <item
+            android:id="@+id/menuMemo"
+            android:title="@string/menu_memo"/>
+    </group>
+    <group
+        android:id="@+id/menuNavigationBottom"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/menuDelete"
+            android:title="@string/menu_delete"/>
+    </group>
+</menu>

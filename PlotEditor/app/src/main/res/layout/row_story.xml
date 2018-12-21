@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+就職作品
+構想確認・編集lvStoriesのレイアウトファイル
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rowStory"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvIdea"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_weight="1"
+            android:text="起"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvStory"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_weight="1"
+            android:text="キムラスカ・ランバルディア王国とマルクト帝国。敵対関係の二大国の危うい均衡状態が続く中、キムラスカ公爵家の一人息子・ルークがマルクトの者に誘拐される。後に救出されたものの、ルークは全ての記憶を失っていた。  それから7年後、自分の屋敷に軟禁されて育ったルークは、師匠・ヴァンとの剣の修行が唯一の趣味となっていた。ある日、ルークはヴァンを殺そうと屋敷に不法侵入してきた少女・ティアと擬似超振動を起こし、彼女とともに見知らぬ場所に瞬間移動する。屋敷に戻るためにティアと行動を開始したルークは、その先の長い旅路で多くの人々と出会い、自分の生まれた意味を知ることとなる。"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvIdea" />
+
+        <Button
+            android:id="@+id/btStoryInsert"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@android:drawable/ic_menu_add"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvStory" />
+
+        <!--<EditText-->
+            <!--android:id="@+id/etStory"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_marginStart="16dp"-->
+            <!--android:layout_marginLeft="16dp"-->
+            <!--android:layout_marginTop="8dp"-->
+            <!--android:layout_marginEnd="16dp"-->
+            <!--android:layout_marginRight="16dp"-->
+            <!--android:layout_marginBottom="8dp"-->
+            <!--android:ems="10"-->
+            <!--android:gravity="top"-->
+            <!--android:hint="@string/dialog_idea_hint"-->
+            <!--android:inputType="textMultiLine"-->
+            <!--app:layout_constraintBottom_toTopOf="@+id/btStoryInsert"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/tvIdea" />-->
+    </android.support.constraint.ConstraintLayout>
+
+
+</LinearLayout>
