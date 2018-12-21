@@ -178,7 +178,7 @@ public class PlotListActivity extends AppCompatActivity {
         /**
          * ログに記載するタグ用の文字列
          */
-        private static final String DEBUG_TAG = "PlotJsonAccess";
+        private static final String DEBUG_TAG = "PlotJsonReceiver";
         /**
          * サーバ通信が成功したかどうかのフラグ
          * 成功した場合はtrue、失敗した場合はfalse

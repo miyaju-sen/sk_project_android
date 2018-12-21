@@ -94,7 +94,7 @@ public class OutlineActivity extends AppCompatActivity implements NavigationView
         //NavigationViewのヘッダー部分のTextViewを取得
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View drawerHeader = inflater.inflate(R.layout.drawer_header, null);
-        _tvMenuBack = drawerHeader.findViewById(R.id.tvMenuBack);
+        _tvMenuBack = drawerHeader.findViewById(R.id.tvMenuBack); //プロット一覧へ戻る
 
         //Toolbar
         _toolbar = findViewById(R.id.toolbar);
