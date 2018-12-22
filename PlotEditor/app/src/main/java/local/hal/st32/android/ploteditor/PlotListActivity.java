@@ -144,7 +144,7 @@ public class PlotListActivity extends AppCompatActivity {
         Intent intent = new Intent(context, OutlineActivity.class);
         HashMap<String, String> plot = new HashMap<>( PlotJsonAccess.getPlot() );
         intent.putExtra("MODE", MODE_FIRST);
-        intent.putExtra("PLOT", plot);
+        intent.putExtra("OUTLINE", plot);
 
         startActivity(intent);
     }
@@ -165,7 +165,7 @@ public class PlotListActivity extends AppCompatActivity {
             plot.put("summary", item.get("summary"));
 
             intent.putExtra("MODE", MODE_AGAIN);
-            intent.putExtra("PLOT", plot);
+            intent.putExtra("OUTLINE", plot);
 
             startActivity(intent);
         }

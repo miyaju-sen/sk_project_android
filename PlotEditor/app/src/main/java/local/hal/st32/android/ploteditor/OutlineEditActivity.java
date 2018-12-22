@@ -52,7 +52,7 @@ public class OutlineEditActivity extends AppCompatActivity {
     /**
      * プロット情報が格納された配列
      */
-    private HashMap<String, String> _map = new HashMap<>();
+    private HashMap<String, String> _outline = new HashMap<>();
     /**
      * インテント
      */
@@ -89,11 +89,11 @@ public class OutlineEditActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         _intent = getIntent();
-        _map = (HashMap<String, String>) _intent.getSerializableExtra("PLOT");
-        _no = _map.get("no");
-        _etTitle.setText(_map.get("title") );
-        _etSlogan.setText( _map.get("slogan") );
-        _etSummary.setText(_map.get("summary") );
+        _outline = (HashMap<String, String>) _intent.getSerializableExtra("OUTLINE");
+        _no = _outline.get("no");
+        _etTitle.setText(_outline.get("title") );
+        _etSlogan.setText( _outline.get("slogan") );
+        _etSummary.setText(_outline.get("summary") );
     }
 
     @Override
@@ -149,7 +149,7 @@ public class OutlineEditActivity extends AppCompatActivity {
         String etSummary = _etSummary.getText().toString();
 
         //変更されてた場合
-        if(( !etTitle.equals( _map.get("title") ) || !etSlogan.equals( _map.get("slogan") ) || !etSummary.equals( _map.get("summary") ) )) {
+        if(( !etTitle.equals( _outline.get("title") ) || !etSlogan.equals( _outline.get("slogan") ) || !etSummary.equals( _outline.get("summary") ) )) {
             ReturnConfirmDialogCreate dialog = new ReturnConfirmDialogCreate();
             FragmentManager manager = getSupportFragmentManager();
             dialog.show(manager, "OutlineEditActivity");
@@ -170,11 +170,11 @@ public class OutlineEditActivity extends AppCompatActivity {
         access.setOnCallBack(new PlotJsonAccess.CallBackTask() {
             @Override
             public void CallBack(HashMap<String, String> map) {
-                _map = map;
+                _outline = map;
 
                 Intent intent = new Intent(OutlineEditActivity.this, OutlineActivity.class);
                 intent.putExtra("MODE", _mode);
-                intent.putExtra("PLOT", _map);
+                intent.putExtra("OUTLINE", _outline);
                 startActivity(intent);
                 OutlineEditActivity.this.finish();
             }

@@ -50,7 +50,7 @@ public class OutlineActivity extends AppCompatActivity implements NavigationView
     /**
      * プロット情報が格納された配列
      */
-    private HashMap<String, String> _map = new HashMap<>();
+    private HashMap<String, String> _outline = new HashMap<>();
     /**
      * インテント
      */
@@ -113,8 +113,7 @@ public class OutlineActivity extends AppCompatActivity implements NavigationView
 
         _intent = getIntent();
         _mode = _intent.getIntExtra("MODE", PlotListActivity.MODE_FIRST);
-        _map = (HashMap<String, String>) _intent.getSerializableExtra("PLOT");
-        _no = _map.get("no");
+        _outline = (HashMap<String, String>) _intent.getSerializableExtra("OUTLINE");
     }
 
     @Override
@@ -123,24 +122,24 @@ public class OutlineActivity extends AppCompatActivity implements NavigationView
         setTitle("概要");
         Log.e("*****", "確認地点A");
 
-        _no = _map.get("no");
-        _tvTitle.setText(_map.get("title") );
+        _no = _outline.get("no");
+        _tvTitle.setText(_outline.get("title") );
 
         //新規登録後、またはデータベースに値が登録されてなかった場合にはデフォルトの値をセット
-        if(_mode == PlotListActivity.MODE_FIRST || "".equals( _map.get("slogan") )) {
+        if("".equals( _outline.get("slogan") )) {
             Log.e("*****", "確認地点");
             _tvSlogan.setText( getString(R.string.tv_slogan_text) );
         }
         else {
-            _tvSlogan.setText( _map.get("slogan") );
+            _tvSlogan.setText( _outline.get("slogan") );
         }
 
         //新規登録後、またはデータベースに値が登録されてなかった場合にはデフォルトの値をセット
-        if(_mode == PlotListActivity.MODE_FIRST || "".equals( _map.get("summary") )) {
+        if("".equals( _outline.get("summary") )) {
             _tvSummary.setText( getString(R.string.tv_summary_text) );
         }
         else {
-            _tvSummary.setText(_map.get("summary") );
+            _tvSummary.setText(_outline.get("summary") );
         }
     }
 
@@ -216,6 +215,7 @@ public class OutlineActivity extends AppCompatActivity implements NavigationView
         drawer.closeDrawer(GravityCompat.START);
 
         if(null != intent) {
+            intent.putExtra("OUTLINE", _outline);
             startActivity(intent);
         }
         return true;
@@ -226,7 +226,7 @@ public class OutlineActivity extends AppCompatActivity implements NavigationView
      */
     private void onEditButtonClick() {
         Intent intent = new Intent(OutlineActivity.this, OutlineEditActivity.class);
-        intent.putExtra("PLOT", _map);
+        intent.putExtra("OUTLINE", _outline);
         startActivity(intent);
         OutlineActivity.this.finish();
     }
@@ -235,8 +235,8 @@ public class OutlineActivity extends AppCompatActivity implements NavigationView
      * 削除ボタン押下時の処理
      */
     private void onDeleteButtonClick() {
-        String no = _map.get("no");
-        String title = _map.get("title");
+        String no = _outline.get("no");
+        String title = _outline.get("title");
 
         Bundle extras = new Bundle();
         extras.putString("no", no);

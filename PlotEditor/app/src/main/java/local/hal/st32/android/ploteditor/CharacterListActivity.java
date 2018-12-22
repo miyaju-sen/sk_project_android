@@ -66,6 +66,10 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
      */
     private HashMap<String, String> _character;
     /**
+     * プロット概要が格納された配列
+     */
+    private HashMap<String, String> _outline = new HashMap<>();
+    /**
      * DrawerLayoutとActionBarDrawerToggle
      */
     private DrawerLayout mDrawer;
@@ -83,6 +87,8 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
 
         //TODO:作品Noを受け取る必要がある
         Intent intent = getIntent();
+        _outline = (HashMap<String, String>) intent.getSerializableExtra("OUTLINE");
+
 
         //TODO:コンテキスト送信（やり方考え中）
         //リストビュー取得・リスナー設定　TODO:リスナー設定
@@ -196,6 +202,7 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
         drawer.closeDrawer(GravityCompat.START);
 
         if(null != intent) {
+            intent.putExtra("OUTLINE", _outline);
             startActivity(intent);
         }
         return true;
@@ -212,6 +219,14 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
 
             startActivity(intent);
         }
+    }
+
+    /**
+     * 「プロット一覧に戻る」押下時の処理
+     */
+    public void onMenuBackClick(View view) {
+        Intent intent = new Intent(CharacterListActivity.this, PlotListActivity.class);
+        startActivity(intent);
     }
 
     /**
