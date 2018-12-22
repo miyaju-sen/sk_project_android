@@ -74,17 +74,13 @@ public class OutlineEditActivity extends AppCompatActivity {
      */
     private EditText _etSummary;
 
-    EditTextWatcher etw = new EditTextWatcher();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_outline_edit);
 
         //画面部品取得
-
         _etTitle = findViewById(R.id.etTitle);
-        etw.setEditText(_etTitle);
         _etSlogan = findViewById(R.id.etSlogan);
         _etSummary = findViewById(R.id.etSummary);
 
@@ -151,8 +147,6 @@ public class OutlineEditActivity extends AppCompatActivity {
         String etTitle = _etTitle.getText().toString();
         String etSlogan = _etSlogan.getText().toString();
         String etSummary = _etSummary.getText().toString();
-
-        etTitle = etw.getStr();
 
         //変更されてた場合
         if(( !etTitle.equals( _outline.get("title") ) || !etSlogan.equals( _outline.get("slogan") ) || !etSummary.equals( _outline.get("summary") ) )) {
