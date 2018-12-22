@@ -140,5 +140,10 @@ public class CharacterEditActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * 戻るボタン押下時の処理
+     */
+    private void onBackButtonClick() {
 
+    }
 }
