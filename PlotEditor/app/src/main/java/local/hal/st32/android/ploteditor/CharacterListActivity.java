@@ -46,6 +46,10 @@ import java.util.Map;
  */
 public class CharacterListActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     /**
+     * 現在表示している画面に対応したアクティビティ
+     */
+    public static final String NOW_CHARACTER_ACTIVITY = "CharacterListActivity";
+    /**
      * アクセス先のURL
      */
     private static final String ACCESS_URL = new AccessURL().getCharacterJson();
