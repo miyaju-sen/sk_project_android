@@ -85,7 +85,7 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
         //概要の内容取得
         Intent intent = getIntent();
         _outline = (HashMap<String, String>) intent.getSerializableExtra("OUTLINE");
-        
+
         //リストビュー取得・リスナー設定
         _lvCharacters = findViewById(R.id.lvCharacters);
         _lvCharacters.setOnItemClickListener(new ListItemClickListener());
@@ -244,7 +244,7 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
      */
     private void onInsertButtonClick() {
         Intent intent = new Intent(CharacterListActivity.this, CharacterEditActivity.class);
-        intent.putExtra("plot", _outline.get("no"));
+        intent.putExtra("PLOTNo", _outline.get("no"));
 
         startActivity(intent);
     }

@@ -5,19 +5,20 @@ import android.os.Bundle;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
+/**
+ * 就職作品
+ *
+ * 各登場人物の情報画面用のアクティビティクラス
+ *
+ * @author ohs60224
+ */
 public class CharacterActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character);
-//
-//        TextView tvRowAge = findViewById(R.id.tvRowAge);
-//        //tvRowAge.setBackgroundColor(Color.GRAY);
-//
-//        TableLayout tvOutline = findViewById(R.id.tlOutline);
 
-
-
+        
     }
 }
