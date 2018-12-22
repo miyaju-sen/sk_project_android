@@ -52,7 +52,7 @@ public class CharacterJsonAccess extends AsyncTask<String, String, String> {
     /**
      * 現在表示している画面に対応したアクティビティ
      */
-    private static String NOW_CHARACTER_ACTIVITY;
+    private static String NOW_ACTIVITY = new NowActivity().getCharacterListActivity();
 
     /**
      * コンストラクタ

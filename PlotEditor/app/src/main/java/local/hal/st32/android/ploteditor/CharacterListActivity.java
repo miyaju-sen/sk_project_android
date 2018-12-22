@@ -82,12 +82,10 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_list);
 
-        //TODO:作品Noを受け取る必要がある
+        //概要の内容取得
         Intent intent = getIntent();
         _outline = (HashMap<String, String>) intent.getSerializableExtra("OUTLINE");
-
-        //TODO:コンテキスト送信（やり方考え中）
-
+        
         //リストビュー取得・リスナー設定
         _lvCharacters = findViewById(R.id.lvCharacters);
         _lvCharacters.setOnItemClickListener(new ListItemClickListener());
@@ -151,7 +149,7 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
         int itemId = item.getItemId();
         switch (itemId) {
             case R.id.menuInsert:
-                //TODO:追加処理へ
+                onInsertButtonClick();
                 break;
             case R.id.menuReload:
                 onResume();
@@ -239,6 +237,16 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
             intent.putExtra("CHARACTER", character);
             startActivity(intent);
         }
+    }
+
+    /**
+     * 追加ボタン押下時の処理
+     */
+    private void onInsertButtonClick() {
+        Intent intent = new Intent(CharacterListActivity.this, CharacterEditActivity.class);
+        intent.putExtra("plot", _outline.get("no"));
+
+        startActivity(intent);
     }
 
     /**
