@@ -56,7 +56,8 @@ public class PlotJsonAccess extends AsyncTask<String, String, String> {
     /**
      * 現在表示している画面に対応したアクティビティ
      */
-    private static String NOW_ACTIVITY = TitleSetDialogCreate.NOW_ACTIVITY;
+    //private static String NOW_ACTIVITY = TitleSetDialogCreate.NOW_ACTIVITY;
+    private static String NOW_ACTIVITY = new NowActivity().getPlotListActivity();
     /**
      * コンテキスト
      */
@@ -200,7 +201,7 @@ public class PlotJsonAccess extends AsyncTask<String, String, String> {
             }
 
             //新規登録だった場合（遷移元：PlotListActivity、遷移先：OutlineEditActivity）
-            if(NOW_ACTIVITY.equals( TitleSetDialogCreate.NOW_ACTIVITY )) {
+            if(NOW_ACTIVITY.equals( new NowActivity().getPlotListActivity() )) {
                 PlotListActivity activity = (PlotListActivity) _context;
                 activity.onPositiveButtonClick(_context);
             }

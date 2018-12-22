@@ -12,12 +12,26 @@ public class NowActivity {
      * フィールド
      */
     private String NOW_ACTIVITY;
+    private String PlotListActivity;
+    private String OutlineActivity;
+    private String CharacterListActivity;
+    private String CharacterActivity;
+    private String WorldViewListActivity;
+    private String MemoListActivity;
+    private String StoryEditActivity;
 
     /**
      * コンストラクタ
      */
     public NowActivity() {
         this.NOW_ACTIVITY = "";
+        this.PlotListActivity = "PlotListActivity";
+        this.OutlineActivity = "OutlineActivity";
+        this.CharacterListActivity = "CharacterListActivity";
+        this.CharacterActivity = "CharacterActivity";
+        this.WorldViewListActivity = "WorldViewListActivity";
+        this.MemoListActivity = "MemoListActivity";
+        this.StoryEditActivity = "StoryEditActivity";
     }
 
     /**
@@ -34,5 +48,33 @@ public class NowActivity {
      */
     public String getNowActivity() {
         return this.NOW_ACTIVITY;
+    }
+
+    public String getPlotListActivity() {
+        return this.PlotListActivity;
+    }
+
+    public String getOutlineActivity() {
+        return this.OutlineActivity;
+    }
+
+    public String getCharacterListActivity() {
+        return this.CharacterListActivity;
+    }
+
+    public String getCharacterActivity() {
+        return this.CharacterActivity;
+    }
+
+    public String getWorldViewListActivity() {
+        return this.WorldViewListActivity;
+    }
+
+    public String getMemoListActivity() {
+        return this.MemoListActivity;
+    }
+
+    public String getStoryEditActivity() {
+        return this.StoryEditActivity;
     }
 }
