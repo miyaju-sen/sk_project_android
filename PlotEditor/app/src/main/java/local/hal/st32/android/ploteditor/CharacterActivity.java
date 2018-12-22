@@ -9,6 +9,7 @@ import android.widget.TextView;
  * 就職作品
  *
  * 各登場人物の情報画面用のアクティビティクラス
+ * 登録・編集後、リスト押下後に遷移してくる
  *
  * @author ohs60224
  */
@@ -19,6 +20,6 @@ public class CharacterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character);
 
-        
+
     }
 }

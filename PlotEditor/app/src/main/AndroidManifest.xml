@@ -31,7 +31,9 @@
         <activity android:name=".CharacterActivity" />
         <activity android:name=".ImageUploadActivity" />
         <activity android:name=".MemoEditActivity" />
-        <activity android:name=".CharacterEditActivity" />
+        <activity
+            android:name=".CharacterEditActivity"
+            android:theme="@style/AppTheme"/>
         <activity android:name=".WorldViewEditActivity" />
         <activity android:name=".StoryEditActivity" />
         <activity android:name=".TestActivity"></activity>

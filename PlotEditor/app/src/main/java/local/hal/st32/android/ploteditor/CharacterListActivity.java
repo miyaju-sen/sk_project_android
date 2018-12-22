@@ -49,7 +49,7 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
     /**
      * 現在表示している画面に対応したアクティビティ
      */
-    public static final String NOW_CHARACTER_ACTIVITY = "CharacterListActivity";
+    public static final String NOW_ACTIVITY = new NowActivity().getCharacterListActivity();
     /**
      * アクセス先のURL
      */
@@ -245,6 +245,7 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
     private void onInsertButtonClick() {
         Intent intent = new Intent(CharacterListActivity.this, CharacterEditActivity.class);
         intent.putExtra("PLOTNo", _outline.get("no"));
+        intent.putExtra("ACTIVITY", NOW_ACTIVITY);
 
         startActivity(intent);
     }
