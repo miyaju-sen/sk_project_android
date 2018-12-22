@@ -256,7 +256,8 @@ public class OutlineActivity extends AppCompatActivity implements NavigationView
      * 「プロット一覧に戻る」押下時の処理
      */
     public void onMenuBackClick(View view) {
-        finish();
+        Intent intent = new Intent(OutlineActivity.this, PlotListActivity.class);
+        startActivity(intent);
     }
 
 }
