@@ -152,6 +152,9 @@ public class OutlineActivity extends AppCompatActivity implements NavigationView
         inflater.inflate(R.menu.menu_edit, menu);
 
         //表示されたままのメニューアイコンを非表示に
+        menu.setGroupVisible(R.id.mgEdit, false);
+
+        //表示されたままのメニューアイコンを非表示に
         menu.findItem(R.id.menuInsert).setVisible(false);
         menu.findItem(R.id.menuReload).setVisible(false);
 

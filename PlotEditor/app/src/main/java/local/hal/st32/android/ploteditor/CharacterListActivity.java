@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -62,10 +63,6 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
      */
     private ListView _lvCharacters;
     /**
-     * Intentで送信する登場人物情報を格納する配列
-     */
-    private HashMap<String, String> _character;
-    /**
      * プロット概要が格納された配列
      */
     private HashMap<String, String> _outline = new HashMap<>();
@@ -89,10 +86,11 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
         Intent intent = getIntent();
         _outline = (HashMap<String, String>) intent.getSerializableExtra("OUTLINE");
 
-
         //TODO:コンテキスト送信（やり方考え中）
-        //リストビュー取得・リスナー設定　TODO:リスナー設定
+
+        //リストビュー取得・リスナー設定
         _lvCharacters = findViewById(R.id.lvCharacters);
+        _lvCharacters.setOnItemClickListener(new ListItemClickListener());
 
         //NavigationViewのヘッダー部分のTextViewを取得
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -132,7 +130,7 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
         inflater.inflate(R.menu.menu_edit, menu);
 
         //表示されたままのメニューアイコンを非表示に
-        //TODO:メニューアイテムグループにしてまとめてクリアすれば
+        menu.setGroupVisible(R.id.mgEdit, false);
 
         //更新ボタンを表示
         MenuItem reload = menu.findItem(R.id.menuReload);
@@ -194,8 +192,7 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
             //削除
             case R.id.menuDelete:
                 intent = null;
-                //TODO:削除処理
-//                onDeleteButtonClick();
+                onDeleteButtonClick();
                 break;
         }
         DrawerLayout drawer = findViewById(R.id.drawerLayout);
@@ -215,8 +212,31 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Intent intent = new Intent(CharacterListActivity.this, CharacterActivity.class);
-            intent.putExtra("CHARACTER", _character);
+            HashMap<String, String> character = new HashMap<>();
 
+            Map<String, String> item = _list.get(position);
+            character.put("no", item.get("no"));
+            character.put("plot", item.get("plot"));
+            character.put("phonetic", item.get("phonetic"));
+            character.put("name", item.get("name"));
+            character.put("another", item.get("another"));
+            character.put("image_path", item.get("image_path"));
+            character.put("age", item.get("age"));
+            character.put("gender", item.get("gender"));
+            character.put("birthday", item.get("birthday"));
+            character.put("height", item.get("height"));
+            character.put("weight", item.get("weight"));
+            character.put("first_person", item.get("first_person"));
+            character.put("second_person", item.get("second_person"));
+            character.put("belongs", item.get("belongs"));
+            character.put("skill", item.get("skill"));
+            character.put("profile", item.get("profile"));
+            character.put("lived_process", item.get("lived_process"));
+            character.put("personality", item.get("personality"));
+            character.put("appearance", item.get("appearance"));
+            character.put("other", item.get("other"));
+
+            intent.putExtra("CHARACTER", character);
             startActivity(intent);
         }
     }
@@ -227,6 +247,27 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
     public void onMenuBackClick(View view) {
         Intent intent = new Intent(CharacterListActivity.this, PlotListActivity.class);
         startActivity(intent);
+    }
+
+    /**
+     * 削除ボタン押下時の処理
+     */
+    private void onDeleteButtonClick() {
+        String no = _outline.get("no");
+        String title = _outline.get("title");
+
+        Bundle extras = new Bundle();
+        extras.putString("no", no);
+        extras.putString("title", title);
+
+        Context context = this;
+        PlotDeleteConfirmDialogCreate.setActivityContext(context);
+
+        PlotDeleteConfirmDialogCreate dialog = new PlotDeleteConfirmDialogCreate();
+        dialog.setArguments(extras);
+
+        FragmentManager manager = getSupportFragmentManager();
+        dialog.show(manager, "CharacterListActivity");
     }
 
     /**
@@ -330,9 +371,10 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
                 JSONObject rootJSON = new JSONObject(result);
 
                 //プロット一覧のJSONデータを解析
+                Map<String, String> item;
                 JSONArray characterArray = rootJSON.getJSONArray("characters");
                 for(int i = 0; i < characterArray.length(); i++) {
-                    _character = new HashMap<>();
+                    item = new HashMap<>();
                     JSONObject characterNow = characterArray.getJSONObject(i);
                     no = characterNow.getString("no");
                     plot = characterNow.getString("plot");
@@ -355,28 +397,28 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
                     appearance = characterNow.getString("appearance");
                     other = characterNow.getString("other");
 
-                    _character.put("no", no);
-                    _character.put("plot", plot);
-                    _character.put("phonetic", phonetic);
-                    _character.put("name", name);
-                    _character.put("another", another);
-                    _character.put("image_path", imagePath);
-                    _character.put("age", age);
-                    _character.put("gender", gender);
-                    _character.put("birthday", birthday);
-                    _character.put("height", height);
-                    _character.put("weight", weight);
-                    _character.put("first_person", firstPerson);
-                    _character.put("second_person", secondPerson);
-                    _character.put("belongs", belongs);
-                    _character.put("skill", skill);
-                    _character.put("profile", profile);
-                    _character.put("lived_process", livedProcess);
-                    _character.put("personality", personality);
-                    _character.put("appearance", appearance);
-                    _character.put("other", other);
+                    item.put("no", no);
+                    item.put("plot", plot);
+                    item.put("phonetic", phonetic);
+                    item.put("name", name);
+                    item.put("another", another);
+                    item.put("image_path", imagePath);
+                    item.put("age", age);
+                    item.put("gender", gender);
+                    item.put("birthday", birthday);
+                    item.put("height", height);
+                    item.put("weight", weight);
+                    item.put("first_person", firstPerson);
+                    item.put("second_person", secondPerson);
+                    item.put("belongs", belongs);
+                    item.put("skill", skill);
+                    item.put("profile", profile);
+                    item.put("lived_process", livedProcess);
+                    item.put("personality", personality);
+                    item.put("appearance", appearance);
+                    item.put("other", other);
 
-                    list.add(_character);
+                    list.add(item);
                 }
             }
             catch (JSONException ex) {

@@ -83,10 +83,6 @@ public class PlotListActivity extends AppCompatActivity {
         //リストビュー取得・リスナー設定
         _lvPlots = findViewById(R.id.lvPlots);
         _lvPlots.setOnItemClickListener(new ListItemClickListener());
-
-        //Toolbar
-//        Toolbar toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
     }
 
     @Override
