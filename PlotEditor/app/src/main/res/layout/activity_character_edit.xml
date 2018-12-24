@@ -221,25 +221,11 @@
                 app:layout_constraintStart_toEndOf="@+id/tvHeightWeight"
                 app:layout_constraintTop_toBottomOf="@+id/etAnotherName">
 
-                <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    xmlns:tools="http://schemas.android.com/tools"
-                    android:layout_width="match_parent"
+                <RadioButton
+                    android:id="@+id/rbAge"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:context=".CharacterEditActivity">
-
-                    <RadioButton
-                        android:id="@+id/rbAge"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:checked="true"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                    android:checked="true" />
 
                     <!--<Spinner-->
                         <!--android:id="@+id/spAge"-->
@@ -255,47 +241,27 @@
                         <!--app:layout_constraintStart_toEndOf="@+id/rbAge"-->
                         <!--app:layout_constraintTop_toTopOf="parent" />-->
 
-                    <EditText
-                        android:id="@+id/etAge"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:inputType="number"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/rbAge"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.0" />
+                <EditText
+                    android:id="@+id/etAge"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:inputType="number" />
 
-                    <RadioButton
-                        android:id="@+id/rbAgeUnknown"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:text="@string/tv_unknown"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/tvSai"
-                        app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/tvSai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/tv_sai"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/etAge" />
 
-                    <TextView
-                        android:id="@+id/tvSai"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:text="@string/tv_sai"
-                        app:layout_constraintBaseline_toBaselineOf="@+id/etAge"
-                        app:layout_constraintStart_toEndOf="@+id/etAge" />
-
-                </android.support.constraint.ConstraintLayout>
+                <RadioButton
+                    android:id="@+id/rbAgeUnknown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/tv_unknown" />
             </RadioGroup>
 
             <RadioGroup
@@ -307,89 +273,46 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tvHeightWeight"
                 app:layout_constraintTop_toBottomOf="@+id/rgAge">
 
-                <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    xmlns:tools="http://schemas.android.com/tools"
-                    android:layout_width="match_parent"
+                <RadioButton
+                    android:id="@+id/rbMan"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:context=".CharacterEditActivity">
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="@string/tv_man" />
 
-                    <RadioButton
-                        android:id="@+id/rbMan"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginRight="8dp"
-                        android:checked="false"
-                        android:text="@string/tv_man"
-                        app:layout_constraintEnd_toStartOf="@+id/rbWoman"
-                        app:layout_constraintStart_toStartOf="parent" />
+                <RadioButton
+                    android:id="@+id/rbWoman"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/tv_woman" />
 
-                    <RadioButton
-                        android:id="@+id/rbWoman"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginRight="8dp"
-                        android:checked="true"
-                        android:text="@string/tv_woman"
-                        app:layout_constraintEnd_toStartOf="@+id/rbBothSexes"
-                        app:layout_constraintStart_toEndOf="@+id/rbMan" />
+                <RadioButton
+                    android:id="@+id/rbBothSexes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/tv_both_sexes" />
 
-                    <RadioButton
-                        android:id="@+id/rbBothSexes"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginRight="8dp"
-                        android:text="@string/tv_both_sexes"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/rbWoman" />
+                <RadioButton
+                    android:id="@+id/rbAsexual"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/tv_asexual" />
 
-                    <RadioButton
-                        android:id="@+id/rbAsexual"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_weight="1"
-                        android:text="@string/tv_asexual"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/rbWoman"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/rbMan" />
-
-                    <RadioButton
-                        android:id="@+id/rbGenderUnknown"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_weight="1"
-                        android:text="@string/tv_unknown"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/rbAsexual"
-                        app:layout_constraintTop_toBottomOf="@id/rbWoman" />
-                </android.support.constraint.ConstraintLayout>
+                <RadioButton
+                    android:id="@+id/rbGenderUnknown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/tv_unknown" />
             </RadioGroup>
 
             <TextView

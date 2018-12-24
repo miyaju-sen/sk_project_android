@@ -90,7 +90,7 @@
     <!-- 登場人物追加・編集画面用 -->
     <string name="hint_another">あだ名、二つ名など</string>
     <string name="hint_skill">保有している特殊な能力、あるいは特技など</string>
-    <string name="hint_profile">この人物についての簡潔な紹介文\n※一覧画面にて表示されます</string>
+    <string name="hint_profile">簡潔な紹介文（一覧画面にて表示されます）</string>
     <string name="hint_lived">どんな暮らしを送ってきたか、登場するまでの経緯など</string>
     <string name="hint_personality">どんな人物か、他の人物と絡む際の態度など</string>
     <string name="hint_appearance">髪形、髪や瞳の色、服装など</string>
