@@ -225,21 +225,8 @@
                     android:id="@+id/rbAge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="true" />
-
-                    <!--<Spinner-->
-                        <!--android:id="@+id/spAge"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_marginStart="8dp"-->
-                        <!--android:layout_marginLeft="8dp"-->
-                        <!--android:layout_marginTop="8dp"-->
-                        <!--android:layout_marginBottom="8dp"-->
-                        <!--android:entries="@array/age_list"-->
-                        <!--android:scrollbarSize="3dp"-->
-                        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-                        <!--app:layout_constraintStart_toEndOf="@+id/rbAge"-->
-                        <!--app:layout_constraintTop_toTopOf="parent" />-->
+                    android:checked="true"
+                    android:tag="10" />
 
                 <EditText
                     android:id="@+id/etAge"
@@ -261,6 +248,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:tag="20"
                     android:text="@string/tv_unknown" />
             </RadioGroup>
 
@@ -284,6 +272,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:checked="true"
+                    android:tag="1"
                     android:text="@string/tv_man" />
 
                 <RadioButton
@@ -291,6 +280,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:tag="2"
                     android:text="@string/tv_woman" />
 
                 <RadioButton
@@ -298,6 +288,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:tag="3"
                     android:text="@string/tv_both_sexes" />
 
                 <RadioButton
@@ -305,6 +296,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:tag="4"
                     android:text="@string/tv_asexual" />
 
                 <RadioButton
@@ -312,6 +304,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:tag="5"
                     android:text="@string/tv_unknown" />
             </RadioGroup>
 

@@ -74,8 +74,14 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
      * 遷移元のアクティビティ（デフォルト：一覧画面）
      */
     private String ACTIVITY = new NowActivity().getCharacterListActivity();
-    int ageCheckedId;
-    int genderCheckedId;
+    /**
+     * 年齢
+     */
+    private String _age;
+    /**
+     * 性別のタグ
+     */
+    private int _genderTag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -176,13 +182,26 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
      */
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
-        //選択されているRadioButtonのIDを取得（どれも選択されていない場合：-1）
-        ageCheckedId = _rgAge.getCheckedRadioButtonId();
-        genderCheckedId = _rgGender.getCheckedRadioButtonId();
+        //選択されたラジオボタンのタグを取得
+        RadioButton rb = findViewById(checkedId);
+        String tagStr = rb.getTag().toString();
+        int tag = Integer.parseInt(tagStr);
 
-        if (-1 != ageCheckedId) {
-            Toast.makeText(this, ((RadioButton)findViewById(checkedId)).getText() + "が選択されています", Toast.LENGTH_SHORT).show();
+        //年齢（____歳）
+        if(10 == tag) {
+            _age = _etAge.getText().toString();
         }
+        //年齢（不明）
+        else if(20 == tag) {
+            _age = rb.getText().toString();
+        }
+        //性別
+        else if(1 <= tag && tag <= 5) {
+            _genderTag = tag;
+        }
+
+        Toast.makeText(this, "年齢" + _age + "が選択されました", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "性別" + _genderTag + "が選択されました", Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -190,7 +209,6 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
      */
     private void onBackButtonClick() {
         //TODO:変更された場合の処理
-        Log.e("ラジオボタン", "年齢：" + ageCheckedId + "性別：" + genderCheckedId);
         finish();
     }
 
@@ -203,8 +221,7 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
         String name = _etName.getText().toString();
         String another = _etAnotherName.getText().toString();
         //TODO:画像パス
-        //TODO:年齢
-        //TODO:性別（現在サーブレット側で固定値にしてる）
+        String gender = Integer.toString(_genderTag);
         String birthday = _spMonth.getSelectedItem().toString() + _spDay.getSelectedItem().toString();
         String height = _etHeight.getText().toString();
         String weight = _etWeight.getText().toString();
@@ -235,8 +252,8 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
                 name, //名前
                 another, //別名
                 "", //画像パス
-                "", //年齢
-                "", //性別
+                _age, //年齢
+                gender, //性別
                 birthday, //誕生日
                 height, //身長
                 weight, //体重

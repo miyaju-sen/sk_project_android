@@ -115,6 +115,7 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
         super.onResume();
         setTitle("登場人物一覧");
 
+        //TODO:開いてる作品内の登場人物のみ
         CharacterJsonReceiver receiver = new CharacterJsonReceiver();
         receiver.execute(ACCESS_URL);
     }
