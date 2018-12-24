@@ -30,6 +30,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -117,7 +118,7 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
 
         //TODO:開いてる作品内の登場人物のみ
         CharacterJsonReceiver receiver = new CharacterJsonReceiver();
-        receiver.execute(ACCESS_URL);
+        receiver.execute(ACCESS_URL, _outline.get("no"));
     }
 
     /**
@@ -297,7 +298,9 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
         @Override
         public List<Map<String, String>> doInBackground(String... params) {
             String urlStr = params[0];
+            String no = params[1];
 
+            String data = "no=" + no;
             HttpURLConnection con = null;
             InputStream is = null;
             List<Map<String, String>> result = null;
@@ -306,7 +309,17 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
                 URL url = new URL(urlStr);
                 con = (HttpURLConnection) url.openConnection();
                 con.setRequestMethod("GET");
-                con.connect();
+                con.setConnectTimeout(5000);
+                con.setReadTimeout(5000);
+                con.setDoOutput(true);
+                OutputStream os = con.getOutputStream();
+                os.write(data.getBytes());
+                os.flush();
+                os.close();
+                int status = con.getResponseCode();
+                if(status != 200) {
+                    throw new IOException("ステータスコード:" + status);
+                }
                 is = con.getInputStream();
 
                 String jsonStr = is2String(is);
