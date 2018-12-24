@@ -4,14 +4,17 @@ import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.HashMap;
 
@@ -24,7 +27,7 @@ import java.util.HashMap;
  *
  * @author ohs60224
  */
-public class CharacterEditActivity extends AppCompatActivity {
+public class CharacterEditActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
     /**
      * 画面部品
      */
@@ -71,6 +74,8 @@ public class CharacterEditActivity extends AppCompatActivity {
      * 遷移元のアクティビティ（デフォルト：一覧画面）
      */
     private String ACTIVITY = new NowActivity().getCharacterListActivity();
+    int ageCheckedId;
+    int genderCheckedId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +111,10 @@ public class CharacterEditActivity extends AppCompatActivity {
 
         //スピナーに値をセット
         spinnerAdapterSet();
+
+        //ラジオグループにリスナーをセット
+        _rgAge.setOnCheckedChangeListener(this);
+        _rgGender.setOnCheckedChangeListener(this);
 
         _intent = getIntent();
         _plot = _intent.getStringExtra("PLOTNo"); //作品No
@@ -163,10 +172,25 @@ public class CharacterEditActivity extends AppCompatActivity {
     }
 
     /**
+     * ラジオボタン選択時処理
+     */
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        //選択されているRadioButtonのIDを取得（どれも選択されていない場合：-1）
+        ageCheckedId = _rgAge.getCheckedRadioButtonId();
+        genderCheckedId = _rgGender.getCheckedRadioButtonId();
+
+        if (-1 != ageCheckedId) {
+            Toast.makeText(this, ((RadioButton)findViewById(checkedId)).getText() + "が選択されています", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
      * 戻るボタン押下時の処理
      */
     private void onBackButtonClick() {
         //TODO:変更された場合の処理
+        Log.e("ラジオボタン", "年齢：" + ageCheckedId + "性別：" + genderCheckedId);
         finish();
     }
 
@@ -181,7 +205,7 @@ public class CharacterEditActivity extends AppCompatActivity {
         //TODO:画像パス
         //TODO:年齢
         //TODO:性別（現在サーブレット側で固定値にしてる）
-        //TODO:誕生日
+        String birthday = _spMonth.getSelectedItem().toString() + _spDay.getSelectedItem().toString();
         String height = _etHeight.getText().toString();
         String weight = _etWeight.getText().toString();
         String firstPerson = _etFirstPerson.getText().toString();
@@ -213,7 +237,7 @@ public class CharacterEditActivity extends AppCompatActivity {
                 "", //画像パス
                 "", //年齢
                 "", //性別
-                "", //誕生日
+                birthday, //誕生日
                 height, //身長
                 weight, //体重
                 firstPerson, //一人称
@@ -249,7 +273,6 @@ public class CharacterEditActivity extends AppCompatActivity {
         for(int i = 1; i <= 31; i++) {
             _dayAdapter.add(i + "日");
         }
-
 
         _spMonth.setAdapter(_monthAdapter);
         _spDay.setAdapter(_dayAdapter);
