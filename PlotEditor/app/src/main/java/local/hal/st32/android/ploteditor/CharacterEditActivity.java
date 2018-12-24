@@ -133,8 +133,7 @@ public class CharacterEditActivity extends AppCompatActivity {
                 break;
             //戻るボタン
             case android.R.id.home:
-                //TODO:戻る処理
-//                onBackButtonClick();
+                onBackButtonClick();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -144,6 +143,8 @@ public class CharacterEditActivity extends AppCompatActivity {
      * 戻るボタン押下時の処理
      */
     private void onBackButtonClick() {
+        //TODO:変更された場合の処理
 
+        finish();
     }
 }

@@ -2,6 +2,7 @@ package local.hal.st32.android.ploteditor;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.EditText;
 
 /**
@@ -17,6 +18,7 @@ public class EditTextWatcher implements TextWatcher {
 
     public void setEditText(EditText editText) {
         this._editText = editText;
+        Log.e("テキスト", this._editText.getText().toString());
         this._editText.addTextChangedListener(this);
     }
 
