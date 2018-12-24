@@ -29,6 +29,7 @@ public class CharacterEditActivity extends AppCompatActivity {
     private EditText _etPhonetic;
     private EditText _etAnotherName;
     private RadioGroup _rgAge;
+    private EditText _etAge;
     private RadioGroup _rgGender;
     private EditText _etHeight;
     private EditText _etWeight;
@@ -74,6 +75,7 @@ public class CharacterEditActivity extends AppCompatActivity {
         _etPhonetic = findViewById(R.id.etPhonetic);
         _etAnotherName = findViewById(R.id.etAnotherName);
         _rgAge = findViewById(R.id.rgAge);
+        _etAge = findViewById(R.id.etAge);
         _rgGender = findViewById(R.id.rgGender);
         _etHeight = findViewById(R.id.etHeight);
         _etWeight = findViewById(R.id.etWeight);
@@ -160,7 +162,7 @@ public class CharacterEditActivity extends AppCompatActivity {
         String another = _etAnotherName.getText().toString();
         //TODO:画像パス
         //TODO:年齢
-        //TODO:性別
+        //TODO:性別（現在サーブレット側で固定値にしてる）
         //TODO:誕生日
         String height = _etHeight.getText().toString();
         String weight = _etWeight.getText().toString();
