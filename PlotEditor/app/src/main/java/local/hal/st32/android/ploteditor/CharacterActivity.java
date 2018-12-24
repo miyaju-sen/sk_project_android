@@ -1,5 +1,6 @@
 package local.hal.st32.android.ploteditor;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TableLayout;
@@ -20,6 +21,8 @@ public class CharacterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character);
 
+        Intent intent = getIntent();
+        setTitle("遷移完了");
 
     }
 }

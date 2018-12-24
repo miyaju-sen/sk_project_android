@@ -121,6 +121,7 @@ public class CharacterJsonAccess extends AsyncTask<String, String, String> {
                 "&personality=" + personality +
                 "&appearance=" + appearance +
                 "&other=" + other;
+        Log.e("データ", data);
         HttpURLConnection con = null;
         InputStream is = null;
         String result = "";
@@ -261,6 +262,7 @@ public class CharacterJsonAccess extends AsyncTask<String, String, String> {
                 Log.e(DEBUG_TAG, "JSON解析失敗", ex);
             }
 
+            //TODO:遷移元で分岐ではなく新規か編集か（編集画面からしか飛ばされない）
             //新規登録だった場合（遷移元：PlotListActivity、遷移先：OutlineEditActivity）
 //            if(NOW_ACTIVITY.equals( TitleSetDialogCreate.NOW_ACTIVITY )) {
 //                PlotListActivity activity = (PlotListActivity) _context;

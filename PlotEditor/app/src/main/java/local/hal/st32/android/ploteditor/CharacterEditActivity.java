@@ -10,6 +10,8 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 
+import java.util.HashMap;
+
 /**
  * 就職作品
  *
@@ -64,6 +66,8 @@ public class CharacterEditActivity extends AppCompatActivity {
         //アクションバーに前画面へ戻る機能をつける
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+        //TODO:誕生日と年齢のスピナー
 
         //画面部品取得
         _etName = findViewById(R.id.etName);
@@ -128,8 +132,7 @@ public class CharacterEditActivity extends AppCompatActivity {
         switch (itemId) {
             //保存ボタン
             case R.id.menuSave:
-                //TODO:保存処理→情報画面へ
-//                onSaveButtonClick();
+                onSaveButtonClick();
                 break;
             //戻るボタン
             case android.R.id.home:
@@ -144,7 +147,64 @@ public class CharacterEditActivity extends AppCompatActivity {
      */
     private void onBackButtonClick() {
         //TODO:変更された場合の処理
-
         finish();
+    }
+
+    /**
+     * 保存ボタン押下時の処理
+     */
+    private void onSaveButtonClick() {
+        String no = ""; //TODO:新規追加の場合は空
+        String phonetic = _etPhonetic.getText().toString();
+        String name = _etName.getText().toString();
+        String another = _etAnotherName.getText().toString();
+        //TODO:画像パス
+        //TODO:年齢
+        //TODO:性別
+        //TODO:誕生日
+        String height = _etHeight.getText().toString();
+        String weight = _etWeight.getText().toString();
+        String firstPerson = _etFirstPerson.getText().toString();
+        String secondPerson = _etSecondPerson.getText().toString();
+        String belongs = _etBelongs.getText().toString();
+        String skill = _etSkill.getText().toString();
+        String profile = _etProfile.getText().toString();
+        String livedProcess = _etLivedProcess.getText().toString();
+        String personality = _etPersonality.getText().toString();
+        String appearance = _etAppearance.getText().toString();
+        String other = _etOther.getText().toString();
+
+        CharacterJsonAccess access = new CharacterJsonAccess();
+        access.setOnCallBack(new CharacterJsonAccess.CallBackTask() {
+            @Override
+            public void CallBack(HashMap<String, String> map) {
+                //TODO:遷移先にデータ送信
+//                _intent = new Intent (CharacterEditActivity.this, CharacterActivity.class);
+//                startActivity(_intent);
+//                CharacterEditActivity.this.finish();
+            }
+        });
+        access.execute(
+                no, //主キー
+                _plot, //作品No
+                phonetic, //フリガナ
+                name, //名前
+                another, //別名
+                "", //画像パス
+                "", //年齢
+                "", //性別
+                "", //誕生日
+                height, //身長
+                weight, //体重
+                firstPerson, //一人称
+                secondPerson, //二人称
+                belongs, //所属
+                skill, //能力
+                profile, //紹介文
+                livedProcess, //生い立ち
+                personality, //性格
+                appearance, //容姿
+                other //その他
+        );
     }
 }
