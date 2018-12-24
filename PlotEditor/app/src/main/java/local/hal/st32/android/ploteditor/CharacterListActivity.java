@@ -341,7 +341,7 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
         public void onPostExecute(List<Map<String, String>> list) {
             _list = list;
             String[] from = {"name", "profile"};
-            int[] to = {android.R.id.text1, android.R.id.text2};
+            int[] to = {R.id.tvCharacterName, R.id.tvProfile};
             SimpleAdapter adapter = new SimpleAdapter(CharacterListActivity.this, list, R.layout.row_character, from, to);
             _lvCharacters.setAdapter(adapter);
         }

@@ -426,13 +426,13 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
-                app:layout_constraintEnd_toStartOf="@+id/spinner3"
+                app:layout_constraintEnd_toStartOf="@+id/spDay"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toEndOf="@+id/tvHeightWeight"
                 app:layout_constraintTop_toBottomOf="@+id/rgGender" />
 
             <Spinner
-                android:id="@+id/spinner3"
+                android:id="@+id/spDay"
                 android:layout_width="0dp"
                 android:layout_height="24dp"
                 android:layout_marginTop="8dp"
@@ -479,7 +479,7 @@
                 android:inputType="number"
                 app:layout_constraintBottom_toTopOf="@+id/etFirstPerson"
                 app:layout_constraintStart_toEndOf="@+id/tvCentimeter"
-                app:layout_constraintTop_toBottomOf="@+id/spinner3" />
+                app:layout_constraintTop_toBottomOf="@+id/spDay" />
 
             <TextView
                 android:id="@+id/tvKilogram"

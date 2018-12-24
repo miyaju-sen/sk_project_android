@@ -7,8 +7,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 
 import java.util.HashMap;
 
@@ -31,6 +34,8 @@ public class CharacterEditActivity extends AppCompatActivity {
     private RadioGroup _rgAge;
     private EditText _etAge;
     private RadioGroup _rgGender;
+    private Spinner _spMonth;
+    private Spinner _spDay;
     private EditText _etHeight;
     private EditText _etWeight;
     private EditText _etFirstPerson;
@@ -46,6 +51,14 @@ public class CharacterEditActivity extends AppCompatActivity {
      * 画像パス
      */
     private String _imagePath;
+    /**
+     * 誕生月のアダプタ
+     */
+    private ArrayAdapter<String> _monthAdapter;
+    /**
+     * 誕生日のアダプタ
+     */
+    private ArrayAdapter<String> _dayAdapter;
     /**
      * インテント
      */
@@ -77,6 +90,8 @@ public class CharacterEditActivity extends AppCompatActivity {
         _rgAge = findViewById(R.id.rgAge);
         _etAge = findViewById(R.id.etAge);
         _rgGender = findViewById(R.id.rgGender);
+        _spMonth = findViewById(R.id.spMonth);
+        _spDay = findViewById(R.id.spDay);
         _etHeight = findViewById(R.id.etHeight);
         _etWeight = findViewById(R.id.etWeight);
         _etFirstPerson = findViewById(R.id.etFirstPerson);
@@ -88,6 +103,9 @@ public class CharacterEditActivity extends AppCompatActivity {
         _etPersonality = findViewById(R.id.etPersonality);
         _etAppearance = findViewById(R.id.etAppearance);
         _etOther = findViewById(R.id.etOther);
+
+        //スピナーに値をセット
+        spinnerAdapterSet();
 
         _intent = getIntent();
         _plot = _intent.getStringExtra("PLOTNo"); //作品No
@@ -208,5 +226,32 @@ public class CharacterEditActivity extends AppCompatActivity {
                 appearance, //容姿
                 other //その他
         );
+    }
+
+    /**
+     * 誕生日のスピナーに値をセットするメソッド
+     */
+    private void spinnerAdapterSet() {
+        //アダプタの作成
+        //月
+        _monthAdapter = new ArrayAdapter<String>(CharacterEditActivity.this, android.R.layout.simple_spinner_item);
+        _monthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //日
+        _dayAdapter = new ArrayAdapter<String>(CharacterEditActivity.this, android.R.layout.simple_spinner_item);
+        _dayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        //アダプタにアイテムを追加
+        //月
+        for(int i = 1; i <= 12; i++) {
+            _monthAdapter.add(i + "月");
+        }
+        //日
+        for(int i = 1; i <= 31; i++) {
+            _dayAdapter.add(i + "日");
+        }
+
+
+        _spMonth.setAdapter(_monthAdapter);
+        _spDay.setAdapter(_dayAdapter);
     }
 }
