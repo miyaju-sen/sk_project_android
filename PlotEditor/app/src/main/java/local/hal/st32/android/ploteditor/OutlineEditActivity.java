@@ -73,16 +73,20 @@ public class OutlineEditActivity extends AppCompatActivity {
      * あらすじ
      */
     private EditText _etSummary;
+    /**
+     * EditTextの入力状態をリアルタイムで監視するクラス
+     */
+    private EditTextWatcher _watcher = new EditTextWatcher();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_outline_edit);
 
-        //画面部品取得
-        _etTitle = findViewById(R.id.etTitle);
-        _etSlogan = findViewById(R.id.etSlogan);
-        _etSummary = findViewById(R.id.etSummary);
+        //画面部品取得 → EditTextWatcherへ（インスタンス分けるか？）
+        _watcher.setEditText( _etTitle = findViewById(R.id.etTitle) );
+        _watcher.setEditText( _etSlogan = findViewById(R.id.etSlogan) );
+        _watcher.setEditText( _etSummary = findViewById(R.id.etSummary) );
 
         //アクションバーに前画面へ戻る機能をつける
         ActionBar actionBar = getSupportActionBar();
@@ -144,12 +148,9 @@ public class OutlineEditActivity extends AppCompatActivity {
      * 戻るボタン押下時の処理
      */
     private void onBackButtonClick() {
-        String etTitle = _etTitle.getText().toString();
-        String etSlogan = _etSlogan.getText().toString();
-        String etSummary = _etSummary.getText().toString();
-
-        //変更されてた場合
-        if(( !etTitle.equals( _outline.get("title") ) || !etSlogan.equals( _outline.get("slogan") ) || !etSummary.equals( _outline.get("summary") ) )) {
+        Boolean textChangeFlag = _watcher.isTextChange();
+        //変更されていた場合
+        if(textChangeFlag) {
             ReturnConfirmDialogCreate dialog = new ReturnConfirmDialogCreate();
             FragmentManager manager = getSupportFragmentManager();
             dialog.show(manager, "OutlineEditActivity");

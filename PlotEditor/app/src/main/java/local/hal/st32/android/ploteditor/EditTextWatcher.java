@@ -2,6 +2,7 @@ package local.hal.st32.android.ploteditor;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.EditText;
 
 /**
@@ -14,6 +15,10 @@ import android.widget.EditText;
 public class EditTextWatcher implements TextWatcher {
     private String _str;
     private EditText _editText;
+
+    public EditTextWatcher() {
+        this._str = "";
+    }
 
     public void setEditText(EditText editText) {
         this._editText = editText;
@@ -35,13 +40,23 @@ public class EditTextWatcher implements TextWatcher {
     public void afterTextChanged(Editable s) {
         //テキスト変更後に変更されたテキストを取り出す
         this._str = s.toString();
+        Log.e("変更テキスト", _str);
     }
 
     /**
      * 変更されたテキストのゲッター
      * @return 変更されたテキスト
      */
-    public String getStr() {
-        return this._str;
+    public Boolean isTextChange() {
+        //中身が空（変更されてない場合）
+        if("".equals(this._str)) {
+            Log.e("＊＊＊地点＊＊＊", "FALSE");
+            return false;
+        }
+        //変更されていた場合
+        else {
+            Log.e("＊＊＊地点＊＊＊", "TRUE");
+            return true;
+        }
     }
 }
