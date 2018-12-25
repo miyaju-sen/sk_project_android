@@ -300,7 +300,7 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
             String urlStr = params[0];
             String no = params[1];
 
-            String data = "no=" + no;
+            String data = "plot=" + no;
             HttpURLConnection con = null;
             InputStream is = null;
             List<Map<String, String>> result = null;

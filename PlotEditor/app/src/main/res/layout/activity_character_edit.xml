@@ -395,6 +395,7 @@
                 android:layout_marginBottom="8dp"
                 android:ems="10"
                 android:inputType="number"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toTopOf="@+id/etFirstPerson"
                 app:layout_constraintStart_toEndOf="@+id/tvCentimeter"
                 app:layout_constraintTop_toBottomOf="@+id/spDay" />

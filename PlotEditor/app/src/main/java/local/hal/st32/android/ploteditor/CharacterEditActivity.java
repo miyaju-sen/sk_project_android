@@ -110,7 +110,7 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
     /**
      * 性別のタグ
      */
-    private int _genderTag;
+    private String _genderTag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -213,26 +213,51 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
      */
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
+        //TODO:ここのメソッド、編集モード時に使うかも
         //選択されたラジオボタンのタグを取得
         RadioButton rb = findViewById(checkedId);
         String tagStr = rb.getTag().toString();
         int tag = Integer.parseInt(tagStr);
+//
+//        //年齢（____歳）
+//        if(10 == tag) {
+//            _age = _etAge.getText().toString();
+//        }
+//        //年齢（不明）
+//        else if(20 == tag) {
+//            _age = rb.getText().toString();
+//        }
+//        //性別
+//        else if(1 <= tag && tag <= 5) {
+//            _genderTag = tag;
+//        }
+//
+//        Toast.makeText(this, "年齢" + _age + "が選択されました", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "性別" + _genderTag + "が選択されました", Toast.LENGTH_SHORT).show();
+    }
 
-        //年齢（____歳）
+    /**
+     * ラジオボタンで選択されている項目を取得するメソッド
+     */
+    private void checkedRadioButton() {
+        //年齢
+        int rbAgeId = _rgAge.getCheckedRadioButtonId();
+        RadioButton rbAge = findViewById(rbAgeId);
+        String tagStr = rbAge.getTag().toString();
+        int tag = Integer.parseInt(tagStr);
+        //____歳
         if(10 == tag) {
             _age = _etAge.getText().toString();
         }
-        //年齢（不明）
+        //不明
         else if(20 == tag) {
-            _age = rb.getText().toString();
-        }
-        //性別
-        else if(1 <= tag && tag <= 5) {
-            _genderTag = tag;
+            _age = rbAge.getText().toString();
         }
 
-        Toast.makeText(this, "年齢" + _age + "が選択されました", Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, "性別" + _genderTag + "が選択されました", Toast.LENGTH_SHORT).show();
+        //性別
+        int rbGenderId = _rgGender.getCheckedRadioButtonId();
+        RadioButton rbGender = findViewById(rbGenderId);
+        _genderTag = rbGender.getTag().toString();
     }
 
     /**
@@ -247,11 +272,13 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
      * 保存ボタン押下時の処理
      */
     private void onSaveButtonClick() {
+        //ラジオボタンの項目を取得
+        checkedRadioButton();
+
         String no = ""; //TODO:新規追加の場合は空
         String phonetic = _etPhonetic.getText().toString();
         String name = _etName.getText().toString();
         String another = _etAnotherName.getText().toString();
-        String gender = Integer.toString(_genderTag);
         String birthday = _spMonth.getSelectedItem().toString() + _spDay.getSelectedItem().toString();
         String height = _etHeight.getText().toString();
         String weight = _etWeight.getText().toString();
@@ -283,7 +310,7 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
                 another, //別名
                 _imagePath, //画像パス
                 _age, //年齢
-                gender, //性別
+                _genderTag, //性別
                 birthday, //誕生日
                 height, //身長
                 weight, //体重
