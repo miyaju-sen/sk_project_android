@@ -1,10 +1,15 @@
 package local.hal.st32.android.ploteditor;
 
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Environment;
 import android.os.ParcelFileDescriptor;
+import android.provider.DocumentsContract;
+import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,8 +28,10 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.FileDescriptor;
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.util.HashMap;
 
 /**
@@ -84,6 +91,10 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
      * インテント
      */
     private Intent _intent;
+    /**
+     * 画像取得処理用のインテント
+     */
+    private Intent _imageIntent;
     /**
      * 作品No
      */
@@ -296,12 +307,12 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
      */
     public void onImageSelectButtonClick(View view) {
         //ドキュメントを開くインテント
-        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("image/*");
+        _imageIntent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        _imageIntent.addCategory(Intent.CATEGORY_OPENABLE);
+        _imageIntent.setType("image/*");
 
         //ドキュメントを開く
-        startActivityForResult(intent, RESULT_PICK_IMAGEFILE);
+        startActivityForResult(_imageIntent, RESULT_PICK_IMAGEFILE);
     }
 
     /**
@@ -314,15 +325,22 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
      */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
-        Log.e("画像パス", resultData.toString());
         if(requestCode == RESULT_PICK_IMAGEFILE && resultCode == RESULT_OK) {
             Uri uri = null;
             if(resultData != null) {
                 uri = resultData.getData();
+                String path = GetFileName.getFileNameFromUri(this, uri); //TODO:画像名取得
+                Log.e("画像パス", path);
 
                 try {
                     Bitmap bmp = getBitmapFromUri(uri);
                     _ivCharacterImage.setImageBitmap(bmp);
+
+                    //TODO:以下の処理が、画像呼びだしのやつ（pathのところ→画像名）
+//                    File mediaStorage = Environment.getExternalStorageDirectory();
+//                    File mediaFile = new File(mediaStorage.getAbsolutePath() + "/" + Environment.DIRECTORY_DCIM + "/Camera", path);
+//                    Bitmap bm = BitmapFactory.decodeFile(mediaFile.getPath());
+//                    _ivCharacterImage.setImageBitmap(bm);
                 }
                 catch (IOException e) {
                     e.printStackTrace();
@@ -343,6 +361,7 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
         FileDescriptor fileDescriptor = parcelFileDescriptor.getFileDescriptor();
         Bitmap image = BitmapFactory.decodeFileDescriptor(fileDescriptor);
         parcelFileDescriptor.close();
+
         return image;
     }
 
