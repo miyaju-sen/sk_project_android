@@ -251,7 +251,6 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
         String phonetic = _etPhonetic.getText().toString();
         String name = _etName.getText().toString();
         String another = _etAnotherName.getText().toString();
-        //TODO:画像パス
         String gender = Integer.toString(_genderTag);
         String birthday = _spMonth.getSelectedItem().toString() + _spDay.getSelectedItem().toString();
         String height = _etHeight.getText().toString();
@@ -282,7 +281,7 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
                 phonetic, //フリガナ
                 name, //名前
                 another, //別名
-                "", //画像パス
+                _imagePath, //画像パス
                 _age, //年齢
                 gender, //性別
                 birthday, //誕生日
@@ -329,8 +328,8 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
             Uri uri = null;
             if(resultData != null) {
                 uri = resultData.getData();
-                String path = GetFileName.getFileNameFromUri(this, uri); //TODO:画像名取得
-                Log.e("画像パス", path);
+                //画像ファイル名を取得（これをサーバへ送信）
+                _imagePath = GetFileName.getFileNameFromUri(this, uri);
 
                 try {
                     Bitmap bmp = getBitmapFromUri(uri);
