@@ -51,6 +51,7 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
                 android:text="@string/tv_file_select"
+                android:onClick="onImageSelectButtonClick"
                 app:layout_constraintBottom_toTopOf="@+id/tvCharacterInfo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"

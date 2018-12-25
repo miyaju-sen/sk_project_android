@@ -1,6 +1,10 @@
 package local.hal.st32.android.ploteditor;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.ParcelFileDescriptor;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,14 +12,19 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.io.FileDescriptor;
+import java.io.IOException;
 import java.util.HashMap;
 
 /**
@@ -31,6 +40,7 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
     /**
      * 画面部品
      */
+    private ImageView _ivCharacterImage;
     private EditText _etName;
     private EditText _etPhonetic;
     private EditText _etAnotherName;
@@ -54,6 +64,14 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
      * 画像パス
      */
     private String _imagePath;
+    /**
+     * ファイル選択のボタン
+     */
+    private Button _btImageSelect;
+    /**
+     * 画像を取得する際の結果コード（任意）
+     */
+    private static final int RESULT_PICK_IMAGEFILE = 1000;
     /**
      * 誕生月のアダプタ
      */
@@ -95,6 +113,7 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
         //TODO:誕生日と年齢のスピナー
 
         //画面部品取得
+        _ivCharacterImage = findViewById(R.id.ivCharacterImage);
         _etName = findViewById(R.id.etName);
         _etPhonetic = findViewById(R.id.etPhonetic);
         _etAnotherName = findViewById(R.id.etAnotherName);
@@ -114,6 +133,7 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
         _etPersonality = findViewById(R.id.etPersonality);
         _etAppearance = findViewById(R.id.etAppearance);
         _etOther = findViewById(R.id.etOther);
+        _btImageSelect = findViewById(R.id.btImageSelect);
 
         //スピナーに値をセット
         spinnerAdapterSet();
@@ -267,6 +287,63 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
                 appearance, //容姿
                 other //その他
         );
+    }
+
+    /**
+     * ファイル選択ボタン押下時の処理
+     *
+     * @param view
+     */
+    public void onImageSelectButtonClick(View view) {
+        //ドキュメントを開くインテント
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("image/*");
+
+        //ドキュメントを開く
+        startActivityForResult(intent, RESULT_PICK_IMAGEFILE);
+    }
+
+    /**
+     * startActivityForResult終了後に呼ばれる
+     * resultData(画像パス)からBitmapを作成してImageViewにセット
+     *
+     * @param requestCode 呼び出し時のID(startActivityForResultの第二引数)
+     * @param resultCode 結果コード
+     * @param resultData 画像パス
+     */
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
+        Log.e("画像パス", resultData.toString());
+        if(requestCode == RESULT_PICK_IMAGEFILE && resultCode == RESULT_OK) {
+            Uri uri = null;
+            if(resultData != null) {
+                uri = resultData.getData();
+
+                try {
+                    Bitmap bmp = getBitmapFromUri(uri);
+                    _ivCharacterImage.setImageBitmap(bmp);
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    /**
+     * 受け取ったUriから画像を取得し、Bitmapを作成するメソッド
+     *
+     * @param uri
+     * @return Bitmap化した画像
+     * @throws IOException
+     */
+    private Bitmap getBitmapFromUri(Uri uri) throws IOException {
+        ParcelFileDescriptor parcelFileDescriptor = getContentResolver().openFileDescriptor(uri, "r");
+        FileDescriptor fileDescriptor = parcelFileDescriptor.getFileDescriptor();
+        Bitmap image = BitmapFactory.decodeFileDescriptor(fileDescriptor);
+        parcelFileDescriptor.close();
+        return image;
     }
 
     /**
