@@ -356,11 +356,6 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
         @Override
         public void onPostExecute(List<Map<String, String>> list) {
             _list = list;
-//            String[] from = {"name", "profile"};
-//            int[] to = {R.id.tvCharacterName, R.id.tvProfile};
-//            SimpleAdapter adapter = new SimpleAdapter(CharacterListActivity.this, list, R.layout.row_character, from, to);
-//            _lvCharacters.setAdapter(adapter);
-
 
             //リストビューに表示する要素を設定
             ArrayList<CharacterListItem> listItems = new ArrayList<>();

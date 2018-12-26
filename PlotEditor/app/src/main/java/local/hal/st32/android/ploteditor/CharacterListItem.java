@@ -39,7 +39,6 @@ public class CharacterListItem {
      * @param profile 紹介文
      */
     public CharacterListItem(String icon, String name, String profile) {
-//        this._icon = icon;
         this._name = name;
         this._profile = profile;
 
