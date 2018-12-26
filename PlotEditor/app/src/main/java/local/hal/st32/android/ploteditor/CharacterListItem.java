@@ -1,6 +1,11 @@
 package local.hal.st32.android.ploteditor;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Environment;
+import android.util.Log;
+
+import java.io.File;
 
 /**
  * 就職作品
@@ -16,11 +21,14 @@ public class CharacterListItem {
     private Bitmap _icon; //アイコン
     private String _name; //名前
     private String _profile; //紹介文
+    private File _storage; //内部ストレージのパス
+    private File _file; //絶対パス
 
     /**
      * コンストラクタ（空）
      */
     public CharacterListItem() {
+        this._storage = Environment.getExternalStorageDirectory();
     }
 
     /**
@@ -30,18 +38,23 @@ public class CharacterListItem {
      * @param name 名前
      * @param profile 紹介文
      */
-    public CharacterListItem(Bitmap icon, String name, String profile) {
-        this._icon = icon;
+    public CharacterListItem(String icon, String name, String profile) {
+//        this._icon = icon;
         this._name = name;
         this._profile = profile;
+
+        this._storage = Environment.getExternalStorageDirectory();
+        this._file = new File(_storage.getAbsolutePath() + "/" + Environment.DIRECTORY_DCIM + "/Camera", icon);
+        this._icon = BitmapFactory.decodeFile(_file.getPath());
     }
 
     /**
      * イメージ画像のセッター
      * @param icon イメージ画像
      */
-    public void setIcon(Bitmap icon) {
-        this._icon = icon;
+    public void setIcon(String icon) {
+        this._file = new File(_storage.getAbsolutePath() + "/" + Environment.DIRECTORY_DCIM + "/Camera", icon);
+        this._icon = BitmapFactory.decodeFile(_file.getPath());
     }
 
     /**

@@ -15,7 +15,7 @@ import java.util.List;
  *
  * 登場人物一覧ListView用の、ArrayAdapterを継承したクラス
  *
- * @author ohs60224 
+ * @author ohs60224
  */
 public class CharacterListAdapter extends ArrayAdapter<CharacterListItem> {
     /**
@@ -73,7 +73,7 @@ public class CharacterListAdapter extends ArrayAdapter<CharacterListItem> {
         ivCharacterIcon.setImageBitmap( item.getIcon() );
 
         //名前をセット
-        TextView tvName = view.findViewById(R.id.tvName);
+        TextView tvName = view.findViewById(R.id.tvCharacterName);
         tvName.setText( item.getName() );
 
         //紹介文をセット

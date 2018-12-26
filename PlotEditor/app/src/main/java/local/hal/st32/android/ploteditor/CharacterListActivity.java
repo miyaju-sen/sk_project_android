@@ -2,6 +2,8 @@ package local.hal.st32.android.ploteditor;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -354,9 +356,22 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
         @Override
         public void onPostExecute(List<Map<String, String>> list) {
             _list = list;
-            String[] from = {"name", "profile"};
-            int[] to = {R.id.tvCharacterName, R.id.tvProfile};
-            SimpleAdapter adapter = new SimpleAdapter(CharacterListActivity.this, list, R.layout.row_character, from, to);
+//            String[] from = {"name", "profile"};
+//            int[] to = {R.id.tvCharacterName, R.id.tvProfile};
+//            SimpleAdapter adapter = new SimpleAdapter(CharacterListActivity.this, list, R.layout.row_character, from, to);
+//            _lvCharacters.setAdapter(adapter);
+
+
+            //リストビューに表示する要素を設定
+            ArrayList<CharacterListItem> listItems = new ArrayList<>();
+            CharacterListItem item;
+            for(int i = 0; i < _list.size(); i++) {
+                item = new CharacterListItem(_list.get(i).get("image_path"), _list.get(i).get("name"), _list.get(i).get("profile"));
+                listItems.add(item);
+            }
+
+            //出力結果をリストビューに表示
+            CharacterListAdapter adapter = new CharacterListAdapter(CharacterListActivity.this, R.layout.row_character, listItems);
             _lvCharacters.setAdapter(adapter);
         }
 
