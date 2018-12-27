@@ -1,11 +1,22 @@
 package local.hal.st32.android.ploteditor;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TextView;
@@ -21,7 +32,7 @@ import java.util.HashMap;
  *
  * @author ohs60224
  */
-public class CharacterActivity extends AppCompatActivity {
+public class CharacterActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     /**
      * 画面部品
      */
@@ -50,7 +61,16 @@ public class CharacterActivity extends AppCompatActivity {
      * 登場人物の情報を格納する配列
      */
     private HashMap<String, String> _character = new HashMap<>();
-
+    /**
+     * DrawerLayoutとActionBarDrawerToggle
+     */
+    private DrawerLayout mDrawer;
+    private ActionBarDrawerToggle mDrawerToggle;
+    private Toolbar _toolbar;
+    /**
+     * NavigationViewのヘッダー部分のTextView
+     */
+    private TextView _tvMenuBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +96,25 @@ public class CharacterActivity extends AppCompatActivity {
         _tvAppearance = findViewById(R.id.tvAppearance);
         _tvOther = findViewById(R.id.tvOther);
 
+        //NavigationViewのヘッダー部分のTextViewを取得
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View drawerHeader = inflater.inflate(R.layout.drawer_header, null);
+        _tvMenuBack = drawerHeader.findViewById(R.id.tvMenuBack); //プロット一覧へ戻る
+
+        //Toolbar
+        _toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(_toolbar);
+
+        //DrawerLayout
+        mDrawer = findViewById(R.id.drawerLayout);
+        mDrawerToggle = new ActionBarDrawerToggle(CharacterActivity.this, mDrawer, _toolbar, R.string.drawable_open, R.string.drawable_close);
+        mDrawer.addDrawerListener(mDrawerToggle);
+        mDrawerToggle.syncState();
+
+        //NavigationViewのリスナー
+        NavigationView nvLeftView = findViewById(R.id.nvLeftView);
+        nvLeftView.setNavigationItemSelectedListener(this);
+
         //遷移元からデータ取得
         _intent = getIntent();
         _character = (HashMap<String, String>) _intent.getSerializableExtra("CHARACTER");
@@ -87,6 +126,99 @@ public class CharacterActivity extends AppCompatActivity {
 
         setCharacterInfo();
     }
+
+    /**
+     * オプションメニュー作成
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_edit, menu);
+
+        //表示されたままのメニューアイコンを非表示に
+        menu.setGroupVisible(R.id.mgEdit, false);
+
+        //表示されたままのメニューアイコンを非表示に
+        menu.findItem(R.id.menuInsert).setVisible(false);
+        menu.findItem(R.id.menuReload).setVisible(false);
+
+        //編集ボタンを表示
+        MenuItem edit = menu.findItem(R.id.menuEdit);
+        edit.setVisible(true);
+
+        return true;
+    }
+
+    /**
+     * オプションメニュー選択時処理
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+        switch (itemId) {
+            //編集ボタン
+            case R.id.menuEdit:
+                //TODO:編集処理
+//                onEditButtonClick();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * NavigationView
+     */
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        Intent intent = new Intent();
+        int itemId = item.getItemId();
+        switch (itemId) {
+            //概要画面（何もしない）
+            case R.id.menuOutline:
+                intent = new Intent(CharacterActivity.this, OutlineActivity.class);
+                break;
+            //登場人物一覧画面へ
+            case R.id.menuCharacter:
+                intent = new Intent(CharacterActivity.this, CharacterListActivity.class);
+                break;
+            //世界観一覧画面へ
+            case R.id.menuWorld:
+                intent = new Intent(CharacterActivity.this, WorldViewListActivity.class);
+                break;
+            //構想画面へ
+            case R.id.menuStory:
+                intent = new Intent(CharacterActivity.this, StoryEditActivity.class);
+                break;
+            //メモ画面へ
+            case R.id.menuMemo:
+                intent = new Intent(CharacterActivity.this, MemoListActivity.class);
+                break;
+            //削除
+            case R.id.menuDelete:
+                intent = null;
+                //TODO:削除処理
+//                onDeleteButtonClick();
+                break;
+        }
+        DrawerLayout drawer = findViewById(R.id.drawerLayout);
+        drawer.closeDrawer(GravityCompat.START);
+
+        if(null != intent) {
+            //TODO:概要情報をインテントで受け取る
+//            intent.putExtra("OUTLINE", _outline);
+            startActivity(intent);
+        }
+        return true;
+    }
+
+    /**
+     * 「プロット一覧に戻る」押下時の処理
+     */
+    public void onMenuBackClick(View view) {
+        Intent intent = new Intent(CharacterActivity.this, PlotListActivity.class);
+        startActivity(intent);
+    }
+
 
     /**
      * 画面部品に遷移元から取得した値をセットするメソッド

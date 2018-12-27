@@ -118,7 +118,6 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
         super.onResume();
         setTitle("登場人物一覧");
 
-        //TODO:アイコンに画像挿入
         CharacterJsonReceiver receiver = new CharacterJsonReceiver();
         receiver.execute(ACCESS_URL, _outline.get("no"));
     }
