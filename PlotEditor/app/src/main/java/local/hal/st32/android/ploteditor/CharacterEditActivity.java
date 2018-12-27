@@ -111,6 +111,10 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
      * 性別のタグ
      */
     private String _genderTag;
+    /**
+     * JSON解析した登場人物の情報を格納する配列
+     */
+    private HashMap<String, String> _character = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -294,10 +298,13 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
         access.setOnCallBack(new CharacterJsonAccess.CallBackTask() {
             @Override
             public void CallBack(HashMap<String, String> map) {
-                //TODO:遷移先にデータ送信
-//                _intent = new Intent (CharacterEditActivity.this, CharacterActivity.class);
-//                startActivity(_intent);
-//                CharacterEditActivity.this.finish();
+                //TODO:編集モードか新規モードかの判別をする値を送信
+                _character = map;
+
+                _intent = new Intent (CharacterEditActivity.this, CharacterActivity.class);
+                _intent.putExtra("CHARACTER", _character);
+                startActivity(_intent);
+                CharacterEditActivity.this.finish();
             }
         });
         access.execute(
