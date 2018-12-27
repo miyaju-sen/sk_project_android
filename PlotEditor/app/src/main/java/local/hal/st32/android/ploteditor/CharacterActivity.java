@@ -1,11 +1,17 @@
 package local.hal.st32.android.ploteditor;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TextView;
+
+import java.io.File;
+import java.util.HashMap;
 
 /**
  * 就職作品
@@ -17,19 +23,33 @@ import android.widget.TextView;
  */
 public class CharacterActivity extends AppCompatActivity {
     /**
-     * 画面部品取得
+     * 画面部品
      */
     private ImageView _ivCharacterIcon;
     private TextView _tvName;
     private TextView _tvPhonetic;
     private TextView _tvAnother;
-    private TextView _tvProfile;
     private TextView _tvAge;
+    private TextView _tvGender;
+    private TextView _tvBirthday;
+    private TextView _tvHeightWeight;
     private TextView _tvFirstPerson;
+    private TextView _tvSecondPerson;
+    private TextView _tvBelongs;
+    private TextView _tvSkill;
+    private TextView _tvProfile;
+    private TextView _tvLivedProcess;
+    private TextView _tvPersonality;
+    private TextView _tvAppearance;
+    private TextView _tvOther;
     /**
      * インテント
      */
     private Intent _intent;
+    /**
+     * 登場人物の情報を格納する配列
+     */
+    private HashMap<String, String> _character = new HashMap<>();
 
 
     @Override
@@ -37,11 +57,67 @@ public class CharacterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character);
 
-        Intent intent = getIntent();
+        //画面部品取得
+        _ivCharacterIcon = findViewById(R.id.ivCharacterIcon);
+        _tvName = findViewById(R.id.tvName);
+        _tvPhonetic = findViewById(R.id.tvPhonetic);
+        _tvAnother = findViewById(R.id.tvAnother);
+        _tvAge = findViewById(R.id.tvAge);
+        _tvGender = findViewById(R.id.tvGender);
+        _tvBirthday = findViewById(R.id.tvBirthday);
+        _tvHeightWeight = findViewById(R.id.tvHeightWeight);
+        _tvFirstPerson = findViewById(R.id.tvFirstPerson);
+        _tvSecondPerson = findViewById(R.id.tvSecondPerson);
+        _tvBelongs = findViewById(R.id.tvBelongs);
+        _tvSkill = findViewById(R.id.tvSkill);
+        _tvProfile = findViewById(R.id.tvProfile);
+        _tvLivedProcess = findViewById(R.id.tvLivedProcess);
+        _tvPersonality = findViewById(R.id.tvPersonality);
+        _tvAppearance = findViewById(R.id.tvAppearance);
+        _tvOther = findViewById(R.id.tvOther);
+
+        //遷移元からデータ取得
+        _intent = getIntent();
+        _character = (HashMap<String, String>) _intent.getSerializableExtra("CHARACTER");
     }
 
     @Override
     public void onResume() {
         super.onResume();
+
+        setCharacterInfo();
+    }
+
+    /**
+     * 画面部品に遷移元から取得した値をセットするメソッド
+     */
+    private void setCharacterInfo() {
+        //画像
+        File storage = Environment.getExternalStorageDirectory();
+        File file = new File(storage.getAbsolutePath() + "/" + Environment.DIRECTORY_DCIM + "/Camera", _character.get("image_path"));
+        Bitmap bm = BitmapFactory.decodeFile(file.getPath());
+        _ivCharacterIcon.setImageBitmap(bm);
+
+        _tvName.setText( _character.get("name") );
+        _tvPhonetic.setText( _character.get("phonetic") );
+        _tvAnother.setText( _character.get("another") );
+        _tvAge.setText( _character.get("age") );
+        _tvGender.setText( _character.get("gender") );
+        _tvBirthday.setText( _character.get("birthday") );
+
+        //身長・体重
+        String height = _character.get("height") + "cm";
+        String weight = _character.get("weight") + "kg";
+        _tvHeightWeight.setText( height + " " + weight );
+
+        _tvFirstPerson.setText( _character.get("first_person") );
+        _tvSecondPerson.setText( _character.get("second_person") );
+        _tvBelongs.setText( _character.get("belongs") );
+        _tvSkill.setText( _character.get("skill") );
+        _tvProfile.setText( _character.get("profile") );
+        _tvLivedProcess.setText( _character.get("lived_process") );
+        _tvPersonality.setText( _character.get("personality") );
+        _tvAppearance.setText( _character.get("appearance") );
+        _tvOther.setText( _character.get("other") );
     }
 }
