@@ -121,8 +121,6 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        //TODO:誕生日と年齢のスピナー
-
         //画面部品取得
         _ivCharacterImage = findViewById(R.id.ivCharacterImage);
         _etName = findViewById(R.id.etName);
@@ -361,12 +359,6 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
                 try {
                     Bitmap bmp = getBitmapFromUri(uri);
                     _ivCharacterImage.setImageBitmap(bmp);
-
-                    //TODO:以下の処理が、画像呼びだしのやつ（pathのところ→画像名）
-//                    File mediaStorage = Environment.getExternalStorageDirectory();
-//                    File mediaFile = new File(mediaStorage.getAbsolutePath() + "/" + Environment.DIRECTORY_DCIM + "/Camera", path);
-//                    Bitmap bm = BitmapFactory.decodeFile(mediaFile.getPath());
-//                    _ivCharacterImage.setImageBitmap(bm);
                 }
                 catch (IOException e) {
                     e.printStackTrace();
