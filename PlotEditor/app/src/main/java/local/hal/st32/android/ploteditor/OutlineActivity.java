@@ -231,7 +231,7 @@ public class OutlineActivity extends AppCompatActivity implements NavigationView
         Intent intent = new Intent(OutlineActivity.this, OutlineEditActivity.class);
         intent.putExtra("OUTLINE", _outline);
         startActivity(intent);
-        OutlineActivity.this.finish();
+        //OutlineActivity.this.finish();
     }
 
     /**

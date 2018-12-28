@@ -157,7 +157,7 @@ public class OutlineEditActivity extends AppCompatActivity {
             dialog.show(manager, "OutlineEditActivity");
         }
         else {
-            finish();
+            OutlineEditActivity.this.finish();
         }
     }
 
