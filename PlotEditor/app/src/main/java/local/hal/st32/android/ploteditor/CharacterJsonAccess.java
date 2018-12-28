@@ -262,25 +262,7 @@ public class CharacterJsonAccess extends AsyncTask<String, String, String> {
                 Log.e(DEBUG_TAG, "JSON解析失敗", ex);
             }
 
-            //TODO:遷移元で分岐ではなく新規か編集か（編集画面からしか飛ばされない）
-            //TODO:↑登場人物の主キーが空か否かで新規か編集かの判別できる
-            //新規登録の場合
-//            if("".equals(_characterNo)) {
-//
-//            }
-//            //編集の場合
-//            else {
-                _callBack.CallBack(map);
-//            }
-
-            //新規登録だった場合（遷移元：PlotListActivity、遷移先：OutlineEditActivity）
-//            if(NOW_ACTIVITY.equals( TitleSetDialogCreate.NOW_ACTIVITY )) {
-//                PlotListActivity activity = (PlotListActivity) _context;
-//                activity.onPositiveButtonClick(_context);
-//            }
-//            else {
-//                _callBack.CallBack(map);
-//            }
+            _callBack.CallBack(map);
         }
     }
 

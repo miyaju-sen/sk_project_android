@@ -311,7 +311,6 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
         access.setOnCallBack(new CharacterJsonAccess.CallBackTask() {
             @Override
             public void CallBack(HashMap<String, String> map) {
-                //TODO:編集モードか新規モードかの判別をする値を送信
                 _character = map;
 
                 _intent = new Intent (CharacterEditActivity.this, CharacterActivity.class);
@@ -494,7 +493,7 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
         int dayInt = Integer.valueOf(split[0]);
         _spDay.setSelection(dayInt - 1); //スピナーの表示位置を指定
 
-        //TODO:年齢
+        //年齢
         RadioButton rbAge = null;
         String age = _character.get("age");
         if("不明".equals(age)) {
@@ -505,6 +504,5 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
             _etAge.setText( age );
         }
         rbAge.setChecked(true);
-
     }
 }
