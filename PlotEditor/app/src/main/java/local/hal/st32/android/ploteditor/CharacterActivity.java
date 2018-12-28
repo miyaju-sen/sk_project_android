@@ -304,9 +304,15 @@ public class CharacterActivity extends AppCompatActivity implements NavigationVi
         _tvGender.setText( Gender.gender( _character.get("gender") ) );
         _tvBirthday.setText( _character.get("birthday") );
 
-        //身長・体重 TODO:0cm 0kgになる
-        String height = _character.get("height") + "cm";
-        String weight = _character.get("weight") + "kg";
+        //身長・体重 0の場合は空白で表示
+        String height = "";
+        String weight = "";
+        if(!"0".equals( _character.get("height") )) {
+            height = _character.get("height") + "cm";
+        }
+        if(!"0".equals( _character.get("weight") )) {
+            weight = _character.get("weight") + "kg";
+        }
         _tvHeightWeight.setText( height + " " + weight );
 
         _tvFirstPerson.setText( _character.get("first_person") );

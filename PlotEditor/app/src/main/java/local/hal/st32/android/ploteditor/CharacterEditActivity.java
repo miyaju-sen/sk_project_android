@@ -429,8 +429,6 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
         _etName.setText( _character.get("name") );
         _etPhonetic.setText( _character.get("phonetic") );
         _etAnotherName.setText( _character.get("another") );
-        _etHeight.setText( _character.get("height") );
-        _etWeight.setText( _character.get("weight") );
         _etFirstPerson.setText( _character.get("first_person") );
         _etSecondPerson.setText( _character.get("second_person") );
         _etBelongs.setText( _character.get("belongs") );
@@ -440,6 +438,14 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
         _etPersonality.setText( _character.get("personality") );
         _etAppearance.setText( _character.get("appearance") );
         _etOther.setText( _character.get("other") );
+
+        //身長・体重
+        if(!"0".equals( _character.get("height") )) {
+            _etHeight.setText( _character.get("height") );
+        }
+        if(!"0".equals( _character.get("weight") )) {
+            _etWeight.setText( _character.get("weight") );
+        }
 
         //性別
         RadioButton rb = null;
