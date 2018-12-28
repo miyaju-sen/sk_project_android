@@ -224,27 +224,7 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
      */
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
-        //TODO:ここのメソッド、編集モード時に使うかも
-        //選択されたラジオボタンのタグを取得
-        RadioButton rb = findViewById(checkedId);
-        String tagStr = rb.getTag().toString();
-        int tag = Integer.parseInt(tagStr);
-//
-//        //年齢（____歳）
-//        if(10 == tag) {
-//            _age = _etAge.getText().toString();
-//        }
-//        //年齢（不明）
-//        else if(20 == tag) {
-//            _age = rb.getText().toString();
-//        }
-//        //性別
-//        else if(1 <= tag && tag <= 5) {
-//            _genderTag = tag;
-//        }
-//
-//        Toast.makeText(this, "年齢" + _age + "が選択されました", Toast.LENGTH_SHORT).show();
-//        Toast.makeText(this, "性別" + _genderTag + "が選択されました", Toast.LENGTH_SHORT).show();
+        //TODO:ここいらないかも
     }
 
     /**
