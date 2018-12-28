@@ -159,7 +159,7 @@ public class CharacterEditActivity extends AppCompatActivity {
 
         //スピナーに値をセット
         spinnerAdapterSet();
-        
+
         _intent = getIntent();
 //        _plot = _intent.getStringExtra("PLOTNo"); //作品No
         _outline = (HashMap<String, String>) _intent.getSerializableExtra("OUTLINE");
