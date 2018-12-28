@@ -301,8 +301,8 @@ public class CharacterActivity extends AppCompatActivity implements NavigationVi
         _tvPhonetic.setText( _character.get("phonetic") );
         _tvAnother.setText( _character.get("another") );
         _tvAge.setText( _character.get("age") );
-        _tvGender.setText( Gender.gender( _character.get("gender") ) ); //TODO:数値で表示されてしまってる
-        _tvBirthday.setText( _character.get("birthday") ); //TODO:初期値が1月1日のまま登録される
+        _tvGender.setText( Gender.gender( _character.get("gender") ) );
+        _tvBirthday.setText( _character.get("birthday") );
 
         //身長・体重 TODO:0cm 0kgになる
         String height = _character.get("height") + "cm";

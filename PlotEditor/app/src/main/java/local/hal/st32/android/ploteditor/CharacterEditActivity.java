@@ -397,10 +397,12 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
 
         //アダプタにアイテムを追加
         //月
+        _monthAdapter.add("");
         for(int i = 1; i <= 12; i++) {
             _monthAdapter.add(i + "月");
         }
         //日
+        _dayAdapter.add("");
         for(int i = 1; i <= 31; i++) {
             _dayAdapter.add(i + "日");
         }
@@ -461,17 +463,20 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
         }
         rb.setChecked(true);
 
-        //誕生月
-        String birthday = _character.get("birthday");
-        String[] split = birthday.split("月");
-        int month = Integer.valueOf(split[0]);
-        _spMonth.setSelection(month - 1); //スピナーの表示位置を指定
-
         //誕生日
-        String day = split[1];
-        split = day.split("日");
-        int dayInt = Integer.valueOf(split[0]);
-        _spDay.setSelection(dayInt - 1); //スピナーの表示位置を指定
+        String birthday = _character.get("birthday");
+        if(!"".equals(birthday)) {
+            //月
+            String[] split = birthday.split("月");
+            int month = Integer.valueOf(split[0]);
+            _spMonth.setSelection(month); //スピナーの表示位置を指定
+
+            //日
+            String day = split[1];
+            split = day.split("日");
+            int dayInt = Integer.valueOf(split[0]);
+            _spDay.setSelection(dayInt); //スピナーの表示位置を指定
+        }
 
         //年齢
         RadioButton rbAge = null;
