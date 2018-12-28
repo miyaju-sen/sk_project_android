@@ -72,6 +72,10 @@ public class CharacterActivity extends AppCompatActivity implements NavigationVi
      * NavigationViewのヘッダー部分のTextView
      */
     private TextView _tvMenuBack;
+    /**
+     * プロット概要が格納された配列
+     */
+    private HashMap<String, String> _outline = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,7 +122,10 @@ public class CharacterActivity extends AppCompatActivity implements NavigationVi
 
         //遷移元からデータ取得
         _intent = getIntent();
+        _outline = (HashMap<String, String>) _intent.getSerializableExtra("OUTLINE");
         _character = (HashMap<String, String>) _intent.getSerializableExtra("CHARACTER");
+
+        //TODO:人物を削除する処理
     }
 
     @Override
@@ -203,8 +210,7 @@ public class CharacterActivity extends AppCompatActivity implements NavigationVi
         drawer.closeDrawer(GravityCompat.START);
 
         if(null != intent) {
-            //TODO:概要情報をインテントで受け取る
-//            intent.putExtra("OUTLINE", _outline);
+            intent.putExtra("OUTLINE", _outline);
             startActivity(intent);
         }
         return true;
@@ -214,8 +220,9 @@ public class CharacterActivity extends AppCompatActivity implements NavigationVi
      * 編集ボタン押下時の処理
      */
     private void onEditButtonClick() {
+        //TODO:値送信
         Intent intent = new Intent(CharacterActivity.this, CharacterEditActivity.class);
-//        intent.putExtra("OUTLINE", _outline); //TODO:概要情報
+        intent.putExtra("OUTLINE", _outline);
         startActivity(intent);
         CharacterActivity.this.finish();
     }
@@ -224,13 +231,12 @@ public class CharacterActivity extends AppCompatActivity implements NavigationVi
      * 削除ボタン押下時の処理
      */
     private void onDeleteButtonClick() {
-        //TODO:概要情報
-//        String no = _outline.get("no");
-//        String title = _outline.get("title");
+        String no = _outline.get("no");
+        String title = _outline.get("title");
 
         Bundle extras = new Bundle();
-//        extras.putString("no", no);
-//        extras.putString("title", title);
+        extras.putString("no", no);
+        extras.putString("title", title);
 
         Context context = this;
         PlotDeleteConfirmDialogCreate.setActivityContext(context);

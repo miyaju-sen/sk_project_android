@@ -309,6 +309,7 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
 
                 _intent = new Intent (CharacterEditActivity.this, CharacterActivity.class);
                 _intent.putExtra("CHARACTER", _character);
+                _intent.putExtra("OUTLINE", _outline);
                 startActivity(_intent);
                 CharacterEditActivity.this.finish();
             }
