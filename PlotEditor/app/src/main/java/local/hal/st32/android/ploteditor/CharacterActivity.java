@@ -240,10 +240,21 @@ public class CharacterActivity extends AppCompatActivity implements NavigationVi
      */
     private void onCharacterDeleteButtonClick() {
         String no = _character.get("no");
+        String name = _character.get("name");
 
-        //TODO:ダイアログ作成クラスへ
+        Bundle extras = new Bundle();
+        extras.putString("no", no);
+        extras.putString("name", name);
+
+        Context context = this;
+        CharacterDeleteConfirmDialogCreate.setActivityContext(context);
+
+        CharacterDeleteConfirmDialogCreate dialog = new CharacterDeleteConfirmDialogCreate();
+        dialog.setArguments(extras);
+
+        FragmentManager manager = getSupportFragmentManager();
+        dialog.show(manager, "CharacterActivity");
     }
-
 
     /**
      * プロット削除押下時の処理
