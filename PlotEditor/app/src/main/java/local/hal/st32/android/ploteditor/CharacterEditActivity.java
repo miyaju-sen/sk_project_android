@@ -176,7 +176,8 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
         //情報画面から遷移してきた場合：編集
         else {
             setTitle("登場人物 編集");
-            //TODO:編集する登場人物の情報を取得
+
+            //編集する登場人物の情報を取得
             setCharacterInfo();
         }
     }
@@ -459,6 +460,41 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
         _etAppearance.setText( _character.get("appearance") );
         _etOther.setText( _character.get("other") );
 
-        //TODO:性別・誕生日・年齢
+        //性別
+        RadioButton rb = null;
+        int gender = Integer.valueOf( _character.get("gender") );
+        switch (gender) {
+            case 1:
+                rb = findViewById(R.id.rbMan);
+                break;
+            case 2:
+                rb = findViewById(R.id.rbWoman);
+                break;
+            case 3:
+                rb = findViewById(R.id.rbBothSexes);
+                break;
+            case 4:
+                rb = findViewById(R.id.rbAsexual);
+                break;
+            case 5:
+                rb = findViewById(R.id.rbGenderUnknown);
+                break;
+        }
+        rb.setChecked(true);
+
+        //誕生月
+        String birthday = _character.get("birthday");
+        String[] split = birthday.split("月");
+        int month = Integer.valueOf(split[0]);
+        _spMonth.setSelection(month - 1); //スピナーの表示位置を指定
+
+        //誕生日
+        String day = split[1];
+        split = day.split("日");
+        int dayInt = Integer.valueOf(split[0]);
+        _spDay.setSelection(dayInt - 1); //スピナーの表示位置を指定
+
+        //TODO:年齢
+        
     }
 }
