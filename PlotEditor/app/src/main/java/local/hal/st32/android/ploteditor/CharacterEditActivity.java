@@ -10,6 +10,7 @@ import android.os.Environment;
 import android.os.ParcelFileDescriptor;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -119,6 +120,10 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
      * JSON解析した登場人物の情報を格納する配列
      */
     private HashMap<String, String> _character = new HashMap<>();
+    /**
+     * 戻るボタン押下時に変更された項目があるか否かを判断するクラス
+     */
+    private CharacterIsChanged _changed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -252,11 +257,74 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
     }
 
     /**
-     * 戻るボタン押下時の処理
+     * 戻るボタン押下時の処理 TODO:変更された場合の処理
      */
     private void onBackButtonClick() {
-        //TODO:変更された場合の処理
-        finish();
+        if(ACTIVITY.equals(new NowActivity().getCharacterActivity())) {
+            //編集項目を送信
+            setCharacterIsChanged();
+
+            //変更された項目があれば確認ダイアログへ、されていなければアクティビティを閉じる
+            //変更された項目がある場合
+            if (_changed.isChanged()) {
+                ReturnConfirmDialogCreate dialog = new ReturnConfirmDialogCreate();
+                FragmentManager manager = getSupportFragmentManager();
+                dialog.show(manager, "CharacterEditActivity");
+            }
+            //無い場合
+            else {
+                finish();
+            }
+        }
+        else {
+            finish();
+        }
+    }
+
+    /**
+     * CharacterIsChangedへ値を送信するメソッド
+     */
+    private void setCharacterIsChanged() {
+        Log.e("＊＊＊＊＊＊＊＊", "地点B" + _imagePath);
+        _changed = new CharacterIsChanged(_character);
+        _changed.setImage( _imagePath );
+        _changed.setName( _etName.getText().toString() );
+        _changed.setPhonetic( _etPhonetic.getText().toString() );
+        _changed.setAnother( _etAnotherName.getText().toString() );
+        _changed.setHeight( _etHeight.getText().toString() );
+        _changed.setWeight( _etWeight.getText().toString() );
+        _changed.setFirstPerson( _etFirstPerson.getText().toString() );
+        _changed.setSecondPerson( _etSecondPerson.getText().toString() );
+        _changed.setBelongs( _etBelongs.getText().toString() );
+        _changed.setSkill( _etSkill.getText().toString() );
+        _changed.setProfile( _etProfile.getText().toString() );
+        _changed.setLivedProcess( _etLivedProcess.getText().toString() );
+        _changed.setPersonality( _etPersonality.getText().toString() );
+        _changed.setAppearance( _etAppearance.getText().toString() );
+        _changed.setOther( _etOther.getText().toString() );
+
+        //年齢
+        int rbAgeId = _rgAge.getCheckedRadioButtonId();
+        RadioButton rbAge = findViewById(rbAgeId);
+        String tagStr = rbAge.getTag().toString();
+        int tag = Integer.parseInt(tagStr);
+        //____歳
+        if(10 == tag) {
+            _age = _etAge.getText().toString();
+        }
+        //不明
+        else if(20 == tag) {
+            _age = rbAge.getText().toString();
+        }
+        _changed.setAge( _age );
+
+        //性別
+        int rbGenderId = _rgGender.getCheckedRadioButtonId();
+        RadioButton rbGender = findViewById(rbGenderId);
+        _changed.setGender( rbGender.getTag().toString() );
+
+        //誕生日
+        _changed.setBirthday( _spMonth.getSelectedItem().toString() + _spDay.getSelectedItem().toString() );
     }
 
     /**
@@ -355,6 +423,7 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
                 uri = resultData.getData();
                 //画像ファイル名を取得（これをサーバへ送信）
                 _imagePath = GetFileName.getFileNameFromUri(this, uri);
+                Log.e("＊＊＊＊＊＊＊＊", "地点A" + _imagePath);
 
                 try {
                     Bitmap bmp = getBitmapFromUri(uri);
