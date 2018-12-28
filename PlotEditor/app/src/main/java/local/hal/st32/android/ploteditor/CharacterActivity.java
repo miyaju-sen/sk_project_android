@@ -124,8 +124,6 @@ public class CharacterActivity extends AppCompatActivity implements NavigationVi
         _intent = getIntent();
         _outline = (HashMap<String, String>) _intent.getSerializableExtra("OUTLINE");
         _character = (HashMap<String, String>) _intent.getSerializableExtra("CHARACTER");
-
-        //TODO:人物を削除する処理
     }
 
     @Override
