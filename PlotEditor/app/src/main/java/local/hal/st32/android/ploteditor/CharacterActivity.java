@@ -150,6 +150,10 @@ public class CharacterActivity extends AppCompatActivity implements NavigationVi
         menu.findItem(R.id.menuInsert).setVisible(false);
         menu.findItem(R.id.menuReload).setVisible(false);
 
+        //削除ボタンを表示
+        MenuItem delete = menu.findItem(R.id.menuDelete);
+        delete.setVisible(true);
+
         //編集ボタンを表示
         MenuItem edit = menu.findItem(R.id.menuEdit);
         edit.setVisible(true);
@@ -167,6 +171,9 @@ public class CharacterActivity extends AppCompatActivity implements NavigationVi
             //編集ボタン
             case R.id.menuEdit:
                 onEditButtonClick();
+                break;
+            case R.id.menuDelete:
+                //TODO:削除処理
                 break;
         }
         return super.onOptionsItemSelected(item);

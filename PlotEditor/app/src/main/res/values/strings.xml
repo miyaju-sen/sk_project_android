@@ -20,6 +20,7 @@
     <!-- NavigationView用 -->
     <string name="drawable_open">開く</string>
     <string name="drawable_close">閉じる</string>
+    <string name="menu_plot_delete">プロットを削除</string>
 
     <!-- ダイアログ用 -->
     <string name="dialog_insert">プロット新規作成</string>

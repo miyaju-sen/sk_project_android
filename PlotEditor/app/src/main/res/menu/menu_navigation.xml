@@ -29,6 +29,6 @@ NavigationView用のメニュー
         android:checkableBehavior="single">
         <item
             android:id="@+id/menuDelete"
-            android:title="@string/menu_delete"/>
+            android:title="@string/menu_plot_delete"/>
     </group>
 </menu>
