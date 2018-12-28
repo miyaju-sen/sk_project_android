@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ListView;
 
 /**
  * 就職作品
@@ -94,6 +95,10 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
 
         //初期に選択されているTabを設定
         tlWorldView.getTabAt(0).select();
+
+        //テスト用
+        ListView lvMenu = stage.findViewById(R.id.lvMenu);
+
     }
 
     //以下の内容を実装する必要がある。（空で問題ない）

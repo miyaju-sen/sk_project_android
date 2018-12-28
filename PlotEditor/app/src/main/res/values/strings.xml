@@ -111,4 +111,20 @@
     <string name="msg_err_send">サーバ通信に失敗しました。もう一度送信をお願いします。</string>
     <string name="msg_err_timeout">サーバ通信がタイムアウトしました。もう一度送信をお願いします。</string>
     <string name="msg_err_parse">サーバからの返信内容の解析に失敗しました。もう一度送信をお願いします。</string>
+
+    <!-- テスト用 -->
+    <string-array name="lv_menu">
+        <item>から揚げ定食</item>
+        <item>ハンバーグ定食</item>
+        <item>生姜焼き定食</item>
+        <item>ステーキ定食</item>
+        <item>野菜炒め定食</item>
+        <item>とんかつ定食</item>
+        <item>ミンチかつ定食</item>
+        <item>チキンカツ定食</item>
+        <item>コロッケ定食</item>
+        <item>焼き魚定食</item>
+        <item>焼肉定食</item>
+        <item>弱肉強食</item>
+    </string-array>
 </resources>
