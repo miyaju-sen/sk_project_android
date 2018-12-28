@@ -193,7 +193,7 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
             //削除
             case R.id.menuDelete:
                 intent = null;
-                onDeleteButtonClick();
+                onPlotDeleteClick();
                 break;
         }
         DrawerLayout drawer = findViewById(R.id.drawerLayout);
@@ -264,9 +264,9 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
     }
 
     /**
-     * 削除ボタン押下時の処理
+     * プロット削除押下時の処理
      */
-    private void onDeleteButtonClick() {
+    private void onPlotDeleteClick() {
         String no = _outline.get("no");
         String title = _outline.get("title");
 

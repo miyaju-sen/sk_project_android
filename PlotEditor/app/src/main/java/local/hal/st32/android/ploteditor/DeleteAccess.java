@@ -28,7 +28,7 @@ import java.util.HashMap;
  */
 public class DeleteAccess extends AsyncTask<String, String, String> {
     /**
-     * TODO:コールバック用のクラス
+     * コールバック用のクラス
      */
     private CallBackTask _callBack;
     /**

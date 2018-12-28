@@ -172,8 +172,9 @@ public class CharacterActivity extends AppCompatActivity implements NavigationVi
             case R.id.menuEdit:
                 onEditButtonClick();
                 break;
+            //削除ボタン
             case R.id.menuDelete:
-                //TODO:削除処理
+                onCharacterDeleteButtonClick();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -210,7 +211,7 @@ public class CharacterActivity extends AppCompatActivity implements NavigationVi
             //削除
             case R.id.menuDelete:
                 intent = null;
-                onDeleteButtonClick();
+                onPlotDeleteClick();
                 break;
         }
         DrawerLayout drawer = findViewById(R.id.drawerLayout);
@@ -237,7 +238,17 @@ public class CharacterActivity extends AppCompatActivity implements NavigationVi
     /**
      * 削除ボタン押下時の処理
      */
-    private void onDeleteButtonClick() {
+    private void onCharacterDeleteButtonClick() {
+        String no = _character.get("no");
+
+        //TODO:ダイアログ作成クラスへ
+    }
+
+
+    /**
+     * プロット削除押下時の処理
+     */
+    private void onPlotDeleteClick() {
         String no = _outline.get("no");
         String title = _outline.get("title");
 
