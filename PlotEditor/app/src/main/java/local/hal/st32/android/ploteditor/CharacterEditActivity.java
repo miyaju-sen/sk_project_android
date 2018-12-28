@@ -44,7 +44,7 @@ import java.util.HashMap;
  *
  * @author ohs60224
  */
-public class CharacterEditActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
+public class CharacterEditActivity extends AppCompatActivity {
     /**
      * 画面部品
      */
@@ -159,11 +159,7 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
 
         //スピナーに値をセット
         spinnerAdapterSet();
-
-        //ラジオグループにリスナーをセット
-        _rgAge.setOnCheckedChangeListener(this);
-        _rgGender.setOnCheckedChangeListener(this);
-
+        
         _intent = getIntent();
 //        _plot = _intent.getStringExtra("PLOTNo"); //作品No
         _outline = (HashMap<String, String>) _intent.getSerializableExtra("OUTLINE");
@@ -226,14 +222,6 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
     }
 
     /**
-     * ラジオボタン選択時処理
-     */
-    @Override
-    public void onCheckedChanged(RadioGroup group, int checkedId) {
-        //TODO:ここいらないかも
-    }
-
-    /**
      * ラジオボタンで選択されている項目を取得するメソッド
      */
     private void checkedRadioButton() {
@@ -258,7 +246,7 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
     }
 
     /**
-     * 戻るボタン押下時の処理 TODO:変更された場合の処理
+     * 戻るボタン押下時の処理
      */
     private void onBackButtonClick() {
         if(ACTIVITY.equals(new NowActivity().getCharacterActivity())) {
