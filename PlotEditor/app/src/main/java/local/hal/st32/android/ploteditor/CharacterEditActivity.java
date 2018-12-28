@@ -495,6 +495,16 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
         _spDay.setSelection(dayInt - 1); //スピナーの表示位置を指定
 
         //TODO:年齢
-        
+        RadioButton rbAge = null;
+        String age = _character.get("age");
+        if("不明".equals(age)) {
+            rbAge = findViewById(R.id.rbAgeUnknown);
+        }
+        else {
+            rbAge = findViewById(R.id.rbAge);
+            _etAge.setText( age );
+        }
+        rbAge.setChecked(true);
+
     }
 }
