@@ -104,9 +104,9 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
      */
     private HashMap<String, String> _outline = new HashMap<>();
     /**
-     * 遷移元のアクティビティ（デフォルト：一覧画面）
+     * 遷移元のアクティビティ（デフォルト：情報画面）
      */
-    private String ACTIVITY = new NowActivity().getCharacterListActivity();
+    private String ACTIVITY = new NowActivity().getCharacterActivity();
     /**
      * 年齢
      */
@@ -169,13 +169,15 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
     public void onResume() {
         super.onResume();
         ACTIVITY = _intent.getStringExtra("ACTIVITY");
+        //リスト画面から遷移してきた場合：新規登録
         if (ACTIVITY.equals(new NowActivity().getCharacterListActivity())) {
             setTitle("登場人物 新規登録");
         }
+        //情報画面から遷移してきた場合：編集
         else {
             setTitle("登場人物 編集");
-
             //TODO:編集する登場人物の情報を取得
+            setCharacterInfo();
         }
     }
 
@@ -283,7 +285,11 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
         //ラジオボタンの項目を取得
         checkedRadioButton();
 
-        String no = ""; //TODO:新規追加の場合は空
+        //新規登録の場合主キーは空、編集の場合は_characterから値を取得する
+        String no = "";
+        if(ACTIVITY.equals(new NowActivity().getCharacterActivity())) {
+            no = _character.get("no");
+        }
         String phonetic = _etPhonetic.getText().toString();
         String name = _etName.getText().toString();
         String another = _etAnotherName.getText().toString();
@@ -421,5 +427,38 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
 
         _spMonth.setAdapter(_monthAdapter);
         _spDay.setAdapter(_dayAdapter);
+    }
+
+    /**
+     * 編集時の場合、画面部品に値をセットするメソッド
+     */
+    private void setCharacterInfo() {
+        _character = (HashMap<String, String>) _intent.getSerializableExtra("CHARACTER");
+
+        //画像
+        _imagePath = _character.get("image_path");
+        if(!"".equals(_imagePath)) {
+            File storage = Environment.getExternalStorageDirectory();
+            File file = new File(storage.getAbsolutePath() + "/" + Environment.DIRECTORY_DCIM + "/Camera", _imagePath);
+            Bitmap bm = BitmapFactory.decodeFile(file.getPath());
+            _ivCharacterImage.setImageBitmap(bm);
+        }
+
+        _etName.setText( _character.get("name") );
+        _etPhonetic.setText( _character.get("phonetic") );
+        _etAnotherName.setText( _character.get("another") );
+        _etHeight.setText( _character.get("height") );
+        _etWeight.setText( _character.get("weight") );
+        _etFirstPerson.setText( _character.get("first_person") );
+        _etSecondPerson.setText( _character.get("second_person") );
+        _etBelongs.setText( _character.get("belongs") );
+        _etSkill.setText( _character.get("skill") );
+        _etProfile.setText( _character.get("profile") );
+        _etLivedProcess.setText( _character.get("lived_process") );
+        _etPersonality.setText( _character.get("personality") );
+        _etAppearance.setText( _character.get("appearance") );
+        _etOther.setText( _character.get("other") );
+
+        //TODO:性別・誕生日・年齢
     }
 }

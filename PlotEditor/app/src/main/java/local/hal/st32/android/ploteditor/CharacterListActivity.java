@@ -54,6 +54,10 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
      */
     public static final String NOW_ACTIVITY = new NowActivity().getCharacterListActivity();
     /**
+     * 新規登録を示す定数
+     */
+    public static final int MODE_INSERT = 1;
+    /**
      * アクセス先のURL
      */
     private static final String ACCESS_URL = new AccessURL().getCharacterJson();

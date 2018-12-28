@@ -35,6 +35,10 @@ import java.util.HashMap;
  */
 public class CharacterActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     /**
+     * 現在表示している画面に対応したアクティビティ
+     */
+    public static final String NOW_ACTIVITY = new NowActivity().getCharacterActivity();
+    /**
      * 画面部品
      */
     private ImageView _ivCharacterIcon;
@@ -226,11 +230,11 @@ public class CharacterActivity extends AppCompatActivity implements NavigationVi
      * 編集ボタン押下時の処理
      */
     private void onEditButtonClick() {
-        //TODO:値送信
         Intent intent = new Intent(CharacterActivity.this, CharacterEditActivity.class);
+        intent.putExtra("CHARACTER", _character);
         intent.putExtra("OUTLINE", _outline);
+        intent.putExtra("ACTIVITY", NOW_ACTIVITY);
         startActivity(intent);
-        CharacterActivity.this.finish();
     }
 
     /**
@@ -297,7 +301,7 @@ public class CharacterActivity extends AppCompatActivity implements NavigationVi
         _tvPhonetic.setText( _character.get("phonetic") );
         _tvAnother.setText( _character.get("another") );
         _tvAge.setText( _character.get("age") );
-        _tvGender.setText( _character.get("gender") );
+        _tvGender.setText( _character.get("gender") ); //TODO:数値で表示されてしまってる
         _tvBirthday.setText( _character.get("birthday") );
 
         //身長・体重

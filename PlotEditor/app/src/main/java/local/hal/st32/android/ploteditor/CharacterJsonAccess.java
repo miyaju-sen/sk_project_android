@@ -50,9 +50,9 @@ public class CharacterJsonAccess extends AsyncTask<String, String, String> {
      */
     private static HashMap<String, String> _character;
     /**
-     * 現在表示している画面に対応したアクティビティ
+     * 登場人物の主キー
      */
-    private static String NOW_ACTIVITY = new NowActivity().getCharacterListActivity();
+    private String _characterNo = "";
 
     /**
      * コンストラクタ
@@ -80,7 +80,7 @@ public class CharacterJsonAccess extends AsyncTask<String, String, String> {
     @Override
     public String doInBackground(String... params) {
         String urlStr = ACCESS_URL;
-        String no = params[0];
+        _characterNo = params[0];
         String plot = params[1];
         String phonetic = params[2];
         String name = params[3];
@@ -101,7 +101,7 @@ public class CharacterJsonAccess extends AsyncTask<String, String, String> {
         String appearance = params[18];
         String other = params[19];
 
-        String data = "no=" + no +
+        String data = "no=" + _characterNo +
                 "&plot=" + plot +
                 "&phonetic=" + phonetic +
                 "&name=" + name +
@@ -263,13 +263,23 @@ public class CharacterJsonAccess extends AsyncTask<String, String, String> {
             }
 
             //TODO:遷移元で分岐ではなく新規か編集か（編集画面からしか飛ばされない）
+            //TODO:↑登場人物の主キーが空か否かで新規か編集かの判別できる
+            //新規登録の場合
+//            if("".equals(_characterNo)) {
+//
+//            }
+//            //編集の場合
+//            else {
+                _callBack.CallBack(map);
+//            }
+
             //新規登録だった場合（遷移元：PlotListActivity、遷移先：OutlineEditActivity）
 //            if(NOW_ACTIVITY.equals( TitleSetDialogCreate.NOW_ACTIVITY )) {
 //                PlotListActivity activity = (PlotListActivity) _context;
 //                activity.onPositiveButtonClick(_context);
 //            }
 //            else {
-                _callBack.CallBack(map);
+//                _callBack.CallBack(map);
 //            }
         }
     }
