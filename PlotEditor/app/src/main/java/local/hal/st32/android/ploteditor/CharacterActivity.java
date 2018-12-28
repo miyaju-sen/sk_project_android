@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -158,8 +159,7 @@ public class CharacterActivity extends AppCompatActivity implements NavigationVi
         switch (itemId) {
             //編集ボタン
             case R.id.menuEdit:
-                //TODO:編集処理
-//                onEditButtonClick();
+                onEditButtonClick();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -196,8 +196,7 @@ public class CharacterActivity extends AppCompatActivity implements NavigationVi
             //削除
             case R.id.menuDelete:
                 intent = null;
-                //TODO:削除処理
-//                onDeleteButtonClick();
+                onDeleteButtonClick();
                 break;
         }
         DrawerLayout drawer = findViewById(R.id.drawerLayout);
@@ -212,13 +211,44 @@ public class CharacterActivity extends AppCompatActivity implements NavigationVi
     }
 
     /**
+     * 編集ボタン押下時の処理
+     */
+    private void onEditButtonClick() {
+        Intent intent = new Intent(CharacterActivity.this, CharacterEditActivity.class);
+//        intent.putExtra("OUTLINE", _outline); //TODO:概要情報
+        startActivity(intent);
+        CharacterActivity.this.finish();
+    }
+
+    /**
+     * 削除ボタン押下時の処理
+     */
+    private void onDeleteButtonClick() {
+        //TODO:概要情報
+//        String no = _outline.get("no");
+//        String title = _outline.get("title");
+
+        Bundle extras = new Bundle();
+//        extras.putString("no", no);
+//        extras.putString("title", title);
+
+        Context context = this;
+        PlotDeleteConfirmDialogCreate.setActivityContext(context);
+
+        PlotDeleteConfirmDialogCreate dialog = new PlotDeleteConfirmDialogCreate();
+        dialog.setArguments(extras);
+
+        FragmentManager manager = getSupportFragmentManager();
+        dialog.show(manager, "CharacterActivity");
+    }
+
+    /**
      * 「プロット一覧に戻る」押下時の処理
      */
     public void onMenuBackClick(View view) {
         Intent intent = new Intent(CharacterActivity.this, PlotListActivity.class);
         startActivity(intent);
     }
-
 
     /**
      * 画面部品に遷移元から取得した値をセットするメソッド
