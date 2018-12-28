@@ -71,7 +71,7 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
     /**
      * 画像パス
      */
-    private String _imagePath;
+    private String _imagePath = "";
     /**
      * ファイル選択のボタン
      */
@@ -181,6 +181,7 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
         //情報画面から遷移してきた場合：編集
         else {
             setTitle("登場人物 編集");
+            Log.e("＊＊＊＊＊＊＊＊", "地点onResume()");
 
             //編集する登場人物の情報を取得
             setCharacterInfo();
@@ -368,6 +369,7 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
                 CharacterEditActivity.this.finish();
             }
         });
+        Log.e("************アクセス前", "画像ファイル" + _imagePath);
         access.execute(
                 no, //主キー
                 _plot, //作品No
@@ -423,11 +425,11 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
                 uri = resultData.getData();
                 //画像ファイル名を取得（これをサーバへ送信）
                 _imagePath = GetFileName.getFileNameFromUri(this, uri);
-                Log.e("＊＊＊＊＊＊＊＊", "地点A" + _imagePath);
 
                 try {
                     Bitmap bmp = getBitmapFromUri(uri);
                     _ivCharacterImage.setImageBitmap(bmp);
+                    Log.e("＊＊＊＊＊＊＊＊", "地点A" + _imagePath);
                 }
                 catch (IOException e) {
                     e.printStackTrace();
@@ -487,13 +489,15 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
         _character = (HashMap<String, String>) _intent.getSerializableExtra("CHARACTER");
 
         //画像
-        _imagePath = _character.get("image_path");
-        if(!"".equals(_imagePath)) {
+        if(!"".equals( _character.get("image_path") ) && "".equals(_imagePath)) {
+            _imagePath = _character.get("image_path");
             File storage = Environment.getExternalStorageDirectory();
             File file = new File(storage.getAbsolutePath() + "/" + Environment.DIRECTORY_DCIM + "/Camera", _imagePath);
             Bitmap bm = BitmapFactory.decodeFile(file.getPath());
             _ivCharacterImage.setImageBitmap(bm);
         }
+
+        Log.e("********外", "画像ファイル名" + _imagePath);
 
         _etName.setText( _character.get("name") );
         _etPhonetic.setText( _character.get("phonetic") );
