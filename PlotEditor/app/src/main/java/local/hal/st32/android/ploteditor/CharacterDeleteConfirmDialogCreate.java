@@ -71,8 +71,9 @@ public class CharacterDeleteConfirmDialogCreate extends DialogFragment{
                         @Override
                         public void CallBack() {
                             _toast.show();
-                            FinishActivity finish = new FinishActivity(_activity);
-                            finish.startPlotListActivity();
+//                            Intent intent = new Intent(_activity, CharacterListActivity.class);
+//                            _activity.startActivity(intent);
+                            _activity.finish();
                         }
                     });
                     access.execute(_no, _table);
