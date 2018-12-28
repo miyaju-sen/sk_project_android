@@ -238,6 +238,7 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
             character.put("other", item.get("other"));
 
             intent.putExtra("CHARACTER", character);
+            intent.putExtra("OUTLINE", _outline);
             startActivity(intent);
         }
     }
@@ -247,7 +248,8 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
      */
     private void onInsertButtonClick() {
         Intent intent = new Intent(CharacterListActivity.this, CharacterEditActivity.class);
-        intent.putExtra("PLOTNo", _outline.get("no"));
+//        intent.putExtra("PLOTNo", _outline.get("no"));
+        intent.putExtra("OUTLINE", _outline);
         intent.putExtra("ACTIVITY", NOW_ACTIVITY);
 
         startActivity(intent);

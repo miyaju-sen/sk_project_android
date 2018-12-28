@@ -100,6 +100,10 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
      */
     private String _plot;
     /**
+     * プロット概要が格納された配列
+     */
+    private HashMap<String, String> _outline = new HashMap<>();
+    /**
      * 遷移元のアクティビティ（デフォルト：一覧画面）
      */
     private String ACTIVITY = new NowActivity().getCharacterListActivity();
@@ -156,7 +160,9 @@ public class CharacterEditActivity extends AppCompatActivity implements RadioGro
         _rgGender.setOnCheckedChangeListener(this);
 
         _intent = getIntent();
-        _plot = _intent.getStringExtra("PLOTNo"); //作品No
+//        _plot = _intent.getStringExtra("PLOTNo"); //作品No
+        _outline = (HashMap<String, String>) _intent.getSerializableExtra("OUTLINE");
+        _plot = _outline.get("no");
     }
 
     @Override
