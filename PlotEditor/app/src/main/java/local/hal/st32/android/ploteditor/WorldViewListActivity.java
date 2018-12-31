@@ -7,6 +7,7 @@ import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabItem;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
@@ -22,6 +23,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.HashMap;
 
 /**
  * 就職作品
@@ -55,7 +58,10 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
     private MenuItem _edit;
     private MenuItem _insert;
     private MenuItem _reload;
-
+    /**
+     * プロット概要が格納された配列
+     */
+    private HashMap<String, String> _outline = new HashMap<>();
     /**
      * DrawerLayoutとActionBarDrawerToggle
      */
@@ -93,6 +99,10 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
 
         //タブレイアウト
         setTabLayout();
+
+        Intent intent = getIntent();
+        _outline = (HashMap<String, String>) intent.getSerializableExtra("OUTLINE");
+
 
         //テスト用
         ListView lvMenu = _stageView.findViewById(R.id.lvMenu);
@@ -141,6 +151,9 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
                 //TODO:追加処理
 //                onInsertButtonClick();
                 break;
+            case R.id.menuEdit:
+                //TODO:編集処理
+                break;
             case R.id.menuReload:
                 onResume();
                 break;
@@ -163,11 +176,11 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
                 break;
             //登場人物一覧画面へ（何もしない）
             case R.id.menuCharacter:
-                intent = null;
+                intent = new Intent(WorldViewListActivity.this, CharacterListActivity.class);
                 break;
             //世界観一覧画面へ
             case R.id.menuWorld:
-                intent = new Intent(WorldViewListActivity.this, WorldViewListActivity.class);
+                intent = null;
                 break;
             //構想画面へ
             case R.id.menuStory:
@@ -180,19 +193,46 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
             //削除
             case R.id.menuDelete:
                 intent = null;
-                //TODO:プロット削除処理
-//                onPlotDeleteClick();
+                onPlotDeleteClick();
                 break;
         }
         DrawerLayout drawer = findViewById(R.id.drawerLayout);
         drawer.closeDrawer(GravityCompat.START);
 
         if(null != intent) {
-            //TODO:概要取得
-//            intent.putExtra("OUTLINE", _outline);
+            intent.putExtra("OUTLINE", _outline);
             startActivity(intent);
         }
         return true;
+    }
+
+    /**
+     * 「プロット一覧に戻る」押下時の処理
+     */
+    public void onMenuBackClick(View view) {
+        Intent intent = new Intent(WorldViewListActivity.this, PlotListActivity.class);
+        startActivity(intent);
+    }
+
+    /**
+     * プロット削除押下時の処理
+     */
+    private void onPlotDeleteClick() {
+        String no = _outline.get("no");
+        String title = _outline.get("title");
+
+        Bundle extras = new Bundle();
+        extras.putString("no", no);
+        extras.putString("title", title);
+
+        Context context = this;
+        PlotDeleteConfirmDialogCreate.setActivityContext(context);
+
+        PlotDeleteConfirmDialogCreate dialog = new PlotDeleteConfirmDialogCreate();
+        dialog.setArguments(extras);
+
+        FragmentManager manager = getSupportFragmentManager();
+        dialog.show(manager, "WorldViewListActivity");
     }
 
     /**
