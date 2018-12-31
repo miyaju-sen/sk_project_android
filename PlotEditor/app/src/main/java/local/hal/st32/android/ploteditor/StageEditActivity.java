@@ -11,6 +11,7 @@ import android.view.MenuItem;
  * 就職作品
  *
  * 世界観の『舞台』を編集する画面用アクティビティ
+ * TODO:まずは初回時の処理から（INSERTが動くのは最初の一度だけ）
  *
  * @author ohs60224
  */

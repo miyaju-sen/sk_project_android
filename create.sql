@@ -28,7 +28,7 @@ CREATE TABLE plots(
 CREATE TABLE stages(
     no INT(8) NOT NULL AUTO_INCREMENT,  #主キーNo
     plot INT(8) NOT NULL, #作品No
-    stage TEXT NOT NULL, #舞台説明 
+    stage TEXT, #舞台説明 
     PRIMARY KEY(no), 
     INDEX(no),
     FOREIGN KEY (plot) REFERENCES plots(no)
