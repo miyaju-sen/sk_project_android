@@ -103,6 +103,7 @@
     <string name="tv_parlance">設定・用語</string>
     <string name="tv_parlance_name">名称</string>
     <string name="tv_explanation">説明</string>
+    <string name="tv_stage_text">まだ何も記述されていません</string>
 
     <!-- メモ編集画面用 -->
     <string name="memo_background">メモ背景</string>
