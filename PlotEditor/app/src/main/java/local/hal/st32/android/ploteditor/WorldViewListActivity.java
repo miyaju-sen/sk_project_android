@@ -16,6 +16,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
@@ -47,6 +49,12 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
      */
     private View _stageView;
     private View _parlanceView;
+    /**
+     * メニューアイテム
+     */
+    private MenuItem _edit;
+    private MenuItem _insert;
+    private MenuItem _reload;
 
     /**
      * DrawerLayoutとActionBarDrawerToggle
@@ -88,6 +96,57 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
 
         //テスト用
         ListView lvMenu = _stageView.findViewById(R.id.lvMenu);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        setTitle("世界観");
+
+        //TODO:設定・用語を取得する（JSONアクセス）
+    }
+
+    /**
+     * オプションメニュー作成
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_edit, menu);
+
+        //表示されたままのメニューアイコンを非表示に
+        menu.setGroupVisible(R.id.mgEdit, false);
+
+        //更新ボタンを取得
+        _reload = menu.findItem(R.id.menuReload);
+
+        //追加ボタンを取得
+        _insert = menu.findItem(R.id.menuInsert);
+
+        //編集ボタンを取得
+        _edit = menu.findItem(R.id.menuEdit);
+        _edit.setVisible(true);
+
+        return true;
+    }
+
+    /**
+     * オプションメニュー選択時処理
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+        switch (itemId) {
+            case R.id.menuInsert:
+                //TODO:追加処理
+//                onInsertButtonClick();
+                break;
+            case R.id.menuReload:
+                onResume();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     /**
@@ -212,15 +271,40 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
         _tlWorldView.getTabAt(0).select();
     }
 
+    /**
+     * ページが切り替わった時に呼び出される
+     * @param position どのタブか
+     */
+    @Override
+    public void onPageSelected(int position) {
+        switch (position) {
+            //「舞台」の場合
+            case 0:
+                _insert.setVisible(false);
+                _reload.setVisible(false);
+                _edit.setVisible(true);
+                break;
+            //「設定・用語」の場合
+            case 1:
+                _insert.setVisible(true);
+                _reload.setVisible(true);
+                _edit.setVisible(false);
+                break;
+        }
+    }
 
-    //ViewPager.OnPageChangeListenerを実装する際、以下の内容を実装する必要がある。（空で問題ない）
+
+    //ViewPager.OnPageChangeListenerを実装する際、以下の内容も実装しておく必要がある。（空で問題ない）
     //----------------------------------------------------------------------------------------------
+    /**
+     * ページスクロール中に呼び出される
+     */
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
     }
-    @Override
-    public void onPageSelected(int position) {
-    }
+    /**
+     * スクロール状態が変化したときに呼び出される
+     */
     @Override
     public void onPageScrollStateChanged(int state) {
     }
