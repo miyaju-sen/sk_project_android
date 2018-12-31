@@ -6,16 +6,30 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.EditText;
+
+import java.util.HashMap;
 
 /**
  * 就職作品
  *
  * 世界観の『舞台』を編集する画面用アクティビティ
- * TODO:まずは初回時の処理から（INSERTが動くのは最初の一度だけ）
  *
  * @author ohs60224
  */
 public class StageEditActivity extends AppCompatActivity {
+    /**
+     * 画面部品
+     */
+    private EditText _etStage;
+    /**
+     * プロット概要が格納された配列
+     */
+    private HashMap<String, String> _outline = new HashMap<>();
+    /**
+     * 舞台情報が格納された配列
+     */
+    private HashMap<String, String> _stage = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,5 +92,22 @@ public class StageEditActivity extends AppCompatActivity {
     private void onBackButtonClick() {
         //TODO:変更項目があった場合の処理
         StageEditActivity.this.finish();
+
+        //TODO:stagesから内容を取得する（一覧画面で行ってこっちに持ってくるとか）
+    }
+
+    /**
+     * 保存ボタン押下時の処理
+     */
+    private void onSaveButtonClick() {
+        StageJsonAccess access = new StageJsonAccess();
+        access.setOnCallBack(new StageJsonAccess.CallBackTask() {
+            @Override
+            public void CallBack(HashMap<String, String> map) {
+                _stage = map;
+            }
+        });
+        //TODO:値を送信
+        access.execute();
     }
 }
