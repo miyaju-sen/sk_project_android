@@ -1,6 +1,7 @@
 package local.hal.st32.android.ploteditor;
 
 import android.content.Intent;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -96,8 +97,15 @@ public class StageEditActivity extends AppCompatActivity {
      * 戻るボタン押下時の処理
      */
     private void onBackButtonClick() {
-        //TODO:変更項目があった場合の処理
-        StageEditActivity.this.finish();
+        //変更された項目がある場合
+        if(!_stage.get("stage").equals( _etStage.getText().toString() )) {
+            ReturnConfirmDialogCreate dialog = new ReturnConfirmDialogCreate();
+            FragmentManager manager = getSupportFragmentManager();
+            dialog.show(manager, "StageEditActivity");
+        }
+        else {
+            StageEditActivity.this.finish();
+        }
     }
 
     /**
