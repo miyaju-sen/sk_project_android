@@ -98,12 +98,17 @@
     <string name="hint_appearance">髪形、髪や瞳の色、服装など</string>
     <string name="hint_other">上記以外に補足したい点があれば</string>
 
-    <!-- 世界観編集画面 -->
+    <!-- 世界観一覧画面用 -->
     <string name="tv_stage">舞台</string>
     <string name="tv_parlance">設定・用語</string>
+    <string name="tv_stage_text">まだ何も記述されていません</string>
+
+    <!-- 設定・用語画面用 -->
     <string name="tv_parlance_name">名称</string>
     <string name="tv_explanation">説明</string>
-    <string name="tv_stage_text">まだ何も記述されていません</string>
+
+    <!-- 舞台説明画面用 -->
+    <string name="hint_stage">物語の舞台となる場所について\n例）かつて大地の女神が暮らしていたとされる〇〇村。この村では……</string>
 
     <!-- メモ編集画面用 -->
     <string name="memo_background">メモ背景</string>

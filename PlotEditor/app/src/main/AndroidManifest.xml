@@ -39,7 +39,10 @@
         <activity android:name=".WorldViewEditActivity" />
         <activity android:name=".StoryEditActivity" />
         <activity android:name=".TestActivity" />
-        <activity android:name=".StageEditActivity"></activity>
+        <activity
+            android:name=".StageEditActivity"
+            android:theme="@style/AppTheme">
+        </activity>
     </application>
 
 </manifest>

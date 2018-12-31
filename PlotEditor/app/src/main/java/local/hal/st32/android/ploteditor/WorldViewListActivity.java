@@ -159,6 +159,7 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
                 break;
             case R.id.menuEdit:
                 //TODO:編集処理
+                onEditButtonClick();
                 break;
             case R.id.menuReload:
                 onResume();
@@ -172,7 +173,9 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
      * 編集ボタン押下時の処理
      */
     private void onEditButtonClick() {
-        //TODO:編集処理
+        Intent intent = new Intent(WorldViewListActivity.this, StageEditActivity.class);
+        intent.putExtra("OUTLINE", _outline);
+        startActivity(intent);
     }
 
     /**
