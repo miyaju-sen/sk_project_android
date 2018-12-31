@@ -46,6 +46,7 @@ public class StageEditActivity extends AppCompatActivity {
         Intent intent = getIntent();
         _outline = (HashMap<String, String>) intent.getSerializableExtra("OUTLINE");
         _stage = (HashMap<String, String>) intent.getSerializableExtra("STAGE");
+        _etStage.setText(_stage.get("stage"));
     }
 
     @Override
@@ -81,7 +82,6 @@ public class StageEditActivity extends AppCompatActivity {
         switch (itemId) {
             //保存ボタン
             case R.id.menuSave:
-                //TODO:保存処理
                 onSaveButtonClick();
                 break;
             //戻るボタン
@@ -108,10 +108,13 @@ public class StageEditActivity extends AppCompatActivity {
         access.setOnCallBack(new StageJsonAccess.CallBackTask() {
             @Override
             public void CallBack(HashMap<String, String> map) {
-                _stage = map;
+                Intent intent = new Intent(StageEditActivity.this, WorldViewListActivity.class);
+                intent.putExtra("STAGE", map);
+                intent.putExtra("OUTLINE", _outline);
+                startActivity(intent);
+                StageEditActivity.this.finish();
             }
         });
-        //TODO:値を送信
         access.execute(_stage.get("no"), _stage.get("plot"), _etStage.getText().toString());
     }
 }
