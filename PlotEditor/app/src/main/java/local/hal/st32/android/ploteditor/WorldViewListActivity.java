@@ -35,6 +35,10 @@ import java.util.HashMap;
  */
 public class WorldViewListActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener, NavigationView.OnNavigationItemSelectedListener {
     /**
+     * 画面部品
+     */
+    private TextView _tvStage; //舞台の内容
+    /**
      * タブアイテム
      */
     private TabItem _tabItemStage; //舞台
@@ -103,9 +107,11 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
         Intent intent = getIntent();
         _outline = (HashMap<String, String>) intent.getSerializableExtra("OUTLINE");
 
+        //画面部品取得
+        _tvStage = _stageView.findViewById(R.id.tvStage);
 
         //テスト用
-        ListView lvMenu = _stageView.findViewById(R.id.lvMenu);
+        ListView lvMenu = _parlanceView.findViewById(R.id.lvMenu);
     }
 
     @Override
