@@ -126,17 +126,7 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
 
         //TODO:設定・用語を取得する（JSONアクセス）
 
-        //舞台情報を取得
-//        StageJsonReceiver sReceiver = new StageJsonReceiver();
-//        sReceiver.setOnCallBack(new StageJsonReceiver.CallBackTask() {
-//            @Override
-//            public void CallBack(HashMap<String, String> map) {
-//                _stage = map;
-//                _tvStage.setText(_stage.get("stage"));
-//            }
-//        });
-//        sReceiver.execute(_outline.get("no"));
-
+        //舞台情報を取得する
         StageJsonAccess sAccess = new StageJsonAccess();
         sAccess.setOnCallBack(new StageJsonAccess.CallBackTask() {
             @Override
