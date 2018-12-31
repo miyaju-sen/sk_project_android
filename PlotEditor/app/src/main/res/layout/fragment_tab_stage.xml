@@ -10,11 +10,10 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/tvStage"
+        android:id="@+id/tvStageNote"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_vertical|center_horizontal"
-        android:text="@string/tv_stage_text"
         android:textSize="18sp"/>
 
 </LinearLayout>

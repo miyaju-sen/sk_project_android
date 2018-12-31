@@ -9,6 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
+import java.util.HashMap;
+
 /**
  * 就職作品
  *
@@ -17,6 +21,14 @@ import android.widget.TextView;
  * @author ohs60224
  */
 public class TabStageFragment extends Fragment {
+    /**
+     * ビュー
+     */
+    private View _view;
+    /**
+     * テキストビュー
+     */
+    private static TextView _tvStage;
 
     /**
      * コンストラクタ
@@ -43,7 +55,14 @@ public class TabStageFragment extends Fragment {
      */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_tab_stage, null);
-        return view;
+        _view = inflater.inflate(R.layout.fragment_tab_stage, null);
+
+        _tvStage = _view.findViewById(R.id.tvStageNote);
+
+        return _view;
+    }
+
+    public static void setStage(HashMap<String, String> stage) {
+        _tvStage.setText(stage.get("stage"));
     }
 }

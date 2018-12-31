@@ -16,6 +16,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -30,6 +31,7 @@ import java.util.HashMap;
  * 就職作品
  *
  * 世界観一覧画面用アクティビティ
+ * TODO:舞台を送受信するクラス、設定・用語を送受信するクラス
  *
  * @author ohs60224
  */
@@ -66,6 +68,10 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
      * プロット概要が格納された配列
      */
     private HashMap<String, String> _outline = new HashMap<>();
+    /**
+     * 舞台情報を格納する配列
+     */
+    private HashMap<String, String> _stage = new HashMap<>();
     /**
      * DrawerLayoutとActionBarDrawerToggle
      */
@@ -108,7 +114,6 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
         _outline = (HashMap<String, String>) intent.getSerializableExtra("OUTLINE");
 
         //画面部品取得
-        _tvStage = _stageView.findViewById(R.id.tvStage);
 
         //テスト用
         ListView lvMenu = _parlanceView.findViewById(R.id.lvMenu);
@@ -120,6 +125,27 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
         setTitle("世界観");
 
         //TODO:設定・用語を取得する（JSONアクセス）
+
+        //舞台情報を取得
+//        StageJsonReceiver sReceiver = new StageJsonReceiver();
+//        sReceiver.setOnCallBack(new StageJsonReceiver.CallBackTask() {
+//            @Override
+//            public void CallBack(HashMap<String, String> map) {
+//                _stage = map;
+//                _tvStage.setText(_stage.get("stage"));
+//            }
+//        });
+//        sReceiver.execute(_outline.get("no"));
+
+        StageJsonAccess sAccess = new StageJsonAccess();
+        sAccess.setOnCallBack(new StageJsonAccess.CallBackTask() {
+            @Override
+            public void CallBack(HashMap<String, String> map) {
+                _stage = map;
+                TabStageFragment.setStage(_stage);
+            }
+        });
+        sAccess.execute("", _outline.get("no"), "");
     }
 
     /**
@@ -174,6 +200,7 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
      */
     private void onEditButtonClick() {
         Intent intent = new Intent(WorldViewListActivity.this, StageEditActivity.class);
+        intent.putExtra("STAGE", _stage);
         intent.putExtra("OUTLINE", _outline);
         startActivity(intent);
     }

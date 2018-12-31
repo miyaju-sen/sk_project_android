@@ -1,5 +1,6 @@
 package local.hal.st32.android.ploteditor;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -40,6 +41,11 @@ public class StageEditActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+        _etStage = findViewById(R.id.etStage);
+
+        Intent intent = getIntent();
+        _outline = (HashMap<String, String>) intent.getSerializableExtra("OUTLINE");
+        _stage = (HashMap<String, String>) intent.getSerializableExtra("STAGE");
     }
 
     @Override
@@ -76,7 +82,7 @@ public class StageEditActivity extends AppCompatActivity {
             //保存ボタン
             case R.id.menuSave:
                 //TODO:保存処理
-//                onSaveButtonClick();
+                onSaveButtonClick();
                 break;
             //戻るボタン
             case android.R.id.home:
@@ -92,8 +98,6 @@ public class StageEditActivity extends AppCompatActivity {
     private void onBackButtonClick() {
         //TODO:変更項目があった場合の処理
         StageEditActivity.this.finish();
-
-        //TODO:stagesから内容を取得する（一覧画面で行ってこっちに持ってくるとか）
     }
 
     /**
@@ -108,6 +112,6 @@ public class StageEditActivity extends AppCompatActivity {
             }
         });
         //TODO:値を送信
-        access.execute();
+        access.execute(_stage.get("no"), _stage.get("plot"), _etStage.getText().toString());
     }
 }
