@@ -13,6 +13,7 @@ public class AccessURL {
     private String PLOT_JSON; //plotsの更新・抽出
     private String CHARACTER_JSON; //charactersの更新・抽出
     private String STAGE_JSON; //stagesの更新・抽出
+    private String PARLANCE_JSON; //parlancesの更新・抽出
     private String DELETE_SERVLET; //削除処理
 
     /**
@@ -23,6 +24,7 @@ public class AccessURL {
         this.PLOT_JSON = ROOT_URL + "/PlotJsonServlet";
         this.CHARACTER_JSON = ROOT_URL + "/CharacterJsonServlet";
         this.STAGE_JSON = ROOT_URL + "/StageJsonServlet";
+        this.PARLANCE_JSON = ROOT_URL + "/ParlanceJsonServlet";
         this.DELETE_SERVLET = ROOT_URL + "/DeleteServlet";
     }
 
@@ -45,6 +47,13 @@ public class AccessURL {
      */
     public String getStageJson() {
         return this.STAGE_JSON;
+    }
+
+    /**
+     * ParlanceJsonServletへのURL
+     */
+    public String getParlanceJson() {
+        return this.PARLANCE_JSON;
     }
 
     /**
