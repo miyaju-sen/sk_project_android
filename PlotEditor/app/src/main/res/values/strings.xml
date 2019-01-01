@@ -107,8 +107,12 @@
     <string name="tv_parlance_name">名称</string>
     <string name="tv_explanation">説明</string>
 
-    <!-- 舞台説明画面用 -->
+    <!-- 舞台編集画面用 -->
     <string name="hint_stage">物語の舞台となる場所について\n例）かつて大地の女神が暮らしていたとされる〇〇村。この村では……</string>
+
+    <!-- 設定・用語編集画面用 -->
+    <string name="hint_parlance_name">設定項目・用語を入力</string>
+    <string name="hint_explanation">説明文を入力</string>
 
     <!-- メモ編集画面用 -->
     <string name="memo_background">メモ背景</string>
