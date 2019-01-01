@@ -113,9 +113,6 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
         Intent intent = getIntent();
         _outline = (HashMap<String, String>) intent.getSerializableExtra("OUTLINE");
 
-
-        //テスト用
-        ListView lvMenu = _parlanceView.findViewById(R.id.lvMenu);
     }
 
     @Override

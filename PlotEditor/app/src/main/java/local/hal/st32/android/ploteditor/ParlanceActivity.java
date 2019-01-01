@@ -17,4 +17,10 @@ public class ParlanceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parlance);
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        setTitle("設定・用語");
+    }
 }

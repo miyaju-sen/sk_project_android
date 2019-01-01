@@ -58,7 +58,7 @@ public class ParlanceEditActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         //画面部品取得
-        _etName = findViewById(R.id.etName);
+        _etName = findViewById(R.id.etParlanceName);
         _etExplanation = findViewById(R.id.etExplanation);
 
         _intent = getIntent();
@@ -132,6 +132,23 @@ public class ParlanceEditActivity extends AppCompatActivity {
      * 保存ボタン押下時の処理
      */
     private void onSaveButtonClick() {
-        //TODO:保存処理
+        //主キー（新規登録の場合は空、編集の場合は__parlanceから値を取得する）
+        String no = "";
+        if(ACTIVITY.equals(new NowActivity().getParlanceActivity())) {
+            no = _parlance.get("no");
+        }
+
+        ParlanceJsonAccess access = new ParlanceJsonAccess();
+        access.setOnCallBack(new ParlanceJsonAccess.CallBackTask() {
+            @Override
+            public void CallBack(HashMap<String, String> map) {
+                Intent intent = new Intent(ParlanceEditActivity.this, ParlanceActivity.class);
+                intent.putExtra("PARLANCE", map);
+                intent.putExtra("OUTLINE", _outline);
+                startActivity(intent);
+                ParlanceEditActivity.this.finish();
+            }
+        });
+        access.execute(no, _outline.get("no"), _etName.getText().toString(), _etExplanation.getText().toString());
     }
 }
