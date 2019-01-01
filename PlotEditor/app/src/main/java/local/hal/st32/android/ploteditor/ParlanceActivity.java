@@ -3,6 +3,7 @@ package local.hal.st32.android.ploteditor;
 import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -201,17 +202,45 @@ public class ParlanceActivity extends AppCompatActivity implements NavigationVie
     }
 
     /**
-     * TODO:削除ボタン押下時の処理
+     * 削除ボタン押下時の処理
      */
     private void onCharacterDeleteButtonClick() {
+        String no = _parlance.get("no");
+        String name = _parlance.get("name");
 
+        Bundle extras = new Bundle();
+        extras.putString("no", no);
+        extras.putString("name", name);
+
+        Context context = this;
+        ParlanceDeleteConfirmDialogCreate.setActivityContext(context);
+
+        ParlanceDeleteConfirmDialogCreate dialog = new ParlanceDeleteConfirmDialogCreate();
+        dialog.setArguments(extras);
+
+        FragmentManager manager = getSupportFragmentManager();
+        dialog.show(manager, "ParlanceActivity");
     }
 
     /**
-     * TODO:プロット削除押下時の処理
+     * プロット削除押下時の処理
      */
     private void onPlotDeleteClick() {
+        String no = _outline.get("no");
+        String title = _outline.get("title");
 
+        Bundle extras = new Bundle();
+        extras.putString("no", no);
+        extras.putString("title", title);
+
+        Context context = this;
+        PlotDeleteConfirmDialogCreate.setActivityContext(context);
+
+        PlotDeleteConfirmDialogCreate dialog = new PlotDeleteConfirmDialogCreate();
+        dialog.setArguments(extras);
+
+        FragmentManager manager = getSupportFragmentManager();
+        dialog.show(manager, "ParlanceActivity");
     }
 
     /**

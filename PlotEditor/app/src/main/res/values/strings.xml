@@ -36,6 +36,7 @@
     <string name="dialog_delete_text">「%1$s」のプロットを削除します。\nよろしいですか？</string>
     <string name="dialog_delete">削除</string>
     <string name="dialog_character_delete_msg">登場人物「%1$s」を削除します。\nよろしいですか？</string>
+    <string name="dialog_parlance_delete_msg">「%1$s」の情報を削除します。\nよろしいですか？</string>
 
     <!-- 概要画面用 -->
     <string name="tv_title">作品タイトル</string>
@@ -121,20 +122,4 @@
     <string name="msg_err_send">サーバ通信に失敗しました。もう一度送信をお願いします。</string>
     <string name="msg_err_timeout">サーバ通信がタイムアウトしました。もう一度送信をお願いします。</string>
     <string name="msg_err_parse">サーバからの返信内容の解析に失敗しました。もう一度送信をお願いします。</string>
-
-    <!-- テスト用 -->
-    <string-array name="lv_menu">
-        <item>から揚げ定食</item>
-        <item>ハンバーグ定食</item>
-        <item>生姜焼き定食</item>
-        <item>ステーキ定食</item>
-        <item>野菜炒め定食</item>
-        <item>とんかつ定食</item>
-        <item>ミンチかつ定食</item>
-        <item>チキンカツ定食</item>
-        <item>コロッケ定食</item>
-        <item>焼き魚定食</item>
-        <item>焼肉定食</item>
-        <item>弱肉強食</item>
-    </string-array>
 </resources>
