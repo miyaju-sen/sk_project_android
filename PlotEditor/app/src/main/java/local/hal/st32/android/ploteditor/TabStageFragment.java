@@ -62,6 +62,10 @@ public class TabStageFragment extends Fragment {
         return _view;
     }
 
+    /**
+     * TextViewにセットする値を取得するメソッド
+     * @param stage
+     */
     public static void setStage(HashMap<String, String> stage) {
         _tvStage.setText(stage.get("stage"));
     }
