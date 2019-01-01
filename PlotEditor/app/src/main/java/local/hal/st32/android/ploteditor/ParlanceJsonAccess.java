@@ -22,6 +22,7 @@ import java.util.HashMap;
  * 就職作品
  *
  * 非同期でParlanceJsonAccessと通信するクラス
+ * データ送信用
  *
  * @author ohs60224
  */

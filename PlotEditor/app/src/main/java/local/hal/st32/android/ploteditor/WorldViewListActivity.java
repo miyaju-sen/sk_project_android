@@ -73,6 +73,10 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
      */
     private HashMap<String, String> _stage = new HashMap<>();
     /**
+     * 設定・用語情報を格納する配列
+     */
+    private HashMap<String, String> _parlance = new HashMap<>();
+    /**
      * DrawerLayoutとActionBarDrawerToggle
      */
     private DrawerLayout mDrawer;
@@ -121,6 +125,7 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
         setTitle("世界観");
 
         //TODO:設定・用語を取得する（JSONアクセス）
+        //※ParlanceJsonAccessを使うとListじゃなくHashMapが返ってくる
 
         //舞台情報を取得する
         StageJsonAccess sAccess = new StageJsonAccess();
