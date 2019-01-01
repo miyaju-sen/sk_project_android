@@ -169,7 +169,6 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
         int itemId = item.getItemId();
         switch (itemId) {
             case R.id.menuInsert:
-                //TODO:追加処理
                 onInsertButtonClick();
                 break;
             case R.id.menuEdit:
