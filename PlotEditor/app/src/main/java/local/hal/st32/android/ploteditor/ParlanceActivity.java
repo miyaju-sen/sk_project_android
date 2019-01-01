@@ -1,11 +1,19 @@
 package local.hal.st32.android.ploteditor;
 
+import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import java.util.HashMap;
@@ -18,7 +26,7 @@ import java.util.HashMap;
  *
  * @author ohs60224
  */
-public class ParlanceActivity extends AppCompatActivity {
+public class ParlanceActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     /**
      * 現在表示している画面に対応したアクティビティ
      */
@@ -61,12 +69,156 @@ public class ParlanceActivity extends AppCompatActivity {
         _tvName = findViewById(R.id.tvParlanceName);
         _tvExplanation = findViewById(R.id.tvExplanation);
 
-        
+        //NavigationViewのヘッダー部分のTextViewを取得
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View drawerHeader = inflater.inflate(R.layout.drawer_header, null);
+        _tvMenuBack = drawerHeader.findViewById(R.id.tvMenuBack); //プロット一覧へ戻る
+
+        //Toolbar
+        _toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(_toolbar);
+
+        //DrawerLayout
+        mDrawer = findViewById(R.id.drawerLayout);
+        mDrawerToggle = new ActionBarDrawerToggle(ParlanceActivity.this, mDrawer, _toolbar, R.string.drawable_open, R.string.drawable_close);
+        mDrawer.addDrawerListener(mDrawerToggle);
+        mDrawerToggle.syncState();
+
+        //NavigationViewのリスナー
+        NavigationView nvLeftView = findViewById(R.id.nvLeftView);
+        nvLeftView.setNavigationItemSelectedListener(this);
+
+        //遷移元からデータ取得
+        _intent = getIntent();
+        _outline = (HashMap<String, String>) _intent.getSerializableExtra("OUTLINE");
+        _parlance = (HashMap<String, String>) _intent.getSerializableExtra("PARLANCE");
     }
 
     @Override
     public void onResume() {
         super.onResume();
         setTitle("設定・用語");
+
+        //画面部品に遷移元から取得した値をセット
+        _tvName.setText( _parlance.get("name") );
+        _tvExplanation.setText( _parlance.get("explanation") );
+    }
+
+    /**
+     * オプションメニュー作成
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_edit, menu);
+
+        //表示されたままのメニューアイコンを非表示に
+        menu.setGroupVisible(R.id.mgEdit, false);
+
+        //表示されたままのメニューアイコンを非表示に
+        menu.findItem(R.id.menuInsert).setVisible(false);
+        menu.findItem(R.id.menuReload).setVisible(false);
+
+        //削除ボタンを表示
+        MenuItem delete = menu.findItem(R.id.menuDelete);
+        delete.setVisible(true);
+
+        //編集ボタンを表示
+        MenuItem edit = menu.findItem(R.id.menuEdit);
+        edit.setVisible(true);
+
+        return true;
+    }
+
+    /**
+     * オプションメニュー選択時処理
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+        switch (itemId) {
+            //編集ボタン
+            case R.id.menuEdit:
+                onEditButtonClick();
+                break;
+            //削除ボタン
+            case R.id.menuDelete:
+                onCharacterDeleteButtonClick();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * NavigationView
+     */
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        Intent intent = new Intent();
+        int itemId = item.getItemId();
+        switch (itemId) {
+            //概要画面
+            case R.id.menuOutline:
+                intent = new Intent(ParlanceActivity.this, OutlineActivity.class);
+                break;
+            //登場人物一覧画面へ
+            case R.id.menuCharacter:
+                intent = new Intent(ParlanceActivity.this, CharacterListActivity.class);
+                break;
+            //世界観一覧画面へ
+            case R.id.menuWorld:
+                intent = new Intent(ParlanceActivity.this, WorldViewListActivity.class);
+                break;
+            //構想画面へ
+            case R.id.menuStory:
+                intent = new Intent(ParlanceActivity.this, StoryEditActivity.class);
+                break;
+            //メモ画面へ
+            case R.id.menuMemo:
+                intent = new Intent(ParlanceActivity.this, MemoListActivity.class);
+                break;
+            //削除
+            case R.id.menuDelete:
+                intent = null;
+                onPlotDeleteClick();
+                break;
+        }
+        DrawerLayout drawer = findViewById(R.id.drawerLayout);
+        drawer.closeDrawer(GravityCompat.START);
+
+        if(null != intent) {
+            intent.putExtra("OUTLINE", _outline);
+            startActivity(intent);
+        }
+        return true;
+    }
+
+    /**
+     * TODO:編集ボタンの処理
+     */
+    private void onEditButtonClick() {
+
+    }
+
+    /**
+     * TODO:削除ボタン押下時の処理
+     */
+    private void onCharacterDeleteButtonClick() {
+
+    }
+
+    /**
+     * TODO:プロット削除押下時の処理
+     */
+    private void onPlotDeleteClick() {
+
+    }
+
+    /**
+     * 「プロット一覧に戻る」押下時の処理
+     */
+    public void onMenuBackClick(View view) {
+        Intent intent = new Intent(ParlanceActivity.this, PlotListActivity.class);
+        startActivity(intent);
     }
 }

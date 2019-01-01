@@ -190,7 +190,7 @@ public class CharacterActivity extends AppCompatActivity implements NavigationVi
         Intent intent = new Intent();
         int itemId = item.getItemId();
         switch (itemId) {
-            //概要画面（何もしない）
+            //概要画面
             case R.id.menuOutline:
                 intent = new Intent(CharacterActivity.this, OutlineActivity.class);
                 break;
