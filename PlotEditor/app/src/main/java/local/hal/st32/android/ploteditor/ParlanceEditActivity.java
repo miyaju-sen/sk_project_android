@@ -78,7 +78,10 @@ public class ParlanceEditActivity extends AppCompatActivity {
         else {
             setTitle("設定・用語 編集");
 
-            //TODO:編集する情報を取得
+            //編集する情報を取得
+            _parlance = (HashMap<String, String>) _intent.getSerializableExtra("PARLANCE");
+            _etName.setText( _parlance.get("name") );
+            _etExplanation.setText( _parlance.get("explanation") );
         }
     }
 

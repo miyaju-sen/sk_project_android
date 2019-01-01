@@ -195,10 +195,14 @@ public class ParlanceActivity extends AppCompatActivity implements NavigationVie
     }
 
     /**
-     * TODO:編集ボタンの処理
+     * 編集ボタンの処理
      */
     private void onEditButtonClick() {
-
+        Intent intent = new Intent(ParlanceActivity.this, ParlanceEditActivity.class);
+        intent.putExtra("PARLANCE", _parlance);
+        intent.putExtra("OUTLINE", _outline);
+        intent.putExtra("ACTIVITY", NOW_ACTIVITY);
+        startActivity(intent);
     }
 
     /**
