@@ -19,6 +19,7 @@ public class NowActivity {
     private String WorldViewListActivity;
     private String MemoListActivity;
     private String StoryEditActivity;
+    private String ParlanceActivity;
 
     /**
      * コンストラクタ
@@ -32,6 +33,7 @@ public class NowActivity {
         this.WorldViewListActivity = "WorldViewListActivity";
         this.MemoListActivity = "MemoListActivity";
         this.StoryEditActivity = "StoryEditActivity";
+        this.ParlanceActivity = "ParlanceActivity";
     }
 
     /**
@@ -76,5 +78,9 @@ public class NowActivity {
 
     public String getStoryEditActivity() {
         return this.StoryEditActivity;
+    }
+
+    public String getParlanceActivity() {
+        return this.ParlanceActivity;
     }
 }

@@ -37,6 +37,10 @@ import java.util.HashMap;
  */
 public class WorldViewListActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener, NavigationView.OnNavigationItemSelectedListener {
     /**
+     * 現在表示している画面に対応したアクティビティ
+     */
+    public static final String NOW_ACTIVITY = new NowActivity().getWorldViewListActivity();
+    /**
      * タブアイテム
      */
     private TabItem _tabItemStage; //舞台
@@ -166,7 +170,7 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
         switch (itemId) {
             case R.id.menuInsert:
                 //TODO:追加処理
-//                onInsertButtonClick();
+                onInsertButtonClick();
                 break;
             case R.id.menuEdit:
                 onEditButtonClick();
@@ -177,6 +181,17 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * 追加ボタン押下時の処理
+     */
+    private void onInsertButtonClick() {
+        Intent intent = new Intent(WorldViewListActivity.this, ParlanceEditActivity.class);
+        intent.putExtra("OUTLINE", _outline);
+        intent.putExtra("ACTIVITY", NOW_ACTIVITY);
+
+        startActivity(intent);
     }
 
     /**

@@ -69,4 +69,7 @@ public class TabParlanceFragment extends Fragment {
         SimpleAdapter adapter = new SimpleAdapter(context, list, android.R.layout.simple_list_item_1, from, to);
         _lvParlances.setAdapter(adapter);
     }
+
+    //TODO:リストビュー押下時のリスナクラス
+    //ここに書くか、あるいはListViewをWorldViewListに送信してそっちで書くか
 }
