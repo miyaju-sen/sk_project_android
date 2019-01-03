@@ -23,9 +23,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 就職作品
@@ -58,6 +61,10 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
      */
     private View _stageView;
     private View _parlanceView;
+    /**
+     * 設定・用語のリストビュー
+     */
+    private static ListView _lvParlances;
     /**
      * メニューアイテム
      */
@@ -116,7 +123,6 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
 
         Intent intent = getIntent();
         _outline = (HashMap<String, String>) intent.getSerializableExtra("OUTLINE");
-
     }
 
     @Override
@@ -124,19 +130,40 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
         super.onResume();
         setTitle("世界観");
 
-        //TODO:設定・用語を取得する（JSONアクセス）
-        //※ParlanceJsonAccessを使うとListじゃなくHashMapが返ってくる
+        //設定・用語を取得する
+        ParlanceJsonReceive receive = new ParlanceJsonReceive();
+        receive.setOnCallBack(new ParlanceJsonReceive.CallBackTask() {
+            @Override
+            public void CallBack(List<Map<String, String>> list) {
+                Log.e("*********", "地点Resume設定");
+//                String[] from = {"name"};
+//                int[] to = {android.R.id.text1};
+//                SimpleAdapter adapter = new SimpleAdapter(WorldViewListActivity.this, list, android.R.layout.simple_list_item_1, from, to);
+//                _lvParlances.setAdapter(adapter);
+                TabParlanceFragment.setParlances(list, WorldViewListActivity.this);
+            }
+        });
 
         //舞台情報を取得する
-        StageJsonAccess sAccess = new StageJsonAccess();
-        sAccess.setOnCallBack(new StageJsonAccess.CallBackTask() {
+        StageJsonAccess access = new StageJsonAccess();
+        access.setOnCallBack(new StageJsonAccess.CallBackTask() {
             @Override
             public void CallBack(HashMap<String, String> map) {
+                Log.e("*********", "地点Resume舞台");
                 _stage = map;
                 TabStageFragment.setStage(_stage);
             }
         });
-        sAccess.execute("", _outline.get("no"), "");
+        access.execute("", _outline.get("no"), "");
+    }
+
+    /**
+     * 設定・用語のフラグメントクラスからListViewを取得するメソッド
+     * @param listView ListView
+     */
+    public static void setListView(ListView listView) {
+        Log.e("*********", "地点set");
+        _lvParlances = listView;
     }
 
     /**

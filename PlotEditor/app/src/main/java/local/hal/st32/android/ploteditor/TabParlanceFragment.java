@@ -54,6 +54,7 @@ public class TabParlanceFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tab_parlance, null);
         _lvParlances = view.findViewById(R.id.lvParlances);
+        WorldViewListActivity.setListView(_lvParlances);
 
         return view;
     }
