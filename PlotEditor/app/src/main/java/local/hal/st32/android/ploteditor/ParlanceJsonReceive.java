@@ -12,6 +12,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -45,7 +46,10 @@ public class ParlanceJsonReceive extends AsyncTask<String, Void, String> {
     @Override
     public String doInBackground(String... params) {
         String urlStr = ACCESS_URL;
+        String plot = params[0];
 
+        String data = "plot=" + plot;
+        Log.e("*******", "データ" + data);
         HttpURLConnection con = null;
         InputStream is = null;
         String result = "";
@@ -54,7 +58,13 @@ public class ParlanceJsonReceive extends AsyncTask<String, Void, String> {
             URL url = new URL(urlStr);
             con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET");
-            con.connect();
+            con.setConnectTimeout(5000);
+            con.setReadTimeout(5000);
+            con.setDoOutput(true);
+            OutputStream os = con.getOutputStream();
+            os.write(data.getBytes());
+            os.flush();
+            os.close();
             is = con.getInputStream();
             result = is2String(is);
         }

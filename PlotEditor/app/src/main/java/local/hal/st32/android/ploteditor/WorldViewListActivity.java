@@ -34,7 +34,6 @@ import java.util.Map;
  * 就職作品
  *
  * 世界観一覧画面用アクティビティ
- * TODO:舞台を送受信するクラス、設定・用語を送受信するクラス
  *
  * @author ohs60224
  */
@@ -93,6 +92,10 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
      * NavigationViewのヘッダー部分のTextView
      */
     private TextView _tvMenuBack;
+    /**
+     * アクセス先のURL
+     */
+    private static final String ACCESS_URL = new AccessURL().getParlanceJson();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,22 +138,19 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
         receive.setOnCallBack(new ParlanceJsonReceive.CallBackTask() {
             @Override
             public void CallBack(List<Map<String, String>> list) {
-                Log.e("*********", "地点Resume設定");
-//                String[] from = {"name"};
-//                int[] to = {android.R.id.text1};
-//                SimpleAdapter adapter = new SimpleAdapter(WorldViewListActivity.this, list, android.R.layout.simple_list_item_1, from, to);
-//                _lvParlances.setAdapter(adapter);
-                TabParlanceFragment.setParlances(list, WorldViewListActivity.this);
+                String[] from = {"name"};
+                int[] to = {android.R.id.text1};
+                SimpleAdapter adapter = new SimpleAdapter(WorldViewListActivity.this, list, android.R.layout.simple_list_item_1, from, to);
+                _lvParlances.setAdapter(adapter);
             }
         });
-        receive.execute();
+        receive.execute(_outline.get("no"));
 
         //舞台情報を取得する
         StageJsonAccess access = new StageJsonAccess();
         access.setOnCallBack(new StageJsonAccess.CallBackTask() {
             @Override
             public void CallBack(HashMap<String, String> map) {
-                Log.e("*********", "地点Resume舞台");
                 _stage = map;
                 TabStageFragment.setStage(_stage);
             }
@@ -163,7 +163,6 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
      * @param listView ListView
      */
     public static void setListView(ListView listView) {
-        Log.e("*********", "地点set");
         _lvParlances = listView;
     }
 
