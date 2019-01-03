@@ -143,6 +143,7 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
                 TabParlanceFragment.setParlances(list, WorldViewListActivity.this);
             }
         });
+        receive.execute();
 
         //舞台情報を取得する
         StageJsonAccess access = new StageJsonAccess();
