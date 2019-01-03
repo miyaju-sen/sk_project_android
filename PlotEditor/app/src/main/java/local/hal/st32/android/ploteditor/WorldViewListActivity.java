@@ -306,6 +306,10 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
     }
 
     /**
+     * TODO:リスト押下時のリスナクラス
+     */
+
+    /**
      * タブをレイアウトするのに必要な処理を行うメソッド
      */
     private void setTabLayout() {

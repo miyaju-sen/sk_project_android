@@ -54,23 +54,10 @@ public class TabParlanceFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tab_parlance, null);
         _lvParlances = view.findViewById(R.id.lvParlances);
+
+        //取得したListViewを親アクティビティへ
         WorldViewListActivity.setListView(_lvParlances);
 
         return view;
     }
-
-    /**
-     * リストビューに値をセットするメソッド
-     * @param list 設定・用語一覧
-     * @param context WorldViewListActivityのコンテキスト
-     */
-    public static void setParlances(List<Map<String, String>> list, Context context) {
-        String[] from = {"name"};
-        int[] to = {android.R.id.text1};
-        SimpleAdapter adapter = new SimpleAdapter(context, list, android.R.layout.simple_list_item_1, from, to);
-        _lvParlances.setAdapter(adapter);
-    }
-
-    //TODO:リストビュー押下時のリスナクラス
-    //ここに書くか、あるいはListViewをWorldViewListに送信してそっちで書くか
 }
