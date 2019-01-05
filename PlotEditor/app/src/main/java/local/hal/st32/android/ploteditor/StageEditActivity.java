@@ -97,8 +97,13 @@ public class StageEditActivity extends AppCompatActivity {
      * 戻るボタン押下時の処理
      */
     private void onBackButtonClick() {
+        String stage = "";
+        if(null != _stage.get("stage")) {
+            stage = _stage.get("stage");
+        }
+
         //変更された項目がある場合
-        if(!_stage.get("stage").equals( _etStage.getText().toString() )) {
+        if(!stage.equals( _etStage.getText().toString() )) {
             ReturnConfirmDialogCreate dialog = new ReturnConfirmDialogCreate();
             FragmentManager manager = getSupportFragmentManager();
             dialog.show(manager, "StageEditActivity");
