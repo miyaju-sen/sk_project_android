@@ -22,10 +22,12 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -81,7 +83,7 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
     /**
      * 設定・用語情報を格納する配列
      */
-    private HashMap<String, String> _parlance = new HashMap<>();
+    private List<Map<String, String>> _parlances = new ArrayList<>();
     /**
      * DrawerLayoutとActionBarDrawerToggle
      */
@@ -138,10 +140,12 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
         receive.setOnCallBack(new ParlanceJsonReceive.CallBackTask() {
             @Override
             public void CallBack(List<Map<String, String>> list) {
+                _parlances = list;
                 String[] from = {"name"};
                 int[] to = {android.R.id.text1};
                 SimpleAdapter adapter = new SimpleAdapter(WorldViewListActivity.this, list, android.R.layout.simple_list_item_1, from, to);
                 _lvParlances.setAdapter(adapter);
+                _lvParlances.setOnItemClickListener(new ListItemClickListener());
             }
         });
         receive.execute(_outline.get("no"));
@@ -306,8 +310,25 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
     }
 
     /**
-     * TODO:リスト押下時のリスナクラス
+     * リスト押下時のリスナクラス
      */
+    private class ListItemClickListener implements AdapterView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            Intent intent = new Intent(WorldViewListActivity.this, ParlanceActivity.class);
+            HashMap<String, String> parlance = new HashMap<>();
+
+            Map<String, String> item = _parlances.get(position);
+            parlance.put("no", item.get("no"));
+            parlance.put("plot", item.get("plot"));
+            parlance.put("name", item.get("name"));
+            parlance.put("explanation", item.get("explanation"));
+
+            intent.putExtra("PARLANCE", parlance);
+            intent.putExtra("OUTLINE", _outline);
+            startActivity(intent);
+        }
+    }
 
     /**
      * タブをレイアウトするのに必要な処理を行うメソッド

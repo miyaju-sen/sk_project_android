@@ -135,14 +135,12 @@ public class ParlanceEditActivity extends AppCompatActivity {
 
         //新規登録時に変更されていた場合
         if(ACTIVITY.equals(new NowActivity().getWorldViewListActivity()) && ( !"".equals(etName) || !"".equals(etExplanation) )) {
-            Log.e("*******", "地点NEW");
             ReturnConfirmDialogCreate dialog = new ReturnConfirmDialogCreate();
             FragmentManager manager = getSupportFragmentManager();
             dialog.show(manager, "ParlanceEditActivity-New");
         }
         //編集時に変更されていた場合（横長になるため上のif文と分割）
         else if(ACTIVITY.equals(new NowActivity().getParlanceActivity()) && ( !etName.equals(name) || !etExplanation.equals(explanation) )) {
-            Log.e("*******", "地点EDIT");
             ReturnConfirmDialogCreate dialog = new ReturnConfirmDialogCreate();
             FragmentManager manager = getSupportFragmentManager();
             dialog.show(manager, "ParlanceEditActivity-Edit");
