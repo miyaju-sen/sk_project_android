@@ -2,9 +2,11 @@ package local.hal.st32.android.ploteditor;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -126,9 +128,28 @@ public class ParlanceEditActivity extends AppCompatActivity {
      * 戻るボタン押下時の処理
      */
     private void onBackButtonClick() {
-        //TODO:変更項目があった場合の処理
+        String etName = _etName.getText().toString();
+        String etExplanation = _etExplanation.getText().toString();
+        String name = _parlance.get("name");
+        String explanation = _parlance.get("explanation");
 
-        finish();
+        //新規登録時に変更されていた場合
+        if(ACTIVITY.equals(new NowActivity().getWorldViewListActivity()) && ( !"".equals(etName) || !"".equals(etExplanation) )) {
+            Log.e("*******", "地点NEW");
+            ReturnConfirmDialogCreate dialog = new ReturnConfirmDialogCreate();
+            FragmentManager manager = getSupportFragmentManager();
+            dialog.show(manager, "ParlanceEditActivity-New");
+        }
+        //編集時に変更されていた場合（横長になるため上のif文と分割）
+        else if(ACTIVITY.equals(new NowActivity().getParlanceActivity()) && ( !etName.equals(name) || !etExplanation.equals(explanation) )) {
+            Log.e("*******", "地点EDIT");
+            ReturnConfirmDialogCreate dialog = new ReturnConfirmDialogCreate();
+            FragmentManager manager = getSupportFragmentManager();
+            dialog.show(manager, "ParlanceEditActivity-Edit");
+        }
+        else {
+            ParlanceEditActivity.this.finish();
+        }
     }
 
     /**
