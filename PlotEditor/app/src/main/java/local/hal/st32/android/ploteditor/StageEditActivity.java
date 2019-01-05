@@ -98,7 +98,7 @@ public class StageEditActivity extends AppCompatActivity {
      */
     private void onBackButtonClick() {
         String stage = "";
-        if(null != _stage.get("stage")) {
+        if(null != _stage) {
             stage = _stage.get("stage");
         }
 
