@@ -79,6 +79,7 @@ CREATE TABLE characters(
 CREATE TABLE ideas(
     no INT(8) NOT NULL AUTO_INCREMENT,  #主キーNo
     plot INT(8) NOT NULL, #作品No
+    idea INT(8) NOT NULL, #起承転結（1:起 2:承 3:転 4:結）
     note TEXT, #大まかな内容
     PRIMARY KEY(no), 
     INDEX(no),
@@ -88,7 +89,7 @@ CREATE TABLE ideas(
 #T_ストーリーテーブル
 CREATE TABLE stories(
     no INT(8) NOT NULL AUTO_INCREMENT,  #主キーNo
-    idea INT(8) NOT NULL, #起承転結No
+    idea INT(8) NOT NULL, #起承転結の主キーNo
     story TEXT, #ストーリー
     deleted BOOLEAN NOT NULL DEFAULT FALSE, #削除フラグ
     PRIMARY KEY(no), 
