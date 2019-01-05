@@ -1,12 +1,10 @@
 package local.hal.st32.android.ploteditor;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -53,7 +51,7 @@ public class ParlanceEditActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_world_view_edit);
+        setContentView(R.layout.activity_parlance_edit);
 
         //アクションバーに前画面へ戻る機能をつける
         ActionBar actionBar = getSupportActionBar();
