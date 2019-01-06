@@ -14,6 +14,8 @@ public class AccessURL {
     private String CHARACTER_JSON; //charactersの更新・抽出
     private String STAGE_JSON; //stagesの更新・抽出
     private String PARLANCE_JSON; //parlancesの更新・抽出
+    private String IDEA_JSON; //ideasの更新・抽出
+    private String STORY_JSON; //storiesの更新・抽出
     private String DELETE_SERVLET; //削除処理
 
     /**
@@ -26,6 +28,8 @@ public class AccessURL {
         this.CHARACTER_JSON = ROOT_URL + "/CharacterJsonServlet";
         this.STAGE_JSON = ROOT_URL + "/StageJsonServlet";
         this.PARLANCE_JSON = ROOT_URL + "/ParlanceJsonServlet";
+        this.IDEA_JSON = ROOT_URL + "/IdeaJsonServlet";
+        this.STORY_JSON = ROOT_URL + "/StoryJsonServlet";
         this.DELETE_SERVLET = ROOT_URL + "/DeleteServlet";
     }
 
@@ -55,6 +59,20 @@ public class AccessURL {
      */
     public String getParlanceJson() {
         return this.PARLANCE_JSON;
+    }
+
+    /**
+     * IdeaJsonServletへのURL
+     */
+    public String getIdeaJson() {
+        return this.IDEA_JSON;
+    }
+
+    /**
+     * StoryJsonServletへのURL
+     */
+    public String getStoryJson() {
+        return this.STORY_JSON;
     }
 
     /**
