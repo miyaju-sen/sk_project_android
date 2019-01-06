@@ -1,17 +1,21 @@
 package local.hal.st32.android.ploteditor;
 
 import android.os.AsyncTask;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.support.v7.widget.Toolbar;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -60,39 +64,46 @@ public class TestActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigationView);
         navigationView.setNavigationItemSelectedListener(this);
     }
-//
-//    public void onClick(View v) {
-//        mDrawer.closeDrawers();
-//    }
-//
-//    /**
-//     * オプションメニュー作成
-//     */
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.menu_edit, menu);
-//
-//        //編集ボタンを表示
-//        MenuItem _edit = menu.findItem(R.id.menuEdit);
-//        _edit.setVisible(true);
-//
-//        return true;
-//    }
-//
-//    /**
-//     * オプションメニュー選択時処理
-//     */
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        int itemId = item.getItemId();
-//        switch (itemId) {
-//            //編集ボタン
-//            case R.id.menuEdit:
-//                break;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
+
+    /**
+     * オプションメニュー作成
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_edit, menu);
+
+        //編集ボタンを表示
+        MenuItem _edit = menu.findItem(R.id.menuEdit);
+        _edit.setVisible(true);
+
+        return true;
+    }
+
+    /**
+     * オプションメニュー選択時処理
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+        switch (itemId) {
+            //編集ボタン
+            case R.id.menuEdit:
+                onEditClick();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void onEditClick() {
+        ConstraintLayout layout = findViewById(R.id.layout);
+        EditText et3 = findViewById(R.id.editText3);
+        EditText editText = new EditText(this);
+        editText.setHint(R.string.hint_another);
+        et3.setBottom(R.id.editText);
+        editText.setTop(R.id.editText3);
+        layout.addView(editText, 200, 100);
+    }
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {

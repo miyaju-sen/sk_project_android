@@ -90,6 +90,7 @@ CREATE TABLE ideas(
 CREATE TABLE stories(
     no INT(8) NOT NULL AUTO_INCREMENT,  #主キーNo
     idea INT(8) NOT NULL, #起承転結の主キーNo
+    title VARCHAR(100) NOT NULL, #タイトル
     story TEXT, #ストーリー
     deleted BOOLEAN NOT NULL DEFAULT FALSE, #削除フラグ
     PRIMARY KEY(no), 

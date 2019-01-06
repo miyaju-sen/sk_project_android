@@ -15,8 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity
-            android:name=".PlotListActivity"
-            android:theme="@style/AppTheme">
+            android:name=".IdeaActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -47,7 +46,7 @@
             android:name=".StageEditActivity"
             android:theme="@style/AppTheme" />
         <activity android:name=".ParlanceActivity" />
-        <activity android:name=".IdeaActivity"></activity>
+        <!--<activity android:name=".IdeaActivity"></activity>-->
     </application>
 
 </manifest>

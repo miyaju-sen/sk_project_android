@@ -6,6 +6,7 @@ CREATE VIEW v_ideas AS (
         ideas.idea AS idea, #起承転結番号
         ideas.note AS note, #内容
         stories.no AS story_no, #ストーリーNo
+        stories.title AS title, #タイトル
         stories.story AS story, #ストーリー
         stories.deleted AS deleted #削除フラグ
     FROM ideas
