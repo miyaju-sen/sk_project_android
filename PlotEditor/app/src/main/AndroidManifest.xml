@@ -39,12 +39,15 @@
         <activity
             android:name=".ParlanceEditActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".StoryEditActivity" />
+        <activity
+            android:name=".StoryEditActivity"
+            android:theme="@style/AppTheme"/>
         <activity android:name=".TestActivity" />
         <activity
             android:name=".StageEditActivity"
-            android:theme="@style/AppTheme"></activity>
-        <activity android:name=".ParlanceActivity"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ParlanceActivity" />
+        <activity android:name=".IdeaActivity"></activity>
     </application>
 
 </manifest>
