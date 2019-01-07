@@ -34,37 +34,58 @@
             android:layout_height="match_parent"
             tools:context=".IdeaActivity">
 
-            <ListView
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/lvStories"
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#000000">
+
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/tlIdeas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    app:tabMode="fixed">
+
+                    <android.support.design.widget.TabItem
+                        android:id="@+id/tiIdea1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout="@layout/tab_idea1" />
+
+                    <android.support.design.widget.TabItem
+                        android:id="@+id/tiIdea2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout="@layout/tab_idea2" />
+
+                    <android.support.design.widget.TabItem
+                        android:id="@+id/tiIdea3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout="@layout/tab_idea3" />
+
+                    <android.support.design.widget.TabItem
+                        android:id="@+id/tiIdea4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout="@layout/tab_idea4" />
+                </android.support.design.widget.TabLayout>
+            </LinearLayout>
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/pager"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="1dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvIdea" />
-
-            <TextView
-                android:id="@+id/tvIdea"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:gravity="center"
-                android:textSize="18sp"
-                android:background="#1010"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+                android:background="@color/white">
+            </android.support.v4.view.ViewPager>
         </android.support.constraint.ConstraintLayout>
     </LinearLayout>
 

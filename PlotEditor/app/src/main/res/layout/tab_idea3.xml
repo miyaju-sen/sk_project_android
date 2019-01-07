@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+就職作品
+タブ「転」のレイアウトが記述されたxml
+
+タブの丸みを表現しているxml = drawable/tab_shape_rounded_corner.xml
+-->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/tab_shape_rounded_corner">
+
+    <TextView
+        android:id="@+id/tvIdea3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:paddingTop="4dp"
+        android:text="@string/idea_3"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="18sp" />
+</RelativeLayout>

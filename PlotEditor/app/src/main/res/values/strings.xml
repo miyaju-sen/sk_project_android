@@ -47,10 +47,10 @@
     <string name="tv_summary_text">物語を簡略化してみましょう</string>
 
     <!-- 構想画面用 -->
-    <string name="idea_0">起</string>
-    <string name="idea_1">承</string>
-    <string name="idea_2">転</string>
-    <string name="idea_3">結</string>
+    <string name="idea_1">起</string>
+    <string name="idea_2">承</string>
+    <string name="idea_3">転</string>
+    <string name="idea_4">結</string>
 
     <!-- 登場人物一覧画面用 -->
     <string name="character_icon">キャラクターイメージ</string>

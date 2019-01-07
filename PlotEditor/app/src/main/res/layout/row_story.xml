@@ -21,7 +21,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/tvIdea"
+            android:id="@+id/tvIdea1"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
@@ -50,7 +50,7 @@
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvIdea" />
+            app:layout_constraintTop_toBottomOf="@+id/tvIdea1" />
 
         <Button
             android:id="@+id/btStoryInsert"
