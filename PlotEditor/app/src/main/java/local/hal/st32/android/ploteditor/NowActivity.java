@@ -18,7 +18,7 @@ public class NowActivity {
     private String CharacterActivity;
     private String WorldViewListActivity;
     private String MemoListActivity;
-    private String StoryEditActivity;
+    private String IdeaActivity;
     private String ParlanceActivity;
 
     /**
@@ -32,7 +32,7 @@ public class NowActivity {
         this.CharacterActivity = "CharacterActivity";
         this.WorldViewListActivity = "WorldViewListActivity";
         this.MemoListActivity = "MemoListActivity";
-        this.StoryEditActivity = "StoryEditActivity";
+        this.IdeaActivity = "IdeaActivity";
         this.ParlanceActivity = "ParlanceActivity";
     }
 
@@ -76,8 +76,8 @@ public class NowActivity {
         return this.MemoListActivity;
     }
 
-    public String getStoryEditActivity() {
-        return this.StoryEditActivity;
+    public String getIdeaActivity() {
+        return this.IdeaActivity;
     }
 
     public String getParlanceActivity() {

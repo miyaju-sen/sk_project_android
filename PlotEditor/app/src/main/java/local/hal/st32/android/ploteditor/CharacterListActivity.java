@@ -187,8 +187,8 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
                 intent = new Intent(CharacterListActivity.this, WorldViewListActivity.class);
                 break;
             //構想画面へ
-            case R.id.menuStory:
-                intent = new Intent(CharacterListActivity.this, StoryEditActivity.class);
+            case R.id.menuIdea:
+                intent = new Intent(CharacterListActivity.this, IdeaActivity.class);
                 break;
             //メモ画面へ
             case R.id.menuMemo:

@@ -201,8 +201,8 @@ public class OutlineActivity extends AppCompatActivity implements NavigationView
                 intent = new Intent(OutlineActivity.this, WorldViewListActivity.class);
                 break;
             //構想画面へ
-            case R.id.menuStory:
-                intent = new Intent(OutlineActivity.this, StoryEditActivity.class);
+            case R.id.menuIdea:
+                intent = new Intent(OutlineActivity.this, IdeaActivity.class);
                 break;
             //メモ画面へ
             case R.id.menuMemo:

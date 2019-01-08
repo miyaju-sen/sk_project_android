@@ -171,8 +171,8 @@ public class ParlanceActivity extends AppCompatActivity implements NavigationVie
                 intent = new Intent(ParlanceActivity.this, WorldViewListActivity.class);
                 break;
             //構想画面へ
-            case R.id.menuStory:
-                intent = new Intent(ParlanceActivity.this, StoryEditActivity.class);
+            case R.id.menuIdea:
+                intent = new Intent(ParlanceActivity.this, IdeaActivity.class);
                 break;
             //メモ画面へ
             case R.id.menuMemo:

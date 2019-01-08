@@ -257,8 +257,8 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
                 intent = null;
                 break;
             //構想画面へ
-            case R.id.menuStory:
-                intent = new Intent(WorldViewListActivity.this, StoryEditActivity.class);
+            case R.id.menuIdea:
+                intent = new Intent(WorldViewListActivity.this, IdeaActivity.class);
                 break;
             //メモ画面へ
             case R.id.menuMemo:

@@ -26,7 +26,6 @@ import java.util.HashMap;
  * 就職作品
  *
  * 構想画面用アクティビティクラス
- * TODO:StoryEditActivityが不要。あらゆる箇所からの遷移先になってるから削除の際は注意
  * TODO:タップで編集
  *
  * @author ohs60224
@@ -105,7 +104,7 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
                 intent = new Intent(IdeaActivity.this, WorldViewListActivity.class);
                 break;
             //構想画面へ
-            case R.id.menuStory:
+            case R.id.menuIdea:
                 intent = null;
                 break;
             //メモ画面へ

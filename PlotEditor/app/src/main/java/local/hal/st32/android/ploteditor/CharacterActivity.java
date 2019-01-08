@@ -203,8 +203,8 @@ public class CharacterActivity extends AppCompatActivity implements NavigationVi
                 intent = new Intent(CharacterActivity.this, WorldViewListActivity.class);
                 break;
             //構想画面へ
-            case R.id.menuStory:
-                intent = new Intent(CharacterActivity.this, StoryEditActivity.class);
+            case R.id.menuIdea:
+                intent = new Intent(CharacterActivity.this, IdeaActivity.class);
                 break;
             //メモ画面へ
             case R.id.menuMemo:
