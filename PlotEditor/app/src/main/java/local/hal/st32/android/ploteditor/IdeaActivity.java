@@ -250,13 +250,13 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
                 //return new TabIdeaFragment();
                 switch (position) {
                     case 0:
-                        return new TabIdeaFragment();
+                        return new TabIdea1Fragment();
                     case 1:
-                        return new TabIdeaFragment();
+                        return new TabIdea2Fragment();
                     case 2:
-                        return new TabIdeaFragment();
+                        return new TabIdea3Fragment();
                     case 3:
-                        return new TabIdeaFragment();
+                        return new TabIdea4Fragment();
                     default:
                         return null;
                 }

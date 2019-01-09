@@ -1,28 +1,21 @@
 package local.hal.st32.android.ploteditor;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.support.v4.app.Fragment;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * 就職作品
  *
- * tab_idea1のFragmentクラス
+ * タブ「転」のFragmentクラス
  *
  * @author ohs60224
  */
-public class TabIdeaFragment extends Fragment {
+public class TabIdea3Fragment extends Fragment {
     /**
      * 画面部品
      */
@@ -32,7 +25,7 @@ public class TabIdeaFragment extends Fragment {
     /**
      * コンストラクタ
      */
-    public TabIdeaFragment() {
+    public TabIdea3Fragment() {
     }
 
     /**
@@ -53,7 +46,7 @@ public class TabIdeaFragment extends Fragment {
      */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_tab_idea, null);
+        View view = inflater.inflate(R.layout.fragment_tab_idea3, null);
 
         //画面部品取得
         _tvIdea = view.findViewById(R.id.tvIdea);
@@ -63,9 +56,5 @@ public class TabIdeaFragment extends Fragment {
         IdeaActivity.setIdeaView(_tvIdea, _lvStories);
 
         return view;
-    }
-
-    public static TextView getTvIdea() {
-        return _tvIdea;
     }
 }
