@@ -197,12 +197,12 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
      * @param note 内容
      */
     private void ideaAccess(String ideaNo, String idea, String note) {
+        Log.e("***", "おん" + ideaNo);
         IdeaJsonAccess access = new IdeaJsonAccess();
         access.setOnCallBack(new IdeaJsonAccess.CallBackTask() {
             @Override
             public void CallBack(HashMap<String, String> map, List<Map<String, String>> list) {
                 //テキストビューにセット
-                Log.e("***", "map" + map.get("note"));
                 _ideas = map;
                 _tvIdea.setText( map.get("note") );
 

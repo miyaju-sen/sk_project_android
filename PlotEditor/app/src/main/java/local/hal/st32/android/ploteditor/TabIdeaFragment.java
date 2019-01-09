@@ -47,7 +47,7 @@ public class TabIdeaFragment extends Fragment {
      */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_tab_parlance, null);
+        View view = inflater.inflate(R.layout.fragment_tab_idea, null);
 
         //画面部品取得
         _tvIdea = view.findViewById(R.id.tvIdea);
