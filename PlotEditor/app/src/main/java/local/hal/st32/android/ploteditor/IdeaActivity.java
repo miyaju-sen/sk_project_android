@@ -91,10 +91,6 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
         //タブレイアウト
         setTabLayout();
 
-        //_ideasの中に空白を入れ込む（箱だけ用意）
-        _ideas.put("no", "");
-        _ideas.put("note", "");
-
         Intent intent = getIntent();
         _outline = (HashMap<String, String>) intent.getSerializableExtra("OUTLINE");
     }
@@ -104,7 +100,8 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
         super.onResume();
         setTitle("世界観");
 
-        ideaAccess(_ideas.get("no"), "1", _ideas.get("note"));
+        //表示されてるタブに対応したデータを取得
+        ideaReceive("1");
     }
 
     /**
@@ -189,15 +186,11 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
     }
 
     /**
-     * IdeaJsonAccessに繋いでデータを取得するメソッド
-     * ideaテーブルの更新・抽出用
+     * IdeaJsonAccessに繋いで表示データを取得するメソッド
      *
-     * @param ideaNo 構想No
      * @param idea 起承転結番号
-     * @param note 内容
      */
-    private void ideaAccess(String ideaNo, String idea, String note) {
-        Log.e("***", "おん" + ideaNo);
+    private void ideaReceive(String idea) {
         IdeaJsonAccess access = new IdeaJsonAccess();
         access.setOnCallBack(new IdeaJsonAccess.CallBackTask() {
             @Override
@@ -205,6 +198,8 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
                 //テキストビューにセット
                 _ideas = map;
                 _tvIdea.setText( map.get("note") );
+                Log.e("*******", "内容：" + map.get("note"));
+                Log.e("*******", "内容テキスト：" + _tvIdea.getText().toString());
 
                 //TODO:リストビューにセット
                 _stories = list;
@@ -217,7 +212,7 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
                 }
             }
         });
-        access.execute(ideaNo, _outline.get("no"), idea, note);
+        access.execute("", _outline.get("no"), idea, "");
     }
 
     /**
@@ -251,19 +246,20 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
              */
             @Override
             public Fragment getItem(int position) {
-                return new TabIdeaFragment();
-//                switch (position) {
-//                    case 0:
-//                        return new TabIdeaFragment();
-//                    case 1:
-//                        return new TabIdeaFragment();
-//                    case 2:
-//                        return new TabIdeaFragment();
-//                    case 3:
-//                        return new TabIdeaFragment();
-//                    default:
-//                        return null;
-//                }
+                Log.e("*******", "地点ゲットアイテム");
+                //return new TabIdeaFragment();
+                switch (position) {
+                    case 0:
+                        return new TabIdeaFragment();
+                    case 1:
+                        return new TabIdeaFragment();
+                    case 2:
+                        return new TabIdeaFragment();
+                    case 3:
+                        return new TabIdeaFragment();
+                    default:
+                        return null;
+                }
             }
 
             /**
@@ -322,19 +318,19 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
         switch (position) {
             //「起」の場合
             case 0:
-                ideaAccess(_ideas.get("no"), "1", _ideas.get("note"));
+                ideaReceive("1");
                 break;
             //「承」の場合
             case 1:
-                ideaAccess(_ideas.get("no"), "2", _ideas.get("note"));
+                ideaReceive("2");
                 break;
             //「転」
             case 2:
-                ideaAccess(_ideas.get("no"), "3", _ideas.get("note"));
+                ideaReceive("3");
                 break;
             //「結」
             case 3:
-                ideaAccess(_ideas.get("no"), "4", _ideas.get("note"));
+                ideaReceive("4");
                 break;
         }
     }
