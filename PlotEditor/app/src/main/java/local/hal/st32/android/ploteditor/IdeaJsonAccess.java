@@ -51,8 +51,7 @@ public class IdeaJsonAccess extends AsyncTask<String, String, String> {
     /**
      * 解析したJSONデータを格納する配列
      */
-    private static HashMap<String, String> _ideaMap; //構想
-    private static List<Map<String, String>> _stories; //ストーリー
+    private static List<Map<String, String>> _ideas;
     /**
      * 起承転結番号
      */
@@ -62,8 +61,7 @@ public class IdeaJsonAccess extends AsyncTask<String, String, String> {
      * コンストラクタ
      */
     public IdeaJsonAccess() {
-        this._ideaMap = new HashMap<>();
-        this._stories = new ArrayList<>();
+        this._ideas = new ArrayList<>();
     }
 
     @Override
@@ -169,15 +167,16 @@ public class IdeaJsonAccess extends AsyncTask<String, String, String> {
                         map.put("storyNo", storyNo);
                         map.put("title", title);
                         map.put("story", story);
-                        _stories.add(map);
                     }
+
+                    _ideas.add(map);
                 }
             }
             catch (JSONException ex) {
                 Log.e(DEBUG_TAG, "JSON解析失敗", ex);
             }
 
-            _callBack.CallBack(map, _stories);
+            _callBack.CallBack(_ideas);
         }
     }
 
@@ -205,7 +204,7 @@ public class IdeaJsonAccess extends AsyncTask<String, String, String> {
      * コールバック用のstaticなクラス
      */
     public static class CallBackTask {
-        public void CallBack(HashMap<String, String> map, List<Map<String, String>> list) {
+        public void CallBack(List<Map<String, String>> list) {
         }
     }
 }
