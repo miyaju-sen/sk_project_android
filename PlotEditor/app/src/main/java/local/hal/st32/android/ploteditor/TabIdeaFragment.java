@@ -53,6 +53,8 @@ public class TabIdeaFragment extends Fragment {
         _tvIdea = view.findViewById(R.id.tvIdea);
         _lvStories = view.findViewById(R.id.lvStories);
 
+        //取得した部品は親アクティビティへ
+
         return view;
     }
 }

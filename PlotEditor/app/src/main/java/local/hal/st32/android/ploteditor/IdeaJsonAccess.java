@@ -16,12 +16,17 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.SocketTimeoutException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 就職作品
  *
  * 非同期でIdeaJsonServletと通信するクラス
+ * ・構想の更新を行う
+ * ・
  *
  * @author ohs60224
  */
@@ -46,13 +51,19 @@ public class IdeaJsonAccess extends AsyncTask<String, String, String> {
     /**
      * 解析したJSONデータを格納する配列
      */
-    private static HashMap<String, String> _idea;
+    private static HashMap<String, String> _idea; //構想
+    private static List<Map<String, String>> _stories; //ストーリー
+    /**
+     * ストーリーNo
+     */
+    private static String _storyNo;
 
     /**
      * コンストラクタ
      */
     public IdeaJsonAccess() {
         this._idea = new HashMap<>();
+        this._stories = new ArrayList<>();
     }
 
     @Override
@@ -123,13 +134,17 @@ public class IdeaJsonAccess extends AsyncTask<String, String, String> {
     public void onPostExecute(String result) {
         if(_success) {
             HashMap<String, String> map = new HashMap<>();
-            String no = "";
+            String ideaNo = "";
             String plot = "";
             String idea = "";
             String note = "";
+            String storyNo = "";
+            String title = "";
+            String story = "";
 
             try {
                 JSONObject rootJSON = new JSONObject(result);
+                String storyFlag = rootJSON.getString("storyFlag");
 
                 //JSONデータの解析・取得
                 JSONArray ideaArray = rootJSON.getJSONArray("ideas");
@@ -137,22 +152,32 @@ public class IdeaJsonAccess extends AsyncTask<String, String, String> {
                     map = new HashMap<>();
                     JSONObject ideaNow = ideaArray.getJSONObject(i);
 
-                    no = ideaNow.getString("no");
+                    ideaNo = ideaNow.getString("ideaNo");
                     plot = ideaNow.getString("plot");
                     idea = ideaNow.getString("idea");
                     note = ideaNow.getString("note");
-
-                    map.put("no", no);
+                    map.put("ideaNo", ideaNo);
                     map.put("plot", plot);
                     map.put("idea", idea);
                     map.put("note", note);
+
+                    //v_ideasの分
+                    if("true".equals(storyFlag)) {
+                        storyNo = ideaNow.getString("story_no");
+                        title = ideaNow.getString("title");
+                        story = ideaNow.getString("story");
+                        map.put("storyNo", storyNo);
+                        map.put("title", title);
+                        map.put("story", story);
+                        _stories.add(map);
+                    }
                 }
             }
             catch (JSONException ex) {
                 Log.e(DEBUG_TAG, "JSON解析失敗", ex);
             }
 
-            _callBack.CallBack(map);
+            _callBack.CallBack(map, _stories);
         }
     }
 
@@ -180,7 +205,7 @@ public class IdeaJsonAccess extends AsyncTask<String, String, String> {
      * コールバック用のstaticなクラス
      */
     public static class CallBackTask {
-        public void CallBack(HashMap<String, String> map) {
+        public void CallBack(HashMap<String, String> map, List<Map<String, String>> list) {
         }
     }
 }

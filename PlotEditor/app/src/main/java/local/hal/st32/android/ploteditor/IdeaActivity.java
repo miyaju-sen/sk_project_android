@@ -18,23 +18,40 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 就職作品
  *
  * 構想画面用アクティビティクラス
- * TODO:タップで編集
+ * TODO:タップで編集・ストーリー登録・更新・抽出用のメソッド
  *
  * @author ohs60224
  */
 public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener, NavigationView.OnNavigationItemSelectedListener {
     /**
+     * 構想とストーリー一覧を格納する配列
+     */
+    private HashMap<String, String> _ideas = new HashMap<>();
+    private List<Map<String, String>> _stories = new ArrayList<>();
+    /**
      * プロット概要が格納された配列
      */
     private HashMap<String, String> _outline = new HashMap<>();
+    /**
+     * 画面部品
+     */
+    private static TextView _tvIdea;
+    private static ListView _lvStories;
     /**
      * DrawerLayoutとActionBarDrawerToggle
      */
@@ -73,6 +90,10 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
         //タブレイアウト
         setTabLayout();
 
+        //_ideasの中に空白を入れ込む（箱だけ用意）
+        _ideas.put("no", "");
+        _ideas.put("note", "");
+
         Intent intent = getIntent();
         _outline = (HashMap<String, String>) intent.getSerializableExtra("OUTLINE");
     }
@@ -81,6 +102,16 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
     public void onResume() {
         super.onResume();
         setTitle("世界観");
+
+        ideaAccess(_ideas.get("no"), "1", _ideas.get("note"));
+    }
+
+    /**
+     * フラグメントクラスから画面部品を受け取るメソッド
+     */
+    public static void setIdeaView(TextView textView, ListView listView) {
+        _tvIdea = textView;
+        _lvStories = listView;
     }
 
     /**
@@ -154,6 +185,37 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
 
         FragmentManager manager = getSupportFragmentManager();
         dialog.show(manager, "IdeaActivity");
+    }
+
+    /**
+     * IdeaJsonAccessに繋いでデータを取得するメソッド
+     * ideaテーブルの更新・抽出用
+     *
+     * @param ideaNo 構想No
+     * @param idea 起承転結番号
+     * @param note 内容
+     */
+    private void ideaAccess(String ideaNo, String idea, String note) {
+        IdeaJsonAccess access = new IdeaJsonAccess();
+        access.setOnCallBack(new IdeaJsonAccess.CallBackTask() {
+            @Override
+            public void CallBack(HashMap<String, String> map, List<Map<String, String>> list) {
+                //テキストビューにセット
+                _ideas = map;
+                _tvIdea.setText( map.get("note") );
+
+                //TODO:リストビューにセット
+                _stories = list;
+                if(0 == list.size()) {
+                    String[] from = {"name"};
+                    int[] to = {android.R.id.text1};
+                    SimpleAdapter adapter = new SimpleAdapter(IdeaActivity.this, list, android.R.layout.simple_list_item_1, from, to);
+                    _lvStories.setAdapter(adapter);
+//                    _lvStories.setOnItemClickListener(new ListItemClickListener());
+                }
+            }
+        });
+        access.execute(ideaNo, _outline.get("no"), idea, note);
     }
 
     /**
@@ -249,7 +311,7 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
     }
 
     /**
-     * TODO:ページが切り替わった時に呼び出される
+     * ページが切り替わった時に呼び出される
      * @param position どのタブか
      */
     @Override
@@ -257,16 +319,19 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
         switch (position) {
             //「起」の場合
             case 0:
-                //処理
+                ideaAccess(_ideas.get("no"), "1", _ideas.get("note"));
                 break;
             //「承」の場合
             case 1:
+                ideaAccess(_ideas.get("no"), "2", _ideas.get("note"));
                 break;
             //「転」
             case 2:
+                ideaAccess(_ideas.get("no"), "3", _ideas.get("note"));
                 break;
             //「結」
             case 3:
+                ideaAccess(_ideas.get("no"), "4", _ideas.get("note"));
                 break;
         }
     }
