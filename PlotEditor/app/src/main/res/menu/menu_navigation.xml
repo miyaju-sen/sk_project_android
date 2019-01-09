@@ -19,7 +19,7 @@ NavigationView用のメニュー
             android:title="@string/menu_world"/>
         <item
             android:id="@+id/menuIdea"
-            android:title="@string/menu_story"/>
+            android:title="@string/menu_idea"/>
         <item
             android:id="@+id/menuMemo"
             android:title="@string/menu_memo"/>

@@ -15,6 +15,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -201,15 +202,16 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
             @Override
             public void CallBack(HashMap<String, String> map, List<Map<String, String>> list) {
                 //テキストビューにセット
+                Log.e("***", "map" + map.get("note"));
                 _ideas = map;
                 _tvIdea.setText( map.get("note") );
 
                 //TODO:リストビューにセット
                 _stories = list;
                 if(0 == list.size()) {
-                    String[] from = {"name"};
-                    int[] to = {android.R.id.text1};
-                    SimpleAdapter adapter = new SimpleAdapter(IdeaActivity.this, list, android.R.layout.simple_list_item_1, from, to);
+                    String[] from = {"title", "story"};
+                    int[] to = {android.R.id.text1, android.R.id.text2};
+                    SimpleAdapter adapter = new SimpleAdapter(IdeaActivity.this, list, android.R.layout.simple_list_item_2, from, to);
                     _lvStories.setAdapter(adapter);
 //                    _lvStories.setOnItemClickListener(new ListItemClickListener());
                 }
@@ -249,18 +251,19 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
              */
             @Override
             public Fragment getItem(int position) {
-                switch (position) {
-                    case 0:
-                        return new TabIdeaFragment();
-                    case 1:
-                        return new TabIdeaFragment();
-                    case 2:
-                        return new TabIdeaFragment();
-                    case 3:
-                        return new TabIdeaFragment();
-                    default:
-                        return null;
-                }
+                return new TabIdeaFragment();
+//                switch (position) {
+//                    case 0:
+//                        return new TabIdeaFragment();
+//                    case 1:
+//                        return new TabIdeaFragment();
+//                    case 2:
+//                        return new TabIdeaFragment();
+//                    case 3:
+//                        return new TabIdeaFragment();
+//                    default:
+//                        return null;
+//                }
             }
 
             /**

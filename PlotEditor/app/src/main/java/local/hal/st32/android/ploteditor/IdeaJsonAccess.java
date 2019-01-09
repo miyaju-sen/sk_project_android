@@ -51,18 +51,18 @@ public class IdeaJsonAccess extends AsyncTask<String, String, String> {
     /**
      * 解析したJSONデータを格納する配列
      */
-    private static HashMap<String, String> _idea; //構想
+    private static HashMap<String, String> _ideaMap; //構想
     private static List<Map<String, String>> _stories; //ストーリー
     /**
-     * ストーリーNo
+     * 起承転結番号
      */
-    private static String _storyNo;
+    private static String _idea;
 
     /**
      * コンストラクタ
      */
     public IdeaJsonAccess() {
-        this._idea = new HashMap<>();
+        this._ideaMap = new HashMap<>();
         this._stories = new ArrayList<>();
     }
 
@@ -71,10 +71,10 @@ public class IdeaJsonAccess extends AsyncTask<String, String, String> {
         String urlStr = ACCESS_URL;
         String no = params[0];
         String plot = params[1];
-        String idea = params[2];
+        _idea = params[2];
         String note = params[3];
 
-        String data = "no=" + no + "&plot=" + plot + "&idea=" + idea + "&note=" + note;
+        String data = "no=" + no + "&plot=" + plot + "&idea=" + _idea + "&note=" + note;
         Log.e("データ", data);
         HttpURLConnection con = null;
         InputStream is = null;
@@ -152,7 +152,7 @@ public class IdeaJsonAccess extends AsyncTask<String, String, String> {
                     map = new HashMap<>();
                     JSONObject ideaNow = ideaArray.getJSONObject(i);
 
-                    ideaNo = ideaNow.getString("ideaNo");
+                    ideaNo = ideaNow.getString("idea_no");
                     plot = ideaNow.getString("plot");
                     idea = ideaNow.getString("idea");
                     note = ideaNow.getString("note");

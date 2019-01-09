@@ -26,7 +26,7 @@ public class IdeaEditDialogCreate extends DialogFragment {
         final View view = factory.inflate(R.layout.dialog_idea_edit, null);
 
         builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle(R.string.idea_0); //TODO:現在固定値→選択した箇所のタイトルになるように
+        builder.setTitle(R.string.idea_1); //TODO:現在固定値→選択した箇所のタイトルになるように
         builder.setView(view);
         builder.setPositiveButton(R.string.dialog_save, new DialogButtonClickListener());
         builder.setNeutralButton(R.string.dialog_cancel, new DialogButtonClickListener());

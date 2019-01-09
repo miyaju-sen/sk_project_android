@@ -20,8 +20,8 @@ public class TabIdeaFragment extends Fragment {
     /**
      * 画面部品
      */
-    private TextView _tvIdea;
-    private ListView _lvStories;
+    private static TextView _tvIdea;
+    private static ListView _lvStories;
 
     /**
      * コンストラクタ
@@ -54,6 +54,7 @@ public class TabIdeaFragment extends Fragment {
         _lvStories = view.findViewById(R.id.lvStories);
 
         //取得した部品は親アクティビティへ
+        IdeaActivity.setIdeaView(_tvIdea, _lvStories);
 
         return view;
     }
