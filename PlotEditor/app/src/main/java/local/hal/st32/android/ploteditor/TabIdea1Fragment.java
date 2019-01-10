@@ -64,17 +64,7 @@ public class TabIdea1Fragment extends Fragment {
         return view;
     }
 
-
-//
-//    public void setIdeaView(List<Map<String, String>> list, String position) {
-//        for(int i = 0; i < list.size(); i++) {
-//            if(position.equals( list.get(i).get("idea") )) {
-//                Log.e("*******", "地点IF文" + list.get(i).get("note"));
-//                _tvIdea.setText( list.get(i).get("note") );
-//                //TODO:リストビューにセット
-//
-//                break;
-//            }
-//        }
-//    }
+    public static void setTvIdea(String note) {
+        _tvIdea.setText(note);
+    }
 }

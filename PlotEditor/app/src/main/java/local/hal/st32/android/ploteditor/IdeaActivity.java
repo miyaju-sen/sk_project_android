@@ -53,6 +53,17 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
     private static TextView _tvIdea;
     private static ListView _lvStories;
     /**
+     * 起承転結ごとにデータを振り分けるクラス
+     */
+    private IdeaAllocate _allocate = new IdeaAllocate();
+    /**
+     * 各タブごとに表示するデータ
+     */
+    private List<Map<String, String>> _idea1 = new ArrayList<>();
+    private List<Map<String, String>> _idea2 = new ArrayList<>();
+    private List<Map<String, String>> _idea3 = new ArrayList<>();
+    private List<Map<String, String>> _idea4 = new ArrayList<>();
+    /**
      * DrawerLayoutとActionBarDrawerToggle
      */
     private DrawerLayout mDrawer;
@@ -67,6 +78,8 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_idea);
+
+        Log.e("*******", "地点onCreate");
 
         //NavigationViewのヘッダー部分のTextViewを取得
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -98,16 +111,16 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
     public void onResume() {
         super.onResume();
         setTitle("世界観");
+        Log.e("*******", "地点onResume");
 
         IdeaJsonAccess access = new IdeaJsonAccess();
         access.setOnCallBack(new IdeaJsonAccess.CallBackTask() {
             @Override
             public void CallBack(List<Map<String, String>> list) {
-                _ideas = list;
+                Log.e("*******", "地点onResume");
+                _allocate.allocateIdea(list);
 
                 //TODO:テキストビューにセット
-               // getIdeaData("1");
-
                 //TODO:リストビューにセット
 //                _stories = list;
 //                if(0 == list.size()) {
@@ -129,8 +142,6 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
         Log.e("*******", "地点画面部品来た");
         _tvIdea = textView;
         _lvStories = listView;
-
-        _tvIdea.setText("テスト1");
     }
 
     /**
@@ -207,27 +218,9 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
     }
 
     /**
-     * 表示中のタブに対応したデータを取得するメソッド
-     */
-    private void getIdeaData(String position) {
-        Log.e("*******", "ポジション：" + position);
-        for(int i = 0; i < _ideas.size(); i++) {
-            if(position.equals( _ideas.get(i).get("idea") )) {
-                Log.e("*******", "地点IF文" + _ideas.get(i).get("note"));
-                _tvIdea.setText( _ideas.get(i).get("note") );
-                //TODO:リストビューにセット
-
-                break;
-            }
-        }
-    }
-
-    /**
      * タブをレイアウトするのに必要な処理を行うメソッド
      */
     private void setTabLayout() {
-        TabIdea1Fragment fragment = new TabIdea1Fragment();
-
         //タブレイアウト・viewPager・タブアイテムを取得
         TabLayout tlIdeas = findViewById(R.id.tlIdeas);
         ViewPager pager = findViewById(R.id.pager);
@@ -257,15 +250,20 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
             public Fragment getItem(int position) {
                 Log.e("*******", "地点タブ選択" + position);
                 return new TabIdea1Fragment();
+
 //                switch (position) {
 //                    case 0:
-//                        return new TabIdea1Fragment();
+//                        TabIdea1Fragment f1 = new TabIdea1Fragment();
+//                        return f1;
 //                    case 1:
-//                        return new TabIdea2Fragment();
+//                        TabIdea2Fragment f2 = new TabIdea2Fragment();
+//                        return f2;
 //                    case 2:
-//                        return new TabIdea3Fragment();
+//                        TabIdea3Fragment f3 = new TabIdea3Fragment();
+//                        return f3;
 //                    case 3:
-//                        return new TabIdea4Fragment();
+//                        TabIdea4Fragment f4 = new TabIdea4Fragment();
+//                        return f4;
 //                    default:
 //                        return null;
 //                }
@@ -325,27 +323,24 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
     @Override
     public void onPageSelected(int position) {
         Log.e("*******", "地点ページ切り替わった" + position);
+        _ideas = new ArrayList<>();
 
         switch (position) {
-            //「起」の場合
             case 0:
-                //getIdeaData("1");
-                _tvIdea.setText("テスト1");
+                _ideas = _allocate.getIdea1();
+                _tvIdea.setText( _ideas.get(0).get("note") );
                 break;
-            //「承」の場合
             case 1:
-                //getIdeaData("2");
-                _tvIdea.setText("テスト2");
+                _ideas = _allocate.getIdea2();
+                _tvIdea.setText( _ideas.get(0).get("note") );
                 break;
-            //「転」
             case 2:
-                //getIdeaData("3");
-                _tvIdea.setText("テスト3");
+                _ideas = _allocate.getIdea3();
+                _tvIdea.setText( _ideas.get(0).get("note") );
                 break;
-            //「結」
             case 3:
-                //getIdeaData("4");
-                _tvIdea.setText("テスト4");
+                _ideas = _allocate.getIdea4();
+                _tvIdea.setText( _ideas.get(0).get("note") );
                 break;
         }
     }

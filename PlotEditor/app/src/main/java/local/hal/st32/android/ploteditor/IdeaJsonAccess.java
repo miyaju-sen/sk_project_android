@@ -52,10 +52,6 @@ public class IdeaJsonAccess extends AsyncTask<String, String, String> {
      * 解析したJSONデータを格納する配列
      */
     private static List<Map<String, String>> _ideas;
-    /**
-     * 起承転結番号
-     */
-    private static String _idea;
 
     /**
      * コンストラクタ
@@ -69,10 +65,10 @@ public class IdeaJsonAccess extends AsyncTask<String, String, String> {
         String urlStr = ACCESS_URL;
         String no = params[0];
         String plot = params[1];
-        _idea = params[2];
+        String idea = params[2];
         String note = params[3];
 
-        String data = "no=" + no + "&plot=" + plot + "&idea=" + _idea + "&note=" + note;
+        String data = "no=" + no + "&plot=" + plot + "&idea=" + idea + "&note=" + note;
         Log.e("データ", data);
         HttpURLConnection con = null;
         InputStream is = null;

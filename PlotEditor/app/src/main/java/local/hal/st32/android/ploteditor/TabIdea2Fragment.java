@@ -57,4 +57,9 @@ public class TabIdea2Fragment extends Fragment {
 
         return view;
     }
+
+    public static void setTvIdea(String note) {
+        _tvIdea.setText(note);
+    }
+
 }
