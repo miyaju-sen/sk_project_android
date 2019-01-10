@@ -60,39 +60,6 @@ public class TestActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigationView);
         navigationView.setNavigationItemSelectedListener(this);
     }
-//
-//    public void onClick(View v) {
-//        mDrawer.closeDrawers();
-//    }
-//
-//    /**
-//     * オプションメニュー作成
-//     */
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.menu_edit, menu);
-//
-//        //編集ボタンを表示
-//        MenuItem _edit = menu.findItem(R.id.menuEdit);
-//        _edit.setVisible(true);
-//
-//        return true;
-//    }
-//
-//    /**
-//     * オプションメニュー選択時処理
-//     */
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        int itemId = item.getItemId();
-//        switch (itemId) {
-//            //編集ボタン
-//            case R.id.menuEdit:
-//                break;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
