@@ -57,7 +57,7 @@ public class TabIdea1Fragment extends Fragment {
 
         //画面部品取得
         _tvIdea = view.findViewById(R.id.tvIdea);
-        _lvStories = view.findViewById(R.id.lvStories);
+        _lvStories = view.findViewById(R.id.lvStories); //TODO:リストセット
 
         //TapEventへテキストビューをセット→ダブルタップ後、編集用のダイアログを表示
         final TapEvent event = new TapEvent(getContext());

@@ -119,17 +119,7 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
             public void CallBack(List<Map<String, String>> list) {
                 Log.e("*******", "地点onResume");
                 _allocate.allocateIdea(list);
-
-                //TODO:テキストビューにセット
-                //TODO:リストビューにセット
-//                _stories = list;
-//                if(0 == list.size()) {
-//                    String[] from = {"title", "story"};
-//                    int[] to = {android.R.id.text1, android.R.id.text2};
-//                    SimpleAdapter adapter = new SimpleAdapter(IdeaActivity.this, list, android.R.layout.simple_list_item_2, from, to);
-//                    _lvStories.setAdapter(adapter);
-//                    _lvStories.setOnItemClickListener(new ListItemClickListener());
-//                }
+                TabIdea1Fragment.setTvIdea( _allocate.getIdea1().get(0).get("note") );
             }
         });
         access.execute("", _outline.get("no"), "", "");
@@ -323,24 +313,23 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
     @Override
     public void onPageSelected(int position) {
         Log.e("*******", "地点ページ切り替わった" + position);
-        _ideas = new ArrayList<>();
 
         switch (position) {
             case 0:
-                _ideas = _allocate.getIdea1();
-                _tvIdea.setText( _ideas.get(0).get("note") );
+                TabIdea1Fragment.setTvIdea( _allocate.getIdea1().get(0).get("note") );
+//                _tvIdea.setText(note);
                 break;
             case 1:
-                _ideas = _allocate.getIdea2();
-                _tvIdea.setText( _ideas.get(0).get("note") );
+                TabIdea2Fragment.setTvIdea( _allocate.getIdea2().get(0).get("note") );
+//                _tvIdea.setText(note);
                 break;
             case 2:
-                _ideas = _allocate.getIdea3();
-                _tvIdea.setText( _ideas.get(0).get("note") );
+                TabIdea3Fragment.setTvIdea( _allocate.getIdea3().get(0).get("note") );
+//                _tvIdea.setText(note);
                 break;
             case 3:
-                _ideas = _allocate.getIdea4();
-                _tvIdea.setText( _ideas.get(0).get("note") );
+                TabIdea4Fragment.setTvIdea( _allocate.getIdea4().get(0).get("note") );
+//                _tvIdea.setText(note);
                 break;
         }
     }
