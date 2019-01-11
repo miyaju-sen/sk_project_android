@@ -34,7 +34,6 @@ import java.util.Map;
  * 就職作品
  *
  * 構想画面用アクティビティクラス
- * TODO:タップで編集・ストーリー登録・更新・抽出用のメソッド
  *
  * @author ohs60224
  */
@@ -48,21 +47,23 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
      */
     private HashMap<String, String> _outline = new HashMap<>();
     /**
-     * 画面部品
+     * リストビュー
      */
-    private static TextView _tvIdea;
     private static ListView _lvStories;
+    /**
+     * ストーリー一覧を格納する配列
+     */
+    private List<Map<String, String>> _stories = new ArrayList<>();
+    /**
+     * リストビューにセットするためのアダプタ類
+     */
+    private final String[] _from = {"title", "story"};
+    private final int[] _to = {android.R.id.text1, android.R.id.text2};
+    private SimpleAdapter _adapter = null;
     /**
      * 起承転結ごとにデータを振り分けるクラス
      */
     private IdeaAllocate _allocate = new IdeaAllocate();
-    /**
-     * 各タブごとに表示するデータ
-     */
-    private List<Map<String, String>> _idea1 = new ArrayList<>();
-    private List<Map<String, String>> _idea2 = new ArrayList<>();
-    private List<Map<String, String>> _idea3 = new ArrayList<>();
-    private List<Map<String, String>> _idea4 = new ArrayList<>();
     /**
      * DrawerLayoutとActionBarDrawerToggle
      */
@@ -119,19 +120,17 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
             public void CallBack(List<Map<String, String>> list) {
                 Log.e("*******", "地点onResume");
                 _allocate.allocateIdea(list);
+
+                //初期表示（タブ「起」）にデータをセット
+                //構想内容
                 TabIdea1Fragment.setTvIdea( _allocate.getIdea1().get(0).get("note") );
+
+                //ストーリー一覧
+                _adapter = new SimpleAdapter(IdeaActivity.this, list, android.R.layout.simple_list_item_2, _from, _to);
+                TabIdea1Fragment.setLvStories(_adapter);
             }
         });
         access.execute("", _outline.get("no"), "", "");
-    }
-
-    /**
-     * フラグメントクラスから画面部品を受け取るメソッド
-     */
-    public static void setIdeaView(TextView textView, ListView listView) {
-        Log.e("*******", "地点画面部品来た");
-        _tvIdea = textView;
-        _lvStories = listView;
     }
 
     /**
@@ -313,23 +312,35 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
     @Override
     public void onPageSelected(int position) {
         Log.e("*******", "地点ページ切り替わった" + position);
+        _stories = new ArrayList<>();
+        _adapter = new SimpleAdapter(IdeaActivity.this, _stories, android.R.layout.simple_list_item_2, _from, _to);
 
         switch (position) {
             case 0:
+                //構想
                 TabIdea1Fragment.setTvIdea( _allocate.getIdea1().get(0).get("note") );
-//                _tvIdea.setText(note);
+
+                //ストーリー
+                TabIdea1Fragment.setLvStories(_adapter);
                 break;
             case 1:
+                //構想
                 TabIdea2Fragment.setTvIdea( _allocate.getIdea2().get(0).get("note") );
-//                _tvIdea.setText(note);
+
+                //ストーリー
+                TabIdea2Fragment.setLvStories(_adapter);
                 break;
             case 2:
                 TabIdea3Fragment.setTvIdea( _allocate.getIdea3().get(0).get("note") );
-//                _tvIdea.setText(note);
+
+                //ストーリー
+                TabIdea3Fragment.setLvStories(_adapter);
                 break;
             case 3:
                 TabIdea4Fragment.setTvIdea( _allocate.getIdea4().get(0).get("note") );
-//                _tvIdea.setText(note);
+
+                //ストーリー
+                TabIdea4Fragment.setLvStories(_adapter);
                 break;
         }
     }

@@ -1,12 +1,15 @@
 package local.hal.st32.android.ploteditor;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.support.v4.app.Fragment;
 
@@ -57,7 +60,7 @@ public class TabIdea1Fragment extends Fragment {
 
         //画面部品取得
         _tvIdea = view.findViewById(R.id.tvIdea);
-        _lvStories = view.findViewById(R.id.lvStories); //TODO:リストセット
+        _lvStories = view.findViewById(R.id.lvStories);
 
         //TapEventへテキストビューをセット→ダブルタップ後、編集用のダイアログを表示
         final TapEvent event = new TapEvent(getContext());
@@ -78,9 +81,6 @@ public class TabIdea1Fragment extends Fragment {
         });
         event.setTouchListener(_tvIdea);
 
-        //取得した部品は親アクティビティへ
-        IdeaActivity.setIdeaView(_tvIdea, _lvStories);
-
         return view;
     }
 
@@ -90,5 +90,13 @@ public class TabIdea1Fragment extends Fragment {
      */
     public static void setTvIdea(String note) {
         _tvIdea.setText(note);
+    }
+
+    /**
+     * 取得したアダプタをlvStoriesにセットするメソッド TODO:リスナ
+     * @param adapter
+     */
+    public static void setLvStories(SimpleAdapter adapter) {
+        _lvStories.setAdapter(adapter);
     }
 }

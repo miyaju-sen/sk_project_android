@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.support.v4.app.Fragment;
 
@@ -73,9 +74,6 @@ public class TabIdea3Fragment extends Fragment {
         });
         event.setTouchListener(_tvIdea);
 
-        //取得した部品は親アクティビティへ
-        IdeaActivity.setIdeaView(_tvIdea, _lvStories);
-
         return view;
     }
 
@@ -85,5 +83,13 @@ public class TabIdea3Fragment extends Fragment {
      */
     public static void setTvIdea(String note) {
         _tvIdea.setText(note);
+    }
+
+    /**
+     * 取得したアダプタをlvStoriesにセットするメソッド
+     * @param adapter
+     */
+    public static void setLvStories(SimpleAdapter adapter) {
+        _lvStories.setAdapter(adapter);
     }
 }
