@@ -18,6 +18,7 @@
         android:gravity="fill_horizontal"
         android:hint="@string/dialog_idea_hint"
         android:inputType="textMultiLine"
+        android:textSize="14sp"
         android:scrollHorizontally="true"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 

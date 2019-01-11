@@ -60,12 +60,18 @@ public class TabIdea1Fragment extends Fragment {
         _lvStories = view.findViewById(R.id.lvStories);
 
         //TapEventへテキストビューをセット→ダブルタップ後、編集用のダイアログを表示
-        TapEvent event = new TapEvent(getContext());
+        final TapEvent event = new TapEvent(getContext());
         event.setOnDialogCall(new TapEvent.DialogCall() {
             @Override
             public void ideaEditDialog(TextView textView) {
                 Log.e("*********", "テキストビューの中身は：" + textView.getText().toString());
+
                 IdeaEditDialogCreate dialog = new IdeaEditDialogCreate();
+                Bundle extras = new Bundle();
+                extras.putString("idea", getString( R.string.idea_1 ));
+                extras.putString("note", _tvIdea.getText().toString());
+                dialog.setArguments(extras);
+
                 FragmentManager manager = getActivity().getSupportFragmentManager();
                 dialog.show(manager, "IdeaActivity");
             }

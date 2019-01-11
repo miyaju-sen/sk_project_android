@@ -62,6 +62,11 @@ public class TabIdea3Fragment extends Fragment {
             @Override
             public void ideaEditDialog(TextView textView) {
                 IdeaEditDialogCreate dialog = new IdeaEditDialogCreate();
+                Bundle extras = new Bundle();
+                extras.putString("idea", getString( R.string.idea_3 ));
+                extras.putString("note", _tvIdea.getText().toString());
+                dialog.setArguments(extras);
+
                 FragmentManager manager = getActivity().getSupportFragmentManager();
                 dialog.show(manager, "IdeaActivity");
             }

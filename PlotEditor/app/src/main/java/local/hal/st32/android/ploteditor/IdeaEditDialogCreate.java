@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 
 /**
  * 就職作品
@@ -20,13 +21,22 @@ public class IdeaEditDialogCreate extends DialogFragment {
     private AlertDialog.Builder builder;
     private AlertDialog _dialog;
 
+    /**
+     * EditText
+     */
+    private EditText _etIdeaEdit;
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         LayoutInflater factory = LayoutInflater.from(getContext());
         final View view = factory.inflate(R.layout.dialog_idea_edit, null);
+        _etIdeaEdit = view.findViewById(R.id.etIdeaEdit);
+
+        Bundle extras = getArguments();
+        _etIdeaEdit.setText( extras.getString("note") );
 
         builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle(R.string.idea_1); //TODO:現在固定値→選択した箇所のタイトルになるように
+        builder.setTitle( extras.getString("idea") );
         builder.setView(view);
         builder.setPositiveButton(R.string.dialog_save, new DialogButtonClickListener());
         builder.setNeutralButton(R.string.dialog_cancel, new DialogButtonClickListener());
