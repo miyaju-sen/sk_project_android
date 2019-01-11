@@ -51,7 +51,7 @@ public class TabIdea1Fragment extends Fragment {
      */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.e("*******", "地点フラグメント");
+        Log.e("*******", "地点フラグメント1");
 
         View view = inflater.inflate(R.layout.fragment_tab_idea1, null);
 
@@ -59,7 +59,7 @@ public class TabIdea1Fragment extends Fragment {
         _tvIdea = view.findViewById(R.id.tvIdea);
         _lvStories = view.findViewById(R.id.lvStories);
 
-        //TapEventへテキストビューをセット
+        //TapEventへテキストビューをセット→ダブルタップ後、編集用のダイアログを表示
         TapEvent event = new TapEvent(getContext());
         event.setOnDialogCall(new TapEvent.DialogCall() {
             @Override
@@ -83,10 +83,5 @@ public class TabIdea1Fragment extends Fragment {
      */
     public static void setTvIdea(String note) {
         _tvIdea.setText(note);
-    }
-
-    public static class DialogCall {
-        public void ideaEditDialog() {
-        }
     }
 }

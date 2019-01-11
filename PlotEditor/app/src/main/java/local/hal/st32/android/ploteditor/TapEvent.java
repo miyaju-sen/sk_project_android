@@ -19,6 +19,9 @@ import android.widget.Toast;
  * @author ohs60224
  */
 public class TapEvent implements GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener  {
+    /**
+     * フィールド
+     */
     private GestureDetector _gd;
     private Context _context;
     private TextView _textView;
@@ -37,7 +40,7 @@ public class TapEvent implements GestureDetector.OnGestureListener, GestureDetec
     public TapEvent(Context context) {
         this._gd = new GestureDetector(context, this);
         this._context = context;
-        this._dialogCall = new DialogCall();
+        this._dialogCall = new DialogCall(); //初期化しないとNullエラー出る
     }
 
     /**
@@ -46,9 +49,7 @@ public class TapEvent implements GestureDetector.OnGestureListener, GestureDetec
      * @param textView テキストビュー
      */
     public void setTouchListener(TextView textView) {
-        Log.e("*********", "テキストビュー" + textView);
         _textView = textView;
-        Log.e("*********", "テキストビュー２" + _textView);
 
         _textView.setOnTouchListener(new View.OnTouchListener(){
             public boolean onTouch(View view, MotionEvent event) {
@@ -128,10 +129,9 @@ public class TapEvent implements GestureDetector.OnGestureListener, GestureDetec
      */
     @Override
     public boolean onDoubleTap(MotionEvent e) {
-        Log.e("*********", "ダブルタップ" + _textView);
         Log.e("*********", "タッチイベント（ダブル）" + onTouchEvent(e));
         _dialogCall.ideaEditDialog(_textView);
-//        IdeaActivity.onIdeaDoubleTap();
+
         return false;
     }
 
@@ -145,11 +145,19 @@ public class TapEvent implements GestureDetector.OnGestureListener, GestureDetec
         return false;
     }
 
-
+    /**
+     * 他アクティビティからDialogCallを呼びだす際に必要なメソッド
+     *
+     * @param dc
+     */
     public void setOnDialogCall(DialogCall dc) {
         _dialogCall = dc;
     }
 
+    /**
+     * コールバック用のstaticなクラス
+     * 起承転結の内容を編集するダイアログを表示する際に使用する
+     */
     public static class DialogCall {
         public void ideaEditDialog(TextView textView) {
         }

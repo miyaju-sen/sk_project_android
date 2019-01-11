@@ -1,6 +1,8 @@
 package local.hal.st32.android.ploteditor;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,14 +48,24 @@ public class TabIdea2Fragment extends Fragment {
      */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.e("*******", "地点フラグメント2");
+
         View view = inflater.inflate(R.layout.fragment_tab_idea2, null);
 
         //画面部品取得
         _tvIdea = view.findViewById(R.id.tvIdea);
         _lvStories = view.findViewById(R.id.lvStories);
 
-        //TapEventへテキストビューをセット
+        //TapEventへテキストビューをセット→ダブルタップ後、編集用のダイアログを表示
         TapEvent event = new TapEvent(getContext());
+        event.setOnDialogCall(new TapEvent.DialogCall() {
+            @Override
+            public void ideaEditDialog(TextView textView) {
+                IdeaEditDialogCreate dialog = new IdeaEditDialogCreate();
+                FragmentManager manager = getActivity().getSupportFragmentManager();
+                dialog.show(manager, "IdeaActivity");
+            }
+        });
         event.setTouchListener(_tvIdea);
 
         //取得した部品は親アクティビティへ
@@ -62,6 +74,10 @@ public class TabIdea2Fragment extends Fragment {
         return view;
     }
 
+    /**
+     * 取得した内容（note）をtvIdeaにセットするメソッド
+     * @param note 内容
+     */
     public static void setTvIdea(String note) {
         _tvIdea.setText(note);
     }
