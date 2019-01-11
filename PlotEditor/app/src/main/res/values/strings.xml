@@ -37,6 +37,8 @@
     <string name="dialog_delete">削除</string>
     <string name="dialog_character_delete_msg">登場人物「%1$s」を削除します。\nよろしいですか？</string>
     <string name="dialog_parlance_delete_msg">「%1$s」の情報を削除します。\nよろしいですか？</string>
+    <string name="dialog_hint_story_title">タイトル</string>
+    <string name="dialog_hint_story">ストーリー</string>
 
     <!-- 概要画面用 -->
     <string name="tv_title">作品タイトル</string>

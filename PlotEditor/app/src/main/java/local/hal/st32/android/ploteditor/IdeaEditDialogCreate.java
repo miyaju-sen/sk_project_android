@@ -16,7 +16,6 @@ import android.widget.EditText;
  *
  * @author ohs60224
  */
-
 public class IdeaEditDialogCreate extends DialogFragment {
     private AlertDialog.Builder builder;
     private AlertDialog _dialog;

@@ -125,7 +125,7 @@ public class TapEvent implements GestureDetector.OnGestureListener, GestureDetec
     }
 
     /**
-     * ダブルタップ時に呼び出される　TODO:使うのはここ
+     * ダブルタップ時に呼び出される
      */
     @Override
     public boolean onDoubleTap(MotionEvent e) {
