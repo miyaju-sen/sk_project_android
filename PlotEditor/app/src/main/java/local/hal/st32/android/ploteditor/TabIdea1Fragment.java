@@ -1,6 +1,7 @@
 package local.hal.st32.android.ploteditor;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,6 +61,14 @@ public class TabIdea1Fragment extends Fragment {
 
         //TapEventへテキストビューをセット
         TapEvent event = new TapEvent(getContext());
+        event.setOnDialogCall(new TapEvent.DialogCall() {
+            @Override
+            public void ideaEditDialog(TextView textView) {
+                IdeaEditDialogCreate dialog = new IdeaEditDialogCreate();
+                FragmentManager manager = getActivity().getSupportFragmentManager();
+                dialog.show(manager, "IdeaActivity");
+            }
+        });
         event.setTouchListener(_tvIdea);
 
         //取得した部品は親アクティビティへ
