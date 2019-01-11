@@ -218,6 +218,18 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
     }
 
     /**
+     * tvIdeaがダブルタップされたときの処理
+     */
+    public static void onIdeaDoubleTap() {
+//        IdeaEditDialogCreate dialog = new IdeaEditDialogCreate();
+//        FragmentManager manager = getSupportFragmentManager();
+//        dialog.show(manager, "IdeaActivity");
+
+
+    }
+
+
+    /**
      * タブをレイアウトするのに必要な処理を行うメソッド
      */
     private void setTabLayout() {
@@ -249,24 +261,24 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
             @Override
             public Fragment getItem(int position) {
                 Log.e("*******", "地点タブ選択" + position);
-                return new TabIdea1Fragment();
+                //return new TabIdea1Fragment();
 
-//                switch (position) {
-//                    case 0:
-//                        TabIdea1Fragment f1 = new TabIdea1Fragment();
-//                        return f1;
-//                    case 1:
-//                        TabIdea2Fragment f2 = new TabIdea2Fragment();
-//                        return f2;
-//                    case 2:
-//                        TabIdea3Fragment f3 = new TabIdea3Fragment();
-//                        return f3;
-//                    case 3:
-//                        TabIdea4Fragment f4 = new TabIdea4Fragment();
-//                        return f4;
-//                    default:
-//                        return null;
-//                }
+                switch (position) {
+                    case 0:
+                        TabIdea1Fragment f1 = new TabIdea1Fragment();
+                        return f1;
+                    case 1:
+                        TabIdea2Fragment f2 = new TabIdea2Fragment();
+                        return f2;
+                    case 2:
+                        TabIdea3Fragment f3 = new TabIdea3Fragment();
+                        return f3;
+                    case 3:
+                        TabIdea4Fragment f4 = new TabIdea4Fragment();
+                        return f4;
+                    default:
+                        return null;
+                }
             }
 
             /**

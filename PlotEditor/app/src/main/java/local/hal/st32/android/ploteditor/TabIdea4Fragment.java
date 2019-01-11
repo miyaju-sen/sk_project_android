@@ -52,6 +52,10 @@ public class TabIdea4Fragment extends Fragment {
         _tvIdea = view.findViewById(R.id.tvIdea);
         _lvStories = view.findViewById(R.id.lvStories);
 
+        //TapEventへテキストビューをセット
+        TapEvent event = new TapEvent(getContext());
+        event.setTouchListener(_tvIdea);
+
         //取得した部品は親アクティビティへ
         IdeaActivity.setIdeaView(_tvIdea, _lvStories);
 

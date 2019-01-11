@@ -2,6 +2,7 @@ package local.hal.st32.android.ploteditor;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -20,6 +21,8 @@ import android.widget.Toast;
 public class TapEvent implements GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener  {
     private GestureDetector _gd;
     private Context _context;
+    private TextView _textView;
+    private DialogCall _dialogCall;
 
     /**
      * 空のコンテキスト
@@ -34,6 +37,7 @@ public class TapEvent implements GestureDetector.OnGestureListener, GestureDetec
     public TapEvent(Context context) {
         this._gd = new GestureDetector(context, this);
         this._context = context;
+        this._dialogCall = new DialogCall();
     }
 
     /**
@@ -42,7 +46,11 @@ public class TapEvent implements GestureDetector.OnGestureListener, GestureDetec
      * @param textView テキストビュー
      */
     public void setTouchListener(TextView textView) {
-        textView.setOnTouchListener(new View.OnTouchListener(){
+        Log.e("*********", "テキストビュー" + textView);
+        _textView = textView;
+        Log.e("*********", "テキストビュー２" + _textView);
+
+        _textView.setOnTouchListener(new View.OnTouchListener(){
             public boolean onTouch(View view, MotionEvent event) {
                 _gd.onTouchEvent(event);
                 return true;
@@ -54,7 +62,7 @@ public class TapEvent implements GestureDetector.OnGestureListener, GestureDetec
         //タッチイベントの判別・振り分けを行う
         this._gd.onTouchEvent(ev);
 
-        return false;
+        return this._gd.onTouchEvent(ev);
     }
 
     /**
@@ -111,6 +119,7 @@ public class TapEvent implements GestureDetector.OnGestureListener, GestureDetec
      */
     @Override
     public boolean onSingleTapConfirmed(MotionEvent e) {
+
         return false;
     }
 
@@ -119,7 +128,10 @@ public class TapEvent implements GestureDetector.OnGestureListener, GestureDetec
      */
     @Override
     public boolean onDoubleTap(MotionEvent e) {
-        Log.e("*********", "タップされた");
+        Log.e("*********", "ダブルタップ" + _textView);
+        Log.e("*********", "タッチイベント（ダブル）" + onTouchEvent(e));
+        _dialogCall.ideaEditDialog(_textView);
+//        IdeaActivity.onIdeaDoubleTap();
         return false;
     }
 
@@ -131,5 +143,15 @@ public class TapEvent implements GestureDetector.OnGestureListener, GestureDetec
         // Toast.makeText(_context, "タップされました", Toast.LENGTH_SHORT).show();
 
         return false;
+    }
+
+
+    public void setOnDialogCall(DialogCall dc) {
+        _dialogCall = dc;
+    }
+
+    public static class DialogCall {
+        public void ideaEditDialog(TextView textView) {
+        }
     }
 }

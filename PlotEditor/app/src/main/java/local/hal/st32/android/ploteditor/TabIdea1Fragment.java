@@ -58,13 +58,26 @@ public class TabIdea1Fragment extends Fragment {
         _tvIdea = view.findViewById(R.id.tvIdea);
         _lvStories = view.findViewById(R.id.lvStories);
 
+        //TapEventへテキストビューをセット
+        TapEvent event = new TapEvent(getContext());
+        event.setTouchListener(_tvIdea);
+
         //取得した部品は親アクティビティへ
         IdeaActivity.setIdeaView(_tvIdea, _lvStories);
 
         return view;
     }
 
+    /**
+     * 取得した内容（note）をtvIdeaにセットするメソッド
+     * @param note 内容
+     */
     public static void setTvIdea(String note) {
         _tvIdea.setText(note);
+    }
+
+    public static class DialogCall {
+        public void ideaEditDialog() {
+        }
     }
 }
