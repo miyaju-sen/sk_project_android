@@ -64,6 +64,7 @@ public class TabIdea1Fragment extends Fragment {
         event.setOnDialogCall(new TapEvent.DialogCall() {
             @Override
             public void ideaEditDialog(TextView textView) {
+                Log.e("*********", "テキストビューの中身は：" + textView.getText().toString());
                 IdeaEditDialogCreate dialog = new IdeaEditDialogCreate();
                 FragmentManager manager = getActivity().getSupportFragmentManager();
                 dialog.show(manager, "IdeaActivity");

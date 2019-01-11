@@ -218,18 +218,6 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
     }
 
     /**
-     * tvIdeaがダブルタップされたときの処理
-     */
-    public static void onIdeaDoubleTap() {
-//        IdeaEditDialogCreate dialog = new IdeaEditDialogCreate();
-//        FragmentManager manager = getSupportFragmentManager();
-//        dialog.show(manager, "IdeaActivity");
-
-
-    }
-
-
-    /**
      * タブをレイアウトするのに必要な処理を行うメソッド
      */
     private void setTabLayout() {
