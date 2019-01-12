@@ -113,6 +113,7 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
         super.onResume();
         setTitle("世界観");
         Log.e("*******", "地点onResume");
+        _allocate = new IdeaAllocate();
 
         IdeaJsonAccess access = new IdeaJsonAccess();
         access.setOnCallBack(new IdeaJsonAccess.CallBackTask() {
@@ -127,7 +128,7 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
                     _allocate.setIdeas(ideas, stories);
 
                     _adapter = new SimpleAdapter(IdeaActivity.this, _allocate.getStory1(), android.R.layout.simple_list_item_2, _from, _to);
-                    TabIdea1Fragment.setLvStories(_adapter);
+                    TabIdea1Fragment.setLvStories(_adapter, _allocate.getStory1());
                 }
 
                 //初期表示（タブ「起」）にデータをセット
@@ -326,7 +327,7 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
 
                 //ストーリー
                 _adapter = new SimpleAdapter(IdeaActivity.this, _allocate.getStory1(), android.R.layout.simple_list_item_2, _from, _to);
-                TabIdea1Fragment.setLvStories(_adapter);
+                TabIdea1Fragment.setLvStories(_adapter, _allocate.getStory1());
                 break;
             case 1:
                 //構想
@@ -334,21 +335,21 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
 
                 //ストーリー
                 _adapter = new SimpleAdapter(IdeaActivity.this, _allocate.getStory2(), android.R.layout.simple_list_item_2, _from, _to);
-                TabIdea2Fragment.setLvStories(_adapter);
+                TabIdea2Fragment.setLvStories(_adapter, _allocate.getStory2());
                 break;
             case 2:
                 TabIdea3Fragment.setTvIdea( _allocate.getIdea3().get(0).get("note") );
 
                 //ストーリー
                 _adapter = new SimpleAdapter(IdeaActivity.this, _allocate.getStory3(), android.R.layout.simple_list_item_2, _from, _to);
-                TabIdea3Fragment.setLvStories(_adapter);
+                TabIdea3Fragment.setLvStories(_adapter, _allocate.getStory3());
                 break;
             case 3:
                 TabIdea4Fragment.setTvIdea( _allocate.getIdea4().get(0).get("note") );
 
                 //ストーリー
                 _adapter = new SimpleAdapter(IdeaActivity.this, _allocate.getStory4(), android.R.layout.simple_list_item_2, _from, _to);
-                TabIdea4Fragment.setLvStories(_adapter);
+                TabIdea4Fragment.setLvStories(_adapter, _allocate.getStory4());
                 break;
         }
     }

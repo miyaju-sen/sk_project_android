@@ -6,10 +6,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.support.v4.app.Fragment;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 就職作品
@@ -24,6 +29,10 @@ public class TabIdea3Fragment extends Fragment {
      */
     private static TextView _tvIdea;
     private static ListView _lvStories;
+    /**
+     * ストーリー一覧を格納する配列
+     */
+    private static List<Map<String, String>> _stories = new ArrayList<>();
 
     /**
      * コンストラクタ
@@ -56,6 +65,7 @@ public class TabIdea3Fragment extends Fragment {
         //画面部品取得
         _tvIdea = view.findViewById(R.id.tvIdea);
         _lvStories = view.findViewById(R.id.lvStories);
+        _lvStories.setOnItemClickListener(new ListItemClickListener());
 
         //TapEventへテキストビューをセット→ダブルタップ後、編集用のダイアログを表示
         TapEvent event = new TapEvent(getContext());
@@ -89,7 +99,25 @@ public class TabIdea3Fragment extends Fragment {
      * 取得したアダプタをlvStoriesにセットするメソッド
      * @param adapter
      */
-    public static void setLvStories(SimpleAdapter adapter) {
+    public static void setLvStories(SimpleAdapter adapter, List<Map<String, String>> stories) {
+        _stories = stories;
         _lvStories.setAdapter(adapter);
+    }
+
+    /**
+     * リスト押下時のリスナクラス
+     */
+    private class ListItemClickListener implements AdapterView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            StoryEditDialogCreate dialog = new StoryEditDialogCreate();
+            Bundle extras = new Bundle();
+            extras.putString("title", _stories.get(position).get("title"));
+            extras.putString("story", _stories.get(position).get("story"));
+            dialog.setArguments(extras);
+
+            FragmentManager manager = getActivity().getSupportFragmentManager();
+            dialog.show(manager, "IdeaActivity");
+        }
     }
 }

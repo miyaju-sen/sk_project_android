@@ -33,8 +33,9 @@ public class StoryEditDialogCreate extends DialogFragment {
         _etTitle = view.findViewById(R.id.etTitle);
         _etStory = view.findViewById(R.id.etStory);
 
-        //TODO:Bundle
         Bundle extras = getArguments();
+        _etTitle.setText( extras.getString("title") );
+        _etStory.setText( extras.getString("story") );
 
         builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.dialog_story_edit);
