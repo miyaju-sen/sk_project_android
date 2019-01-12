@@ -29,6 +29,10 @@ import java.util.Map;
  */
 public class TabIdea1Fragment extends Fragment {
     /**
+     * タグ
+     */
+    private static String _tag;
+    /**
      * 画面部品
      */
     private static TextView _tvIdea;
@@ -67,13 +71,15 @@ public class TabIdea1Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.e("*******", "地点フラグメント1" + getTag());
-
         View view = inflater.inflate(R.layout.fragment_tab_idea1, null);
 
         //画面部品取得
         _tvIdea = view.findViewById(R.id.tvIdea);
         _lvStories = view.findViewById(R.id.lvStories);
         _lvStories.setOnItemClickListener(new ListItemClickListener());
+
+        //タグ
+        _tag = getTag();
 
         //TapEventへテキストビューをセット→ダブルタップ後、編集用のダイアログを表示
         final TapEvent event = new TapEvent(getContext());
@@ -95,7 +101,8 @@ public class TabIdea1Fragment extends Fragment {
                 dialog.setOnCallBack(new IdeaEditDialogCreate.CallBackTask() {
                     @Override
                     public void CallBack(List<Map<String, String>> ideas, List<Map<String, String>> stories) {
-                        _tvIdea.setText(ideas.get(0).get("note"));
+                        Log.e("*******", "地点フラグバック");
+                        IdeaActivity.receiveIdea(getTag());
                     }
                 });
 
@@ -106,6 +113,14 @@ public class TabIdea1Fragment extends Fragment {
         event.setTouchListener(_tvIdea);
 
         return view;
+    }
+
+    /**
+     * TabIdea1Fragmentのタグのゲッター
+     * @return TabIdea1Fragmentのタグ
+     */
+    public static String getTabIdea1FragmentTag() {
+        return _tag;
     }
 
     /**

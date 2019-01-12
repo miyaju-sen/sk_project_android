@@ -47,7 +47,7 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
     /**
      * プロット概要が格納された配列
      */
-    private HashMap<String, String> _outline = new HashMap<>();
+    private static HashMap<String, String> _outline = new HashMap<>();
     /**
      * リストビュー
      */
@@ -56,6 +56,7 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
      * ストーリー一覧を格納する配列
      */
     private List<Map<String, String>> _stories = new ArrayList<>();
+    private static String _tag;
     /**
      * リストビューにセットするためのアダプタ類
      */
@@ -65,7 +66,7 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
     /**
      * 起承転結ごとにデータを振り分けるクラス
      */
-    private IdeaAllocate _allocate = new IdeaAllocate();
+    private static IdeaAllocate _allocate = new IdeaAllocate();
     /**
      * DrawerLayoutとActionBarDrawerToggle
      */
@@ -142,8 +143,28 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
     }
 
     //TODO:データ再取得する必要がある
-    public static void receive() {
+    public static void receiveIdea(String tag) {
+        //フラグメントのtagに対応したデータを取得する
+        _allocate = new IdeaAllocate();
+        _tag = tag;
 
+        IdeaJsonAccess access = new IdeaJsonAccess();
+        access.setOnCallBack(new IdeaJsonAccess.CallBackTask() {
+            @Override
+            public void CallBack(List<Map<String, String>> ideas, List<Map<String, String>> stories) {
+                _allocate.setIdeas(ideas);
+
+                //どのタブ（Fragment）のデータを再取得するのか
+                if( TabIdea1Fragment.getTabIdea1FragmentTag().equals(_tag) ) {
+                    Log.e("++++++++++++++", "確認用1");
+                    TabIdea1Fragment.setTvIdea( _allocate.getIdea1() );
+                }
+                else {
+                    Log.e("++++++++++++++", "確認用2");
+                }
+            }
+        });
+        access.execute("", _outline.get("no"), "", "");
     }
 
     /**
