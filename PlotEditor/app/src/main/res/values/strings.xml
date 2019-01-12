@@ -23,7 +23,7 @@
     <string name="menu_plot_delete">プロットを削除</string>
 
     <!-- ダイアログ用 -->
-    <string name="dialog_insert">プロット新規作成</string>
+    <string name="dialog_plot_insert">プロット新規作成</string>
     <string name="dialog_title_hint">作品タイトルを入力</string>
     <string name="dialog_create">作成</string>
     <string name="dialog_cancel">キャンセル</string>
@@ -38,6 +38,8 @@
     <string name="dialog_character_delete_msg">登場人物「%1$s」を削除します。\nよろしいですか？</string>
     <string name="dialog_parlance_delete_msg">「%1$s」の情報を削除します。\nよろしいですか？</string>
     <string name="dialog_story_edit">編集</string>
+    <string name="dialog_story_insert">ストーリー追加</string>
+    <string name="dialog_insert">追加</string>
     <string name="dialog_hint_story_title">タイトル</string>
     <string name="dialog_hint_story">ストーリー</string>
 

@@ -25,6 +25,10 @@ public class StoryEditDialogCreate extends DialogFragment {
      */
     private EditText _etTitle;
     private EditText _etStory;
+    /**
+     * 新規追加か編集かを示す変数
+     */
+    private String _mode;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -33,14 +37,25 @@ public class StoryEditDialogCreate extends DialogFragment {
         _etTitle = view.findViewById(R.id.etTitle);
         _etStory = view.findViewById(R.id.etStory);
 
-        Bundle extras = getArguments();
-        _etTitle.setText( extras.getString("title") );
-        _etStory.setText( extras.getString("story") );
-
         builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle(R.string.dialog_story_edit);
         builder.setView(view);
-        builder.setPositiveButton(R.string.dialog_save, new DialogButtonClickListener());
+
+        Bundle extras = getArguments();
+        _mode = extras.getString("mode");
+        //新規追加だった場合
+        if(_mode.equals("insert")) {
+            builder.setTitle(R.string.dialog_story_insert);
+            builder.setPositiveButton(R.string.dialog_insert, new DialogButtonClickListener());
+        }
+        //編集モードだった場合
+        else {
+            _etTitle.setText( extras.getString("title") );
+            _etStory.setText( extras.getString("story") );
+
+            builder.setTitle(R.string.dialog_story_edit);
+            builder.setPositiveButton(R.string.dialog_save, new DialogButtonClickListener());
+        }
+
         builder.setNeutralButton(R.string.dialog_cancel, new DialogButtonClickListener());
         _dialog = builder.create();
         return _dialog;
@@ -55,7 +70,7 @@ public class StoryEditDialogCreate extends DialogFragment {
         public void onClick(DialogInterface dialog, int which) {
             switch (which) {
                 case DialogInterface.BUTTON_POSITIVE:
-                    //内容保存
+                    //保存または新規追加
                     break;
                 case DialogInterface.BUTTON_NEUTRAL:
                     //編集キャンセル

@@ -43,7 +43,7 @@ public class TitleSetDialogCreate extends DialogFragment {
         etTitle = view.findViewById(R.id.etTitleSet);
 
         builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle(R.string.dialog_insert);
+        builder.setTitle(R.string.dialog_plot_insert);
         builder.setView(view);
         builder.setPositiveButton(R.string.dialog_create, new DialogButtonClickListener());
         builder.setNeutralButton(R.string.dialog_cancel, new DialogButtonClickListener());

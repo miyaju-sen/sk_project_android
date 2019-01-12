@@ -176,10 +176,16 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
     }
 
     /**
-     * TODO:追加ボタン押下時の処理
+     * 追加ボタン押下時の処理
      */
     private void onInsertButtonClick() {
-        //TODO:ダイアログを表示
+        StoryEditDialogCreate dialog = new StoryEditDialogCreate();
+        Bundle extras = new Bundle();
+        extras.putString("mode", "insert");
+        dialog.setArguments(extras);
+
+        FragmentManager manager = getSupportFragmentManager();
+        dialog.show(manager, "IdeaActivity");
     }
 
     /**

@@ -118,6 +118,7 @@ public class TabIdea1Fragment extends Fragment {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             StoryEditDialogCreate dialog = new StoryEditDialogCreate();
             Bundle extras = new Bundle();
+            extras.putString("mode", "edit");
             extras.putString("title", _stories.get(position).get("title"));
             extras.putString("story", _stories.get(position).get("story"));
             dialog.setArguments(extras);
