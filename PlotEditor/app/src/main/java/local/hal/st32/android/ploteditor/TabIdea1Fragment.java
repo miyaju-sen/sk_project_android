@@ -36,6 +36,7 @@ public class TabIdea1Fragment extends Fragment {
     /**
      * 構想情報を格納する配列
      */
+    private static HashMap<String, String> _ideas = new HashMap<>();
     /**
      * ストーリー一覧を格納する配列
      */
@@ -83,9 +84,20 @@ public class TabIdea1Fragment extends Fragment {
 
                 IdeaEditDialogCreate dialog = new IdeaEditDialogCreate();
                 Bundle extras = new Bundle();
-                extras.putString("idea", getString( R.string.idea_1 ));
+                extras.putString("ideaTitle", getString( R.string.idea_1 ));
+                extras.putString("ideaNo", _ideas.get("ideaNo"));
+                extras.putString("plot", _ideas.get("plot"));
+                extras.putString("idea", _ideas.get("idea"));
                 extras.putString("note", _tvIdea.getText().toString());
                 dialog.setArguments(extras);
+
+                //TODO:間に合わせの処理（組み直す予定）
+                dialog.setOnCallBack(new IdeaEditDialogCreate.CallBackTask() {
+                    @Override
+                    public void CallBack(List<Map<String, String>> ideas, List<Map<String, String>> stories) {
+                        _tvIdea.setText(ideas.get(0).get("note"));
+                    }
+                });
 
                 FragmentManager manager = getActivity().getSupportFragmentManager();
                 dialog.show(manager, "IdeaActivity");
@@ -101,6 +113,7 @@ public class TabIdea1Fragment extends Fragment {
      * @param ideas
      */
     public static void setTvIdea(HashMap<String, String> ideas) {
+        _ideas = ideas;
         _tvIdea.setText( ideas.get("note") );
     }
 

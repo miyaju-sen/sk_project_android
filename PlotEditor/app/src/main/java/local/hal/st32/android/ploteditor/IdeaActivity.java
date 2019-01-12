@@ -141,6 +141,10 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
         access.execute("", _outline.get("no"), "", "");
     }
 
+    public static void receive() {
+        
+    }
+
     /**
      * オプションメニュー作成
      */
