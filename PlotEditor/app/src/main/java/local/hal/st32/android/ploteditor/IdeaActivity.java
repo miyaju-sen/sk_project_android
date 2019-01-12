@@ -141,8 +141,9 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
         access.execute("", _outline.get("no"), "", "");
     }
 
+    //TODO:データ再取得する必要がある
     public static void receive() {
-        
+
     }
 
     /**
@@ -375,6 +376,9 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
 
         switch (position) {
             case 0:
+                FragmentManager fragment = getSupportFragmentManager();
+                Log.e("***************", "フラグメント：" + fragment.getFragments().get(position).getTag());
+
                 //構想
                 TabIdea1Fragment.setTvIdea( _allocate.getIdea1() );
 
