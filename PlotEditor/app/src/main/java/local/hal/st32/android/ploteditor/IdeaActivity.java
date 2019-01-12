@@ -17,6 +17,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
@@ -137,6 +139,47 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
             }
         });
         access.execute("", _outline.get("no"), "", "");
+    }
+
+    /**
+     * オプションメニュー作成
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_edit, menu);
+
+        //表示されたままのメニューアイコンを非表示に
+        menu.setGroupVisible(R.id.mgEdit, false);
+
+        //追加ボタンを表示
+        MenuItem insert = menu.findItem(R.id.menuInsert);
+        insert.setVisible(true);
+
+        return true;
+    }
+
+    /**
+     * オプションメニュー選択時処理
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+        switch (itemId) {
+            //ストーリーを追加
+            case R.id.menuInsert:
+                onInsertButtonClick();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * TODO:追加ボタン押下時の処理
+     */
+    private void onInsertButtonClick() {
+        //TODO:ダイアログを表示
     }
 
     /**
