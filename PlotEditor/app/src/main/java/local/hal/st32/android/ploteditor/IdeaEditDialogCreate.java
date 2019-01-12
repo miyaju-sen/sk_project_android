@@ -52,7 +52,9 @@ public class IdeaEditDialogCreate extends DialogFragment {
         public void onClick(DialogInterface dialog, int which) {
             switch (which) {
                 case DialogInterface.BUTTON_POSITIVE:
-                    //内容保存
+                    //TODO:内容保存
+                    IdeaJsonAccess access = new IdeaJsonAccess();
+
                     break;
                 case DialogInterface.BUTTON_NEUTRAL:
                     //編集キャンセル

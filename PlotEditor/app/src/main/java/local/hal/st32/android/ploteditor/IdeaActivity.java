@@ -135,7 +135,7 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
 
                 //初期表示（タブ「起」）にデータをセット
                 //構想内容
-                TabIdea1Fragment.setTvIdea( _allocate.getIdea1().get(0).get("note") );
+                TabIdea1Fragment.setTvIdea( _allocate.getIdea1() );
             }
         });
         access.execute("", _outline.get("no"), "", "");
@@ -372,7 +372,7 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
         switch (position) {
             case 0:
                 //構想
-                TabIdea1Fragment.setTvIdea( _allocate.getIdea1().get(0).get("note") );
+                TabIdea1Fragment.setTvIdea( _allocate.getIdea1() );
 
                 //ストーリー
                 _adapter = new SimpleAdapter(IdeaActivity.this, _allocate.getStory1(), android.R.layout.simple_list_item_2, _from, _to);
@@ -380,21 +380,21 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
                 break;
             case 1:
                 //構想
-                TabIdea2Fragment.setTvIdea( _allocate.getIdea2().get(0).get("note") );
+                TabIdea2Fragment.setTvIdea( _allocate.getIdea2() );
 
                 //ストーリー
                 _adapter = new SimpleAdapter(IdeaActivity.this, _allocate.getStory2(), android.R.layout.simple_list_item_2, _from, _to);
                 TabIdea2Fragment.setLvStories(_adapter, _allocate.getStory2());
                 break;
             case 2:
-                TabIdea3Fragment.setTvIdea( _allocate.getIdea3().get(0).get("note") );
+                TabIdea3Fragment.setTvIdea( _allocate.getIdea3() );
 
                 //ストーリー
                 _adapter = new SimpleAdapter(IdeaActivity.this, _allocate.getStory3(), android.R.layout.simple_list_item_2, _from, _to);
                 TabIdea3Fragment.setLvStories(_adapter, _allocate.getStory3());
                 break;
             case 3:
-                TabIdea4Fragment.setTvIdea( _allocate.getIdea4().get(0).get("note") );
+                TabIdea4Fragment.setTvIdea( _allocate.getIdea4() );
 
                 //ストーリー
                 _adapter = new SimpleAdapter(IdeaActivity.this, _allocate.getStory4(), android.R.layout.simple_list_item_2, _from, _to);

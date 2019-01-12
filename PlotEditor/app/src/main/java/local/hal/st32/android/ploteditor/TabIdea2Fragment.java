@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.support.v4.app.Fragment;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -88,11 +89,11 @@ public class TabIdea2Fragment extends Fragment {
     }
 
     /**
-     * 取得した内容（note）をtvIdeaにセットするメソッド
-     * @param note 内容
+     * 取得した配列内の内容（note）をtvIdeaにセットするメソッド
+     * @param ideas
      */
-    public static void setTvIdea(String note) {
-        _tvIdea.setText(note);
+    public static void setTvIdea(HashMap<String, String> ideas) {
+        _tvIdea.setText( ideas.get("note") );
     }
 
     /**

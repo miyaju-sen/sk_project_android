@@ -34,6 +34,9 @@ public class TabIdea1Fragment extends Fragment {
     private static TextView _tvIdea;
     private static ListView _lvStories;
     /**
+     * 構想情報を格納する配列
+     */
+    /**
      * ストーリー一覧を格納する配列
      */
     private static List<Map<String, String>> _stories = new ArrayList<>();
@@ -94,11 +97,11 @@ public class TabIdea1Fragment extends Fragment {
     }
 
     /**
-     * 取得した内容（note）をtvIdeaにセットするメソッド
-     * @param note 内容
+     * 取得した配列内の内容（note）をtvIdeaにセットするメソッド
+     * @param ideas
      */
-    public static void setTvIdea(String note) {
-        _tvIdea.setText(note);
+    public static void setTvIdea(HashMap<String, String> ideas) {
+        _tvIdea.setText( ideas.get("note") );
     }
 
     /**

@@ -16,10 +16,10 @@ public class IdeaAllocate {
     /**
      * 起承転結ごとの内容
      */
-    private List<Map<String, String>> _idea1;
-    private List<Map<String, String>> _idea2;
-    private List<Map<String, String>> _idea3;
-    private List<Map<String, String>> _idea4;
+    private HashMap<String, String> _idea1;
+    private HashMap<String, String> _idea2;
+    private HashMap<String, String> _idea3;
+    private HashMap<String, String> _idea4;
 
     /**
      * 起承転結ごとのストーリー
@@ -35,10 +35,10 @@ public class IdeaAllocate {
     private final String IDEA_FOUR = "4";
 
     public IdeaAllocate() {
-        this._idea1 = new ArrayList<>();
-        this._idea2 = new ArrayList<>();
-        this._idea3 = new ArrayList<>();
-        this._idea4 = new ArrayList<>();
+        this._idea1 = new HashMap<>();
+        this._idea2 = new HashMap<>();
+        this._idea3 = new HashMap<>();;
+        this._idea4 = new HashMap<>();
 
         this._story1 = new ArrayList<>();
         this._story2 = new ArrayList<>();
@@ -88,19 +88,19 @@ public class IdeaAllocate {
             switch (idea) {
                 //起
                 case IDEA_ONE:
-                    this._idea1.add(map);
+                    this._idea1 = map;
                     break;
                 //承
                 case IDEA_TWO:
-                    this._idea2.add(map);
+                    this._idea2 = map;
                     break;
                 //転
                 case IDEA_THREE:
-                    this._idea3.add(map);
+                    this._idea3 = map;
                     break;
                 //結
                 case IDEA_FOUR:
-                    this._idea4.add(map);
+                    this._idea4 = map;
                     break;
             }
         }
@@ -151,7 +151,7 @@ public class IdeaAllocate {
      * タブ「起」用データのゲッター
      * @return 構想内容
      */
-    public List<Map<String, String>> getIdea1() {
+    public HashMap<String, String> getIdea1() {
         return this._idea1;
     }
     /**
@@ -166,7 +166,7 @@ public class IdeaAllocate {
      * タブ「承」用データのゲッター
      * @return 構想内容
      */
-    public List<Map<String, String>> getIdea2() {
+    public HashMap<String, String> getIdea2() {
         return this._idea2;
     }
     /**
@@ -181,7 +181,7 @@ public class IdeaAllocate {
      * タブ「転」用データのゲッター
      * @return 構想内容
      */
-    public List<Map<String, String>> getIdea3() {
+    public HashMap<String, String> getIdea3() {
         return this._idea3;
     }
     /**
@@ -196,7 +196,7 @@ public class IdeaAllocate {
      * タブ「結」用データのゲッター
      * @return 構想内容
      */
-    public List<Map<String, String>> getIdea4() {
+    public HashMap<String, String> getIdea4() {
         return this._idea4;
     }
     /**
