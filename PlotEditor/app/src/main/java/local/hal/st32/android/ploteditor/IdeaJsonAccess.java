@@ -51,13 +51,15 @@ public class IdeaJsonAccess extends AsyncTask<String, String, String> {
     /**
      * 解析したJSONデータを格納する配列
      */
-    private static List<Map<String, String>> _ideas;
+    private static List<Map<String, String>> _ideas; //構想
+    private static List<Map<String, String>> _stories; //ストーリー
 
     /**
      * コンストラクタ
      */
     public IdeaJsonAccess() {
         this._ideas = new ArrayList<>();
+        this._stories = new ArrayList<>();
     }
 
     @Override
@@ -127,7 +129,8 @@ public class IdeaJsonAccess extends AsyncTask<String, String, String> {
     @Override
     public void onPostExecute(String result) {
         if(_success) {
-            HashMap<String, String> map = new HashMap<>();
+            HashMap<String, String> ideaMap = new HashMap<>();
+            HashMap<String, String> storyMap = new HashMap<>();
             String ideaNo = "";
             String plot = "";
             String idea = "";
@@ -137,42 +140,57 @@ public class IdeaJsonAccess extends AsyncTask<String, String, String> {
             String story = "";
 
             try {
+                //JSONデータの解析・取得
                 JSONObject rootJSON = new JSONObject(result);
                 String storyFlag = rootJSON.getString("storyFlag");
 
-                //JSONデータの解析・取得
+                //構想分
+                //-----------------------------------------------------------------------------
                 JSONArray ideaArray = rootJSON.getJSONArray("ideas");
                 for(int i = 0; i < ideaArray.length(); i++) {
-                    map = new HashMap<>();
+                    ideaMap = new HashMap<>();
                     JSONObject ideaNow = ideaArray.getJSONObject(i);
 
                     ideaNo = ideaNow.getString("idea_no");
                     plot = ideaNow.getString("plot");
                     idea = ideaNow.getString("idea");
                     note = ideaNow.getString("note");
-                    map.put("ideaNo", ideaNo);
-                    map.put("plot", plot);
-                    map.put("idea", idea);
-                    map.put("note", note);
 
-                    //v_ideasの分
-                    if("true".equals(storyFlag)) {
-                        storyNo = ideaNow.getString("story_no");
-                        title = ideaNow.getString("title");
-                        story = ideaNow.getString("story");
-                        map.put("storyNo", storyNo);
-                        map.put("title", title);
-                        map.put("story", story);
-                    }
-
-                    _ideas.add(map);
+                    ideaMap.put("ideaNo", ideaNo);
+                    ideaMap.put("plot", plot);
+                    ideaMap.put("idea", idea);
+                    ideaMap.put("note", note);
+                    _ideas.add(ideaMap);
                 }
+                //-----------------------------------------------------------------------------
+
+                //ストーリー分（ストーリーがあれば別配列へ格納）
+                //-----------------------------------------------------------------------------
+                if("true".equals(storyFlag)) {
+                    JSONArray storyArray = rootJSON.getJSONArray("stories");
+                    for(int i = 0; i < storyArray.length(); i++) {
+                        storyMap = new HashMap<>();
+                        JSONObject storyNow = storyArray.getJSONObject(i);
+
+                        idea = storyNow.getString("idea");
+                        storyNo = storyNow.getString("story_no");
+                        title = storyNow.getString("title");
+                        story = storyNow.getString("story");
+
+                        storyMap.put("idea", idea);
+                        storyMap.put("storyNo", storyNo);
+                        storyMap.put("title", title);
+                        storyMap.put("story", story);
+                        _stories.add(storyMap);
+                    }
+                }
+                //-----------------------------------------------------------------------------
             }
             catch (JSONException ex) {
                 Log.e(DEBUG_TAG, "JSON解析失敗", ex);
             }
 
-            _callBack.CallBack(_ideas);
+            _callBack.CallBack(_ideas, _stories);
         }
     }
 
@@ -200,7 +218,7 @@ public class IdeaJsonAccess extends AsyncTask<String, String, String> {
      * コールバック用のstaticなクラス
      */
     public static class CallBackTask {
-        public void CallBack(List<Map<String, String>> list) {
+        public void CallBack(List<Map<String, String>> ideas, List<Map<String, String>> stories) {
         }
     }
 }
