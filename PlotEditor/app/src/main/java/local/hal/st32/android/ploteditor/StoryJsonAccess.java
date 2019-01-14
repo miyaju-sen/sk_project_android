@@ -24,11 +24,11 @@ import java.util.Map;
 /**
  * 就職作品
  *
- * 非同期でIdeaJsonServletと通信するクラス
+ * 非同期でStoryJsonServletと通信するクラス
  *
  * @author ohs60224
  */
-public class IdeaJsonAccess extends AsyncTask<String, String, String> {
+public class StoryJsonAccess extends AsyncTask<String, String, String> {
     /**
      * コールバック用のクラス
      */
@@ -36,11 +36,11 @@ public class IdeaJsonAccess extends AsyncTask<String, String, String> {
     /**
      * ログに記載するタグ用の文字列
      */
-    private static final String DEBUG_TAG = "IdeaJsonAccess";
+    private static final String DEBUG_TAG = "StoryJsonAccess";
     /**
      * アクセス先のURL
      */
-    private static final String ACCESS_URL = new AccessURL().getIdeaJson();
+    private static final String ACCESS_URL = new AccessURL().getStoryJson();
     /**
      * サーバ通信が成功したかどうかのフラグ
      * 成功した場合はtrue、失敗した場合はfalse
@@ -55,7 +55,7 @@ public class IdeaJsonAccess extends AsyncTask<String, String, String> {
     /**
      * コンストラクタ
      */
-    public IdeaJsonAccess() {
+    public StoryJsonAccess() {
         this._ideas = new ArrayList<>();
         this._stories = new ArrayList<>();
     }
@@ -63,12 +63,13 @@ public class IdeaJsonAccess extends AsyncTask<String, String, String> {
     @Override
     public String doInBackground(String... params) {
         String urlStr = ACCESS_URL;
-        String no = params[0];
-        String plot = params[1];
+        String plot = params[0];
+        String no = params[1];
         String idea = params[2];
-        String note = params[3];
+        String title = params[3];
+        String story = params[4];
 
-        String data = "no=" + no + "&plot=" + plot + "&idea=" + idea + "&note=" + note;
+        String data = "plot=" + plot + "&no=" + no + "&idea=" + idea + "&title=" + title + "&story=" + story;
         Log.e("データ", data);
         HttpURLConnection con = null;
         InputStream is = null;
@@ -140,7 +141,6 @@ public class IdeaJsonAccess extends AsyncTask<String, String, String> {
             try {
                 //JSONデータの解析・取得
                 JSONObject rootJSON = new JSONObject(result);
-//                String storyFlag = rootJSON.getString("storyFlag");
 
                 //構想分
                 //-----------------------------------------------------------------------------
@@ -162,26 +162,23 @@ public class IdeaJsonAccess extends AsyncTask<String, String, String> {
                 }
                 //-----------------------------------------------------------------------------
 
-                //ストーリー分（ストーリーがあれば別配列へ格納）
+                //ストーリー分
                 //-----------------------------------------------------------------------------
                 JSONArray storyArray = rootJSON.getJSONArray("stories");
-                if(0 != storyArray.length()) {
-//                    JSONArray storyArray = rootJSON.getJSONArray("stories");
-                    for(int i = 0; i < storyArray.length(); i++) {
-                        storyMap = new HashMap<>();
-                        JSONObject storyNow = storyArray.getJSONObject(i);
+                for(int i = 0; i < storyArray.length(); i++) {
+                    storyMap = new HashMap<>();
+                    JSONObject storyNow = storyArray.getJSONObject(i);
 
-                        idea = storyNow.getString("idea");
-                        storyNo = storyNow.getString("story_no");
-                        title = storyNow.getString("title");
-                        story = storyNow.getString("story");
+                    idea = storyNow.getString("idea");
+                    storyNo = storyNow.getString("story_no");
+                    title = storyNow.getString("title");
+                    story = storyNow.getString("story");
 
-                        storyMap.put("idea", idea);
-                        storyMap.put("storyNo", storyNo);
-                        storyMap.put("title", title);
-                        storyMap.put("story", story);
-                        _stories.add(storyMap);
-                    }
+                    storyMap.put("idea", idea);
+                    storyMap.put("storyNo", storyNo);
+                    storyMap.put("title", title);
+                    storyMap.put("story", story);
+                    _stories.add(storyMap);
                 }
                 //-----------------------------------------------------------------------------
             }
