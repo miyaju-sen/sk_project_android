@@ -1,5 +1,6 @@
 package local.hal.st32.android.ploteditor;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
@@ -152,12 +153,13 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
         access.setOnCallBack(new IdeaJsonAccess.CallBackTask() {
             @Override
             public void CallBack(List<Map<String, String>> ideas, List<Map<String, String>> stories) {
-                _allocate.setIdeas(ideas);
+                _allocate.setIdeas(ideas, stories);
 
                 //どのタブ（Fragment）のデータを再取得するのか
                 if( TabIdea1Fragment.getTabIdea1FragmentTag().equals(_tag) ) {
                     Log.e("++++++++++++++", "確認用1");
                     TabIdea1Fragment.setTvIdea( _allocate.getIdea1() );
+
                 }
                 else {
                     Log.e("++++++++++++++", "確認用2");

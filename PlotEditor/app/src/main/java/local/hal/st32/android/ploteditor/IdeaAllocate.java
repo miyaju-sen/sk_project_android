@@ -1,5 +1,8 @@
 package local.hal.st32.android.ploteditor;
 
+import android.content.Context;
+import android.widget.SimpleAdapter;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
