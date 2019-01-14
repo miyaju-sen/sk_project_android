@@ -1,13 +1,20 @@
 package local.hal.st32.android.ploteditor;
 
+import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.support.v4.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.SimpleAdapter;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * 就職作品
@@ -71,6 +78,21 @@ public class StoryEditDialogCreate extends DialogFragment {
             switch (which) {
                 case DialogInterface.BUTTON_POSITIVE:
                     //保存または新規追加
+                    IdeaJsonAccess access = new IdeaJsonAccess();
+                    access.setOnCallBack(new IdeaJsonAccess.CallBackTask() {
+                        @Override
+                        public void CallBack(List<Map<String, String>> ideas, List<Map<String, String>> stories) {
+                            IdeaAllocate allocate = new IdeaAllocate();
+                            allocate.setIdeas(ideas, stories);
+                            IdeaActivity.setAllocate(allocate);
+
+                            String from[] = {"title", "story"};
+                            int to[] = {android.R.id.text1, android.R.id.text2};
+                            SimpleAdapter adapter = new SimpleAdapter(IdeaActivity.getInstance().getApplicationContext(), allocate.getStory1(), android.R.layout.simple_list_item_2, from, to);
+                            TabIdea1Fragment.setLvStories(adapter, stories);
+                        }
+                    });
+                    access.execute("", "1", "", "");
                     break;
                 case DialogInterface.BUTTON_NEUTRAL:
                     //編集キャンセル

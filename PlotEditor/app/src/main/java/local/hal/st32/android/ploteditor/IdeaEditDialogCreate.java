@@ -77,7 +77,9 @@ public class IdeaEditDialogCreate extends DialogFragment {
                         @Override
                         public void CallBack(List<Map<String, String>> ideas, List<Map<String, String>> stories) {
                             //TODO:データ保存後どうにかしてアクティビティを再生成するかなんかしないとエラー
-                            _callBack.CallBack(ideas, stories);
+                            IdeaActivity.receiveIdea(_idea);
+
+//                            _callBack.CallBack(ideas, stories);
                             _dialog.dismiss();
                         }
                     });

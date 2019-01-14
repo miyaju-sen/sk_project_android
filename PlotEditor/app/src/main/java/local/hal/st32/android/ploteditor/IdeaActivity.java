@@ -42,6 +42,10 @@ import java.util.Map;
  */
 public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener, NavigationView.OnNavigationItemSelectedListener {
     /**
+     * 本アクティビティのインスタンス
+     */
+    public static IdeaActivity sInstance;
+    /**
      * 構想とストーリー一覧を格納する配列
      */
     private List<Map<String, String>> _ideas = new ArrayList<>();
@@ -85,6 +89,7 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
         setContentView(R.layout.activity_idea);
 
         Log.e("*******", "地点onCreate");
+        sInstance = IdeaActivity.this;
 
         //NavigationViewのヘッダー部分のTextViewを取得
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -156,7 +161,8 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
                 _allocate.setIdeas(ideas, stories);
 
                 //どのタブ（Fragment）のデータを再取得するのか
-                if( TabIdea1Fragment.getTabIdea1FragmentTag().equals(_tag) ) {
+//                if( TabIdea1Fragment.getTabIdea1FragmentTag().equals(_tag) ) {
+                if( "1".equals(_tag) ) {
                     Log.e("++++++++++++++", "確認用1");
                     TabIdea1Fragment.setTvIdea( _allocate.getIdea1() );
 
@@ -167,6 +173,24 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
             }
         });
         access.execute("", _outline.get("no"), "", "");
+    }
+
+    /**
+     * IdeaAllocateクラスのインスタンスを取得するメソッド
+     *
+     * @param allocate
+     */
+    public static void setAllocate(IdeaAllocate allocate) {
+        _allocate = allocate;
+    }
+
+    /**
+     * 本アクティビティのインスタンスゲッター
+     *
+     * @return IdeaActivityのインスタンス
+     */
+    public static IdeaActivity getInstance() {
+        return sInstance;
     }
 
     /**
