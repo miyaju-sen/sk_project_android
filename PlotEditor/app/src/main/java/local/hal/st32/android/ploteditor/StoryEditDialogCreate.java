@@ -77,7 +77,7 @@ public class StoryEditDialogCreate extends DialogFragment {
         public void onClick(DialogInterface dialog, int which) {
             switch (which) {
                 case DialogInterface.BUTTON_POSITIVE:
-                    //保存または新規追加
+                    //保存または新規追加 TODO:現時点ではまだ取得するだけで更新処理はしてない
                     IdeaJsonAccess access = new IdeaJsonAccess();
                     access.setOnCallBack(new IdeaJsonAccess.CallBackTask() {
                         @Override
@@ -86,6 +86,8 @@ public class StoryEditDialogCreate extends DialogFragment {
                             allocate.setIdeas(ideas, stories);
                             IdeaActivity.setAllocate(allocate);
 
+                            //TODO:起承転結のどのストーリーを編集したのかを判断する必要がある
+                            //ストーリー一覧をListViewにセット
                             String from[] = {"title", "story"};
                             int to[] = {android.R.id.text1, android.R.id.text2};
                             SimpleAdapter adapter = new SimpleAdapter(IdeaActivity.getInstance().getApplicationContext(), allocate.getStory1(), android.R.layout.simple_list_item_2, from, to);

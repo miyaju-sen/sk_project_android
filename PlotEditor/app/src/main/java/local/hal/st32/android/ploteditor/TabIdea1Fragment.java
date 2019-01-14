@@ -97,15 +97,6 @@ public class TabIdea1Fragment extends Fragment {
                 extras.putString("note", _tvIdea.getText().toString());
                 dialog.setArguments(extras);
 
-                //TODO:間に合わせの処理（組み直す予定）
-//                dialog.setOnCallBack(new IdeaEditDialogCreate.CallBackTask() {
-//                    @Override
-//                    public void CallBack(List<Map<String, String>> ideas, List<Map<String, String>> stories) {
-//                        Log.e("*******", "地点フラグバック");
-//                        IdeaActivity.receiveIdea(getTag());
-//                    }
-//                });
-
                 FragmentManager manager = getActivity().getSupportFragmentManager();
                 dialog.show(manager, "IdeaActivity");
             }
@@ -143,7 +134,7 @@ public class TabIdea1Fragment extends Fragment {
     }
 
     /**
-     * リスト押下時のリスナクラス
+     * リスト押下時のリスナクラス TODO:作品Noを送信する必要あり（ここで構想Noも送信しとく？）
      */
     private class ListItemClickListener implements AdapterView.OnItemClickListener {
         @Override

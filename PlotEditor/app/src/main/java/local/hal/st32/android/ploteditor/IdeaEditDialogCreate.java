@@ -38,8 +38,6 @@ public class IdeaEditDialogCreate extends DialogFragment {
     private String _idea;
     private String _note;
 
-    private CallBackTask _callBack = new CallBackTask();
-
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         LayoutInflater factory = LayoutInflater.from(getContext());
@@ -76,10 +74,8 @@ public class IdeaEditDialogCreate extends DialogFragment {
                     access.setOnCallBack(new IdeaJsonAccess.CallBackTask() {
                         @Override
                         public void CallBack(List<Map<String, String>> ideas, List<Map<String, String>> stories) {
-                            //TODO:データ保存後どうにかしてアクティビティを再生成するかなんかしないとエラー
+                            //起承転結の内、どの内容を編集したかの判別のために_ideaを送信
                             IdeaActivity.receiveIdea(_idea);
-
-//                            _callBack.CallBack(ideas, stories);
                             _dialog.dismiss();
                         }
                     });
@@ -89,23 +85,6 @@ public class IdeaEditDialogCreate extends DialogFragment {
                     //編集キャンセル
                     break;
             }
-        }
-    }
-
-    /**
-     * 他アクティビティからCallBackTaskを呼びだす際に必要なメソッド
-     *
-     * @param cbt CallBackTaskクラス
-     */
-    public void setOnCallBack(CallBackTask cbt) {
-        _callBack = cbt;
-    }
-
-    /**
-     * コールバック用のstaticなクラス
-     */
-    public static class CallBackTask {
-        public void CallBack(List<Map<String, String>> ideas, List<Map<String, String>> stories) {
         }
     }
 }

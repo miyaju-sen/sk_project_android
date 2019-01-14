@@ -61,7 +61,10 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
      * ストーリー一覧を格納する配列
      */
     private List<Map<String, String>> _stories = new ArrayList<>();
-    private static String _tag;
+    /**
+     * 起承転結番号
+     */
+    private static String sIdea;
     /**
      * リストビューにセットするためのアダプタ類
      */
@@ -88,7 +91,6 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_idea);
 
-        Log.e("*******", "地点onCreate");
         sInstance = IdeaActivity.this;
 
         //NavigationViewのヘッダー部分のTextViewを取得
@@ -148,11 +150,15 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
         access.execute("", _outline.get("no"), "", "");
     }
 
-    //TODO:データ再取得する必要がある
-    public static void receiveIdea(String tag) {
+    /**
+     * 構想の内容を再取得するメソッド
+     *
+     * @param idea 起承転結番号
+     */
+    public static void receiveIdea(String idea) {
         //フラグメントのtagに対応したデータを取得する
         _allocate = new IdeaAllocate();
-        _tag = tag;
+        sIdea = idea;
 
         IdeaJsonAccess access = new IdeaJsonAccess();
         access.setOnCallBack(new IdeaJsonAccess.CallBackTask() {
@@ -160,13 +166,13 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
             public void CallBack(List<Map<String, String>> ideas, List<Map<String, String>> stories) {
                 _allocate.setIdeas(ideas, stories);
 
-                //どのタブ（Fragment）のデータを再取得するのか
-//                if( TabIdea1Fragment.getTabIdea1FragmentTag().equals(_tag) ) {
-                if( "1".equals(_tag) ) {
+                //どのタブ（Fragment）のデータを再取得するのか（起承転結番号で判断）
+                if( "1".equals(sIdea) ) {
                     Log.e("++++++++++++++", "確認用1");
                     TabIdea1Fragment.setTvIdea( _allocate.getIdea1() );
 
                 }
+                //TODO:他のフラグメントの分も
                 else {
                     Log.e("++++++++++++++", "確認用2");
                 }
