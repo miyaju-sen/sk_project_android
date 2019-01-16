@@ -124,7 +124,7 @@ public class StoryEditDialogCreate extends DialogFragment {
                     access.execute(_plot, _storyNo, _idea, _etTitle.getText().toString(), _etStory.getText().toString());
                     break;
                 case DialogInterface.BUTTON_NEUTRAL:
-                    //編集キャンセル
+                    //編集キャンセル TODO:変更されてた場合の処理
                     break;
             }
         }

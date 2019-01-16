@@ -66,6 +66,10 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
      */
     private static String sIdea;
     /**
+     * フラグメントのタグ
+     */
+    private String mTag;
+    /**
      * リストビューにセットするためのアダプタ類
      */
     private final String[] _from = {"title", "story"};
@@ -244,8 +248,23 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
         Bundle extras = new Bundle();
         extras.putString("mode", "insert");
         extras.putString("plot", _outline.get("no")); //作品No
-        //TODO:タグを取得する処理をここで使用→起承転結のどれに追加するかの判断
-//        extras.putString("idea", ); //起承転結番号
+
+        //起承転結の内どれにストーリーを追加するか
+        String idea = "";
+        if( TabIdea1Fragment.getTabIdea1FragmentTag().equals(mTag) ) {
+            idea = "1";
+        }
+        else if( TabIdea2Fragment.getTabIdea2FragmentTag().equals(mTag) ) {
+            idea = "2";
+        }
+        else if( TabIdea3Fragment.getTabIdea3FragmentTag().equals(mTag) ) {
+            idea = "3";
+        }
+        else if( TabIdea4Fragment.getTabIdea4FragmentTag().equals(mTag) ) {
+            idea = "4";
+        }
+
+        extras.putString("idea", idea);
         dialog.setArguments(extras);
 
         FragmentManager manager = getSupportFragmentManager();
@@ -430,13 +449,13 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
      */
     @Override
     public void onPageSelected(int position) {
-        Log.e("*******", "地点ページ切り替わった" + position);
+        FragmentManager fragment = getSupportFragmentManager();
         _stories = new ArrayList<>();
 
         switch (position) {
             case 0:
-                FragmentManager fragment = getSupportFragmentManager();
-                Log.e("***************", "フラグメント：" + fragment.getFragments().get(position).getTag());
+                //タグ取得
+                mTag = TabIdea1Fragment.getTabIdea1FragmentTag();
 
                 //構想
                 TabIdea1Fragment.setTvIdea( _allocate.getIdea1() );
@@ -446,6 +465,9 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
                 TabIdea1Fragment.setLvStories(_adapter, _allocate.getStory1());
                 break;
             case 1:
+                //タグ取得
+                mTag = TabIdea2Fragment.getTabIdea2FragmentTag();
+
                 //構想
                 TabIdea2Fragment.setTvIdea( _allocate.getIdea2() );
 
@@ -454,6 +476,10 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
                 TabIdea2Fragment.setLvStories(_adapter, _allocate.getStory2());
                 break;
             case 2:
+                //タグ取得
+                mTag = TabIdea3Fragment.getTabIdea3FragmentTag();
+
+                //構想
                 TabIdea3Fragment.setTvIdea( _allocate.getIdea3() );
 
                 //ストーリー
@@ -461,6 +487,10 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
                 TabIdea3Fragment.setLvStories(_adapter, _allocate.getStory3());
                 break;
             case 3:
+                //タグ取得
+                mTag = TabIdea4Fragment.getTabIdea4FragmentTag();
+
+                //構想
                 TabIdea4Fragment.setTvIdea( _allocate.getIdea4() );
 
                 //ストーリー

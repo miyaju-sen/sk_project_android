@@ -26,6 +26,10 @@ import java.util.Map;
  */
 public class TabIdea4Fragment extends Fragment {
     /**
+     * タグ
+     */
+    private static String sTag;
+    /**
      * 画面部品
      */
     private static TextView _tvIdea;
@@ -66,6 +70,9 @@ public class TabIdea4Fragment extends Fragment {
         Log.e("*******", "地点フラグメント4");
         View view = inflater.inflate(R.layout.fragment_tab_idea4, null);
 
+        //タグ取得
+        sTag = getTag();
+
         //画面部品取得
         _tvIdea = view.findViewById(R.id.tvIdea);
         _lvStories = view.findViewById(R.id.lvStories);
@@ -92,6 +99,14 @@ public class TabIdea4Fragment extends Fragment {
         event.setTouchListener(_tvIdea);
 
         return view;
+    }
+
+    /**
+     * TabIdea4Fragmentのタグのゲッター
+     * @return TabIdea4Fragmentのタグ
+     */
+    public static String getTabIdea4FragmentTag() {
+        return sTag;
     }
 
     /**
