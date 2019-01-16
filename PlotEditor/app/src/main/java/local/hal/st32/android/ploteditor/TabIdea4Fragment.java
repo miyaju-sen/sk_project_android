@@ -31,6 +31,10 @@ public class TabIdea4Fragment extends Fragment {
     private static TextView _tvIdea;
     private static ListView _lvStories;
     /**
+     * 構想情報を格納する配列
+     */
+    private static HashMap<String, String> _ideas = new HashMap<>();
+    /**
      * ストーリー一覧を格納する配列
      */
     private static List<Map<String, String>> _stories = new ArrayList<>();
@@ -60,7 +64,6 @@ public class TabIdea4Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.e("*******", "地点フラグメント4");
-
         View view = inflater.inflate(R.layout.fragment_tab_idea4, null);
 
         //画面部品取得
@@ -75,7 +78,10 @@ public class TabIdea4Fragment extends Fragment {
             public void ideaEditDialog(TextView textView) {
                 IdeaEditDialogCreate dialog = new IdeaEditDialogCreate();
                 Bundle extras = new Bundle();
-                extras.putString("idea", getString( R.string.idea_4 ));
+                extras.putString("ideaTitle", getString( R.string.idea_4 ));
+                extras.putString("ideaNo", _ideas.get("ideaNo"));
+                extras.putString("plot", _ideas.get("plot"));
+                extras.putString("idea", _ideas.get("idea"));
                 extras.putString("note", _tvIdea.getText().toString());
                 dialog.setArguments(extras);
 
@@ -93,12 +99,14 @@ public class TabIdea4Fragment extends Fragment {
      * @param ideas
      */
     public static void setTvIdea(HashMap<String, String> ideas) {
+        _ideas = ideas;
         _tvIdea.setText( ideas.get("note") );
     }
 
     /**
      * 取得したアダプタをlvStoriesにセットするメソッド
      * @param adapter
+     * @param stories
      */
     public static void setLvStories(SimpleAdapter adapter, List<Map<String, String>> stories) {
         _stories = stories;
@@ -113,9 +121,14 @@ public class TabIdea4Fragment extends Fragment {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             StoryEditDialogCreate dialog = new StoryEditDialogCreate();
             Bundle extras = new Bundle();
+
             extras.putString("mode", "edit");
-            extras.putString("title", _stories.get(position).get("title"));
-            extras.putString("story", _stories.get(position).get("story"));
+            extras.putString("plot", _ideas.get("plot")); //作品No
+            extras.putString("storyNo", _stories.get(position).get("storyNo")); //ストーリーNo
+            extras.putString("idea", _ideas.get("idea")); //起承転結番号
+            extras.putString("title", _stories.get(position).get("title")); //タイトル
+            extras.putString("story", _stories.get(position).get("story")); //ストーリー
+
             dialog.setArguments(extras);
 
             FragmentManager manager = getActivity().getSupportFragmentManager();

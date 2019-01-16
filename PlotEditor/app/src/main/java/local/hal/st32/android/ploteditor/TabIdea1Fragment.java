@@ -29,10 +29,6 @@ import java.util.Map;
  */
 public class TabIdea1Fragment extends Fragment {
     /**
-     * タグ
-     */
-    private static String _tag;
-    /**
      * 画面部品
      */
     private static TextView _tvIdea;
@@ -78,16 +74,11 @@ public class TabIdea1Fragment extends Fragment {
         _lvStories = view.findViewById(R.id.lvStories);
         _lvStories.setOnItemClickListener(new ListItemClickListener());
 
-        //タグ
-        _tag = getTag();
-
         //TapEventへテキストビューをセット→ダブルタップ後、編集用のダイアログを表示
-        final TapEvent event = new TapEvent(getContext());
+        TapEvent event = new TapEvent(getContext());
         event.setOnDialogCall(new TapEvent.DialogCall() {
             @Override
             public void ideaEditDialog(TextView textView) {
-                Log.e("*********", "テキストビューの中身は：" + textView.getText().toString());
-
                 IdeaEditDialogCreate dialog = new IdeaEditDialogCreate();
                 Bundle extras = new Bundle();
                 extras.putString("ideaTitle", getString( R.string.idea_1 ));
@@ -104,14 +95,6 @@ public class TabIdea1Fragment extends Fragment {
         event.setTouchListener(_tvIdea);
 
         return view;
-    }
-
-    /**
-     * TabIdea1Fragmentのタグのゲッター
-     * @return TabIdea1Fragmentのタグ
-     */
-    public static String getTabIdea1FragmentTag() {
-        return _tag;
     }
 
     /**
@@ -134,16 +117,23 @@ public class TabIdea1Fragment extends Fragment {
     }
 
     /**
-     * リスト押下時のリスナクラス TODO:作品Noを送信する必要あり（ここで構想Noも送信しとく？）
+     * リスト押下時のリスナクラス
+     * ※編集を行う
+     * TODO:作品Noを送信する必要あり（ここで構想Noも送信しとく？）
      */
     private class ListItemClickListener implements AdapterView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             StoryEditDialogCreate dialog = new StoryEditDialogCreate();
             Bundle extras = new Bundle();
+
             extras.putString("mode", "edit");
-            extras.putString("title", _stories.get(position).get("title"));
-            extras.putString("story", _stories.get(position).get("story"));
+            extras.putString("plot", _ideas.get("plot")); //作品No
+            extras.putString("storyNo", _stories.get(position).get("storyNo")); //ストーリーNo
+            extras.putString("idea", _ideas.get("idea")); //起承転結番号
+            extras.putString("title", _stories.get(position).get("title")); //タイトル
+            extras.putString("story", _stories.get(position).get("story")); //ストーリー
+
             dialog.setArguments(extras);
 
             FragmentManager manager = getActivity().getSupportFragmentManager();
