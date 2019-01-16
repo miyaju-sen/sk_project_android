@@ -36,6 +36,12 @@ public class StoryEditDialogCreate extends DialogFragment {
      * 新規追加か編集かを示す変数
      */
     private String _mode;
+    /**
+     * StoryJsonAccessへ送信する値
+     */
+    private String _plot;
+    private String _storyNo;
+    private String _idea;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -48,14 +54,21 @@ public class StoryEditDialogCreate extends DialogFragment {
         builder.setView(view);
 
         Bundle extras = getArguments();
+        _plot = extras.getString("plot");
+        _idea = extras.getString("idea");
+
         _mode = extras.getString("mode");
         //新規追加だった場合
         if(_mode.equals("insert")) {
+            _storyNo = "";
+
             builder.setTitle(R.string.dialog_story_insert);
             builder.setPositiveButton(R.string.dialog_insert, new DialogButtonClickListener());
         }
         //編集モードだった場合
         else {
+            _storyNo = extras.getString("storyNo");
+
             _etTitle.setText( extras.getString("title") );
             _etStory.setText( extras.getString("story") );
 
@@ -78,8 +91,8 @@ public class StoryEditDialogCreate extends DialogFragment {
             switch (which) {
                 case DialogInterface.BUTTON_POSITIVE:
                     //保存または新規追加 TODO:現時点ではまだ取得するだけで更新処理はしてない
-                    IdeaJsonAccess access = new IdeaJsonAccess();
-                    access.setOnCallBack(new IdeaJsonAccess.CallBackTask() {
+                    StoryJsonAccess access = new StoryJsonAccess();
+                    access.setOnCallBack(new StoryJsonAccess.CallBackTask() {
                         @Override
                         public void CallBack(List<Map<String, String>> ideas, List<Map<String, String>> stories) {
                             IdeaAllocate allocate = new IdeaAllocate();
@@ -94,7 +107,7 @@ public class StoryEditDialogCreate extends DialogFragment {
                             TabIdea1Fragment.setLvStories(adapter, stories);
                         }
                     });
-                    access.execute("", "1", "", "");
+                    access.execute(_plot, _storyNo, _idea, _etTitle.getText().toString(), _etStory.getText().toString());
                     break;
                 case DialogInterface.BUTTON_NEUTRAL:
                     //編集キャンセル
