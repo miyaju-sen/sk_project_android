@@ -119,7 +119,6 @@ public class TabIdea1Fragment extends Fragment {
     /**
      * リスト押下時のリスナクラス
      * ※編集を行う
-     * TODO:作品Noを送信する必要あり（ここで構想Noも送信しとく？）
      */
     private class ListItemClickListener implements AdapterView.OnItemClickListener {
         @Override

@@ -168,13 +168,16 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
 
                 //どのタブ（Fragment）のデータを再取得するのか（起承転結番号で判断）
                 if( "1".equals(sIdea) ) {
-                    Log.e("++++++++++++++", "確認用1");
                     TabIdea1Fragment.setTvIdea( _allocate.getIdea1() );
-
                 }
-                //TODO:他のフラグメントの分も
-                else {
-                    Log.e("++++++++++++++", "確認用2");
+                else if( "2".equals(sIdea) ) {
+                    TabIdea2Fragment.setTvIdea( _allocate.getIdea2() );
+                }
+                else if( "3".equals(sIdea) ) {
+                    TabIdea3Fragment.setTvIdea( _allocate.getIdea3() );
+                }
+                else if( "4".equals(sIdea) ) {
+                    TabIdea4Fragment.setTvIdea( _allocate.getIdea4() );
                 }
             }
         });
