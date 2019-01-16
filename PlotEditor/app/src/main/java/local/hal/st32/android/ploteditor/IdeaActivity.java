@@ -243,6 +243,9 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
         StoryEditDialogCreate dialog = new StoryEditDialogCreate();
         Bundle extras = new Bundle();
         extras.putString("mode", "insert");
+        extras.putString("plot", _outline.get("no")); //作品No
+        //TODO:タグを取得する処理をここで使用→起承転結のどれに追加するかの判断
+//        extras.putString("idea", ); //起承転結番号
         dialog.setArguments(extras);
 
         FragmentManager manager = getSupportFragmentManager();
