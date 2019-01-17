@@ -130,6 +130,7 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
         Log.e("*******", "地点onResume");
         _allocate = new IdeaAllocate();
 
+        //構想・ストーリーのデータ取得＆初期表示（タブ「起」）にデータをセット
         IdeaJsonAccess access = new IdeaJsonAccess();
         access.setOnCallBack(new IdeaJsonAccess.CallBackTask() {
             @Override
@@ -142,13 +143,16 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
                 else {
                     _allocate.setIdeas(ideas, stories);
 
+                    //リストビューにセット
                     _adapter = new SimpleAdapter(IdeaActivity.this, _allocate.getStory1(), android.R.layout.simple_list_item_2, _from, _to);
                     TabIdea1Fragment.setLvStories(_adapter, _allocate.getStory1());
                 }
 
-                //初期表示（タブ「起」）にデータをセット
-                //構想内容
+                //テキストビューにセット
                 TabIdea1Fragment.setTvIdea( _allocate.getIdea1() );
+                
+                //タグ値をセット
+                mTag = TabIdea1Fragment.getTabIdea1FragmentTag();
             }
         });
         access.execute("", _outline.get("no"), "", "");
@@ -249,7 +253,7 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
         extras.putString("mode", "insert");
         extras.putString("plot", _outline.get("no")); //作品No
 
-        //起承転結の内どれにストーリーを追加するか TODO:起動直後にエラー
+        //起承転結の内どれにストーリーを追加するか
         String idea = "";
         if( TabIdea1Fragment.getTabIdea1FragmentTag().equals(mTag) ) {
             idea = "1";
