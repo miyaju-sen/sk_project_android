@@ -135,18 +135,11 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
         access.setOnCallBack(new IdeaJsonAccess.CallBackTask() {
             @Override
             public void CallBack(List<Map<String, String>> ideas, List<Map<String, String>> stories) {
-                //ストーリーが無い場合
-                if(0 == stories.size()) {
-                    _allocate.setIdeas(ideas);
-                }
-                //ある場合
-                else {
-                    _allocate.setIdeas(ideas, stories);
+                 _allocate.setIdeas(ideas, stories);
 
-                    //リストビューにセット
-                    _adapter = new SimpleAdapter(IdeaActivity.this, _allocate.getStory1(), android.R.layout.simple_list_item_2, _from, _to);
-                    TabIdea1Fragment.setLvStories(_adapter, _allocate.getStory1());
-                }
+                //リストビューにセット
+                _adapter = new SimpleAdapter(IdeaActivity.this, _allocate.getStory1(), android.R.layout.simple_list_item_2, _from, _to);
+                TabIdea1Fragment.setLvStories(_adapter, _allocate.getStory1());
 
                 //テキストビューにセット
                 TabIdea1Fragment.setTvIdea( _allocate.getIdea1() );
@@ -211,7 +204,7 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
     }
 
     /**
-     * オプションメニュー作成　TODO:更新ボタンは余裕があれば（どのタブで更新したかの判断がまたややこしい：tagでできそうではある）
+     * オプションメニュー作成
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -224,6 +217,10 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
         //追加ボタンを表示
         MenuItem insert = menu.findItem(R.id.menuInsert);
         insert.setVisible(true);
+
+        //更新ボタンを表示
+        MenuItem reload = menu.findItem(R.id.menuReload);
+        reload.setVisible(true);
 
         return true;
     }
@@ -238,6 +235,10 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
             //ストーリーを追加
             case R.id.menuInsert:
                 onInsertButtonClick();
+                break;
+            //データ更新
+            case R.id.menuReload:
+                onReloadButtonClick();
                 break;
         }
 
@@ -273,6 +274,47 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
 
         FragmentManager manager = getSupportFragmentManager();
         dialog.show(manager, "IdeaActivity");
+    }
+
+    /**
+     * 更新ボタン押下時の処理
+     */
+    public void onReloadButtonClick() {
+        _allocate = new IdeaAllocate();
+
+        IdeaJsonAccess access = new IdeaJsonAccess();
+        access.setOnCallBack(new IdeaJsonAccess.CallBackTask() {
+            @Override
+            public void CallBack(List<Map<String, String>> ideas, List<Map<String, String>> stories) {
+                _allocate.setIdeas(ideas, stories);
+
+                if( TabIdea1Fragment.getTabIdea1FragmentTag().equals(mTag) ) {
+                    TabIdea1Fragment.setTvIdea( _allocate.getIdea1() );
+
+                    _adapter = new SimpleAdapter(IdeaActivity.this, _allocate.getStory1(), android.R.layout.simple_list_item_2, _from, _to);
+                    TabIdea1Fragment.setLvStories(_adapter, _allocate.getStory1());
+                }
+                else if( TabIdea2Fragment.getTabIdea2FragmentTag().equals(mTag) ) {
+                    TabIdea2Fragment.setTvIdea( _allocate.getIdea2() );
+
+                    _adapter = new SimpleAdapter(IdeaActivity.this, _allocate.getStory2(), android.R.layout.simple_list_item_2, _from, _to);
+                    TabIdea2Fragment.setLvStories(_adapter, _allocate.getStory2());
+                }
+                else if( TabIdea3Fragment.getTabIdea3FragmentTag().equals(mTag) ) {
+                    TabIdea3Fragment.setTvIdea( _allocate.getIdea3() );
+
+                    _adapter = new SimpleAdapter(IdeaActivity.this, _allocate.getStory3(), android.R.layout.simple_list_item_2, _from, _to);
+                    TabIdea3Fragment.setLvStories(_adapter, _allocate.getStory3());
+                }
+                else if( TabIdea4Fragment.getTabIdea4FragmentTag().equals(mTag) ) {
+                    TabIdea4Fragment.setTvIdea( _allocate.getIdea4() );
+
+                    _adapter = new SimpleAdapter(IdeaActivity.this, _allocate.getStory4(), android.R.layout.simple_list_item_2, _from, _to);
+                    TabIdea4Fragment.setLvStories(_adapter, _allocate.getStory4());
+                }
+            }
+        });
+        access.execute("", _outline.get("no"), "", "");
     }
 
     /**
