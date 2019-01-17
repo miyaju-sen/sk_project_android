@@ -86,7 +86,7 @@ public class IdeaEditDialogCreate extends DialogFragment {
         _dialog = builder.create();
 
         //キャンセルボタンだけ別リスナー TODO:長文警告をトースト表示するのは不適切では→検討中ということで一旦放置
-        _dialog.show(); //TODO:上記のトースト表示をなくすのならここではなくIdeaActivityでshow()する
+        _dialog.show();
         _btChancel = _dialog.getButton( DialogInterface.BUTTON_NEUTRAL );
         _btChancel.setOnClickListener(new NeutralButtonClickListener());
 

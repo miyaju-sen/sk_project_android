@@ -249,7 +249,7 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
         extras.putString("mode", "insert");
         extras.putString("plot", _outline.get("no")); //作品No
 
-        //起承転結の内どれにストーリーを追加するか
+        //起承転結の内どれにストーリーを追加するか TODO:起動直後にエラー
         String idea = "";
         if( TabIdea1Fragment.getTabIdea1FragmentTag().equals(mTag) ) {
             idea = "1";

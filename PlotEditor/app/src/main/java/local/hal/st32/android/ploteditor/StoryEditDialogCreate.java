@@ -37,6 +37,11 @@ public class StoryEditDialogCreate extends DialogFragment {
      */
     private String _mode;
     /**
+     * リストビューのポジション
+     */
+    private String mPosition = "";
+    private String mTop = "";
+    /**
      * StoryJsonAccessへ送信する値
      */
     private String _plot;
@@ -71,6 +76,8 @@ public class StoryEditDialogCreate extends DialogFragment {
 
             _etTitle.setText( extras.getString("title") );
             _etStory.setText( extras.getString("story") );
+            mPosition = extras.getString("position");
+            mTop = extras.getString("top");
 
             builder.setTitle(R.string.dialog_story_edit);
             builder.setPositiveButton(R.string.dialog_save, new DialogButtonClickListener());
@@ -105,26 +112,26 @@ public class StoryEditDialogCreate extends DialogFragment {
                             SimpleAdapter adapter;
                             if( "1".equals(_idea) ) {
                                 adapter = new SimpleAdapter(IdeaActivity.getInstance().getApplicationContext(), allocate.getStory1(), android.R.layout.simple_list_item_2, from, to);
-                                TabIdea1Fragment.setLvStories(adapter, stories);
+                                TabIdea1Fragment.setLvStories(adapter, stories, mPosition, mTop);
                             }
                             else if( "2".equals(_idea) ) {
                                 adapter = new SimpleAdapter(IdeaActivity.getInstance().getApplicationContext(), allocate.getStory2(), android.R.layout.simple_list_item_2, from, to);
-                                TabIdea2Fragment.setLvStories(adapter, stories);
+                                TabIdea2Fragment.setLvStories(adapter, stories, mPosition, mTop);
                             }
                             else if( "3".equals(_idea) ) {
                                 adapter = new SimpleAdapter(IdeaActivity.getInstance().getApplicationContext(), allocate.getStory3(), android.R.layout.simple_list_item_2, from, to);
-                                TabIdea3Fragment.setLvStories(adapter, stories);
+                                TabIdea3Fragment.setLvStories(adapter, stories, mPosition, mTop);
                             }
                             else if( "4".equals(_idea) ) {
                                 adapter = new SimpleAdapter(IdeaActivity.getInstance().getApplicationContext(), allocate.getStory4(), android.R.layout.simple_list_item_2, from, to);
-                                TabIdea4Fragment.setLvStories(adapter, stories);
+                                TabIdea4Fragment.setLvStories(adapter, stories, mPosition, mTop);
                             }
                         }
                     });
                     access.execute(_plot, _storyNo, _idea, _etTitle.getText().toString(), _etStory.getText().toString());
                     break;
                 case DialogInterface.BUTTON_NEUTRAL:
-                    //編集キャンセル TODO:変更されてた場合の処理
+                    //編集キャンセル
                     break;
             }
         }

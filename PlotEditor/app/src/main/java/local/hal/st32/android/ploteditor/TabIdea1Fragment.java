@@ -132,6 +132,26 @@ public class TabIdea1Fragment extends Fragment {
     }
 
     /**
+     * 取得したアダプタをlvStoriesにセットするメソッド
+     * @param adapter
+     * @param stories
+     * @param position
+     * @param top
+     */
+    public static void setLvStories(SimpleAdapter adapter, List<Map<String, String>> stories, String position, String top) {
+        _stories = stories;
+        _lvStories.setAdapter(adapter);
+
+        //編集前の表示位置を指定
+        if(!"".equals(position)) {
+            _lvStories.setSelectionFromTop(Integer.valueOf(position), Integer.valueOf(top));
+        }
+        else {
+            _lvStories.setSelection( _lvStories.getCount() - 1 );
+        }
+    }
+
+    /**
      * リスト押下時のリスナクラス
      * ※編集を行う
      */
@@ -148,10 +168,14 @@ public class TabIdea1Fragment extends Fragment {
             extras.putString("title", _stories.get(position).get("title")); //タイトル
             extras.putString("story", _stories.get(position).get("story")); //ストーリー
 
+            //編集後のListViewの表示位置を、現状と同一にするための値を送信（スクロール位置の記憶）
+            extras.putString("top", Integer.toString( _lvStories.getChildAt(0).getTop() ));
+            extras.putString("position", Integer.toString( _lvStories.getFirstVisiblePosition() ));
+
             dialog.setArguments(extras);
 
             FragmentManager manager = getActivity().getSupportFragmentManager();
-            //dialog.show(manager, "IdeaActivity");
+            dialog.show(manager, "IdeaActivity");
         }
     }
 }
