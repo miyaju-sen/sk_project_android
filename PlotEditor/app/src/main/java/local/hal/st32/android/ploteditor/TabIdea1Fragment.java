@@ -151,7 +151,7 @@ public class TabIdea1Fragment extends Fragment {
             dialog.setArguments(extras);
 
             FragmentManager manager = getActivity().getSupportFragmentManager();
-            dialog.show(manager, "IdeaActivity");
+            //dialog.show(manager, "IdeaActivity");
         }
     }
 }

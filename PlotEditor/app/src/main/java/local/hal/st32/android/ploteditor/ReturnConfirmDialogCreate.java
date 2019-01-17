@@ -1,6 +1,7 @@
 package local.hal.st32.android.ploteditor;
 
 import android.app.Dialog;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;

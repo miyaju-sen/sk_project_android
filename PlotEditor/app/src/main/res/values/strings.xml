@@ -42,6 +42,7 @@
     <string name="dialog_insert">追加</string>
     <string name="dialog_hint_story_title">タイトル</string>
     <string name="dialog_hint_story">ストーリー</string>
+    <string name="toast_chancel_msg">変更された項目があります。保存せずに終了する場合はもう一度「キャンセル」をタップしてください。</string>
 
     <!-- 概要画面用 -->
     <string name="tv_title">作品タイトル</string>
