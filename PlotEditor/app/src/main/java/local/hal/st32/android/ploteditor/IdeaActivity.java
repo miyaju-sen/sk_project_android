@@ -150,7 +150,7 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
 
                 //テキストビューにセット
                 TabIdea1Fragment.setTvIdea( _allocate.getIdea1() );
-                
+
                 //タグ値をセット
                 mTag = TabIdea1Fragment.getTabIdea1FragmentTag();
             }
@@ -211,7 +211,7 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
     }
 
     /**
-     * オプションメニュー作成
+     * オプションメニュー作成　TODO:更新ボタンは余裕があれば（どのタブで更新したかの判断がまたややこしい：tagでできそうではある）
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
