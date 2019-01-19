@@ -1,5 +1,6 @@
 package local.hal.st32.android.ploteditor;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -7,11 +8,16 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.support.v7.widget.Toolbar;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,42 +43,43 @@ import java.util.Map;
  *
  * @author ohs60224
  */
-public class TestActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    private ActionBarDrawerToggle mDrawerToggle;
-    private DrawerLayout mDrawer;
-    private String LOGTAG = "タグ";
+public class TestActivity extends AppCompatActivity {
+
+    private final int FP = ViewGroup.LayoutParams.FILL_PARENT;
+    private final int WC = ViewGroup.LayoutParams.WRAP_CONTENT;
+    private LinearLayout mLayout;
+    private Button mBtAdd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-        // Toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        mLayout = findViewById(R.id.layout);
 
-        mDrawer = (DrawerLayout) findViewById(R.id.drawerLayout);
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawer, toolbar, R.string.drawable_open, R.string.drawable_close);
-        mDrawer.addDrawerListener(mDrawerToggle);
-        mDrawerToggle.syncState();
+        mBtAdd = mLayout.findViewById(R.id.btAdd);
+        mBtAdd.setOnClickListener(new View.OnClickListener() {
 
-        // NavigationView Listener
-        NavigationView navigationView = (NavigationView) findViewById(R.id.navigationView);
-        navigationView.setNavigationItemSelectedListener(this);
+            @Override
+            public void onClick(View v) {
+                Button button1 = new Button(TestActivity.this);
+                button1.setText("Button1");
+                mLayout.addView(button1, 1, createParam(WC, WC));
+
+                TextView text = new TextView(TestActivity.this);
+                text.setText("Text");
+                mLayout.addView(text, createParam(WC, WC));
+
+                Button button2 = new Button(TestActivity.this);
+                button2.setText("Button2");
+                mLayout.addView(button2, 2, createParam(WC, WC));
+            }
+        });
+
+
     }
 
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        int itemId = item.getItemId();
-        switch (itemId) {
-            //編集ボタン
-            case R.id.menuReload:
-                finish();
-                break;
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawerLayout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
+    private LinearLayout.LayoutParams createParam(int w, int h){
+        return new LinearLayout.LayoutParams(w, h);
     }
 }

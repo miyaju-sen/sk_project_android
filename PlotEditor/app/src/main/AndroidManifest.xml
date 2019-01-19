@@ -39,7 +39,9 @@
         <activity
             android:name=".ParlanceEditActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".TestActivity" />
+        <activity
+            android:name=".TestActivity"
+            android:theme="@style/AppTheme"/>
         <activity
             android:name=".StageEditActivity"
             android:theme="@style/AppTheme" />
