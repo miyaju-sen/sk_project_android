@@ -103,6 +103,7 @@ CREATE TABLE memos(
     no INT(8) NOT NULL AUTO_INCREMENT,  #メモNo
     plot INT(8) NOT NULL, #作品No
     note TEXT, #メモ内容
+    position INT(8), #View配置位置
     deleted BOOLEAN NOT NULL DEFAULT FALSE, #削除フラグ
     PRIMARY KEY(no), 
     INDEX(no),
@@ -114,6 +115,7 @@ CREATE TABLE memo_images(
     no INT(8) NOT NULL AUTO_INCREMENT,  #主キーNo
     memo INT(8) NOT NULL, #メモNo
     image_path VARCHAR(260), #メモ画像パス
+    position INT(8), #View配置位置
     deleted BOOLEAN NOT NULL DEFAULT FALSE, #削除フラグ
     PRIMARY KEY(no), 
     INDEX(no),
