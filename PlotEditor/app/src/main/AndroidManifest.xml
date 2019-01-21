@@ -32,7 +32,10 @@
         <activity android:name=".MemoListActivity" />
         <activity android:name=".CharacterActivity" />
         <activity android:name=".ImageUploadActivity" />
-        <activity android:name=".MemoEditActivity" />
+        <activity
+            android:name=".MemoEditActivity"
+            android:theme="@style/AppTheme"/>
+        <activity android:name=".MemoActivity"></activity>
         <activity
             android:name=".CharacterEditActivity"
             android:theme="@style/AppTheme" />
@@ -41,12 +44,12 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".TestActivity"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".StageEditActivity"
             android:theme="@style/AppTheme" />
         <activity android:name=".ParlanceActivity" />
-        <activity android:name=".IdeaActivity" ></activity>
+        <activity android:name=".IdeaActivity" />
     </application>
 
 </manifest>

@@ -11,6 +11,13 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+/**
+ * 就職作品
+ *
+ * メモ編集画面用アクティビティクラス
+ *
+ * @author ohs60224
+ */
 public class MemoEditActivity extends AppCompatActivity {
 
     /**
@@ -25,8 +32,6 @@ public class MemoEditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_memo_edit);
 
         //画面部品取得
-         tvMemo = findViewById(R.id.tvMemo);
-         etMemo = findViewById(R.id.etMemo);
     }
 
     /**
