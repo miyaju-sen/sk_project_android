@@ -42,6 +42,10 @@ import java.util.Map;
  *
  * テスト動作用アクティビティクラス
  *
+ * 参考
+ * 　http://www.cliph.net/wordpress/archives/793
+ * 　https://www.javadrive.jp/android/linearlayout/index3.html
+ *
  * @author ohs60224
  */
 public class TestActivity extends AppCompatActivity {

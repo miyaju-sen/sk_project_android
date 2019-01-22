@@ -197,14 +197,18 @@ public class MemoActivity extends AppCompatActivity implements NavigationView.On
      * TODO:削除ボタン押下時の処理
      */
     private void onMemoDeleteButtonClick() {
-        String no = mMemo.get("no");
-        String note = mMemo.get("note");
 
         Bundle extras = new Bundle();
-        extras.putString("no", no);
-        extras.putString("note", note);
+        extras.putString("no", mMemo.get("no"));
 
         Context context = this;
+        MemoDeleteConfirmDialogCreate.setActivityContext(context);
+
+        MemoDeleteConfirmDialogCreate dialog = new MemoDeleteConfirmDialogCreate();
+        dialog.setArguments(extras);
+
+        FragmentManager manager = getSupportFragmentManager();
+        dialog.show(manager, "MemoActivity");
     }
 
     /**

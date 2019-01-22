@@ -37,6 +37,7 @@
     <string name="dialog_delete">削除</string>
     <string name="dialog_character_delete_msg">登場人物「%1$s」を削除します。\nよろしいですか？</string>
     <string name="dialog_parlance_delete_msg">「%1$s」の情報を削除します。\nよろしいですか？</string>
+    <string name="dialog_memo_delete_msg">現在開いているメモを削除します。\nよろしいですか？</string>
     <string name="dialog_story_edit">編集</string>
     <string name="dialog_story_insert">ストーリー追加</string>
     <string name="dialog_insert">追加</string>
