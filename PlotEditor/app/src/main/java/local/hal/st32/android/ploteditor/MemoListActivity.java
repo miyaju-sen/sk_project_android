@@ -253,7 +253,7 @@ public class MemoListActivity extends AppCompatActivity implements NavigationVie
             memo.put("note", item.get("note"));
 
             intent.putExtra("MEMO", memo);
-            intent.putExtra("OUTLINE", mOutline); //TODO:これいらないのでは
+            intent.putExtra("OUTLINE", mOutline);
             startActivity(intent);
         }
     }

@@ -140,7 +140,7 @@ public class MemoEditActivity extends AppCompatActivity {
     }
 
     /**
-     * 保存ボタン押下時の処理
+     * 保存ボタン押下時の処理 TODO:新規登録の場合、遷移先はリスト画面の方がいいのでは
      */
     private void onSaveButtonClick() {
         //新規登録の場合主キーは空、編集の場合はmMemoから値を取得
