@@ -136,7 +136,7 @@ public class MemoEditActivity extends AppCompatActivity {
     private void onSaveButtonClick() {
         //新規登録の場合主キーは空、編集の場合はmMemoから値を取得
         String no = "";
-        if(ACTIVITY.equals(new NowActivity().getCharacterActivity())) {
+        if(ACTIVITY.equals(new NowActivity().getMemoActivity())) {
             no = mMemo.get("no");
         }
         String note = mEtMemo.getText().toString();

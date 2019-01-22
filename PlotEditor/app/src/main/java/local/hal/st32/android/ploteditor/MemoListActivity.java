@@ -77,10 +77,6 @@ public class MemoListActivity extends AppCompatActivity implements NavigationVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_memo_list);
 
-        //概要の内容取得
-        Intent intent = getIntent();
-        mOutline = (HashMap<String, String>) intent.getSerializableExtra("OUTLINE");
-
         //リストビュー取得・リスナー設定
         mLvMemos = findViewById(R.id.lvMemos);
         mLvMemos.setOnItemClickListener(new ListItemClickListener());
@@ -103,6 +99,9 @@ public class MemoListActivity extends AppCompatActivity implements NavigationVie
         //NavigationViewのリスナー
         NavigationView nvLeftView = findViewById(R.id.nvLeftView);
         nvLeftView.setNavigationItemSelectedListener(this);
+
+        Intent intent = getIntent();
+        mOutline = (HashMap<String, String>) intent.getSerializableExtra("OUTLINE");
     }
 
     @Override
