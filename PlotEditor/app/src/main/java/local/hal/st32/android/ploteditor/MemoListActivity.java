@@ -65,9 +65,9 @@ public class MemoListActivity extends AppCompatActivity implements NavigationVie
         Intent intent = getIntent();
         mOutline = (HashMap<String, String>) intent.getSerializableExtra("OUTLINE");
 
-        //TODO:リストビュー取得・リスナー設定
+        //リストビュー取得・リスナー設定
         mLvMemos = findViewById(R.id.lvMemos);
-//        mLvMemos.setOnClickListener(new ListItemClickListener);
+        mLvMemos.setOnItemClickListener(new ListItemClickListener());
 
         //NavigationViewのヘッダー部分のTextViewを取得
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
