@@ -40,6 +40,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 就職作品
+ *
+ * メモ一覧画面用アクティビティクラス
+ * TODO:作成日とか用意してもいいかもしれない
+ *
+ * @author ohs60224
+ */
 public class MemoListActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     /**
      * 現在表示している画面に対応したアクティビティ
@@ -326,11 +334,10 @@ public class MemoListActivity extends AppCompatActivity implements NavigationVie
         public void onPostExecute(List<Map<String, String>> list) {
             mList = list;
 
-            //TODO:リストビューのレイアウトを考える（このままだとメモ内容全部がリスト画面に表示されることになる）
             //リストビューに表示する要素を設定
             String[] from = {"note"};
-            int[] to = {android.R.id.text1};
-            SimpleAdapter adapter = new SimpleAdapter(getApplication(), list, android.R.layout.simple_expandable_list_item_2, from, to);
+            int[] to = {R.id.tvMemo};
+            SimpleAdapter adapter = new SimpleAdapter(getApplication(), list, R.layout.row_memo, from, to);
             mLvMemos.setAdapter(adapter);
         }
 

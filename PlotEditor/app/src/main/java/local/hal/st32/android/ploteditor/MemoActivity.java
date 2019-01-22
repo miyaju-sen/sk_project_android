@@ -194,7 +194,7 @@ public class MemoActivity extends AppCompatActivity implements NavigationView.On
     }
 
     /**
-     * TODO:削除ボタン押下時の処理
+     * 削除ボタン押下時の処理
      */
     private void onMemoDeleteButtonClick() {
 
