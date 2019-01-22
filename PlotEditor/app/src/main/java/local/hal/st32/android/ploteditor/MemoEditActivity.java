@@ -131,10 +131,30 @@ public class MemoEditActivity extends AppCompatActivity {
     }
 
     /**
-     * TODO:保存ボタン押下時の処理
+     * 保存ボタン押下時の処理
      */
     private void onSaveButtonClick() {
+        //新規登録の場合主キーは空、編集の場合はmMemoから値を取得
+        String no = "";
+        if(ACTIVITY.equals(new NowActivity().getCharacterActivity())) {
+            no = mMemo.get("no");
+        }
+        String note = mEtMemo.getText().toString();
 
+        MemoJsonAccess access = new MemoJsonAccess();
+        access.setOnCallBack(new MemoJsonAccess.CallBackTask() {
+            @Override
+            public void CallBack(HashMap<String, String> map) {
+                mMemo = map;
+
+                mIntent = new Intent(getApplication(), MemoActivity.class);
+                mIntent.putExtra("MEMO", mMemo);
+                mIntent.putExtra("OUTLINE", mOutline);
+                startActivity(mIntent);
+                MemoEditActivity.this.finish();
+            }
+        });
+        access.execute(no, mPlot, note);
     }
 
     /**

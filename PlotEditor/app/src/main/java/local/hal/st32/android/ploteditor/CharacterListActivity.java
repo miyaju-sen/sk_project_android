@@ -305,9 +305,9 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
         @Override
         public List<Map<String, String>> doInBackground(String... params) {
             String urlStr = params[0];
-            String no = params[1];
+            String plot = params[1];
 
-            String data = "plot=" + no;
+            String data = "plot=" + plot;
             HttpURLConnection con = null;
             InputStream is = null;
             List<Map<String, String>> result = null;

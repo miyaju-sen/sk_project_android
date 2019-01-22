@@ -134,28 +134,32 @@ public class MemoJsonAccess extends AsyncTask<String, String, String> {
             try {
                 //JSONデータの解析・取得
                 JSONObject rootJSON = new JSONObject(result);
+                no = rootJSON.getString("newId");
 
-                //構想分
+                //新規登録あるいは更新したレコードのみを取得
                 JSONArray memoArray = rootJSON.getJSONArray("memos");
                 for(int i = 0; i < memoArray.length(); i++) {
                     map = new HashMap<>();
                     JSONObject memoNow = memoArray.getJSONObject(i);
 
-                    no = memoNow.getString("no");
-                    plot = memoNow.getString("plot");
-                    note = memoNow.getString("note");
+                    if(no.equals( memoNow.getString("no") )) {
+                        no = memoNow.getString("no");
+                        plot = memoNow.getString("plot");
+                        note = memoNow.getString("note");
 
-                    map.put("no", no);
-                    map.put("plot", plot);
-                    map.put("note", note);
-                    sMemos.add(map);
+                        map.put("no", no);
+                        map.put("plot", plot);
+                        map.put("note", note);
+
+                        break;
+                    }
                 }
             }
             catch (JSONException ex) {
                 Log.e(DEBUG_TAG, "JSON解析失敗", ex);
             }
 
-            _callBack.CallBack(sMemos);
+            _callBack.CallBack(map);
         }
     }
 
@@ -183,7 +187,7 @@ public class MemoJsonAccess extends AsyncTask<String, String, String> {
      * コールバック用のstaticなクラス
      */
     public static class CallBackTask {
-        public void CallBack(List<Map<String, String>> memos) {
+        public void CallBack(HashMap<String, String> map) {
         }
     }
 }
