@@ -20,9 +20,11 @@ CREATE VIEW v_memos AS (
         memos.no AS memo_no, #メモNo
         memos.plot AS plot, #作品No
         memos.note AS note, #メモ内容
+        memos.position AS memo_position, #配置位置（テキスト）
         memos.deleted AS memo_deleted, #メモ削除フラグ
         memo_images.no AS image_no, #メモ画像No
         memo_images.image_path AS image_path, #メモ画像
+        memo_images.position AS image_position, #配置位置（画像）
         memo_images.deleted AS image_deleted #メモ画像削除フラグ
     FROM memos
         INNER JOIN memo_images ON memos.no = memo_images.memo
