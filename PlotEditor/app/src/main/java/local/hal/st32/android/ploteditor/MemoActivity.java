@@ -8,7 +8,7 @@ import android.os.Bundle;
  *
  * メモ内容表示画面
  *
- * @author ohs60224 
+ * @author ohs60224
  */
 public class MemoActivity extends AppCompatActivity {
 
@@ -16,5 +16,7 @@ public class MemoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_memo);
+
+
     }
 }
