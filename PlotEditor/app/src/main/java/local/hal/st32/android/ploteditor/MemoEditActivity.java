@@ -11,13 +11,19 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+/**
+ * 就職作品
+ *
+ * メモ内容編集画面
+ *
+ * @author ohs60224
+ */
 public class MemoEditActivity extends AppCompatActivity {
 
     /**
-     * 画面部品用フィールド
+     * 画面部品
      */
     private TextView tvMemo;
-    private EditText etMemo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +31,6 @@ public class MemoEditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_memo_edit);
 
         //画面部品取得
-         tvMemo = findViewById(R.id.tvMemo);
-         etMemo = findViewById(R.id.etMemo);
     }
 
     /**
@@ -59,13 +63,6 @@ public class MemoEditActivity extends AppCompatActivity {
         switch (itemId) {
             //修正ボタン
             case R.id.menuEdit:
-                //etMemoを表示してtvMemoを表示
-                tvMemo.setVisibility(View.INVISIBLE);
-                etMemo.setVisibility(View.VISIBLE);
-
-                //tvMemoの内容をetMemoへ
-                String memo = tvMemo.getText().toString();
-                etMemo.setText(memo);
                 break;
         }
 
