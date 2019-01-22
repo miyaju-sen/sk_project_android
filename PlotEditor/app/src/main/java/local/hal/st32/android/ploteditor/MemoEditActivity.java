@@ -1,9 +1,11 @@
 package local.hal.st32.android.ploteditor;
 
 import android.content.Intent;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -29,6 +31,10 @@ public class MemoEditActivity extends AppCompatActivity {
      * 画面部品
      */
     private EditText mEtMemo;
+    /**
+     * メモ内容
+     */
+    private String mNote;
     /**
      * 作品No
      */
@@ -75,6 +81,8 @@ public class MemoEditActivity extends AppCompatActivity {
         //リスト画面から遷移してきた場合：新規登録
         if(ACTIVITY.equals(new NowActivity().getMemoListActivity())) {
             setTitle("メモ 新規登録");
+
+            mNote = "";
         }
         //確認画面から遷移してきた場合：編集
         else {
@@ -82,7 +90,8 @@ public class MemoEditActivity extends AppCompatActivity {
 
             //編集する内容を取得
             mMemo = (HashMap<String, String>) mIntent.getSerializableExtra("MEMO");
-            mEtMemo.setText( mMemo.get("note") );
+            mNote = mMemo.get("note");
+            mEtMemo.setText(mNote);
         }
     }
 
@@ -122,7 +131,7 @@ public class MemoEditActivity extends AppCompatActivity {
                 onSaveButtonClick();
                 break;
             //戻るボタン
-            case R.id.home:
+            case android.R.id.home:
                 onBackButtonClick();
                 break;
         }
@@ -158,9 +167,17 @@ public class MemoEditActivity extends AppCompatActivity {
     }
 
     /**
-     * TODO:戻るボタン押下時の処理
+     * 戻るボタン押下時の処理
      */
     private void onBackButtonClick() {
-        finish();
+        //変更されていた場合
+        if( !mNote.equals( mEtMemo.getText().toString() ) ) {
+            ReturnConfirmDialogCreate dialog =  new ReturnConfirmDialogCreate();
+            FragmentManager manager = getSupportFragmentManager();
+            dialog.show(manager, "MemoEditActivity");
+        }
+        else {
+            finish();
+        }
     }
 }
