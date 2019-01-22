@@ -9,7 +9,7 @@ import java.util.HashMap;
  *
  * CharacterEditActivity専用
  * 戻るボタン押下時に、変更された項目があればtrue、なければfalseを返すクラス
- * TODO:新規登録時はできない
+ * TODO:新規登録時はできないのでなんとかする
  *
  * @author ohs60224
  */

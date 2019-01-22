@@ -15,7 +15,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import java.util.HashMap;
@@ -92,7 +94,21 @@ public class MemoListActivity extends AppCompatActivity implements NavigationVie
         super.onResume();
         setTitle("メモ一覧");
 
-        //TODO:メモ一覧を再取得
+        //メモ一覧データを取得
+        MemoJsonAccess access = new MemoJsonAccess();
+        access.setOnCallBack(new MemoJsonAccess.CallBackTask() {
+            @Override
+            public void CallBack(List<Map<String, String>> memos) {
+                mList = memos;
+
+                //TODO:リストビューのレイアウトを考える（このままだとメモ内容全部がリスト画面に表示されることになる）
+                String[] from = {"note"};
+                int[] to = {android.R.id.text1};
+                SimpleAdapter adapter = new SimpleAdapter(getApplication(), mList, android.R.layout.simple_expandable_list_item_1, from, to);
+                mLvMemos.setAdapter(adapter);
+            }
+        });
+        access.execute("", mOutline.get("no"), "");
     }
 
     /**
@@ -219,5 +235,23 @@ public class MemoListActivity extends AppCompatActivity implements NavigationVie
         dialog.show(manager, "MemoListActivity");
     }
 
-    
+    /**
+     * リスト押下時のリスナクラス
+     */
+    private class ListItemClickListener implements AdapterView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            Intent intent = new Intent(getApplication(), MemoActivity.class);
+            HashMap<String, String> memo = new HashMap<>();
+
+            Map<String, String> item = mList.get(position);
+            memo.put("no", item.get("no"));
+            memo.put("plot", item.get("plot"));
+            memo.put("note", item.get("note"));
+
+            intent.putExtra("MEMO", memo);
+            intent.putExtra("OUTLINE", mOutline); //TODO:これいらないのでは
+            startActivity(intent);
+        }
+    }
 }
