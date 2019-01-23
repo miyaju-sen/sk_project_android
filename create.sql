@@ -18,7 +18,7 @@ CREATE TABLE plots(
     title VARCHAR(100) NOT NULL, #タイトル
     slogan VARCHAR(50), #キャッチコピー
     summary TEXT, #あらすじ
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, #更新日 
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, #更新日 
     deleted BOOLEAN NOT NULL DEFAULT FALSE, #削除フラグ
     PRIMARY KEY(no), 
     INDEX(no)
@@ -103,7 +103,7 @@ CREATE TABLE memos(
     no INT(8) NOT NULL AUTO_INCREMENT,  #メモNo
     plot INT(8) NOT NULL, #作品No
     note TEXT, #メモ内容
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, #更新日
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, #更新日
     deleted BOOLEAN NOT NULL DEFAULT FALSE, #削除フラグ
     PRIMARY KEY(no), 
     INDEX(no),
