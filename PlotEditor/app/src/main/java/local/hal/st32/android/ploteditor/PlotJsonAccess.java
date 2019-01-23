@@ -168,6 +168,7 @@ public class PlotJsonAccess extends AsyncTask<String, String, String> {
             String title = "";
             String slogan = "";
             String summary = "";
+            String updatedAt = "";
 
             try {
                 JSONObject rootJSON = new JSONObject(result);
@@ -185,11 +186,13 @@ public class PlotJsonAccess extends AsyncTask<String, String, String> {
                         title = plotNow.getString("title");
                         slogan = plotNow.getString("slogan");
                         summary = plotNow.getString("summary");
+                        updatedAt = plotNow.getString("updated_at");
 
                         map.put("no", no);
                         map.put("title", title);
                         map.put("slogan", slogan);
                         map.put("summary", summary);
+                        map.put("updated_at", updatedAt);
                         setPlot(map);
 
                         break;

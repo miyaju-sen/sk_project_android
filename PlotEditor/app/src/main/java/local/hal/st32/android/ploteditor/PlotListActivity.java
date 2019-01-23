@@ -182,6 +182,7 @@ public class PlotListActivity extends AppCompatActivity {
             plot.put("title", item.get("title"));
             plot.put("slogan", item.get("slogan"));
             plot.put("summary", item.get("summary"));
+            plot.put("updated_at", item.get("updated_at"));
 
             intent.putExtra("MODE", MODE_AGAIN);
             intent.putExtra("OUTLINE", plot);
@@ -251,9 +252,9 @@ public class PlotListActivity extends AppCompatActivity {
         @Override
         public void onPostExecute(List<Map<String, String>> list) {
             _list = list;
-            String[] from = {"title", "created_at"};
-            int[] to = {android.R.id.text1, android.R.id.text2};
-            SimpleAdapter adapter = new SimpleAdapter(PlotListActivity.this, list, android.R.layout.simple_list_item_2, from, to);
+            String[] from = {"title", "updated_at"};
+            int[] to = {R.id.tvTitle, R.id.tvUpdatedAt};
+            SimpleAdapter adapter = new SimpleAdapter(PlotListActivity.this, list, R.layout.row_plot, from, to);
             _lvPlots.setAdapter(adapter);
         }
 
@@ -270,7 +271,7 @@ public class PlotListActivity extends AppCompatActivity {
             String title = "";
             String slogan = "";
             String summary = "";
-            String createdAt = "";
+            String updatedAt = "";
 
             try {
                 JSONObject rootJSON = new JSONObject(result);
@@ -285,13 +286,13 @@ public class PlotListActivity extends AppCompatActivity {
                     title = plotNow.getString("title");
                     slogan = plotNow.getString("slogan");
                     summary = plotNow.getString("summary");
-                    createdAt = plotNow.getString("created_at");
+                    updatedAt = plotNow.getString("updated_at");
 
                     item.put("no", no);
                     item.put("title", title);
                     item.put("slogan", slogan);
                     item.put("summary", summary);
-                    item.put("created_at", createdAt);
+                    item.put("updated_at", updatedAt);
 
                     list.add(item);
                 }

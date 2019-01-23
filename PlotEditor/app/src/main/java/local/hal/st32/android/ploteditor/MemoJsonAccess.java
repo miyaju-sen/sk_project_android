@@ -130,6 +130,7 @@ public class MemoJsonAccess extends AsyncTask<String, String, String> {
             String no = "";
             String plot = "";
             String note = "";
+            String updatedAt = "";
 
             try {
                 //JSONデータの解析・取得
@@ -146,10 +147,12 @@ public class MemoJsonAccess extends AsyncTask<String, String, String> {
                         no = memoNow.getString("no");
                         plot = memoNow.getString("plot");
                         note = memoNow.getString("note");
+                        updatedAt = memoNow.getString("updated_at");
 
                         map.put("no", no);
                         map.put("plot", plot);
                         map.put("note", note);
+                        map.put("updated_at", updatedAt);
 
                         break;
                     }

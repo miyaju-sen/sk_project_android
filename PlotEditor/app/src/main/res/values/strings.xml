@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">プロットエディタ</string>
 
+    <!-- 一覧画面用 -->
+    <string name="updated_at">更新日時：</string>
+
     <!-- メニュー用 -->
     <string name="menu_save">保存</string>
     <string name="menu_insert">追加</string>

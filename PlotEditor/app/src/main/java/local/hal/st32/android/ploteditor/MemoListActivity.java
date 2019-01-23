@@ -259,6 +259,7 @@ public class MemoListActivity extends AppCompatActivity implements NavigationVie
             memo.put("no", item.get("no"));
             memo.put("plot", item.get("plot"));
             memo.put("note", item.get("note"));
+            memo.put("updated_at", item.get("updated_at"));
 
             intent.putExtra("MEMO", memo);
             intent.putExtra("OUTLINE", mOutline);
@@ -335,8 +336,8 @@ public class MemoListActivity extends AppCompatActivity implements NavigationVie
             mList = list;
 
             //リストビューに表示する要素を設定
-            String[] from = {"note"};
-            int[] to = {R.id.tvMemo};
+            String[] from = {"note", "updated_at"};
+            int[] to = {R.id.tvMemo, R.id.tvUpdatedAt};
             SimpleAdapter adapter = new SimpleAdapter(getApplication(), list, R.layout.row_memo, from, to);
             mLvMemos.setAdapter(adapter);
         }
@@ -353,6 +354,7 @@ public class MemoListActivity extends AppCompatActivity implements NavigationVie
             String no = "";
             String plot = "";
             String note = "";
+            String updatedAt = "";
 
             try {
                 JSONObject rootJSON = new JSONObject(result);
@@ -366,10 +368,12 @@ public class MemoListActivity extends AppCompatActivity implements NavigationVie
                     no = memoNow.getString("no");
                     plot = memoNow.getString("plot");
                     note = memoNow.getString("note");
+                    updatedAt = memoNow.getString("updated_at");
 
                     item.put("no", no);
                     item.put("plot", plot);
                     item.put("note", note);
+                    item.put("updated_at", updatedAt);
 
                     list.add(item);
                 }
