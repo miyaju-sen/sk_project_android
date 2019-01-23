@@ -18,7 +18,7 @@ CREATE TABLE plots(
     title VARCHAR(100) NOT NULL, #タイトル
     slogan VARCHAR(50), #キャッチコピー
     summary TEXT, #あらすじ
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, #作成日 
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, #更新日 
     deleted BOOLEAN NOT NULL DEFAULT FALSE, #削除フラグ
     PRIMARY KEY(no), 
     INDEX(no)
@@ -103,22 +103,23 @@ CREATE TABLE memos(
     no INT(8) NOT NULL AUTO_INCREMENT,  #メモNo
     plot INT(8) NOT NULL, #作品No
     note TEXT, #メモ内容
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, #更新日
     deleted BOOLEAN NOT NULL DEFAULT FALSE, #削除フラグ
     PRIMARY KEY(no), 
     INDEX(no),
     FOREIGN KEY (plot) REFERENCES plots(no)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-#T_メモ画像テーブル
-CREATE TABLE memo_images(
-    no INT(8) NOT NULL AUTO_INCREMENT,  #主キーNo
-    memo INT(8) NOT NULL, #メモNo
-    image_path VARCHAR(260), #メモ画像パス
-    deleted BOOLEAN NOT NULL DEFAULT FALSE, #削除フラグ
-    PRIMARY KEY(no), 
-    INDEX(no),
-    FOREIGN KEY (memo) REFERENCES memos(no)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- #T_メモ画像テーブル
+-- CREATE TABLE memo_images(
+--     no INT(8) NOT NULL AUTO_INCREMENT,  #主キーNo
+--     memo INT(8) NOT NULL, #メモNo
+--     image_path VARCHAR(260), #メモ画像パス
+--     deleted BOOLEAN NOT NULL DEFAULT FALSE, #削除フラグ
+--     PRIMARY KEY(no), 
+--     INDEX(no),
+--     FOREIGN KEY (memo) REFERENCES memos(no)
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-#合計9テーブル
+#合計8テーブル
 #終了
