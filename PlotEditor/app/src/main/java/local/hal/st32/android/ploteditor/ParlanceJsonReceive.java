@@ -144,7 +144,7 @@ public class ParlanceJsonReceive extends AsyncTask<String, Void, String> {
         while(0 <= (line = reader.read(b))) {
             sb.append(b, 0, line);
         }
-        return sb.toString();
+        return String.valueOf(sb);
     }
 
     /**
