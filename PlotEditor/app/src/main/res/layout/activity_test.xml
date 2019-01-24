@@ -3,17 +3,25 @@
 就職作品
 テスト動作用
 -->
-<LinearLayout
-    android:id="@+id/layout"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    tools:context=".TestActivity" >
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"/>
 
-    <Button
-        android:id="@+id/btAdd"
+    <ExpandableListView
+        android:id="@+id/expandableListView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="追加" />
-</LinearLayout>
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@id/textView1"
+        android:layout_marginTop="14dp">
+
+    </ExpandableListView>
+</RelativeLayout>
