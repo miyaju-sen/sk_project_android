@@ -75,7 +75,7 @@ public class TestActivity extends AppCompatActivity {
         //親ノードに表示する内容を生成
         for(int i = 0; i < PARENT_DATA; i++) {
             Map<String, String> parentData = new HashMap<String, String>();
-            parentData.put(KEY1, "タイトル" + Integer.toString(i));
+            parentData.put(KEY1, "変化への恐怖" + Integer.toString(i));
 
             //親ノードのリストに内容を格納
             parentList.add(parentData);
@@ -92,14 +92,13 @@ public class TestActivity extends AppCompatActivity {
             List<Map<String, String>> childList = new ArrayList<>();
 
             //各子ノード用データ格納
-            for(int j = 0; j < CHILD_DATA; j++) {
+//            for(int j = 0; j < CHILD_DATA; j++) {
                 Map<String, String> childData = new HashMap<>();
-                childData.put(KEY1, "子要素" + Integer.toString(j));
-                childData.put(KEY2, "概要" + Integer.toString(j));
+                childData.put(KEY2, getString(R.string.test));
 
                 //子ノードのリストに文字を格納
                 childList.add(childData);
-            }
+//            }
             //全体の子ノードリストに各小ノードリストのデータを格納
             allChildList.add(childList);
          }
@@ -112,9 +111,9 @@ public class TestActivity extends AppCompatActivity {
                 new String[] { KEY1 },
                 new int[] {android.R.id.text1, android.R.id.text2},
                 allChildList,
-                android.R.layout.simple_expandable_list_item_2,
-                new String[] { KEY1, KEY2 },
-                new int[] {android.R.id.text1, android.R.id.text2}
+                android.R.layout.simple_list_item_1,
+                new String[] { KEY2 },
+                new int[] {android.R.id.text1}
         );
 
         //生成した情報をセット
