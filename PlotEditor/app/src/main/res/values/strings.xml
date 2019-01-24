@@ -13,7 +13,7 @@
     <string name="menu_reload">更新</string>
 
     <!-- NavigationViewのメニュー用 -->
-    <string name="menu_back">プロット一覧に戻る</string>
+    <string name="menu_back">＜プロット一覧に戻る</string>
     <string name="menu_outline">概要</string>
     <string name="menu_character">登場人物</string>
     <string name="menu_world">世界観</string>

@@ -9,6 +9,9 @@ NavigationView用のメニュー
         android:id="@+id/menuNavigationTop"
         android:checkableBehavior="single">
         <item
+            android:id="@+id/menuTitle"
+            android:title="@string/menu_back" />
+        <item
             android:id="@+id/menuOutline"
             android:title="@string/menu_outline"/>
         <item

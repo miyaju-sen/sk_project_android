@@ -9,15 +9,23 @@ NavigationViewのヘッダー
     android:layout_height="150dp"
     android:background="@color/primary_dark_material_light">
 
-    <!--ここは作品タイトルの方がよさげ？-->
-    <TextView
-        android:id="@+id/tvMenuBack"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:padding="16dp"
-        android:onClick="onMenuBackClick"
-        android:text="@string/menu_back"
-        android:textColor="@color/white"
-        android:textSize="18sp" />
+        <!--<TextView-->
+            <!--android:id="@+id/tvMenuTitle"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="16dp"-->
+            <!--android:padding="16dp"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:textSize="24sp"/>-->
+
+        <TextView
+            android:id="@+id/tvMenuBack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:padding="16dp"
+            android:onClick="onMenuBackClick"
+            android:text="@string/menu_back"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
 </RelativeLayout>

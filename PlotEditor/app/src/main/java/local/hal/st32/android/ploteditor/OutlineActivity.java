@@ -2,6 +2,7 @@ package local.hal.st32.android.ploteditor;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -60,16 +61,10 @@ public class OutlineActivity extends AppCompatActivity implements NavigationView
      */
     private Layout _layout;
     /**
-     * 作品タイトル
+     * 画面部品
      */
     private TextView _tvTitle;
-    /**
-     * キャッチコピー
-     */
     private TextView _tvSlogan;
-    /**
-     * あらすじ
-     */
     private TextView _tvSummary;
     /**
      * DrawerLayoutとActionBarDrawerToggle
@@ -80,6 +75,7 @@ public class OutlineActivity extends AppCompatActivity implements NavigationView
     /**
      * NavigationViewのヘッダー部分のTextView
      */
+    private TextView _tvMenuTitle;
     private TextView _tvMenuBack;
 
     @Override
@@ -92,10 +88,13 @@ public class OutlineActivity extends AppCompatActivity implements NavigationView
         _tvSlogan = findViewById(R.id.tvSlogan);
         _tvSummary = findViewById(R.id.tvSummary);
 
-        //NavigationViewのヘッダー部分のTextViewを取得
-        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View drawerHeader = inflater.inflate(R.layout.drawer_header, null);
+        //NavigationViewのヘッダー部分のTextViewを取得（コメント化した部分を使用すると、NavigationView内の画面部品へのアクセスができない（文字変更とかができない））
+//        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//        View drawerHeader = inflater.inflate(R.layout.drawer_header, null);
+        NavigationView nvLeftView = findViewById(R.id.nvLeftView);
+        View drawerHeader = nvLeftView.getHeaderView(0);
         _tvMenuBack = drawerHeader.findViewById(R.id.tvMenuBack); //プロット一覧へ戻る
+//        _tvMenuTitle = drawerHeader.findViewById(R.id.tvMenuTitle); //作品タイトル
 
         //Toolbar
         _toolbar = findViewById(R.id.toolbar);
@@ -108,7 +107,6 @@ public class OutlineActivity extends AppCompatActivity implements NavigationView
         mDrawerToggle.syncState();
 
         //NavigationViewのリスナー
-        NavigationView nvLeftView = findViewById(R.id.nvLeftView);
         nvLeftView.setNavigationItemSelectedListener(this);
 
         _intent = getIntent();
@@ -124,10 +122,10 @@ public class OutlineActivity extends AppCompatActivity implements NavigationView
 
         _no = _outline.get("no");
         _tvTitle.setText(_outline.get("title") );
+        _tvMenuBack.setText(_outline.get("title"));
 
         //新規登録後、またはデータベースに値が登録されてなかった場合にはデフォルトの値をセット
         if("".equals( _outline.get("slogan") )) {
-            Log.e("*****", "確認地点");
             _tvSlogan.setText( getString(R.string.tv_slogan_text) );
         }
         else {
