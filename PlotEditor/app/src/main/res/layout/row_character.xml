@@ -12,12 +12,19 @@
     android:orientation="horizontal"
     android:padding="10dp">
 
-    <ImageView
-        android:id="@+id/ivCharacterIcon"
+    <FrameLayout
         android:layout_width="85dp"
         android:layout_height="85dp"
-        android:background="@drawable/ic_launcher_foreground"
-        android:contentDescription="@string/character_icon" />
+        android:background="@drawable/frame">
+
+        <ImageView
+            android:id="@+id/ivCharacterIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/toa_ypba2"
+            android:contentDescription="@string/character_icon" />
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
