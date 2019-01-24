@@ -126,8 +126,7 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
     @Override
     public void onResume() {
         super.onResume();
-        setTitle("世界観");
-        Log.e("*******", "地点onResume");
+        setTitle("構想");
         _allocate = new IdeaAllocate();
 
         //構想・ストーリーのデータ取得＆初期表示（タブ「起」）にデータをセット
