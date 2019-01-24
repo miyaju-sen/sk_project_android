@@ -105,8 +105,8 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
         setContentView(R.layout.activity_world_view_list);
 
         //NavigationViewのヘッダー部分のTextViewを取得
-        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View drawerHeader = inflater.inflate(R.layout.drawer_header, null);
+        NavigationView nvLeftView = findViewById(R.id.nvLeftView);
+        View drawerHeader = nvLeftView.getHeaderView(0);
         mTvMenuTitle = drawerHeader.findViewById(R.id.tvMenuTitle); //プロット一覧へ戻る
 
         //Toolbar
@@ -120,7 +120,6 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
         mDrawerToggle.syncState();
 
         //NavigationViewのリスナー
-        NavigationView nvLeftView = findViewById(R.id.nvLeftView);
         nvLeftView.setNavigationItemSelectedListener(this);
 
         //タブレイアウト
@@ -134,6 +133,7 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
     public void onResume() {
         super.onResume();
         setTitle("世界観");
+        mTvMenuTitle.setText( _outline.get("title") );
 
         //設定・用語を取得する
         ParlanceJsonReceive receive = new ParlanceJsonReceive();

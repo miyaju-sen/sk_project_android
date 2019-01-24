@@ -90,8 +90,8 @@ public class MemoListActivity extends AppCompatActivity implements NavigationVie
         mLvMemos.setOnItemClickListener(new ListItemClickListener());
 
         //NavigationViewのヘッダー部分のTextViewを取得
-        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View drawerHeader = inflater.inflate(R.layout.drawer_header, null);
+        NavigationView nvLeftView = findViewById(R.id.nvLeftView);
+        View drawerHeader = nvLeftView.getHeaderView(0);
         mTvMenuTitle = drawerHeader.findViewById(R.id.tvMenuTitle); //プロット一覧へ戻る
 
         //Toolbar
@@ -105,7 +105,6 @@ public class MemoListActivity extends AppCompatActivity implements NavigationVie
         mDrawerToggle.syncState();
 
         //NavigationViewのリスナー
-        NavigationView nvLeftView = findViewById(R.id.nvLeftView);
         nvLeftView.setNavigationItemSelectedListener(this);
 
         Intent intent = getIntent();
@@ -116,6 +115,7 @@ public class MemoListActivity extends AppCompatActivity implements NavigationVie
     public void onResume() {
         super.onResume();
         setTitle("メモ一覧");
+        mTvMenuTitle.setText( mOutline.get("title") );
 
         //メモ一覧データを取得
         MemoJsonReceiver receiver = new MemoJsonReceiver();

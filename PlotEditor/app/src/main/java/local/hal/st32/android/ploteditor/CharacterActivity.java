@@ -106,8 +106,8 @@ public class CharacterActivity extends AppCompatActivity implements NavigationVi
         _tvOther = findViewById(R.id.tvOther);
 
         //NavigationViewのヘッダー部分のTextViewを取得
-        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View drawerHeader = inflater.inflate(R.layout.drawer_header, null);
+        NavigationView nvLeftView = findViewById(R.id.nvLeftView);
+        View drawerHeader = nvLeftView.getHeaderView(0);
         mTvMenuTitle = drawerHeader.findViewById(R.id.tvMenuTitle); //プロット一覧へ戻る
 
         //Toolbar
@@ -121,7 +121,6 @@ public class CharacterActivity extends AppCompatActivity implements NavigationVi
         mDrawerToggle.syncState();
 
         //NavigationViewのリスナー
-        NavigationView nvLeftView = findViewById(R.id.nvLeftView);
         nvLeftView.setNavigationItemSelectedListener(this);
 
         //遷移元からデータ取得
@@ -133,6 +132,8 @@ public class CharacterActivity extends AppCompatActivity implements NavigationVi
     @Override
     public void onResume() {
         super.onResume();
+        setTitle( _character.get("name") );
+        mTvMenuTitle.setText( _outline.get("title") );
 
         setCharacterInfo();
     }

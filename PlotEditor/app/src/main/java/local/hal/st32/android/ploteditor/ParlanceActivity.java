@@ -71,8 +71,8 @@ public class ParlanceActivity extends AppCompatActivity implements NavigationVie
         _tvExplanation = findViewById(R.id.tvExplanation);
 
         //NavigationViewのヘッダー部分のTextViewを取得
-        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View drawerHeader = inflater.inflate(R.layout.drawer_header, null);
+        NavigationView nvLeftView = findViewById(R.id.nvLeftView);
+        View drawerHeader = nvLeftView.getHeaderView(0);
         mTvMenuTitle = drawerHeader.findViewById(R.id.tvMenuTitle); //プロット一覧へ戻る
 
         //Toolbar
@@ -86,7 +86,6 @@ public class ParlanceActivity extends AppCompatActivity implements NavigationVie
         mDrawerToggle.syncState();
 
         //NavigationViewのリスナー
-        NavigationView nvLeftView = findViewById(R.id.nvLeftView);
         nvLeftView.setNavigationItemSelectedListener(this);
 
         //遷移元からデータ取得
@@ -99,6 +98,7 @@ public class ParlanceActivity extends AppCompatActivity implements NavigationVie
     public void onResume() {
         super.onResume();
         setTitle("設定・用語");
+        mTvMenuTitle.setText( _outline.get("title") );
 
         //画面部品に遷移元から取得した値をセット
         _tvName.setText( _parlance.get("name") );

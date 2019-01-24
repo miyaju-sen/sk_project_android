@@ -98,8 +98,8 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
         sInstance = IdeaActivity.this;
 
         //NavigationViewのヘッダー部分のTextViewを取得
-        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View drawerHeader = inflater.inflate(R.layout.drawer_header, null);
+        NavigationView nvLeftView = findViewById(R.id.nvLeftView);
+        View drawerHeader = nvLeftView.getHeaderView(0);
         mTvMenuTitle = drawerHeader.findViewById(R.id.tvMenuTitle); //プロット一覧へ戻る
 
         //Toolbar
@@ -113,7 +113,6 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
         mDrawerToggle.syncState();
 
         //NavigationViewのリスナー
-        NavigationView nvLeftView = findViewById(R.id.nvLeftView);
         nvLeftView.setNavigationItemSelectedListener(this);
 
         //タブレイアウト
@@ -127,6 +126,8 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
     public void onResume() {
         super.onResume();
         setTitle("構想");
+        mTvMenuTitle.setText( _outline.get("title") );
+
         _allocate = new IdeaAllocate();
 
         //構想・ストーリーのデータ取得＆初期表示（タブ「起」）にデータをセット

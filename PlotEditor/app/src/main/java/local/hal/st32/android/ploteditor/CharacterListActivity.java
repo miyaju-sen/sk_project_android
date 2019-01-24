@@ -98,8 +98,8 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
         _lvCharacters.setOnItemClickListener(new ListItemClickListener());
 
         //NavigationViewのヘッダー部分のTextViewを取得
-        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View drawerHeader = inflater.inflate(R.layout.drawer_header, null);
+        NavigationView nvLeftView = findViewById(R.id.nvLeftView);
+        View drawerHeader = nvLeftView.getHeaderView(0);
         mTvMenuTitle = drawerHeader.findViewById(R.id.tvMenuTitle); //プロット一覧へ戻る
 
         //Toolbar
@@ -113,7 +113,6 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
         mDrawerToggle.syncState();
 
         //NavigationViewのリスナー
-        NavigationView nvLeftView = findViewById(R.id.nvLeftView);
         nvLeftView.setNavigationItemSelectedListener(this);
     }
 
@@ -121,6 +120,7 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
     public void onResume() {
         super.onResume();
         setTitle("登場人物一覧");
+        mTvMenuTitle.setText( _outline.get("title") );
 
         CharacterJsonReceiver receiver = new CharacterJsonReceiver();
         receiver.execute(ACCESS_URL, _outline.get("no"));
