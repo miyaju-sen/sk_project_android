@@ -93,8 +93,7 @@ public class OutlineActivity extends AppCompatActivity implements NavigationView
 //        View drawerHeader = inflater.inflate(R.layout.drawer_header, null);
         NavigationView nvLeftView = findViewById(R.id.nvLeftView);
         View drawerHeader = nvLeftView.getHeaderView(0);
-        _tvMenuBack = drawerHeader.findViewById(R.id.tvMenuBack); //プロット一覧へ戻る
-//        _tvMenuTitle = drawerHeader.findViewById(R.id.tvMenuTitle); //作品タイトル
+        _tvMenuTitle = drawerHeader.findViewById(R.id.tvMenuTitle); //作品タイトル
 
         //Toolbar
         _toolbar = findViewById(R.id.toolbar);
@@ -122,7 +121,7 @@ public class OutlineActivity extends AppCompatActivity implements NavigationView
 
         _no = _outline.get("no");
         _tvTitle.setText(_outline.get("title") );
-        _tvMenuBack.setText(_outline.get("title"));
+        _tvMenuTitle.setText(_outline.get("title"));
 
         //新規登録後、またはデータベースに値が登録されてなかった場合にはデフォルトの値をセット
         if("".equals( _outline.get("slogan") )) {
@@ -186,6 +185,10 @@ public class OutlineActivity extends AppCompatActivity implements NavigationView
         Intent intent = new Intent();
         int itemId = item.getItemId();
         switch (itemId) {
+            //プロット一覧へ戻る
+            case R.id.menuBack:
+                intent = new Intent(OutlineActivity.this, PlotListActivity.class);
+                break;
             //概要画面（何もしない）
             case R.id.menuOutline:
                 intent = null;
@@ -256,13 +259,4 @@ public class OutlineActivity extends AppCompatActivity implements NavigationView
         FragmentManager manager = getSupportFragmentManager();
         dialog.show(manager, "OutlineActivity");
     }
-
-    /**
-     * 「プロット一覧に戻る」押下時の処理
-     */
-    public void onMenuBackClick(View view) {
-        Intent intent = new Intent(OutlineActivity.this, PlotListActivity.class);
-        startActivity(intent);
-    }
-
 }

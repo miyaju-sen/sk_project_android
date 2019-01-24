@@ -82,7 +82,7 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
     /**
      * NavigationViewのヘッダー部分のTextView
      */
-    private TextView _tvMenuBack;
+    private TextView mTvMenuTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +100,7 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
         //NavigationViewのヘッダー部分のTextViewを取得
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View drawerHeader = inflater.inflate(R.layout.drawer_header, null);
-        _tvMenuBack = drawerHeader.findViewById(R.id.tvMenuBack); //プロット一覧へ戻る
+        mTvMenuTitle = drawerHeader.findViewById(R.id.tvMenuTitle); //プロット一覧へ戻る
 
         //Toolbar
         _toolbar = findViewById(R.id.toolbar);
@@ -174,6 +174,10 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
         Intent intent = new Intent();
         int itemId = item.getItemId();
         switch (itemId) {
+            //プロット一覧へ戻る
+            case R.id.menuBack:
+                intent = new Intent(getApplication(), PlotListActivity.class);
+                break;
             //概要画面
             case R.id.menuOutline:
                 intent = new Intent(CharacterListActivity.this, OutlineActivity.class);
@@ -256,14 +260,6 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
         intent.putExtra("OUTLINE", _outline);
         intent.putExtra("ACTIVITY", NOW_ACTIVITY);
 
-        startActivity(intent);
-    }
-
-    /**
-     * 「プロット一覧に戻る」押下時の処理
-     */
-    public void onMenuBackClick(View view) {
-        Intent intent = new Intent(CharacterListActivity.this, PlotListActivity.class);
         startActivity(intent);
     }
 

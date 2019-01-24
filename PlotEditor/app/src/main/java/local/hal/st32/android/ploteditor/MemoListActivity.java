@@ -78,7 +78,7 @@ public class MemoListActivity extends AppCompatActivity implements NavigationVie
     /**
      * NavigationViewのヘッダー部分のTextView
      */
-    private TextView mTvMenuBack;
+    private TextView mTvMenuTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +92,7 @@ public class MemoListActivity extends AppCompatActivity implements NavigationVie
         //NavigationViewのヘッダー部分のTextViewを取得
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View drawerHeader = inflater.inflate(R.layout.drawer_header, null);
-        mTvMenuBack = drawerHeader.findViewById(R.id.tvMenuBack); //プロット一覧へ戻る
+        mTvMenuTitle = drawerHeader.findViewById(R.id.tvMenuTitle); //プロット一覧へ戻る
 
         //Toolbar
         mToolbar = findViewById(R.id.toolbar);
@@ -170,6 +170,10 @@ public class MemoListActivity extends AppCompatActivity implements NavigationVie
         Intent intent = new Intent();
         int itemId = item.getItemId();
         switch (itemId) {
+            //プロット一覧へ戻る
+            case R.id.menuBack:
+                intent = new Intent(getApplication(), PlotListActivity.class);
+                break;
             //概要画面へ
             case R.id.menuOutline:
                 intent = new Intent(getApplication(), OutlineActivity.class);
@@ -214,14 +218,6 @@ public class MemoListActivity extends AppCompatActivity implements NavigationVie
         intent.putExtra("OUTLINE", mOutline);
         intent.putExtra("ACTIVITY", NOW_ACTIVITY);
 
-        startActivity(intent);
-    }
-
-    /**
-     * 「プロット一覧に戻る」押下時の処理
-     */
-    public void onMenuBackClick(View view) {
-        Intent intent = new Intent(getApplication(), PlotListActivity.class);
         startActivity(intent);
     }
 

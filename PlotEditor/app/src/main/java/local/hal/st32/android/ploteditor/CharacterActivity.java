@@ -75,7 +75,7 @@ public class CharacterActivity extends AppCompatActivity implements NavigationVi
     /**
      * NavigationViewのヘッダー部分のTextView
      */
-    private TextView _tvMenuBack;
+    private TextView mTvMenuTitle;
     /**
      * プロット概要が格納された配列
      */
@@ -108,7 +108,7 @@ public class CharacterActivity extends AppCompatActivity implements NavigationVi
         //NavigationViewのヘッダー部分のTextViewを取得
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View drawerHeader = inflater.inflate(R.layout.drawer_header, null);
-        _tvMenuBack = drawerHeader.findViewById(R.id.tvMenuBack); //プロット一覧へ戻る
+        mTvMenuTitle = drawerHeader.findViewById(R.id.tvMenuTitle); //プロット一覧へ戻る
 
         //Toolbar
         _toolbar = findViewById(R.id.toolbar);
@@ -190,6 +190,10 @@ public class CharacterActivity extends AppCompatActivity implements NavigationVi
         Intent intent = new Intent();
         int itemId = item.getItemId();
         switch (itemId) {
+            //プロット一覧へ戻る
+            case R.id.menuBack:
+                intent = new Intent(getApplication(), PlotListActivity.class);
+                break;
             //概要画面
             case R.id.menuOutline:
                 intent = new Intent(CharacterActivity.this, OutlineActivity.class);
@@ -277,14 +281,6 @@ public class CharacterActivity extends AppCompatActivity implements NavigationVi
 
         FragmentManager manager = getSupportFragmentManager();
         dialog.show(manager, "CharacterActivity");
-    }
-
-    /**
-     * 「プロット一覧に戻る」押下時の処理
-     */
-    public void onMenuBackClick(View view) {
-        Intent intent = new Intent(CharacterActivity.this, PlotListActivity.class);
-        startActivity(intent);
     }
 
     /**
