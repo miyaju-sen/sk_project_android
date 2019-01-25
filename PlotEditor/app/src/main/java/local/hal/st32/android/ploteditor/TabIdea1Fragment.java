@@ -81,7 +81,7 @@ public class TabIdea1Fragment extends Fragment {
         //画面部品取得
         _tvIdea = view.findViewById(R.id.tvIdea);
         _lvStories = view.findViewById(R.id.lvStories);
-        _lvStories.setOnItemClickListener(new ListItemClickListener());
+        _lvStories.setOnChildClickListener(new ChildListClickListener());
 
         //TapEventへテキストビューをセット→ダブルタップ後、編集用のダイアログを表示
         TapEvent event = new TapEvent(getContext());
@@ -178,6 +178,34 @@ public class TabIdea1Fragment extends Fragment {
 
             FragmentManager manager = getActivity().getSupportFragmentManager();
             dialog.show(manager, "IdeaActivity");
+        }
+    }
+
+    private class ChildListClickListener implements ExpandableListView.OnChildClickListener {
+        @Override
+        public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+            StoryEditDialogCreate dialog = new StoryEditDialogCreate();
+            Bundle extras = new Bundle();
+
+            extras.putString("mode", "edit");
+            extras.putString("plot", _ideas.get("plot")); //作品No
+            extras.putString("storyNo", _stories.get(groupPosition).get("storyNo")); //ストーリーNo
+            extras.putString("idea", _ideas.get("idea")); //起承転結番号
+            extras.putString("title", _stories.get(groupPosition).get("title")); //タイトル
+            extras.putString("story", _stories.get(groupPosition).get("story")); //ストーリー
+
+            //編集後のListViewの表示位置を、現状と同一にするための値を送信（スクロール位置の記憶）
+            extras.putString("top", Integer.toString( _lvStories.getChildAt(0).getTop() ));
+            extras.putString("position", Integer.toString( _lvStories.getFirstVisiblePosition() ));
+
+            Log.e("**********", "中身：" + extras);
+
+            dialog.setArguments(extras);
+
+            FragmentManager manager = getActivity().getSupportFragmentManager();
+            dialog.show(manager, "IdeaActivity");
+
+            return false;
         }
     }
 }

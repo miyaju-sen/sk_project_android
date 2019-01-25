@@ -189,12 +189,13 @@ public class IdeaAllocate {
      */
     public List<List<Map<String, String>>> getChildStory1() {
         for(int i = 0; i < this._story1.size(); i++) {
+            this._list = new ArrayList<>();
             this._map = new HashMap<>();
             this._map.put("story", this._story1.get(i).get("story"));
 
             this._list.add(this._map);
+            this._childStory1.add(this._list);
         }
-        this._childStory1.add(this._list);
 
         return this._childStory1;
     }
@@ -219,6 +220,7 @@ public class IdeaAllocate {
      */
     public List<List<Map<String, String>>> getChildStory2() {
         for(int i = 0; i < this._story2.size(); i++) {
+            this._list = new ArrayList<>();
             this._map = new HashMap<>();
             this._map.put("story", this._story2.get(i).get("story"));
 
@@ -249,6 +251,7 @@ public class IdeaAllocate {
      */
     public List<List<Map<String, String>>> getChildStory3() {
         for(int i = 0; i < this._story3.size(); i++) {
+            this._list = new ArrayList<>();
             this._map = new HashMap<>();
             this._map.put("story", this._story3.get(i).get("story"));
 
@@ -279,6 +282,7 @@ public class IdeaAllocate {
      */
     public List<List<Map<String, String>>> getChildStory4() {
         for(int i = 0; i < this._story4.size(); i++) {
+            this._list = new ArrayList<>();
             this._map = new HashMap<>();
             this._map.put("story", this._story4.get(i).get("story"));
 
