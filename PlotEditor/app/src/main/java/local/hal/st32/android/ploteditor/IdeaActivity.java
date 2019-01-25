@@ -55,15 +55,6 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
      */
     private static HashMap<String, String> _outline = new HashMap<>();
     /**
-     * リストビュー
-     */
-    private static ListView _lvStories;
-    /**
-     * ストーリー一覧を格納する配列
-     */
-    private List<Map<String, String>> mStories = new ArrayList<>();
-    private List<Map<String, String>> mTitles = new ArrayList<>();
-    /**
      * 起承転結番号
      */
     private static String sIdea;
@@ -316,20 +307,32 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
                 else if( TabIdea2Fragment.getTabIdea2FragmentTag().equals(mTag) ) {
                     TabIdea2Fragment.setTvIdea( _allocate.getIdea2() );
 
-                    _adapter = new SimpleAdapter(IdeaActivity.this, _allocate.getStory2(), android.R.layout.simple_list_item_2, _from, _to);
-                    TabIdea2Fragment.setLvStories(_adapter, _allocate.getStory2());
+                    mAdapter = new SimpleExpandableListAdapter(
+                            getApplication(),
+                            _allocate.getStory2(), android.R.layout.simple_expandable_list_item_1, mFromTitle, mTo,
+                            _allocate.getChildStory2(), android.R.layout.simple_list_item_1, mFromStory, mTo
+                    );
+                    TabIdea2Fragment.setLvStories(mAdapter, _allocate.getStory2());
                 }
                 else if( TabIdea3Fragment.getTabIdea3FragmentTag().equals(mTag) ) {
                     TabIdea3Fragment.setTvIdea( _allocate.getIdea3() );
 
-                    _adapter = new SimpleAdapter(IdeaActivity.this, _allocate.getStory3(), android.R.layout.simple_list_item_2, _from, _to);
-                    TabIdea3Fragment.setLvStories(_adapter, _allocate.getStory3());
+                    mAdapter = new SimpleExpandableListAdapter(
+                            getApplication(),
+                            _allocate.getStory3(), android.R.layout.simple_expandable_list_item_1, mFromTitle, mTo,
+                            _allocate.getChildStory3(), android.R.layout.simple_list_item_1, mFromStory, mTo
+                    );
+                    TabIdea3Fragment.setLvStories(mAdapter, _allocate.getStory3());
                 }
                 else if( TabIdea4Fragment.getTabIdea4FragmentTag().equals(mTag) ) {
                     TabIdea4Fragment.setTvIdea( _allocate.getIdea4() );
 
-                    _adapter = new SimpleAdapter(IdeaActivity.this, _allocate.getStory4(), android.R.layout.simple_list_item_2, _from, _to);
-                    TabIdea4Fragment.setLvStories(_adapter, _allocate.getStory4());
+                    mAdapter = new SimpleExpandableListAdapter(
+                            getApplication(),
+                            _allocate.getStory4(), android.R.layout.simple_expandable_list_item_1, mFromTitle, mTo,
+                            _allocate.getChildStory4(), android.R.layout.simple_list_item_1, mFromStory, mTo
+                    );
+                    TabIdea4Fragment.setLvStories(mAdapter, _allocate.getStory4());
                 }
             }
         });
@@ -536,8 +539,12 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
                 TabIdea2Fragment.setTvIdea( _allocate.getIdea2() );
 
                 //ストーリー
-                _adapter = new SimpleAdapter(IdeaActivity.this, _allocate.getStory2(), android.R.layout.simple_list_item_2, _from, _to);
-                TabIdea2Fragment.setLvStories(_adapter, _allocate.getStory2());
+                mAdapter = new SimpleExpandableListAdapter(
+                        getApplication(),
+                        _allocate.getStory2(), android.R.layout.simple_expandable_list_item_1, mFromTitle, mTo,
+                        _allocate.getChildStory2(), android.R.layout.simple_list_item_1, mFromStory, mTo
+                );
+                TabIdea2Fragment.setLvStories(mAdapter, _allocate.getStory2());
                 break;
             case 2:
                 //タグ取得
@@ -547,8 +554,12 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
                 TabIdea3Fragment.setTvIdea( _allocate.getIdea3() );
 
                 //ストーリー
-                _adapter = new SimpleAdapter(IdeaActivity.this, _allocate.getStory3(), android.R.layout.simple_list_item_2, _from, _to);
-                TabIdea3Fragment.setLvStories(_adapter, _allocate.getStory3());
+                mAdapter = new SimpleExpandableListAdapter(
+                        getApplication(),
+                        _allocate.getStory3(), android.R.layout.simple_expandable_list_item_1, mFromTitle, mTo,
+                        _allocate.getChildStory3(), android.R.layout.simple_list_item_1, mFromStory, mTo
+                );
+                TabIdea3Fragment.setLvStories(mAdapter, _allocate.getStory3());
                 break;
             case 3:
                 //タグ取得
@@ -558,8 +569,12 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
                 TabIdea4Fragment.setTvIdea( _allocate.getIdea4() );
 
                 //ストーリー
-                _adapter = new SimpleAdapter(IdeaActivity.this, _allocate.getStory4(), android.R.layout.simple_list_item_2, _from, _to);
-                TabIdea4Fragment.setLvStories(_adapter, _allocate.getStory4());
+                mAdapter = new SimpleExpandableListAdapter(
+                        getApplication(),
+                        _allocate.getStory4(), android.R.layout.simple_expandable_list_item_1, mFromTitle, mTo,
+                        _allocate.getChildStory4(), android.R.layout.simple_list_item_1, mFromStory, mTo
+                );
+                TabIdea4Fragment.setLvStories(mAdapter, _allocate.getStory4());
                 break;
         }
     }

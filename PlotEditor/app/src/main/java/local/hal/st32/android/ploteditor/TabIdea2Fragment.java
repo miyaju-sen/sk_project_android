@@ -7,8 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
 import android.support.v4.app.Fragment;
 
@@ -33,7 +35,7 @@ public class TabIdea2Fragment extends Fragment {
      * 画面部品
      */
     private static TextView _tvIdea;
-    private static ListView _lvStories;
+    private static ExpandableListView _lvStories;
     /**
      * 構想情報を格納する配列
      */
@@ -123,7 +125,7 @@ public class TabIdea2Fragment extends Fragment {
      * @param adapter
      * @param stories
      */
-    public static void setLvStories(SimpleAdapter adapter, List<Map<String, String>> stories) {
+    public static void setLvStories(SimpleExpandableListAdapter adapter, List<Map<String, String>> stories) {
         _stories = stories;
         _lvStories.setAdapter(adapter);
     }
