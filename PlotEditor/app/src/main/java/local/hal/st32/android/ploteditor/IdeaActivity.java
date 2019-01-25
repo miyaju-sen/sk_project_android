@@ -24,6 +24,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -60,7 +61,8 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
     /**
      * ストーリー一覧を格納する配列
      */
-    private List<Map<String, String>> _stories = new ArrayList<>();
+    private List<Map<String, String>> mStories = new ArrayList<>();
+    private List<Map<String, String>> mTitles = new ArrayList<>();
     /**
      * 起承転結番号
      */
@@ -75,6 +77,12 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
     private final String[] _from = {"title", "story"};
     private final int[] _to = {android.R.id.text1, android.R.id.text2};
     private SimpleAdapter _adapter = null;
+
+    private final String[] mFromTitle = {"title"};
+    private final String[] mFromStory = {"story"};
+    private final int[] mTo= {android.R.id.text1};
+    private SimpleExpandableListAdapter mAdapter = null;
+
     /**
      * 起承転結ごとにデータを振り分けるクラス
      */
@@ -138,8 +146,17 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
                  _allocate.setIdeas(ideas, stories);
 
                 //リストビューにセット
-                _adapter = new SimpleAdapter(IdeaActivity.this, _allocate.getStory1(), android.R.layout.simple_list_item_2, _from, _to);
-                TabIdea1Fragment.setLvStories(_adapter, _allocate.getStory1());
+                List<List<Map<String, String>>> storyChildList = new ArrayList<>();
+                storyChildList.add( _allocate.getStory1() );
+                mAdapter = new SimpleExpandableListAdapter(
+                        getApplication(),
+                        _allocate.getStory1(), android.R.layout.simple_expandable_list_item_1, mFromTitle, mTo,
+                        storyChildList, android.R.layout.simple_list_item_1, mFromStory, mTo
+                );
+                TabIdea1Fragment.setLvStories(mAdapter);
+
+//                _adapter = new SimpleAdapter(IdeaActivity.this, _allocate.getStory1(), android.R.layout.simple_list_item_2, _from, _to);
+//                TabIdea1Fragment.setLvStories(_adapter, _allocate.getStory1());
 
                 //テキストビューにセット
                 TabIdea1Fragment.setTvIdea( _allocate.getIdea1() );
@@ -492,7 +509,6 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
     @Override
     public void onPageSelected(int position) {
         FragmentManager fragment = getSupportFragmentManager();
-        _stories = new ArrayList<>();
 
         switch (position) {
             case 0:

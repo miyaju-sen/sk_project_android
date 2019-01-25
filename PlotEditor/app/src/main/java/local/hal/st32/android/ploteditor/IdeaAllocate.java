@@ -32,6 +32,17 @@ public class IdeaAllocate {
     private List<Map<String, String>> _story3;
     private List<Map<String, String>> _story4;
 
+    /**
+     * 起承転結ごとのストーリー：子ノード表示用
+     */
+    private List<List<Map<String, String>>> _childStory1;
+    private List<List<Map<String, String>>> _childStory2;
+    private List<List<Map<String, String>>> _childStory3;
+    private List<List<Map<String, String>>> _childStory4;
+
+    private List<Map<String, String>> _list;
+    private HashMap<String, String> _map;
+
     private final String IDEA_ONE = "1";
     private final String IDEA_TWO = "2";
     private final String IDEA_THREE = "3";
@@ -47,6 +58,14 @@ public class IdeaAllocate {
         this._story2 = new ArrayList<>();
         this._story3 = new ArrayList<>();
         this._story4 = new ArrayList<>();
+
+        this._childStory1 = new ArrayList<>();
+        this._childStory2 = new ArrayList<>();
+        this._childStory3 = new ArrayList<>();
+        this._childStory4 = new ArrayList<>();
+
+        this._list = new ArrayList<>();
+        this._map = new HashMap<>();
     }
 
     /**
@@ -164,6 +183,21 @@ public class IdeaAllocate {
     public List<Map<String, String>> getStory1() {
         return this._story1;
     }
+    /**
+     * タブ「起」用データのゲッター
+     * @return ストーリー
+     */
+    public List<List<Map<String, String>>> getChildStory1() {
+        for(int i = 0; i < this._story1.size(); i++) {
+            this._map = new HashMap<>();
+            this._map.put("story", this._story1.get(i).get("story"));
+
+            this._list.add(this._map);
+        }
+        this._childStory1.add(this._list);
+
+        return this._childStory1;
+    }
 
     /**
      * タブ「承」用データのゲッター
@@ -178,6 +212,21 @@ public class IdeaAllocate {
      */
     public List<Map<String, String>> getStory2() {
         return this._story2;
+    }
+    /**
+     * タブ「承」用データのゲッター
+     * @return ストーリー
+     */
+    public List<List<Map<String, String>>> getChildStory2() {
+        for(int i = 0; i < this._story2.size(); i++) {
+            this._map = new HashMap<>();
+            this._map.put("story", this._story2.get(i).get("story"));
+
+            this._list.add(this._map);
+        }
+        this._childStory2.add(this._list);
+
+        return this._childStory2;
     }
 
     /**
@@ -194,6 +243,21 @@ public class IdeaAllocate {
     public List<Map<String, String>> getStory3() {
         return this._story3;
     }
+    /**
+     * タブ「転」用データのゲッター
+     * @return ストーリー
+     */
+    public List<List<Map<String, String>>> getChildStory3() {
+        for(int i = 0; i < this._story3.size(); i++) {
+            this._map = new HashMap<>();
+            this._map.put("story", this._story3.get(i).get("story"));
+
+            this._list.add(this._map);
+        }
+        this._childStory3.add(this._list);
+
+        return this._childStory3;
+    }
 
     /**
      * タブ「結」用データのゲッター
@@ -208,5 +272,20 @@ public class IdeaAllocate {
      */
     public List<Map<String, String>> getStory4() {
         return this._story4;
+    }
+    /**
+     * タブ「結」用データのゲッター
+     * @return ストーリー
+     */
+    public List<List<Map<String, String>>> getChildStory4() {
+        for(int i = 0; i < this._story4.size(); i++) {
+            this._map = new HashMap<>();
+            this._map.put("story", this._story4.get(i).get("story"));
+
+            this._list.add(this._map);
+        }
+        this._childStory4.add(this._list);
+
+        return this._childStory4;
     }
 }
