@@ -134,13 +134,13 @@ public class TabIdea1Fragment extends Fragment {
     }
 
     /**
-     * 取得したアダプタをlvStoriesにセットするメソッド
+     * 取得したアダプタをlvStoriesにセットするメソッド TODO:デバック必要（ちゃんとその位置に戻ってくるか）
      * @param adapter
      * @param stories
      * @param position
      * @param top
      */
-    public static void setLvStories(SimpleAdapter adapter, List<Map<String, String>> stories, String position, String top) {
+    public static void setLvStories(SimpleExpandableListAdapter adapter, List<Map<String, String>> stories, String position, String top) {
         _stories = stories;
         _lvStories.setAdapter(adapter);
 

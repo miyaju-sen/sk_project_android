@@ -65,10 +65,6 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
     /**
      * リストビューにセットするためのアダプタ類
      */
-    private final String[] _from = {"title", "story"};
-    private final int[] _to = {android.R.id.text1, android.R.id.text2};
-    private SimpleAdapter _adapter = null;
-
     private final String[] mFromTitle = {"title"};
     private final String[] mFromStory = {"story"};
     private final int[] mTo= {android.R.id.text1};

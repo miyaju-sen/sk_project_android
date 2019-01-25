@@ -137,7 +137,7 @@ public class TabIdea3Fragment extends Fragment {
      * @param position
      * @param top
      */
-    public static void setLvStories(SimpleAdapter adapter, List<Map<String, String>> stories, String position, String top) {
+    public static void setLvStories(SimpleExpandableListAdapter adapter, List<Map<String, String>> stories, String position, String top) {
         _stories = stories;
         _lvStories.setAdapter(adapter);
 

@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.SimpleAdapter;
+import android.widget.SimpleExpandableListAdapter;
 
 import java.util.List;
 import java.util.Map;
@@ -47,6 +48,13 @@ public class StoryEditDialogCreate extends DialogFragment {
     private String _plot;
     private String _storyNo;
     private String _idea;
+    /**
+     * リストビューに値をセットするためのアダプタ類
+     */
+    private final String[] mFromTitle = {"title"};
+    private final String[] mFromStory = {"story"};
+    private final int[] mTo= {android.R.id.text1};
+    private SimpleExpandableListAdapter mAdapter = null;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -107,24 +115,38 @@ public class StoryEditDialogCreate extends DialogFragment {
                             IdeaActivity.setAllocate(allocate);
 
                             //ストーリー一覧をListViewにセット
-                            String from[] = {"title", "story"};
-                            int to[] = {android.R.id.text1, android.R.id.text2};
-                            SimpleAdapter adapter;
                             if( "1".equals(_idea) ) {
-                                adapter = new SimpleAdapter(IdeaActivity.getInstance().getApplicationContext(), allocate.getStory1(), android.R.layout.simple_list_item_2, from, to);
-                                TabIdea1Fragment.setLvStories(adapter, stories, mPosition, mTop);
+                                mAdapter = new SimpleExpandableListAdapter(
+                                        IdeaActivity.getInstance().getApplicationContext(),
+                                        allocate.getStory1(), android.R.layout.simple_expandable_list_item_1, mFromTitle, mTo,
+                                        allocate.getChildStory1(), android.R.layout.simple_list_item_1, mFromStory, mTo
+                                );
+                               // TabIdea1Fragment.setLvStories(mAdapter, stories, mPosition, mTop);
+                                TabIdea1Fragment.setLvStories(mAdapter, allocate.getStory1(), mPosition, mTop);
                             }
                             else if( "2".equals(_idea) ) {
-                                adapter = new SimpleAdapter(IdeaActivity.getInstance().getApplicationContext(), allocate.getStory2(), android.R.layout.simple_list_item_2, from, to);
-                                TabIdea2Fragment.setLvStories(adapter, stories, mPosition, mTop);
+                                mAdapter = new SimpleExpandableListAdapter(
+                                        IdeaActivity.getInstance().getApplicationContext(),
+                                        allocate.getStory2(), android.R.layout.simple_expandable_list_item_1, mFromTitle, mTo,
+                                        allocate.getChildStory2(), android.R.layout.simple_list_item_1, mFromStory, mTo
+                                );
+                                TabIdea2Fragment.setLvStories(mAdapter, allocate.getStory1(), mPosition, mTop);
                             }
                             else if( "3".equals(_idea) ) {
-                                adapter = new SimpleAdapter(IdeaActivity.getInstance().getApplicationContext(), allocate.getStory3(), android.R.layout.simple_list_item_2, from, to);
-                                TabIdea3Fragment.setLvStories(adapter, stories, mPosition, mTop);
+                                mAdapter = new SimpleExpandableListAdapter(
+                                        IdeaActivity.getInstance().getApplicationContext(),
+                                        allocate.getStory3(), android.R.layout.simple_expandable_list_item_1, mFromTitle, mTo,
+                                        allocate.getChildStory3(), android.R.layout.simple_list_item_1, mFromStory, mTo
+                                );
+                                TabIdea3Fragment.setLvStories(mAdapter, allocate.getStory3(), mPosition, mTop);
                             }
                             else if( "4".equals(_idea) ) {
-                                adapter = new SimpleAdapter(IdeaActivity.getInstance().getApplicationContext(), allocate.getStory4(), android.R.layout.simple_list_item_2, from, to);
-                                TabIdea4Fragment.setLvStories(adapter, stories, mPosition, mTop);
+                                mAdapter = new SimpleExpandableListAdapter(
+                                        IdeaActivity.getInstance().getApplicationContext(),
+                                        allocate.getStory4(), android.R.layout.simple_expandable_list_item_1, mFromTitle, mTo,
+                                        allocate.getChildStory4(), android.R.layout.simple_list_item_1, mFromStory, mTo
+                                );
+                                TabIdea4Fragment.setLvStories(mAdapter, allocate.getStory4(), mPosition, mTop);
                             }
                         }
                     });
