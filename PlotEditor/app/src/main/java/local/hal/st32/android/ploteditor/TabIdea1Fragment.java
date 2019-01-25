@@ -128,16 +128,8 @@ public class TabIdea1Fragment extends Fragment {
      * @param adapter
      * @param stories
      */
-    public static void setLvStories(SimpleAdapter adapter, List<Map<String, String>> stories) {
+    public static void setLvStories(SimpleExpandableListAdapter adapter, List<Map<String, String>> stories) {
         _stories = stories;
-        _lvStories.setAdapter(adapter);
-    }
-
-    /**
-     * 取得したアダプタをlvStoriesにセットするメソッド
-     * @param adapter
-     */
-    public static void setLvStories(SimpleExpandableListAdapter adapter) {
         _lvStories.setAdapter(adapter);
     }
 
