@@ -70,6 +70,7 @@ public class DeleteConfirmDialogCreate extends DialogFragment {
                             mToast.show();
 
                             //TODO:ストーリーの場合、構想画面から移動してしまう
+                            //table="stories"なら更新後と同じ処理を
                             mActivity.finish();
                         }
                     });
