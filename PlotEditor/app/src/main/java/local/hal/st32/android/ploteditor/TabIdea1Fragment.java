@@ -5,17 +5,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.AdapterView;
+import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
 import android.support.v4.app.Fragment;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -82,6 +87,9 @@ public class TabIdea1Fragment extends Fragment {
         _tvIdea = view.findViewById(R.id.tvIdea);
         _lvStories = view.findViewById(R.id.lvStories);
         _lvStories.setOnChildClickListener(new ChildListClickListener());
+
+        //コンテキストメニューをセット
+        registerForContextMenu(_lvStories);
 
         //TapEventへテキストビューをセット→ダブルタップ後、編集用のダイアログを表示
         TapEvent event = new TapEvent(getContext());
@@ -182,4 +190,41 @@ public class TabIdea1Fragment extends Fragment {
             return false;
         }
     }
+
+    /**
+     * コンテキストメニュー作成
+     */
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View view, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, view, menuInfo);
+
+        MenuInflater inflater = getActivity().getMenuInflater();
+        inflater.inflate(R.menu.menu_context, menu);
+    }
+
+    /**
+     * コンテキストメニュー選択時処理
+     */
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        ExpandableListView.ExpandableListContextMenuInfo info = (ExpandableListView.ExpandableListContextMenuInfo) item.getMenuInfo();
+        int position = ExpandableListView.getPackedPositionGroup( info.packedPosition );
+
+        int itemId = item.getItemId();
+        switch (itemId) {
+            //TODO:編集
+            case R.id.mcEdit:
+                break;
+            //TODO:削除
+            case R.id.mcDelete:
+                Toast.makeText(IdeaActivity.getInstance().getApplicationContext(),"タイトル：" + _stories.get(position).get("title"), Toast.LENGTH_SHORT).show();
+                break;
+        }
+
+        return super.onContextItemSelected(item);
+    }
+
+    /**
+     * 編集時に送信するための値をセットするメソッド
+     */
 }
