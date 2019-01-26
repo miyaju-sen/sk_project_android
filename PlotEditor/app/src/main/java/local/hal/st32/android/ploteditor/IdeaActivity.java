@@ -259,16 +259,16 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
         //起承転結の内どれにストーリーを追加するか
         String idea = "";
         if( TabIdea1Fragment.getTabIdea1FragmentTag().equals(mTag) ) {
-            idea = "1";
+            idea = _allocate.getIdea1().get("ideaNo");
         }
         else if( TabIdea2Fragment.getTabIdea2FragmentTag().equals(mTag) ) {
-            idea = "2";
+            idea = _allocate.getIdea2().get("ideaNo");
         }
         else if( TabIdea3Fragment.getTabIdea3FragmentTag().equals(mTag) ) {
-            idea = "3";
+            idea = _allocate.getIdea3().get("ideaNo");
         }
         else if( TabIdea4Fragment.getTabIdea4FragmentTag().equals(mTag) ) {
-            idea = "4";
+            idea = _allocate.getIdea4().get("ideaNo");
         }
 
         extras.putString("idea", idea);
