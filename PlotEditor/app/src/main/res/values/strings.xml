@@ -17,7 +17,7 @@
     <string name="menu_outline">概要</string>
     <string name="menu_character">登場人物</string>
     <string name="menu_world">世界観</string>
-    <string name="menu_idea">構想</string>
+    <string name="menu_idea">構想（ストーリー）</string>
     <string name="menu_memo">メモ</string>
 
     <!-- NavigationView用 -->
