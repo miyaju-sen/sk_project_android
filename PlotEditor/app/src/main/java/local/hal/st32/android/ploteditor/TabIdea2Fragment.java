@@ -84,13 +84,13 @@ public class TabIdea2Fragment extends Fragment {
         _lvStories = view.findViewById(R.id.lvStories);
         _lvStories.setOnChildClickListener(new ChildListClickListener());
 
-        //親ノード押下時のリスナクラス（これをセットしておかないとエラーが発生する）
-//        _lvStories.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
-//            @Override
-//            public boolean onGroupClick(ExpandableListView parent, View view, int groupPosition, long id) {
-//                return false;
-//            }
-//        });
+        //親ノード押下時のリスナクラス
+        _lvStories.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+            @Override
+            public boolean onGroupClick(ExpandableListView parent, View view, int groupPosition, long id) {
+                return false;
+            }
+        });
 
         //コンテキストメニューをセット
         registerForContextMenu(_lvStories);

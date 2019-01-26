@@ -10,6 +10,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.BaseExpandableListAdapter;
+import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -84,13 +86,19 @@ public class TabIdea3Fragment extends Fragment {
         _lvStories = view.findViewById(R.id.lvStories);
         _lvStories.setOnChildClickListener(new ChildListClickListener());
 
-        //親ノード押下時のリスナクラス（これをセットしておかないとエラーが発生する）
-//        _lvStories.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
-//            @Override
-//            public boolean onGroupClick(ExpandableListView parent, View view, int groupPosition, long id) {
-//                return false;
-//            }
-//        });
+        //親ノード押下時のリスナクラス
+        _lvStories.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+            @Override
+            public boolean onGroupClick(ExpandableListView parent, View view, int groupPosition, long id) {
+
+                ExpandableListAdapter adapter = parent.getExpandableListAdapter();
+                Map<String, String> item = (Map<String, String>)adapter.getGroup(groupPosition);
+
+                Log.e("+++++++++++++++++", "親タップ：" + item);
+
+                return false;
+            }
+        });
 
         //コンテキストメニューをセット
         registerForContextMenu(_lvStories);
