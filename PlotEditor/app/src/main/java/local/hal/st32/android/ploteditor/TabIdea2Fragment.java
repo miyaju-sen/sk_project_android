@@ -162,6 +162,7 @@ public class TabIdea2Fragment extends Fragment {
             extras.putString("mode", "edit");
             extras.putString("plot", _ideas.get("plot")); //作品No
             extras.putString("storyNo", _stories.get(groupPosition).get("storyNo")); //ストーリーNo
+            extras.putString("ideaNo", _ideas.get("ideaNo")); //構想No
             extras.putString("idea", _ideas.get("idea")); //起承転結番号
             extras.putString("title", _stories.get(groupPosition).get("title")); //タイトル
             extras.putString("story", _stories.get(groupPosition).get("story")); //ストーリー

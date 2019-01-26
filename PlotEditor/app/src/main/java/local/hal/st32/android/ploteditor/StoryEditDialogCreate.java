@@ -47,6 +47,10 @@ public class StoryEditDialogCreate extends DialogFragment {
      */
     private String _plot;
     private String _storyNo;
+    private String _ideaNo;
+    /**
+     * 起承転結番号
+     */
     private String _idea;
     /**
      * リストビューに値をセットするためのアダプタ類
@@ -68,6 +72,7 @@ public class StoryEditDialogCreate extends DialogFragment {
 
         Bundle extras = getArguments();
         _plot = extras.getString("plot");
+        _ideaNo = extras.getString("ideaNo");
         _idea = extras.getString("idea");
 
         _mode = extras.getString("mode");
@@ -150,7 +155,7 @@ public class StoryEditDialogCreate extends DialogFragment {
                             }
                         }
                     });
-                    access.execute(_plot, _storyNo, _idea, _etTitle.getText().toString(), _etStory.getText().toString());
+                    access.execute(_plot, _storyNo, _ideaNo, _etTitle.getText().toString(), _etStory.getText().toString());
                     break;
                 case DialogInterface.BUTTON_NEUTRAL:
                     //編集キャンセル
