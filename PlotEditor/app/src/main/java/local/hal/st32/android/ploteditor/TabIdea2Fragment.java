@@ -84,6 +84,14 @@ public class TabIdea2Fragment extends Fragment {
         _lvStories = view.findViewById(R.id.lvStories);
         _lvStories.setOnChildClickListener(new ChildListClickListener());
 
+        //親ノード押下時のリスナクラス（これをセットしておかないとエラーが発生する）
+        _lvStories.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+            @Override
+            public boolean onGroupClick(ExpandableListView parent, View view, int groupPosition, long id) {
+                return false;
+            }
+        });
+
         //コンテキストメニューをセット
         registerForContextMenu(_lvStories);
 
@@ -135,6 +143,8 @@ public class TabIdea2Fragment extends Fragment {
     public static void setLvStories(SimpleExpandableListAdapter adapter, List<Map<String, String>> stories) {
         _stories = stories;
         _lvStories.setAdapter(adapter);
+
+        Log.e("+++++++++++++++++", "ストーリーズ：" + _stories);
     }
 
     /**
@@ -165,9 +175,9 @@ public class TabIdea2Fragment extends Fragment {
         public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
 
             //値をセット・ダイアログを表示
-            Toast.makeText(getActivity(), "フラグメント" + getTag(), Toast.LENGTH_SHORT).show();
-            Log.e("****************", "フラグメント２");
             storyEdit(groupPosition);
+
+            Log.e("+++++++++++++++++", "ストーリーズ：" + _stories);
 
             return false;
         }
