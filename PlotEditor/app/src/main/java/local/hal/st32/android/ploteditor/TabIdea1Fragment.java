@@ -154,33 +154,8 @@ public class TabIdea1Fragment extends Fragment {
     }
 
     /**
-     * リスト押下時のリスナクラス
-     * ※編集を行う
+     * リスト（子ノード）押下時のリスナクラス
      */
-    private class ListItemClickListener implements AdapterView.OnItemClickListener {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            StoryEditDialogCreate dialog = new StoryEditDialogCreate();
-            Bundle extras = new Bundle();
-
-            extras.putString("mode", "edit");
-            extras.putString("plot", _ideas.get("plot")); //作品No
-            extras.putString("storyNo", _stories.get(position).get("storyNo")); //ストーリーNo
-            extras.putString("idea", _ideas.get("idea")); //起承転結番号
-            extras.putString("title", _stories.get(position).get("title")); //タイトル
-            extras.putString("story", _stories.get(position).get("story")); //ストーリー
-
-            //編集後のListViewの表示位置を、現状と同一にするための値を送信（スクロール位置の記憶）
-            extras.putString("top", Integer.toString( _lvStories.getChildAt(0).getTop() ));
-            extras.putString("position", Integer.toString( _lvStories.getFirstVisiblePosition() ));
-
-            dialog.setArguments(extras);
-
-            FragmentManager manager = getActivity().getSupportFragmentManager();
-            dialog.show(manager, "IdeaActivity");
-        }
-    }
-
     private class ChildListClickListener implements ExpandableListView.OnChildClickListener {
         @Override
         public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
@@ -197,8 +172,6 @@ public class TabIdea1Fragment extends Fragment {
             //編集後のListViewの表示位置を、現状と同一にするための値を送信（スクロール位置の記憶）
             extras.putString("top", Integer.toString( _lvStories.getChildAt(0).getTop() ));
             extras.putString("position", Integer.toString( _lvStories.getFirstVisiblePosition() ));
-
-            Log.e("**********", "中身：" + extras);
 
             dialog.setArguments(extras);
 
