@@ -167,25 +167,9 @@ public class TabIdea1Fragment extends Fragment {
     private class ChildListClickListener implements ExpandableListView.OnChildClickListener {
         @Override
         public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-            StoryEditDialogCreate dialog = new StoryEditDialogCreate();
-            Bundle extras = new Bundle();
 
-            extras.putString("mode", "edit");
-            extras.putString("plot", _ideas.get("plot")); //作品No
-            extras.putString("storyNo", _stories.get(groupPosition).get("storyNo")); //ストーリーNo
-            extras.putString("ideaNo", _ideas.get("ideaNo")); //構想No
-            extras.putString("idea", _ideas.get("idea")); //起承転結番号
-            extras.putString("title", _stories.get(groupPosition).get("title")); //タイトル
-            extras.putString("story", _stories.get(groupPosition).get("story")); //ストーリー
-
-            //編集後のListViewの表示位置を、現状と同一にするための値を送信（スクロール位置の記憶）
-            extras.putString("top", Integer.toString( _lvStories.getChildAt(0).getTop() ));
-            extras.putString("position", Integer.toString( _lvStories.getFirstVisiblePosition() ));
-
-            dialog.setArguments(extras);
-
-            FragmentManager manager = getActivity().getSupportFragmentManager();
-            dialog.show(manager, "IdeaActivity");
+            //値をセット・ダイアログを表示
+            storyEdit(groupPosition);
 
             return false;
         }
@@ -212,8 +196,9 @@ public class TabIdea1Fragment extends Fragment {
 
         int itemId = item.getItemId();
         switch (itemId) {
-            //TODO:編集
+            //編集
             case R.id.mcEdit:
+                storyEdit(position);
                 break;
             //TODO:削除
             case R.id.mcDelete:
@@ -225,6 +210,29 @@ public class TabIdea1Fragment extends Fragment {
     }
 
     /**
-     * 編集時に送信するための値をセットするメソッド
+     * 編集時に値を送信する処理を記述したメソッド
+     *
+     * @param position
      */
+    private void storyEdit(int position) {
+        StoryEditDialogCreate dialog = new StoryEditDialogCreate();
+        Bundle extras = new Bundle();
+
+        extras.putString("mode", "edit");
+        extras.putString("plot", _ideas.get("plot")); //作品No
+        extras.putString("storyNo", _stories.get(position).get("storyNo")); //ストーリーNo
+        extras.putString("ideaNo", _ideas.get("ideaNo")); //構想No
+        extras.putString("idea", _ideas.get("idea")); //起承転結番号
+        extras.putString("title", _stories.get(position).get("title")); //タイトル
+        extras.putString("story", _stories.get(position).get("story")); //ストーリー
+
+        //編集後のListViewの表示位置を、現状と同一にするための値を送信（スクロール位置の記憶）
+        extras.putString("top", Integer.toString( _lvStories.getChildAt(0).getTop() ));
+        extras.putString("position", Integer.toString( _lvStories.getFirstVisiblePosition() ));
+
+        dialog.setArguments(extras);
+
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+        dialog.show(manager, "IdeaActivity");
+    }
 }
