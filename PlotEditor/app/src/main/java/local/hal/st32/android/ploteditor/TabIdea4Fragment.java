@@ -198,7 +198,6 @@ public class TabIdea4Fragment extends Fragment {
                 break;
             //TODO:削除
             case R.id.mcDelete:
-                Toast.makeText(IdeaActivity.getInstance().getApplicationContext(),"タイトル：" + _stories.get(position).get("title"), Toast.LENGTH_SHORT).show();
                 break;
         }
 
