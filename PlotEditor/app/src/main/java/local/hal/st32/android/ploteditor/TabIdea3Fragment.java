@@ -3,7 +3,10 @@ package local.hal.st32.android.ploteditor;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -13,6 +16,7 @@ import android.widget.SimpleAdapter;
 import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
 import android.support.v4.app.Fragment;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -79,6 +83,9 @@ public class TabIdea3Fragment extends Fragment {
         _tvIdea = view.findViewById(R.id.tvIdea);
         _lvStories = view.findViewById(R.id.lvStories);
         _lvStories.setOnChildClickListener(new ChildListClickListener());
+
+        //コンテキストメニューをセット
+        registerForContextMenu(_lvStories);
 
         //TapEventへテキストビューをセット→ダブルタップ後、編集用のダイアログを表示
         TapEvent event = new TapEvent(getContext());
@@ -156,27 +163,73 @@ public class TabIdea3Fragment extends Fragment {
     private class ChildListClickListener implements ExpandableListView.OnChildClickListener {
         @Override
         public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-            StoryEditDialogCreate dialog = new StoryEditDialogCreate();
-            Bundle extras = new Bundle();
 
-            extras.putString("mode", "edit");
-            extras.putString("plot", _ideas.get("plot")); //作品No
-            extras.putString("storyNo", _stories.get(groupPosition).get("storyNo")); //ストーリーNo
-            extras.putString("ideaNo", _ideas.get("ideaNo")); //構想No
-            extras.putString("idea", _ideas.get("idea")); //起承転結番号
-            extras.putString("title", _stories.get(groupPosition).get("title")); //タイトル
-            extras.putString("story", _stories.get(groupPosition).get("story")); //ストーリー
-
-            //編集後のListViewの表示位置を、現状と同一にするための値を送信（スクロール位置の記憶）
-            extras.putString("top", Integer.toString( _lvStories.getChildAt(0).getTop() ));
-            extras.putString("position", Integer.toString( _lvStories.getFirstVisiblePosition() ));
-
-            dialog.setArguments(extras);
-
-            FragmentManager manager = getActivity().getSupportFragmentManager();
-            dialog.show(manager, "IdeaActivity");
+            //値をセット・ダイアログを表示
+            storyEdit(groupPosition);
 
             return false;
         }
+    }
+
+    /**
+     * コンテキストメニュー作成
+     */
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View view, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, view, menuInfo);
+
+        MenuInflater inflater = getActivity().getMenuInflater();
+        inflater.inflate(R.menu.menu_context, menu);
+    }
+
+    /**
+     * コンテキストメニュー選択時処理
+     */
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        ExpandableListView.ExpandableListContextMenuInfo info = (ExpandableListView.ExpandableListContextMenuInfo) item.getMenuInfo();
+        int position = ExpandableListView.getPackedPositionGroup( info.packedPosition );
+
+        int itemId = item.getItemId();
+        switch (itemId) {
+            //編集
+            case R.id.mcEdit:
+                storyEdit(position);
+                break;
+            //TODO:削除
+            case R.id.mcDelete:
+                Toast.makeText(IdeaActivity.getInstance().getApplicationContext(),"タイトル：" + _stories.get(position).get("title"), Toast.LENGTH_SHORT).show();
+                break;
+        }
+
+        return super.onContextItemSelected(item);
+    }
+
+
+    /**
+     * 編集時に値を送信する処理を記述したメソッド
+     *
+     * @param position
+     */
+    private void storyEdit(int position) {
+        StoryEditDialogCreate dialog = new StoryEditDialogCreate();
+        Bundle extras = new Bundle();
+
+        extras.putString("mode", "edit");
+        extras.putString("plot", _ideas.get("plot")); //作品No
+        extras.putString("storyNo", _stories.get(position).get("storyNo")); //ストーリーNo
+        extras.putString("ideaNo", _ideas.get("ideaNo")); //構想No
+        extras.putString("idea", _ideas.get("idea")); //起承転結番号
+        extras.putString("title", _stories.get(position).get("title")); //タイトル
+        extras.putString("story", _stories.get(position).get("story")); //ストーリー
+
+        //編集後のListViewの表示位置を、現状と同一にするための値を送信（スクロール位置の記憶）
+        extras.putString("top", Integer.toString( _lvStories.getChildAt(0).getTop() ));
+        extras.putString("position", Integer.toString( _lvStories.getFirstVisiblePosition() ));
+
+        dialog.setArguments(extras);
+
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+        dialog.show(manager, "IdeaActivity");
     }
 }
