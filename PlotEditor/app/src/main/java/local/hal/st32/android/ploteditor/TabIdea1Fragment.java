@@ -142,7 +142,7 @@ public class TabIdea1Fragment extends Fragment {
     }
 
     /**
-     * 取得したアダプタをlvStoriesにセットするメソッド TODO:デバック必要（ちゃんとその位置に戻ってくるか）
+     * 取得したアダプタをlvStoriesにセットするメソッド 
      * @param adapter
      * @param stories
      * @param position
@@ -169,6 +169,8 @@ public class TabIdea1Fragment extends Fragment {
         public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
 
             //値をセット・ダイアログを表示
+            Toast.makeText(getActivity(), "フラグメント" + getTag(), Toast.LENGTH_SHORT).show();
+            Log.e("****************", "フラグメント１");
             storyEdit(groupPosition);
 
             return false;
@@ -193,6 +195,7 @@ public class TabIdea1Fragment extends Fragment {
     public boolean onContextItemSelected(MenuItem item) {
         ExpandableListView.ExpandableListContextMenuInfo info = (ExpandableListView.ExpandableListContextMenuInfo) item.getMenuInfo();
         int position = ExpandableListView.getPackedPositionGroup( info.packedPosition );
+        Log.e("****************", "フラグメント１");
 
         int itemId = item.getItemId();
         switch (itemId) {
@@ -236,6 +239,11 @@ public class TabIdea1Fragment extends Fragment {
         dialog.show(manager, "IdeaActivity");
     }
 
+    /**
+     * 削除ボタン押下時の処理
+     *
+     * @param position
+     */
     private void onStoryDeleteButtonClick(int position) {
         Bundle extras = new Bundle();
         extras.putString("no", _stories.get(position).get("storyNo"));

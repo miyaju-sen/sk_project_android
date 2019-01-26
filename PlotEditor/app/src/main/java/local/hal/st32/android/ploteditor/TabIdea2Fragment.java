@@ -165,6 +165,8 @@ public class TabIdea2Fragment extends Fragment {
         public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
 
             //値をセット・ダイアログを表示
+            Toast.makeText(getActivity(), "フラグメント" + getTag(), Toast.LENGTH_SHORT).show();
+            Log.e("****************", "フラグメント２");
             storyEdit(groupPosition);
 
             return false;
@@ -189,6 +191,7 @@ public class TabIdea2Fragment extends Fragment {
     public boolean onContextItemSelected(MenuItem item) {
         ExpandableListView.ExpandableListContextMenuInfo info = (ExpandableListView.ExpandableListContextMenuInfo) item.getMenuInfo();
         int position = ExpandableListView.getPackedPositionGroup( info.packedPosition );
+        Log.e("****************", "フラグメント２");
 
         int itemId = item.getItemId();
         switch (itemId) {
