@@ -33,6 +33,15 @@ public class DeleteConfirmDialogCreate extends DialogFragment {
      * アクティビティ
      */
     private Activity mActivity;
+    /**
+     * リストビューのポジション
+     */
+    private String mPosition = "";
+    private String mTop = "";
+    /**
+     * 起承転結番号
+     */
+    private String mIdea = "";
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -71,7 +80,14 @@ public class DeleteConfirmDialogCreate extends DialogFragment {
 
                             //TODO:ストーリーの場合、構想画面から移動してしまう
                             //table="stories"なら更新後と同じ処理を
-                            mActivity.finish();
+
+                            //削除するのがstoriesテーブルのレコードであった場合
+                            if("stories".equals(mTable)) {
+                                IdeaActivity.getInstance().onReloadButtonClick();
+                            }
+                            else {
+                                mActivity.finish();
+                            }
                         }
                     });
                     access.execute(mNo, mTable);

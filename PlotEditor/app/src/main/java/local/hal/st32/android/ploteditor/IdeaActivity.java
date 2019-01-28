@@ -123,6 +123,7 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
     public void onResume() {
         super.onResume();
         setTitle("構想");
+        Log.e("*********", "IdeaActivity#onResume()");
         mTvMenuTitle.setText( _outline.get("title") );
 
         _allocate = new IdeaAllocate();
@@ -290,6 +291,7 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
      * 更新ボタン押下時の処理
      */
     public void onReloadButtonClick() {
+        Log.e("*********", "更新");
         _allocate = new IdeaAllocate();
 
         IdeaJsonAccess access = new IdeaJsonAccess();
