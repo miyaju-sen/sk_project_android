@@ -1,5 +1,6 @@
 package local.hal.st32.android.ploteditor;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
@@ -209,8 +210,9 @@ public class TabIdea2Fragment extends Fragment {
             case R.id.mcEdit:
                 storyEdit(position);
                 break;
-            //TODO:削除
+            //削除
             case R.id.mcDelete:
+                onStoryDeleteButtonClick(position);
                 break;
         }
 
@@ -238,6 +240,27 @@ public class TabIdea2Fragment extends Fragment {
         extras.putString("top", Integer.toString( _lvStories.getChildAt(0).getTop() ));
         extras.putString("position", Integer.toString( _lvStories.getFirstVisiblePosition() ));
 
+        dialog.setArguments(extras);
+
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+        dialog.show(manager, "IdeaActivity");
+    }
+
+    /**
+     * 削除ボタン押下時の処理
+     *
+     * @param position
+     */
+    private void onStoryDeleteButtonClick(int position) {
+        Bundle extras = new Bundle();
+        extras.putString("no", _stories.get(position).get("storyNo"));
+        extras.putString("table", "stories");
+        extras.putString("msg", getString(R.string.dialog_story_delete_msg,  _stories.get(position).get("title")));
+
+        Context context = IdeaActivity.getInstance();
+        DeleteConfirmDialogCreate.setActivityContext(context);
+
+        DeleteConfirmDialogCreate dialog = new DeleteConfirmDialogCreate();
         dialog.setArguments(extras);
 
         FragmentManager manager = getActivity().getSupportFragmentManager();
