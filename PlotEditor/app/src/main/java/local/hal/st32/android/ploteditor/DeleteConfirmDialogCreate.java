@@ -33,15 +33,6 @@ public class DeleteConfirmDialogCreate extends DialogFragment {
      * アクティビティ
      */
     private Activity mActivity;
-    /**
-     * リストビューのポジション
-     */
-    private String mPosition = "";
-    private String mTop = "";
-    /**
-     * 起承転結番号
-     */
-    private String mIdea = "";
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
