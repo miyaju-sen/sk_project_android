@@ -20,12 +20,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.HashMap;
+import java.util.Locale;
 
 /**
  * 就職作品
@@ -67,6 +69,10 @@ public class OutlineActivity extends AppCompatActivity implements NavigationView
     private TextView _tvSlogan;
     private TextView _tvSummary;
     /**
+     * tvTitleの高さ（24spで二行になると163）
+     */
+    private final int TITLE_LINE = 163;
+    /**
      * DrawerLayoutとActionBarDrawerToggle
      */
     private DrawerLayout mDrawer;
@@ -76,7 +82,6 @@ public class OutlineActivity extends AppCompatActivity implements NavigationView
      * NavigationViewのヘッダー部分のTextView
      */
     private TextView _tvMenuTitle;
-    private TextView _tvMenuBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,10 +122,20 @@ public class OutlineActivity extends AppCompatActivity implements NavigationView
     public void onResume() {
         super.onResume();
         setTitle("概要");
-        Log.e("*****", "確認地点A");
 
         _no = _outline.get("no");
         _tvTitle.setText(_outline.get("title") );
+
+        ViewTreeObserver observer = _tvTitle.getViewTreeObserver();
+        observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                //二行になっていたら文字サイズを18spに
+                if( TITLE_LINE == _tvTitle.getHeight() ) {
+                    _tvTitle.setTextSize(18.0f);
+                }
+            }
+        });
         _tvMenuTitle.setText(_outline.get("title"));
 
         //新規登録後、またはデータベースに値が登録されてなかった場合にはデフォルトの値をセット
