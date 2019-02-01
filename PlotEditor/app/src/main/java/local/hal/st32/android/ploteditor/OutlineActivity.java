@@ -126,6 +126,7 @@ public class OutlineActivity extends AppCompatActivity implements NavigationView
         _no = _outline.get("no");
         _tvTitle.setText(_outline.get("title") );
 
+        //画面部品が表示されるタイミングで動作
         ViewTreeObserver observer = _tvTitle.getViewTreeObserver();
         observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override

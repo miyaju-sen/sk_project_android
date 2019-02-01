@@ -246,17 +246,15 @@ public class CharacterActivity extends AppCompatActivity implements NavigationVi
      * 削除ボタン押下時の処理
      */
     private void onCharacterDeleteButtonClick() {
-        String no = _character.get("no");
-        String name = _character.get("name");
-
         Bundle extras = new Bundle();
-        extras.putString("no", no);
-        extras.putString("name", name);
+        extras.putString("no", _character.get("no"));
+        extras.putString("table", "characters");
+        extras.putString("msg", getString(R.string.dialog_character_delete_msg, _character.get("name")));
 
         Context context = this;
-        CharacterDeleteConfirmDialogCreate.setActivityContext(context);
+        DeleteConfirmDialogCreate.setActivityContext(context);
 
-        CharacterDeleteConfirmDialogCreate dialog = new CharacterDeleteConfirmDialogCreate();
+        DeleteConfirmDialogCreate dialog = new DeleteConfirmDialogCreate();
         dialog.setArguments(extras);
 
         FragmentManager manager = getSupportFragmentManager();

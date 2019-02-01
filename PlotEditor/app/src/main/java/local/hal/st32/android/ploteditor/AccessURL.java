@@ -23,8 +23,9 @@ public class AccessURL {
      * コンストラクタ
      */
     public AccessURL() {
-        this.ROOT_URL = "http://192.168.0.111:8080/PlotEditor";
-//        this.ROOT_URL = "http://192.168.0.43:8080/PlotEditor";
+//        this.ROOT_URL = "http://192.168.0.111:8080/PlotEditor"; //家
+//        this.ROOT_URL = "http://192.168.0.43:8080/PlotEditor"; //家のモバイルルータ
+        this.ROOT_URL = "http://192.168.43.249:8080/PlotEditor";
         this.PLOT_JSON = ROOT_URL + "/PlotJsonServlet";
         this.CHARACTER_JSON = ROOT_URL + "/CharacterJsonServlet";
         this.STAGE_JSON = ROOT_URL + "/StageJsonServlet";
