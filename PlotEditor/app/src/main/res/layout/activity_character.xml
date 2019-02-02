@@ -333,8 +333,8 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tlOutline" />
 
-                    <TextView
-                        android:id="@+id/skill"
+                    <FrameLayout
+                        android:id="@+id/flSkill"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -342,24 +342,30 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="10dp"
                         android:layout_marginRight="10dp"
-                        android:text="@string/tv_skill"
-                        android:textSize="18sp"
+                        android:background="@drawable/back"
+                        android:orientation="vertical"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/belongs" />
+                        app:layout_constraintTop_toBottomOf="@+id/belongs">
 
-                    <TextView
-                        android:id="@+id/tvSkill"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginRight="16dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/skill" />
+                        <TextView
+                            android:id="@+id/skill"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginTop="15dp"
+                            android:text="@string/tv_skill"
+                            android:textSize="18sp"/>
+
+                        <TextView
+                            android:id="@+id/tvSkill"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:padding="20dp"/>
+                    </FrameLayout>
+
 
                     <TextView
                         android:id="@+id/livedProcess"
@@ -374,7 +380,7 @@
                         android:textSize="18sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tvSkill" />
+                        app:layout_constraintTop_toBottomOf="@+id/flSkill" />
 
                     <TextView
                         android:id="@+id/tvLivedProcess"
