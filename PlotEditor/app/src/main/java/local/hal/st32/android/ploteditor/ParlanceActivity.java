@@ -213,17 +213,15 @@ public class ParlanceActivity extends AppCompatActivity implements NavigationVie
      * 削除ボタン押下時の処理
      */
     private void onCharacterDeleteButtonClick() {
-        String no = _parlance.get("no");
-        String name = _parlance.get("name");
-
         Bundle extras = new Bundle();
-        extras.putString("no", no);
-        extras.putString("name", name);
+        extras.putString("no", _parlance.get("no"));
+        extras.putString("table", "parlances");
+        extras.putString("msg", getString( R.string.dialog_parlance_delete_msg, _parlance.get("name") ));
 
         Context context = this;
-        ParlanceDeleteConfirmDialogCreate.setActivityContext(context);
+        DeleteConfirmDialogCreate.setActivityContext(context);
 
-        ParlanceDeleteConfirmDialogCreate dialog = new ParlanceDeleteConfirmDialogCreate();
+        DeleteConfirmDialogCreate dialog = new DeleteConfirmDialogCreate();
         dialog.setArguments(extras);
 
         FragmentManager manager = getSupportFragmentManager();
