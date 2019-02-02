@@ -219,17 +219,15 @@ public class MemoActivity extends AppCompatActivity implements NavigationView.On
      * プロット削除押下時の処理
      */
     private void onPlotDeleteClick() {
-        String no = mOutline.get("no");
-        String title = mOutline.get("title");
-
         Bundle extras = new Bundle();
-        extras.putString("no", no);
-        extras.putString("title", title);
+        extras.putString("no", mOutline.get("no"));
+        extras.putString("table", "memos");
+        extras.putString("msg", getString(R.string.dialog_memo_delete_msg));
 
         Context context = this;
-        PlotDeleteConfirmDialogCreate.setActivityContext(context);
+        DeleteConfirmDialogCreate.setActivityContext(context);
 
-        PlotDeleteConfirmDialogCreate dialog = new PlotDeleteConfirmDialogCreate();
+        DeleteConfirmDialogCreate dialog = new DeleteConfirmDialogCreate();
         dialog.setArguments(extras);
 
         FragmentManager manager = getSupportFragmentManager();
