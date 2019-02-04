@@ -209,6 +209,15 @@ public class IdeaActivity extends AppCompatActivity implements ViewPager.OnPageC
     }
 
     /**
+     * Fragmentのtagを格納した変数のゲッター
+     *
+     * @return 現在表示中のタブのFragmentTag
+     */
+    public String getNowFragmentTag() {
+        return mTag;
+    }
+
+    /**
      * オプションメニュー作成
      */
     @Override

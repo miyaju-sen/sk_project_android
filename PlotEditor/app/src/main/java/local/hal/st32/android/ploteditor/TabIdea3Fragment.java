@@ -233,25 +233,27 @@ public class TabIdea3Fragment extends Fragment {
      * @param position
      */
     private void storyEdit(int position) {
-        StoryEditDialogCreate dialog = new StoryEditDialogCreate();
-        Bundle extras = new Bundle();
+        if( IdeaActivity.getInstance().getNowFragmentTag().equals(getTag()) ) {
+            StoryEditDialogCreate dialog = new StoryEditDialogCreate();
+            Bundle extras = new Bundle();
 
-        extras.putString("mode", "edit");
-        extras.putString("plot", _ideas.get("plot")); //作品No
-        extras.putString("storyNo", _stories.get(position).get("storyNo")); //ストーリーNo
-        extras.putString("ideaNo", _ideas.get("ideaNo")); //構想No
-        extras.putString("idea", _ideas.get("idea")); //起承転結番号
-        extras.putString("title", _stories.get(position).get("title")); //タイトル
-        extras.putString("story", _stories.get(position).get("story")); //ストーリー
+            extras.putString("mode", "edit");
+            extras.putString("plot", _ideas.get("plot")); //作品No
+            extras.putString("storyNo", _stories.get(position).get("storyNo")); //ストーリーNo
+            extras.putString("ideaNo", _ideas.get("ideaNo")); //構想No
+            extras.putString("idea", _ideas.get("idea")); //起承転結番号
+            extras.putString("title", _stories.get(position).get("title")); //タイトル
+            extras.putString("story", _stories.get(position).get("story")); //ストーリー
 
-        //編集後のListViewの表示位置を、現状と同一にするための値を送信（スクロール位置の記憶）
-        extras.putString("top", Integer.toString( _lvStories.getChildAt(0).getTop() ));
-        extras.putString("position", Integer.toString( _lvStories.getFirstVisiblePosition() ));
+            //編集後のListViewの表示位置を、現状と同一にするための値を送信（スクロール位置の記憶）
+            extras.putString("top", Integer.toString(_lvStories.getChildAt(0).getTop()));
+            extras.putString("position", Integer.toString(_lvStories.getFirstVisiblePosition()));
 
-        dialog.setArguments(extras);
+            dialog.setArguments(extras);
 
-        FragmentManager manager = getActivity().getSupportFragmentManager();
-        dialog.show(manager, "IdeaActivity");
+            FragmentManager manager = getActivity().getSupportFragmentManager();
+            dialog.show(manager, "IdeaActivity");
+        }
     }
 
     /**
