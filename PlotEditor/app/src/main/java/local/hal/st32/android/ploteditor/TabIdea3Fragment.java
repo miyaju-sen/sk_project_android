@@ -262,18 +262,20 @@ public class TabIdea3Fragment extends Fragment {
      * @param position
      */
     private void onStoryDeleteButtonClick(int position) {
-        Bundle extras = new Bundle();
-        extras.putString("no", _stories.get(position).get("storyNo"));
-        extras.putString("table", "stories");
-        extras.putString("msg", getString(R.string.dialog_story_delete_msg,  _stories.get(position).get("title")));
+        if( IdeaActivity.getInstance().getNowFragmentTag().equals(getTag()) ) {
+            Bundle extras = new Bundle();
+            extras.putString("no", _stories.get(position).get("storyNo"));
+            extras.putString("table", "stories");
+            extras.putString("msg", getString(R.string.dialog_story_delete_msg,  _stories.get(position).get("title")));
 
-        Context context = IdeaActivity.getInstance();
-        DeleteConfirmDialogCreate.setActivityContext(context);
+            Context context = IdeaActivity.getInstance();
+            DeleteConfirmDialogCreate.setActivityContext(context);
 
-        DeleteConfirmDialogCreate dialog = new DeleteConfirmDialogCreate();
-        dialog.setArguments(extras);
+            DeleteConfirmDialogCreate dialog = new DeleteConfirmDialogCreate();
+            dialog.setArguments(extras);
 
-        FragmentManager manager = getActivity().getSupportFragmentManager();
-        dialog.show(manager, "IdeaActivity");
+            FragmentManager manager = getActivity().getSupportFragmentManager();
+            dialog.show(manager, "IdeaActivity");
+        }
     }
 }
