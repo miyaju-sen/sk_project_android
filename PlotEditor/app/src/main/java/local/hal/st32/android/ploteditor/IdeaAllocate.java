@@ -1,6 +1,7 @@
 package local.hal.st32.android.ploteditor;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.SimpleAdapter;
 
 import java.util.ArrayList;
@@ -225,8 +226,8 @@ public class IdeaAllocate {
             this._map.put("story", this._story2.get(i).get("story"));
 
             this._list.add(this._map);
+            this._childStory2.add(this._list);
         }
-        this._childStory2.add(this._list);
 
         return this._childStory2;
     }
@@ -256,8 +257,8 @@ public class IdeaAllocate {
             this._map.put("story", this._story3.get(i).get("story"));
 
             this._list.add(this._map);
+            this._childStory3.add(this._list);
         }
-        this._childStory3.add(this._list);
 
         return this._childStory3;
     }
@@ -287,8 +288,8 @@ public class IdeaAllocate {
             this._map.put("story", this._story4.get(i).get("story"));
 
             this._list.add(this._map);
+            this._childStory4.add(this._list);
         }
-        this._childStory4.add(this._list);
 
         return this._childStory4;
     }
