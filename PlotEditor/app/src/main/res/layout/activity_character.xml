@@ -42,6 +42,48 @@
                     android:layout_height="wrap_content"
                     tools:context=".CharacterActivity">
 
+                    <ImageView
+                        android:id="@+id/imageView5"
+                        android:layout_width="320dp"
+                        android:layout_height="14dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvPersonality"
+                        app:srcCompat="@drawable/characterline" />
+
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="320dp"
+                        android:layout_height="14dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvLivedProcess"
+                        app:srcCompat="@drawable/characterline" />
+
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="320dp"
+                        android:layout_height="14dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvSkill"
+                        app:srcCompat="@drawable/characterline" />
+
                     <FrameLayout
                         android:id="@+id/flCharacterIcon"
                         android:layout_width="128dp"
@@ -339,7 +381,6 @@
                         android:layout_marginEnd="8dp"
                         android:layout_marginRight="8dp"
                         android:gravity="center"
-                        android:text="ターザック村"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/belongs" />
@@ -388,7 +429,7 @@
                         android:textSize="18sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tvSkill" />
+                        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
                     <TextView
                         android:id="@+id/tvLivedProcess"
@@ -417,7 +458,7 @@
                         android:textSize="18sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tvLivedProcess" />
+                        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
                     <TextView
                         android:id="@+id/tvPersonality"
@@ -447,7 +488,7 @@
                         android:textSize="18sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tvPersonality" />
+                        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
                     <TextView
                         android:id="@+id/tvAppearance"
@@ -463,6 +504,20 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/appearance" />
 
+                    <ImageView
+                        android:id="@+id/imageView6"
+                        android:layout_width="320dp"
+                        android:layout_height="14dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvAppearance"
+                        app:srcCompat="@drawable/characterline" />
+
                     <TextView
                         android:id="@+id/other"
                         android:layout_width="0dp"
@@ -477,7 +532,7 @@
                         android:textSize="18sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tvAppearance" />
+                        app:layout_constraintTop_toBottomOf="@+id/imageView6" />
 
                     <TextView
                         android:id="@+id/tvOther"
