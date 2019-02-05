@@ -316,7 +316,6 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
                     android:layout_marginBottom="8dp"
-                    android:background="@drawable/back"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -326,13 +325,27 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
+                        <ImageView
+                            android:id="@+id/imageViewtop"
+                            android:layout_width="350dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginRight="8dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvCharacterAbout"
+                            app:srcCompat="@drawable/line" />
+
                         <TextView
                             android:id="@+id/belongs"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
                             android:layout_marginLeft="8dp"
-                            android:layout_marginTop="32dp"
+                            android:layout_marginTop="8dp"
                             android:layout_marginEnd="8dp"
                             android:layout_marginRight="8dp"
                             android:gravity="center_horizontal"
@@ -340,7 +353,7 @@
                             android:textSize="18sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toBottomOf="@+id/imageViewtop" />
 
                         <TextView
                             android:id="@+id/tvBelongs"
@@ -425,6 +438,7 @@
                             android:layout_marginTop="8dp"
                             android:layout_marginEnd="8dp"
                             android:layout_marginRight="8dp"
+                            android:gravity="center_horizontal"
                             android:text="@string/tv_lived_process"
                             android:textSize="18sp"
                             app:layout_constraintEnd_toEndOf="parent"
