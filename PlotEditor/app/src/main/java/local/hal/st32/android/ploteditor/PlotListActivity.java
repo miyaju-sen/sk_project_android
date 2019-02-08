@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
+import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
@@ -25,6 +26,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
@@ -75,6 +77,10 @@ public class PlotListActivity extends AppCompatActivity {
      * リストビュー
      */
     private ListView _lvPlots;
+    /**
+     * プログレスバー
+     */
+    private static ProgressBar sProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +91,9 @@ public class PlotListActivity extends AppCompatActivity {
         Context context = PlotListActivity.this;
         PlotJsonAccess access = new PlotJsonAccess();
         access.setContext(context);
+
+        //プログレスバー表示
+        sProgressBar = findViewById(R.id.progressBar);
 
         //リストビュー取得・リスナー設定
         _lvPlots = findViewById(R.id.lvPlots);
@@ -217,6 +226,8 @@ public class PlotListActivity extends AppCompatActivity {
                 URL url = new URL(urlStr);
                 con = (HttpURLConnection) url.openConnection();
                 con.setRequestMethod("GET");
+                con.setConnectTimeout(5000);
+                con.setReadTimeout(5000);
                 con.connect();
                 is = con.getInputStream();
 
@@ -247,6 +258,11 @@ public class PlotListActivity extends AppCompatActivity {
             }
 
             return result;
+        }
+
+        @Override
+        public void onPreExecute(){
+            sProgressBar.setVisibility(ProgressBar.VISIBLE);
         }
 
         @Override
@@ -301,6 +317,7 @@ public class PlotListActivity extends AppCompatActivity {
                 Log.e(DEBUG_TAG, "JSON解析失敗", ex);
             }
 
+            sProgressBar.setVisibility(ProgressBar.INVISIBLE);
             return list;
         }
 
