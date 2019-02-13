@@ -230,10 +230,6 @@ public class OutlineActivity extends AppCompatActivity implements NavigationView
                 intent = null;
                 onPlotDeleteClick();
                 break;
-            //TODO:テスト用アクティビティへ
-            case R.id.menuTest:
-                intent = new Intent(OutlineActivity.this, TestActivity.class);
-                break;
         }
         DrawerLayout drawer = findViewById(R.id.drawerLayout);
         drawer.closeDrawer(GravityCompat.START);

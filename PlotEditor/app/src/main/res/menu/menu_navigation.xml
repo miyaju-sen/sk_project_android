@@ -33,9 +33,5 @@ NavigationView用のメニュー
         <item
             android:id="@+id/menuDelete"
             android:title="@string/menu_plot_delete"/>
-
-        <item
-            android:id="@+id/menuTest"
-            android:title="テスト"/>
     </group>
 </menu>
