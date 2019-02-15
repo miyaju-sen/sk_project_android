@@ -57,6 +57,8 @@ public class TabStageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         _view = inflater.inflate(R.layout.fragment_tab_stage, null);
+
+        //スクロールビューにフェードアウト追加
         ScrollView scrollView = _view.findViewById(R.id.scrollView);
         scrollView.setVerticalFadingEdgeEnabled(true);
         scrollView.setFadingEdgeLength(130);
