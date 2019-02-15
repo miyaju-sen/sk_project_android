@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.util.HashMap;
@@ -69,6 +70,11 @@ public class ParlanceActivity extends AppCompatActivity implements NavigationVie
         //画面部品取得
         _tvName = findViewById(R.id.tvParlanceName);
         _tvExplanation = findViewById(R.id.tvExplanation);
+
+        //スクロールビューにフェードアウト追加
+        ScrollView scrollView = findViewById(R.id.scrollView);
+        scrollView.setVerticalFadingEdgeEnabled(true);
+        scrollView.setFadingEdgeLength(100);
 
         //NavigationViewのヘッダー部分のTextViewを取得
         NavigationView nvLeftView = findViewById(R.id.nvLeftView);
