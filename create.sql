@@ -12,15 +12,25 @@ CREATE TABLE genders(
     INDEX(no)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+#T_ユーザテーブル
+CREATE TABLE users(
+    no INT(8) NOT NULL AUTO_INCREMENT, #主キーNo
+    password VARCHAR(8) NOT NULL, #パスワード
+    PRIMARY KEY(no),
+    INDEX(no)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 #T_作品テーブル
 CREATE TABLE plots(
     no INT(8) NOT NULL AUTO_INCREMENT,  #作品No
+    user INT(8) NOT NULL, #ユーザNo
     title VARCHAR(100) NOT NULL, #タイトル
     slogan VARCHAR(50), #キャッチコピー
     summary TEXT, #あらすじ
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, #更新日 
     deleted BOOLEAN NOT NULL DEFAULT FALSE, #削除フラグ
     PRIMARY KEY(no), 
+    FOREIGN KEY(user) REFERENCES users(no),
     INDEX(no)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
