@@ -20,11 +20,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
@@ -98,6 +100,7 @@ public class PlotListActivity extends AppCompatActivity {
         //リストビュー取得・リスナー設定
         _lvPlots = findViewById(R.id.lvPlots);
         _lvPlots.setOnItemClickListener(new ListItemClickListener());
+        unregisterForContextMenu(_lvPlots);
 
         //ストレージへのアクセス許可の確認
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -198,6 +201,40 @@ public class PlotListActivity extends AppCompatActivity {
 
             startActivity(intent);
         }
+    }
+
+    /**
+     * コンテキストメニュー作成
+     */
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View view, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, view, menuInfo);
+
+        MenuInflater inflater = PlotListActivity.this.getMenuInflater();
+        inflater.inflate(R.menu.menu_context_plot_list, menu);
+    }
+
+    /**
+     * コンテキストメニュー選択時処理
+     */
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        ExpandableListView.ExpandableListContextMenuInfo info = (ExpandableListView.ExpandableListContextMenuInfo) item.getMenuInfo();
+        int position = ExpandableListView.getPackedPositionGroup( info.packedPosition );
+
+        int itemId = item.getItemId();
+        switch (itemId) {
+            //メモ一覧へ
+            case R.id.mcEdit:
+                //TODO:メモ一覧へ
+                break;
+            //削除
+            case R.id.mcDelete:
+                //TODO:削除処理
+                break;
+        }
+
+        return super.onContextItemSelected(item);
     }
 
     /**

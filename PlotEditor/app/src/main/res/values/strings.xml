@@ -11,6 +11,7 @@
     <string name="menu_delete">削除</string>
     <string name="menu_image">画像選択</string>
     <string name="menu_reload">更新</string>
+    <string name="menu_memo_list">メモ一覧へ</string>
 
     <!-- NavigationViewのメニュー用 -->
     <string name="menu_back">⇐ プロット一覧に戻る</string>
