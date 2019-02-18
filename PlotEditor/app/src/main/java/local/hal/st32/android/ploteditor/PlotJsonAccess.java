@@ -84,7 +84,6 @@ public class PlotJsonAccess extends AsyncTask<String, String, String> {
      * @return プロット情報が格納された配列
      */
     public static HashMap<String, String> getPlot() {
-        Log.e("ゲット中身", _plot.toString());
         return _plot;
     }
 

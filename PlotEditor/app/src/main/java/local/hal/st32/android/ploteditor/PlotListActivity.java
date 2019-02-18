@@ -100,7 +100,7 @@ public class PlotListActivity extends AppCompatActivity {
         //リストビュー取得・リスナー設定
         _lvPlots = findViewById(R.id.lvPlots);
         _lvPlots.setOnItemClickListener(new ListItemClickListener());
-        unregisterForContextMenu(_lvPlots);
+        registerForContextMenu(_lvPlots);
 
         //ストレージへのアクセス許可の確認
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -219,14 +219,25 @@ public class PlotListActivity extends AppCompatActivity {
      */
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-        ExpandableListView.ExpandableListContextMenuInfo info = (ExpandableListView.ExpandableListContextMenuInfo) item.getMenuInfo();
-        int position = ExpandableListView.getPackedPositionGroup( info.packedPosition );
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+        int position = info.position;
 
         int itemId = item.getItemId();
         switch (itemId) {
             //メモ一覧へ
-            case R.id.mcEdit:
-                //TODO:メモ一覧へ
+            case R.id.mcMemo:
+                Intent intent = new Intent(getApplication(), MemoListActivity.class);
+                HashMap<String, String> plot = new HashMap<>();
+
+                Map<String, String> map = _list.get(position);
+                plot.put("no", map.get("no"));
+                plot.put("title", map.get("title"));
+                plot.put("slogan", map.get("slogan"));
+                plot.put("summary", map.get("summary"));
+                plot.put("updated_at", map.get("updated_at"));
+
+                intent.putExtra("OUTLINE", plot);
+                startActivity(intent);
                 break;
             //削除
             case R.id.mcDelete:
