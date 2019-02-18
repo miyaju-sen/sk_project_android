@@ -241,11 +241,34 @@ public class PlotListActivity extends AppCompatActivity {
                 break;
             //削除
             case R.id.mcDelete:
-                //TODO:削除処理
+                onPlotDeleteClick(position);
                 break;
         }
 
         return super.onContextItemSelected(item);
+    }
+
+    /**
+     * プロット削除押下時の処理
+     */
+    private void onPlotDeleteClick(int position) {
+        String no = _list.get(position).get("no");
+        String title = _list.get(position).get("title");
+
+        Bundle extras = new Bundle();
+        extras.putString("no", no);
+        extras.putString("title", title);
+
+        Context context = this;
+        PlotDeleteConfirmDialogCreate.setActivityContext(context);
+
+        PlotDeleteConfirmDialogCreate dialog = new PlotDeleteConfirmDialogCreate();
+        dialog.setArguments(extras);
+
+        FragmentManager manager = getSupportFragmentManager();
+        dialog.show(manager, "PlotListActivity");
+
+        onResume();
     }
 
     /**

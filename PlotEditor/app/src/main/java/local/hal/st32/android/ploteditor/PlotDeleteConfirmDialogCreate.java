@@ -72,8 +72,11 @@ public class PlotDeleteConfirmDialogCreate extends DialogFragment {
                         @Override
                         public void CallBack() {
                             _toast.show();
-                            FinishActivity finish = new FinishActivity(_activity);
-                            finish.startPlotListActivity();
+                            //プロット一覧画面以外からの場合
+                            if( !new NowActivity().getPlotListActivity().equals(_activity) ) {
+                                FinishActivity finish = new FinishActivity(_activity);
+                                finish.startPlotListActivity();
+                            }
                         }
                     });
                     access.execute(no, table);
