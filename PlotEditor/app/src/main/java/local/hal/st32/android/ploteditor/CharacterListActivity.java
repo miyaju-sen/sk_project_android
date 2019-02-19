@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -101,6 +102,7 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
         //リストビュー取得・リスナー設定
         _lvCharacters = findViewById(R.id.lvCharacters);
         _lvCharacters.setOnItemClickListener(new ListItemClickListener());
+        registerForContextMenu(_lvCharacters);
 
         //NavigationViewのヘッダー部分のTextViewを取得
         NavigationView nvLeftView = findViewById(R.id.nvLeftView);
@@ -175,6 +177,46 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
     }
 
     /**
+     * コンテキストメニュー作成
+     */
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View view, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, view, menuInfo);
+
+        MenuInflater inflater = CharacterListActivity.this.getMenuInflater();
+        inflater.inflate(R.menu.menu_context, menu);
+    }
+
+    /**
+     * コンテキストメニュー選択時処理
+     */
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+        int position = info.position;
+
+        int itemId = item.getItemId();
+        switch (itemId) {
+            //編集画面へ
+            case R.id.mcEdit:
+                Intent intent = new Intent(CharacterListActivity.this, CharacterEditActivity.class);
+                HashMap<String, String> character = getListData(position);
+
+                intent.putExtra("CHARACTER", character);
+                intent.putExtra("OUTLINE", _outline);
+                intent.putExtra("ACTIVITY", CharacterActivity.NOW_ACTIVITY);
+                startActivity(intent);
+                break;
+            //削除
+            case R.id.mcDelete:
+                //TODO:削除処理へ
+                break;
+        }
+
+        return super.onContextItemSelected(item);
+    }
+
+    /**
      * NavigationView
      */
     @Override
@@ -229,34 +271,43 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Intent intent = new Intent(CharacterListActivity.this, CharacterActivity.class);
-            HashMap<String, String> character = new HashMap<>();
-
-            Map<String, String> item = _list.get(position);
-            character.put("no", item.get("no"));
-            character.put("plot", item.get("plot"));
-            character.put("phonetic", item.get("phonetic"));
-            character.put("name", item.get("name"));
-            character.put("another", item.get("another"));
-            character.put("image_path", item.get("image_path"));
-            character.put("age", item.get("age"));
-            character.put("gender", item.get("gender"));
-            character.put("birthday", item.get("birthday"));
-            character.put("height", item.get("height"));
-            character.put("weight", item.get("weight"));
-            character.put("first_person", item.get("first_person"));
-            character.put("second_person", item.get("second_person"));
-            character.put("belongs", item.get("belongs"));
-            character.put("skill", item.get("skill"));
-            character.put("profile", item.get("profile"));
-            character.put("lived_process", item.get("lived_process"));
-            character.put("personality", item.get("personality"));
-            character.put("appearance", item.get("appearance"));
-            character.put("other", item.get("other"));
+            HashMap<String, String> character = getListData(position);
 
             intent.putExtra("CHARACTER", character);
             intent.putExtra("OUTLINE", _outline);
             startActivity(intent);
         }
+    }
+
+    /**
+     * 選択した項目のデータを取得するメソッド
+     */
+    private HashMap<String, String> getListData(int position) {
+        HashMap<String, String> character = new HashMap<>();
+
+        Map<String, String> item = _list.get(position);
+        character.put("no", item.get("no"));
+        character.put("plot", item.get("plot"));
+        character.put("phonetic", item.get("phonetic"));
+        character.put("name", item.get("name"));
+        character.put("another", item.get("another"));
+        character.put("image_path", item.get("image_path"));
+        character.put("age", item.get("age"));
+        character.put("gender", item.get("gender"));
+        character.put("birthday", item.get("birthday"));
+        character.put("height", item.get("height"));
+        character.put("weight", item.get("weight"));
+        character.put("first_person", item.get("first_person"));
+        character.put("second_person", item.get("second_person"));
+        character.put("belongs", item.get("belongs"));
+        character.put("skill", item.get("skill"));
+        character.put("profile", item.get("profile"));
+        character.put("lived_process", item.get("lived_process"));
+        character.put("personality", item.get("personality"));
+        character.put("appearance", item.get("appearance"));
+        character.put("other", item.get("other"));
+
+        return character;
     }
 
     /**
