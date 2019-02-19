@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
@@ -83,6 +84,10 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
      * NavigationViewのヘッダー部分のTextView
      */
     private TextView mTvMenuTitle;
+    /**
+     * プログレスバー
+     */
+    private static ProgressBar sProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +116,9 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
         mDrawerToggle = new ActionBarDrawerToggle(CharacterListActivity.this, mDrawer, _toolbar, R.string.drawable_open, R.string.drawable_close);
         mDrawer.addDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
+
+        //プログレスバー取得
+        sProgressBar = findViewById(R.id.progressBar);
 
         //NavigationViewのリスナー
         nvLeftView.setNavigationItemSelectedListener(this);
@@ -355,6 +363,11 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
         }
 
         @Override
+        public void onPreExecute(){
+            sProgressBar.setVisibility(ProgressBar.VISIBLE);
+        }
+
+        @Override
         public void onPostExecute(List<Map<String, String>> list) {
             _list = list;
 
@@ -459,6 +472,7 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
                 Log.e(DEBUG_TAG, "JSON解析失敗", ex);
             }
 
+            sProgressBar.setVisibility(ProgressBar.INVISIBLE);
             return list;
         }
 

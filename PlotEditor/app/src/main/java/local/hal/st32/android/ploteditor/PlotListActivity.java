@@ -94,7 +94,7 @@ public class PlotListActivity extends AppCompatActivity {
         PlotJsonAccess access = new PlotJsonAccess();
         access.setContext(context);
 
-        //プログレスバー表示
+        //プログレスバー取得
         sProgressBar = findViewById(R.id.progressBar);
 
         //リストビュー取得・リスナー設定
