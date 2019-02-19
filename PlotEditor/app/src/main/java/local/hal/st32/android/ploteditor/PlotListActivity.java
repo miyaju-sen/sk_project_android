@@ -187,14 +187,7 @@ public class PlotListActivity extends AppCompatActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Intent intent = new Intent(PlotListActivity.this, OutlineActivity.class);
-            HashMap<String, String> plot = new HashMap<>();
-
-            Map<String, String> item = _list.get(position);
-            plot.put("no", item.get("no"));
-            plot.put("title", item.get("title"));
-            plot.put("slogan", item.get("slogan"));
-            plot.put("summary", item.get("summary"));
-            plot.put("updated_at", item.get("updated_at"));
+            HashMap<String, String> plot = getListData(position);
 
             intent.putExtra("MODE", MODE_AGAIN);
             intent.putExtra("OUTLINE", plot);
@@ -227,14 +220,7 @@ public class PlotListActivity extends AppCompatActivity {
             //メモ一覧へ
             case R.id.mcMemo:
                 Intent intent = new Intent(getApplication(), MemoListActivity.class);
-                HashMap<String, String> plot = new HashMap<>();
-
-                Map<String, String> map = _list.get(position);
-                plot.put("no", map.get("no"));
-                plot.put("title", map.get("title"));
-                plot.put("slogan", map.get("slogan"));
-                plot.put("summary", map.get("summary"));
-                plot.put("updated_at", map.get("updated_at"));
+                HashMap<String, String> plot = getListData(position);
 
                 intent.putExtra("OUTLINE", plot);
                 startActivity(intent);
@@ -246,6 +232,22 @@ public class PlotListActivity extends AppCompatActivity {
         }
 
         return super.onContextItemSelected(item);
+    }
+
+    /**
+     * 選択した項目のデータを取得するメソッド
+     */
+    private HashMap<String, String> getListData(int position) {
+        HashMap<String, String> plot = new HashMap<>();
+
+        Map<String, String> map = _list.get(position);
+        plot.put("no", map.get("no"));
+        plot.put("title", map.get("title"));
+        plot.put("slogan", map.get("slogan"));
+        plot.put("summary", map.get("summary"));
+        plot.put("updated_at", map.get("updated_at"));
+
+        return plot;
     }
 
     /**
