@@ -2,6 +2,7 @@ package local.hal.st32.android.ploteditor;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,9 @@ public class PagerParlanceFragment extends Fragment {
     private static View sView;
     private static TextView sTvName;
     private static TextView sTvExplanation;
+
+    private String mName;
+    private String mExplanation;
 
     /**
      * アクティビティが生成された際に呼び出される
@@ -47,6 +51,10 @@ public class PagerParlanceFragment extends Fragment {
         //画面部品取得
         sTvName = sView.findViewById(R.id.tvParlanceName);
         sTvExplanation = sView.findViewById(R.id.tvExplanation);
+        Log.e("**********", "地点PagerParlanceFragment");
+
+        sTvName.setText(mName);
+        sTvExplanation.setText(mExplanation);
 
         ScrollView scrollView = sView.findViewById(R.id.scrollView);
         scrollView.setVerticalFadingEdgeEnabled(true);
@@ -55,8 +63,10 @@ public class PagerParlanceFragment extends Fragment {
         return sView;
     }
 
-    public static void setData(String name, String explanation) {
+    public void setData(String name, String explanation) {
 //        sTvName.setText(name);
 //        sTvExplanation.setText(explanation);
+        mName = name;
+        mExplanation = explanation;
     }
 }

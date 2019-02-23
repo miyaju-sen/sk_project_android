@@ -111,11 +111,9 @@ public class ParlanceActivity extends AppCompatActivity implements NavigationVie
         ViewPager viewPager = findViewById(R.id.pager);
         PagerParlanceStatePagerAdapter adapter = new PagerParlanceStatePagerAdapter( getSupportFragmentManager() );
         adapter.setPageCount( _parlance.size() );
+        adapter.setData( _parlance.get("name"), _parlance.get("explanation") );
         Log.e("＊＊＊＊＊＊＊＊＊＊", "長さは" + _parlance.size());
         viewPager.setAdapter(adapter);
-
-        //画面部品に遷移元から取得した値をセット
-        PagerParlanceFragment.setData( _parlance.get("name"), _parlance.get("explanation") );
 
 //        _tvName.setText( _parlance.get("name") );
 //        _tvExplanation.setText( _parlance.get("explanation") );

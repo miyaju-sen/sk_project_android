@@ -3,6 +3,7 @@ package local.hal.st32.android.ploteditor;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.util.Log;
 
 /**
  * 就職作品
@@ -14,6 +15,8 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 public class PagerParlanceStatePagerAdapter extends FragmentStatePagerAdapter {
 
     private int sCount;
+    private String mName;
+    private String mExplanation;
 
     public PagerParlanceStatePagerAdapter(FragmentManager fm) {
         super(fm);
@@ -21,17 +24,12 @@ public class PagerParlanceStatePagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int i) {
-//
-//        switch(i){
-//            case 0:
-//                return new Fragment0();
-//            case 1:
-//                return new Fragment1();
-//            default:
-//                return new Fragment2();
-//        }
 
-        return new PagerParlanceFragment();
+        PagerParlanceFragment fragment = new PagerParlanceFragment();
+        fragment.setData(mName, mExplanation);
+
+        Log.e("**********", "地点Adapter");
+        return fragment;
     }
 
     @Override
@@ -41,5 +39,10 @@ public class PagerParlanceStatePagerAdapter extends FragmentStatePagerAdapter {
 
     public void setPageCount(int count) {
         sCount = count;
+    }
+
+    public void setData(String name, String explanation) {
+        mName = name;
+        mExplanation = explanation;
     }
 }
