@@ -4,9 +4,15 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.SimpleAdapter;
@@ -55,10 +61,45 @@ public class TabParlanceFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tab_parlance, null);
         _lvParlances = view.findViewById(R.id.lvParlances);
+        registerForContextMenu(_lvParlances);
 
         //取得したListViewを親アクティビティへ
         WorldViewListActivity.setListView(_lvParlances);
 
         return view;
+    }
+
+    /**
+     * コンテキストメニュー作成
+     */
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View view, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, view, menuInfo);
+
+        MenuInflater inflater = getActivity().getMenuInflater();
+        inflater.inflate(R.menu.menu_context, menu);
+    }
+
+    /**
+     * コンテキストメニュー選択時処理
+     */
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+        int position = info.position;
+
+        int itemId = item.getItemId();
+        switch (itemId) {
+            //編集
+            case R.id.mcEdit:
+                //TODO:編集処理
+                break;
+            //削除
+            case R.id.mcDelete:
+                //TODO:削除処理
+                break;
+        }
+
+        return super.onContextItemSelected(item);
     }
 }
