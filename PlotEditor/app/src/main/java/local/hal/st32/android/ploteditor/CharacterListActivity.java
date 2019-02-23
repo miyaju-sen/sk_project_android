@@ -209,11 +209,31 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
                 break;
             //削除
             case R.id.mcDelete:
-                //TODO:削除処理へ
+                onCharacterDeleteButtonClick(position);
                 break;
         }
 
         return super.onContextItemSelected(item);
+    }
+
+    /**
+     * 削除ボタン押下時の処理
+     */
+    private void onCharacterDeleteButtonClick(int position) {
+        Bundle extras = new Bundle();
+        HashMap<String, String> character = getListData(position);
+        extras.putString("no", character.get("no"));
+        extras.putString("table", "characters");
+        extras.putString("msg", getString(R.string.dialog_character_delete_msg, character.get("name")));
+
+        Context context = this;
+        DeleteConfirmDialogCreate.setActivityContext(context);
+
+        DeleteConfirmDialogCreate dialog = new DeleteConfirmDialogCreate();
+        dialog.setArguments(extras);
+
+        FragmentManager manager = getSupportFragmentManager();
+        dialog.show(manager, "CharacterActivity");
     }
 
     /**
