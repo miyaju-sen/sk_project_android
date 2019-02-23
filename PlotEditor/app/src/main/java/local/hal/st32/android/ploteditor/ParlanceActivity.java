@@ -110,7 +110,7 @@ public class ParlanceActivity extends AppCompatActivity implements NavigationVie
 
         ViewPager viewPager = findViewById(R.id.pager);
         PagerParlanceStatePagerAdapter adapter = new PagerParlanceStatePagerAdapter( getSupportFragmentManager() );
-        adapter.setPageCount( _parlance.size() );
+        adapter.setPageCount( _intent.getIntExtra("COUNT", 0) );
         adapter.setData( _parlance.get("name"), _parlance.get("explanation") );
         Log.e("＊＊＊＊＊＊＊＊＊＊", "長さは" + _parlance.size());
         viewPager.setAdapter(adapter);

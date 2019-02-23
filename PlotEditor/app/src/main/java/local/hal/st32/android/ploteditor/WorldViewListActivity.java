@@ -320,6 +320,7 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
             parlance.put("name", item.get("name"));
             parlance.put("explanation", item.get("explanation"));
 
+            intent.putExtra("COUNT", _parlances.size());
             intent.putExtra("PARLANCE", parlance);
             intent.putExtra("OUTLINE", _outline);
             startActivity(intent);
