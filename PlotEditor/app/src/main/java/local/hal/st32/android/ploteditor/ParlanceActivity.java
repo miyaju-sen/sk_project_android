@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -72,9 +74,9 @@ public class ParlanceActivity extends AppCompatActivity implements NavigationVie
         _tvExplanation = findViewById(R.id.tvExplanation);
 
         //スクロールビューにフェードアウト追加
-        ScrollView scrollView = findViewById(R.id.scrollView);
-        scrollView.setVerticalFadingEdgeEnabled(true);
-        scrollView.setFadingEdgeLength(100);
+//        ScrollView scrollView = findViewById(R.id.scrollView);
+//        scrollView.setVerticalFadingEdgeEnabled(true);
+//        scrollView.setFadingEdgeLength(100);
 
         //NavigationViewのヘッダー部分のTextViewを取得
         NavigationView nvLeftView = findViewById(R.id.nvLeftView);
@@ -106,9 +108,17 @@ public class ParlanceActivity extends AppCompatActivity implements NavigationVie
         setTitle("設定・用語");
         mTvMenuTitle.setText( _outline.get("title") );
 
+        ViewPager viewPager = findViewById(R.id.pager);
+        PagerParlanceStatePagerAdapter adapter = new PagerParlanceStatePagerAdapter( getSupportFragmentManager() );
+        adapter.setPageCount( _parlance.size() );
+        Log.e("＊＊＊＊＊＊＊＊＊＊", "長さは" + _parlance.size());
+        viewPager.setAdapter(adapter);
+
         //画面部品に遷移元から取得した値をセット
-        _tvName.setText( _parlance.get("name") );
-        _tvExplanation.setText( _parlance.get("explanation") );
+        PagerParlanceFragment.setData( _parlance.get("name"), _parlance.get("explanation") );
+
+//        _tvName.setText( _parlance.get("name") );
+//        _tvExplanation.setText( _parlance.get("explanation") );
     }
 
     /**
