@@ -69,9 +69,6 @@ public class DeleteConfirmDialogCreate extends DialogFragment {
                         public void CallBack() {
                             mToast.show();
 
-                            //TODO:ストーリーの場合、構想画面から移動してしまう
-                            //table="stories"なら更新後と同じ処理を
-
                             //削除するのがstoriesテーブルのレコードであった場合
                             if("stories".equals(mTable)) {
                                 IdeaActivity.getInstance().onReloadButtonClick();
