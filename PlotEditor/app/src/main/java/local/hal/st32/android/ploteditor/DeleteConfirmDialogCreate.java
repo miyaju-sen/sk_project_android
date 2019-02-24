@@ -75,8 +75,12 @@ public class DeleteConfirmDialogCreate extends DialogFragment {
                                 IdeaActivity.getInstance().onReloadButtonClick();
                             }
                             //登場人物一覧画面からの場合
-                            else if( CharacterListActivity.getInstance().equals(mActivity) ) {
+                            else if( mActivity.equals( CharacterListActivity.getInstance() ) ) {
                                 CharacterListActivity.getInstance().onResume();
+                            }
+                            //設定・用語一覧画面からの場合
+                            else if( mActivity.equals(  WorldViewListActivity.getInstance() ) ) {
+                                WorldViewListActivity.getInstance().onResume();
                             }
                             else {
                                 mActivity.finish();

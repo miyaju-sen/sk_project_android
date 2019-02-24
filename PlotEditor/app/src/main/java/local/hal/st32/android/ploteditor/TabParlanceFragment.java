@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import android.widget.ScrollView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -96,10 +98,30 @@ public class TabParlanceFragment extends Fragment {
                 break;
             //削除
             case R.id.mcDelete:
-                //TODO:削除処理
+                onParlanceDeleteButtonClick(position);
                 break;
         }
 
         return super.onContextItemSelected(item);
+    }
+
+    /**
+     * 削除ボタン押下時の処理
+     */
+    private void onParlanceDeleteButtonClick(int position) {
+        Bundle extras = new Bundle();
+        Map<String, String> parlance = (Map<String, String>) _lvParlances.getAdapter().getItem(position);
+        extras.putString("no", parlance.get("no"));
+        extras.putString("table", "parlances");
+        extras.putString("msg", getString( R.string.dialog_parlance_delete_msg, parlance.get("name") ));
+
+        Context context = getActivity().getApplicationContext();
+        DeleteConfirmDialogCreate.setActivityContext(context);
+
+        DeleteConfirmDialogCreate dialog = new DeleteConfirmDialogCreate();
+        dialog.setArguments(extras);
+
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+        dialog.show(manager, "ParlanceActivity");
     }
 }

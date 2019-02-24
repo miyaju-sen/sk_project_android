@@ -150,7 +150,7 @@ public class ParlanceActivity extends AppCompatActivity implements NavigationVie
                 break;
             //削除ボタン
             case R.id.menuDelete:
-                onCharacterDeleteButtonClick();
+                onParlanceDeleteButtonClick();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -218,7 +218,7 @@ public class ParlanceActivity extends AppCompatActivity implements NavigationVie
     /**
      * 削除ボタン押下時の処理
      */
-    private void onCharacterDeleteButtonClick() {
+    private void onParlanceDeleteButtonClick() {
         Bundle extras = new Bundle();
         extras.putString("no", _parlance.get("no"));
         extras.putString("table", "parlances");

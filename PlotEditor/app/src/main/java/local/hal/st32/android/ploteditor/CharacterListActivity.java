@@ -145,7 +145,7 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
     /**
      * 本アクティビティのインスタンスゲッター
      *
-     * @return IdeaActivityのインスタンス
+     * @return CharacterListActivityのインスタンス
      */
     public static CharacterListActivity getInstance() {
         return sInstance;

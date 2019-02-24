@@ -45,6 +45,10 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
      */
     public static final String NOW_ACTIVITY = new NowActivity().getWorldViewListActivity();
     /**
+     * 本アクティビティのインスタンス
+     */
+    public static WorldViewListActivity sInstance;
+    /**
      * タブアイテム
      */
     private TabItem _tabItemStage; //舞台
@@ -104,6 +108,8 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_world_view_list);
 
+        sInstance = WorldViewListActivity.this;
+
         //NavigationViewのヘッダー部分のTextViewを取得
         NavigationView nvLeftView = findViewById(R.id.nvLeftView);
         View drawerHeader = nvLeftView.getHeaderView(0);
@@ -160,6 +166,15 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
             }
         });
         access.execute("", _outline.get("no"), "");
+    }
+
+    /**
+     * 本アクティビティのインスタンスゲッター
+     *
+     * @return WorldViewListActivityのインスタンス
+     */
+    public static WorldViewListActivity getInstance() {
+        return sInstance;
     }
 
     /**
