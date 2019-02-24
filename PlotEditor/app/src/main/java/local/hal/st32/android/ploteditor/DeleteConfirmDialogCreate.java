@@ -62,8 +62,6 @@ public class DeleteConfirmDialogCreate extends DialogFragment {
 
         @Override
         public void onClick(DialogInterface dialog, int which) {
-            Log.e("********", "アクティビティ" + getActivity());
-
             switch (which) {
                 case DialogInterface.BUTTON_POSITIVE:
                     DeleteAccess access = new DeleteAccess();
@@ -75,6 +73,10 @@ public class DeleteConfirmDialogCreate extends DialogFragment {
                             //削除するのがstoriesテーブルのレコードであった場合
                             if("stories".equals(mTable)) {
                                 IdeaActivity.getInstance().onReloadButtonClick();
+                            }
+                            //登場人物一覧画面からの場合
+                            else if( CharacterListActivity.getInstance().equals(mActivity) ) {
+                                CharacterListActivity.getInstance().onResume();
                             }
                             else {
                                 mActivity.finish();

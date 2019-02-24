@@ -64,6 +64,10 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
      */
     private static final String ACCESS_URL = new AccessURL().getCharacterJson();
     /**
+     * 本アクティビティのインスタンス
+     */
+    public static CharacterListActivity sInstance;
+    /**
      * リストビューに表示されるリストデータ
      */
     private List<Map<String, String>> _list;
@@ -94,6 +98,8 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_list);
+
+        sInstance = CharacterListActivity.this;
 
         //概要の内容取得
         Intent intent = getIntent();
@@ -134,6 +140,15 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
 
         CharacterJsonReceiver receiver = new CharacterJsonReceiver();
         receiver.execute(ACCESS_URL, _outline.get("no"));
+    }
+
+    /**
+     * 本アクティビティのインスタンスゲッター
+     *
+     * @return IdeaActivityのインスタンス
+     */
+    public static CharacterListActivity getInstance() {
+        return sInstance;
     }
 
     /**
