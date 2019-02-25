@@ -195,6 +195,7 @@ public class MemoActivity extends AppCompatActivity implements NavigationView.On
         intent.putExtra("OUTLINE", mOutline);
         intent.putExtra("ACTIVITY", NOW_ACTIVITY);
         startActivity(intent);
+        MemoActivity.this.finish();
     }
 
     /**

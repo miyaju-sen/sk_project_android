@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -87,6 +88,7 @@ public class MemoListActivity extends AppCompatActivity implements NavigationVie
         //リストビュー取得・リスナー設定
         mLvMemos = findViewById(R.id.lvMemos);
         mLvMemos.setOnItemClickListener(new ListItemClickListener());
+        registerForContextMenu(mLvMemos);
 
         //NavigationViewのヘッダー部分のTextViewを取得
         NavigationView nvLeftView = findViewById(R.id.nvLeftView);
@@ -159,6 +161,52 @@ public class MemoListActivity extends AppCompatActivity implements NavigationVie
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * コンテキストメニュー作成
+     */
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View view, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, view, menuInfo);
+
+        MenuInflater inflater = MemoListActivity.this.getMenuInflater();
+        inflater.inflate(R.menu.menu_context, menu);
+    }
+
+    /**
+     * コンテキストメニュー選択時処理
+     */
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+        int position = info.position;
+
+        int itemId = item.getItemId();
+        switch (itemId) {
+            //編集画面へ
+            case R.id.mcEdit:
+                Intent intent = new Intent(getApplication(), MemoEditActivity.class);
+                HashMap<String, String> memo = new HashMap<>();
+                Map<String, String> map = mList.get(position);
+                memo.put("no", map.get("no"));
+                memo.put("plot", map.get("plot"));
+                memo.put("note", map.get("note"));
+                memo.put("updated_at", map.get("updated_at"));
+
+                intent.putExtra("MEMO", memo);
+                intent.putExtra("OUTLINE", mOutline);
+                intent.putExtra("ACTIVITY", MemoActivity.NOW_ACTIVITY);
+                startActivity(intent);
+                break;
+            //削除
+            case R.id.mcDelete:
+                //TODO:削除処理
+//                onCharacterDeleteButtonClick(position);
+                break;
+        }
+
+        return super.onContextItemSelected(item);
     }
 
     /**
