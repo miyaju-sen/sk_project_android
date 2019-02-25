@@ -240,6 +240,7 @@ public class CharacterActivity extends AppCompatActivity implements NavigationVi
         intent.putExtra("OUTLINE", _outline);
         intent.putExtra("ACTIVITY", NOW_ACTIVITY);
         startActivity(intent);
+        CharacterActivity.this.finish();
     }
 
     /**
