@@ -1,6 +1,7 @@
 package local.hal.st32.android.ploteditor;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -94,7 +95,9 @@ public class TabParlanceFragment extends Fragment {
         switch (itemId) {
             //編集
             case R.id.mcEdit:
-                //TODO:編集処理
+                Intent intent = new Intent(getActivity(), ParlanceEditActivity.class);
+                intent.putExtra("ACTIVITY", ParlanceActivity.NOW_ACTIVITY);
+                WorldViewListActivity.getListItem(position, intent);
                 break;
             //削除
             case R.id.mcDelete:

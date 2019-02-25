@@ -131,6 +131,7 @@ public class ParlanceJsonAccess extends AsyncTask<String, String, String> {
 
             try {
                 JSONObject rootJSON = new JSONObject(result);
+                no = rootJSON.getString("newId");
 
                 //JSONデータの解析・取得
                 JSONArray parlanceArray = rootJSON.getJSONArray("parlances");
@@ -138,15 +139,19 @@ public class ParlanceJsonAccess extends AsyncTask<String, String, String> {
                     map = new HashMap<>();
                     JSONObject parlanceNow = parlanceArray.getJSONObject(i);
 
-                    no = parlanceNow.getString("no");
-                    plot = parlanceNow.getString("plot");
-                    name = parlanceNow.getString("name");
-                    explanation = parlanceNow.getString("explanation");
+                    if(no.equals( parlanceNow.getString("no") )) {
+                        no = parlanceNow.getString("no");
+                        plot = parlanceNow.getString("plot");
+                        name = parlanceNow.getString("name");
+                        explanation = parlanceNow.getString("explanation");
 
-                    map.put("no", no);
-                    map.put("plot", plot);
-                    map.put("name", name);
-                    map.put("explanation", explanation);
+                        map.put("no", no);
+                        map.put("plot", plot);
+                        map.put("name", name);
+                        map.put("explanation", explanation);
+
+                        break;
+                    }
                 }
             }
             catch (JSONException ex) {

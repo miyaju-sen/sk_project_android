@@ -79,7 +79,7 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
     /**
      * プロット概要が格納された配列
      */
-    private HashMap<String, String> _outline = new HashMap<>();
+    private static HashMap<String, String> _outline = new HashMap<>();
     /**
      * 舞台情報を格納する配列
      */
@@ -87,7 +87,7 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
     /**
      * 設定・用語情報を格納する配列
      */
-    private List<Map<String, String>> _parlances = new ArrayList<>();
+    private static List<Map<String, String>> _parlances = new ArrayList<>();
     /**
      * DrawerLayoutとActionBarDrawerToggle
      */
@@ -326,19 +326,28 @@ public class WorldViewListActivity extends AppCompatActivity implements ViewPage
     private class ListItemClickListener implements AdapterView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Intent intent = new Intent(WorldViewListActivity.this, ParlanceActivity.class);
-            HashMap<String, String> parlance = new HashMap<>();
-
-            Map<String, String> item = _parlances.get(position);
-            parlance.put("no", item.get("no"));
-            parlance.put("plot", item.get("plot"));
-            parlance.put("name", item.get("name"));
-            parlance.put("explanation", item.get("explanation"));
-
-            intent.putExtra("PARLANCE", parlance);
-            intent.putExtra("OUTLINE", _outline);
-            startActivity(intent);
+            Intent intent = new Intent(getApplication(), ParlanceActivity.class);
+            getListItem(position, intent);
         }
+    }
+
+    /**
+     * リストから指定したデータを取得するメソッド
+     * @param position
+     */
+    public static void getListItem(int position, Intent i) {
+        Intent intent = new Intent(i);
+        HashMap<String, String> parlance = new HashMap<>();
+
+        Map<String, String> item = _parlances.get(position);
+        parlance.put("no", item.get("no"));
+        parlance.put("plot", item.get("plot"));
+        parlance.put("name", item.get("name"));
+        parlance.put("explanation", item.get("explanation"));
+
+        intent.putExtra("PARLANCE", parlance);
+        intent.putExtra("OUTLINE", _outline);
+        sInstance.startActivity(intent);
     }
 
     /**

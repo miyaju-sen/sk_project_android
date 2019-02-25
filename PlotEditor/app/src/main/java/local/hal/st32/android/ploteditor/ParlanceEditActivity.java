@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -154,9 +155,10 @@ public class ParlanceEditActivity extends AppCompatActivity {
     private void onSaveButtonClick() {
         //主キー（新規登録の場合は空、編集の場合は__parlanceから値を取得する）
         String no = "";
-        if(ACTIVITY.equals(new NowActivity().getParlanceActivity())) {
+        if( ACTIVITY.equals( new NowActivity().getParlanceActivity() ) ) {
             no = _parlance.get("no");
         }
+        Log.e("*************", "値は" + no);
 
         ParlanceJsonAccess access = new ParlanceJsonAccess();
         access.setOnCallBack(new ParlanceJsonAccess.CallBackTask() {

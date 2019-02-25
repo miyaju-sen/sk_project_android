@@ -213,6 +213,7 @@ public class ParlanceActivity extends AppCompatActivity implements NavigationVie
         intent.putExtra("OUTLINE", _outline);
         intent.putExtra("ACTIVITY", NOW_ACTIVITY);
         startActivity(intent);
+        ParlanceActivity.this.finish();
     }
 
     /**
