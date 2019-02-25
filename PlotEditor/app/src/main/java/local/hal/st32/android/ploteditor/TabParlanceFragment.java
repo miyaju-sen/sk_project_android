@@ -125,6 +125,6 @@ public class TabParlanceFragment extends Fragment {
         dialog.setArguments(extras);
 
         FragmentManager manager = getActivity().getSupportFragmentManager();
-        dialog.show(manager, "ParlanceActivity");
+        dialog.show(manager, "TabParlanceFragment");
     }
 }

@@ -248,7 +248,7 @@ public class CharacterListActivity extends AppCompatActivity implements Navigati
         dialog.setArguments(extras);
 
         FragmentManager manager = getSupportFragmentManager();
-        dialog.show(manager, "CharacterActivity");
+        dialog.show(manager, "CharacterListActivity");
     }
 
     /**

@@ -202,7 +202,6 @@ public class MemoActivity extends AppCompatActivity implements NavigationView.On
      * 削除ボタン押下時の処理
      */
     private void onMemoDeleteButtonClick() {
-
         Bundle extras = new Bundle();
         extras.putString("no", mMemo.get("no"));
 

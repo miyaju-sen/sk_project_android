@@ -88,7 +88,7 @@ public class MemoListActivity extends AppCompatActivity implements NavigationVie
         //リストビュー取得・リスナー設定
         mLvMemos = findViewById(R.id.lvMemos);
         mLvMemos.setOnItemClickListener(new ListItemClickListener());
-        registerForContextMenu(mLvMemos);
+        //registerForContextMenu(mLvMemos);
 
         //NavigationViewのヘッダー部分のTextViewを取得
         NavigationView nvLeftView = findViewById(R.id.nvLeftView);
@@ -201,8 +201,6 @@ public class MemoListActivity extends AppCompatActivity implements NavigationVie
                 break;
             //削除
             case R.id.mcDelete:
-                //TODO:削除処理
-//                onCharacterDeleteButtonClick(position);
                 break;
         }
 
