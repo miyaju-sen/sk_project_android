@@ -480,7 +480,7 @@ public class CharacterEditActivity extends AppCompatActivity {
         if(!"".equals( _character.get("image_path") ) && "".equals(_imagePath)) {
             _imagePath = _character.get("image_path");
             File storage = Environment.getExternalStorageDirectory();
-            File file = new File(storage.getAbsolutePath() + "/" + Environment.DIRECTORY_DCIM + "/Camera", _imagePath);
+            File file = new File(storage.getAbsolutePath() + "/" + Environment.DIRECTORY_DCIM + "/PlotEditorImages", _imagePath);
             Bitmap bm = BitmapFactory.decodeFile(file.getPath());
             _ivCharacterImage.setImageBitmap(bm);
         }

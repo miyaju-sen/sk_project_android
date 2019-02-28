@@ -43,7 +43,7 @@ public class CharacterListItem {
         this._profile = profile;
 
         this._storage = Environment.getExternalStorageDirectory();
-        this._file = new File(_storage.getAbsolutePath() + "/" + Environment.DIRECTORY_DCIM + "/Camera", icon);
+        this._file = new File(_storage.getAbsolutePath() + "/" + Environment.DIRECTORY_DCIM + "/PlotEditorImages", icon);
         this._icon = BitmapFactory.decodeFile(_file.getPath());
     }
 
@@ -52,7 +52,7 @@ public class CharacterListItem {
      * @param icon イメージ画像
      */
     public void setIcon(String icon) {
-        this._file = new File(_storage.getAbsolutePath() + "/" + Environment.DIRECTORY_DCIM + "/Camera", icon);
+        this._file = new File(_storage.getAbsolutePath() + "/" + Environment.DIRECTORY_DCIM + "/PlotEditorImages", icon);
         this._icon = BitmapFactory.decodeFile(_file.getPath());
     }
 

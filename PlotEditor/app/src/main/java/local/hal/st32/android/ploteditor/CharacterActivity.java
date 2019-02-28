@@ -289,7 +289,7 @@ public class CharacterActivity extends AppCompatActivity implements NavigationVi
     private void setCharacterInfo() {
         //画像
         File storage = Environment.getExternalStorageDirectory();
-        File file = new File(storage.getAbsolutePath() + "/" + Environment.DIRECTORY_DCIM + "/Camera", _character.get("image_path"));
+        File file = new File(storage.getAbsolutePath() + "/" + Environment.DIRECTORY_DCIM + "/PlotEditorImages", _character.get("image_path"));
         Bitmap bm = BitmapFactory.decodeFile(file.getPath());
         _ivCharacterIcon.setImageBitmap(bm);
 
