@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
@@ -79,6 +80,10 @@ public class MemoListActivity extends AppCompatActivity implements NavigationVie
      * NavigationViewのヘッダー部分のTextView
      */
     private TextView mTvMenuTitle;
+    /**
+     * プログレスバー
+     */
+    private static ProgressBar sProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,6 +112,9 @@ public class MemoListActivity extends AppCompatActivity implements NavigationVie
 
         //NavigationViewのリスナー
         nvLeftView.setNavigationItemSelectedListener(this);
+
+        //プログレスバー取得
+        sProgressBar = findViewById(R.id.progressBar);
 
         Intent intent = getIntent();
         mOutline = (HashMap<String, String>) intent.getSerializableExtra("OUTLINE");
@@ -373,6 +381,11 @@ public class MemoListActivity extends AppCompatActivity implements NavigationVie
         }
 
         @Override
+        public void onPreExecute(){
+            sProgressBar.setVisibility(ProgressBar.VISIBLE);
+        }
+
+        @Override
         public void onPostExecute(List<Map<String, String>> list) {
             mList = list;
 
@@ -423,6 +436,7 @@ public class MemoListActivity extends AppCompatActivity implements NavigationVie
                 Log.e(DEBUG_TAG, "JSON解析失敗", ex);
             }
 
+            sProgressBar.setVisibility(ProgressBar.INVISIBLE);
             return list;
         }
 
