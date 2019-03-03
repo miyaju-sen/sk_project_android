@@ -178,8 +178,6 @@ public class TabIdea2Fragment extends Fragment {
             //値をセット・ダイアログを表示
             storyEdit(groupPosition);
 
-            Log.e("+++++++++++++++++", "ストーリーズ：" + _stories);
-
             return false;
         }
     }

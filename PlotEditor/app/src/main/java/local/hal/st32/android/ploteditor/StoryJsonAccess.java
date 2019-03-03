@@ -186,7 +186,7 @@ public class StoryJsonAccess extends AsyncTask<String, String, String> {
                 Log.e(DEBUG_TAG, "JSON解析失敗", ex);
             }
 
-            Log.e("**********", "構想：" + _ideas + "：ストーリー：" + _stories);
+            //Log.e("**********", "構想：" + _ideas + "：ストーリー：" + _stories);
             _callBack.CallBack(_ideas, _stories);
         }
     }

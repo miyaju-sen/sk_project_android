@@ -135,7 +135,7 @@ public class StoryEditDialogCreate extends DialogFragment {
                                         allocate.getStory2(), android.R.layout.simple_expandable_list_item_1, mFromTitle, mTo,
                                         allocate.getChildStory2(), android.R.layout.simple_list_item_1, mFromStory, mTo
                                 );
-                                TabIdea2Fragment.setLvStories(mAdapter, allocate.getStory1(), mPosition, mTop);
+                                TabIdea2Fragment.setLvStories(mAdapter, allocate.getStory2(), mPosition, mTop);
                             }
                             else if( "3".equals(_idea) ) {
                                 mAdapter = new SimpleExpandableListAdapter(
