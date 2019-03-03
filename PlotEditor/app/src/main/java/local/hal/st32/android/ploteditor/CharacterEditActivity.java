@@ -274,14 +274,11 @@ public class CharacterEditActivity extends AppCompatActivity {
      * CharacterIsChangedへ値を送信するメソッド
      */
     private void setCharacterIsChanged() {
-        Log.e("＊＊＊＊＊＊＊＊", "地点B" + _imagePath);
         _changed = new CharacterIsChanged(_character);
         _changed.setImage( _imagePath );
         _changed.setName( _etName.getText().toString() );
         _changed.setPhonetic( _etPhonetic.getText().toString() );
         _changed.setAnother( _etAnotherName.getText().toString() );
-        _changed.setHeight( _etHeight.getText().toString() );
-        _changed.setWeight( _etWeight.getText().toString() );
         _changed.setFirstPerson( _etFirstPerson.getText().toString() );
         _changed.setSecondPerson( _etSecondPerson.getText().toString() );
         _changed.setBelongs( _etBelongs.getText().toString() );
@@ -291,6 +288,24 @@ public class CharacterEditActivity extends AppCompatActivity {
         _changed.setPersonality( _etPersonality.getText().toString() );
         _changed.setAppearance( _etAppearance.getText().toString() );
         _changed.setOther( _etOther.getText().toString() );
+
+        //身長
+        //値がなかった場合
+        if( "".equals( _etHeight.getText().toString() ) ) {
+            _changed.setHeight(0);
+        }
+        else {
+            _changed.setHeight( _etHeight.getText().toString() );
+        }
+
+        //体重
+        //値がなかった場合
+        if( "".equals( _etWeight.getText().toString() ) ) {
+            _changed.setWeight(0);
+        }
+        else {
+            _changed.setWeight( _etWeight.getText().toString() );
+        }
 
         //年齢
         int rbAgeId = _rgAge.getCheckedRadioButtonId();

@@ -123,6 +123,16 @@ public class CharacterIsChanged {
     }
 
     /**
+     * 身長
+     * @param height 身長
+     */
+    public void setHeight(int height) {
+        if(!this._character.get("height").equals( Integer.toString(height) )) {
+            this._changed = true;
+        }
+    }
+
+    /**
      * 体重
      * @param weight 体重
      */
@@ -131,6 +141,16 @@ public class CharacterIsChanged {
             this._changed = true;
         }
         Log.e("体重", weight);
+    }
+
+    /**
+     * 体重
+     * @param weight 体重
+     */
+    public void setWeight(int weight) {
+        if(!this._character.get("weight").equals( Integer.toString(weight) )) {
+            this._changed = true;
+        }
     }
 
     /**
