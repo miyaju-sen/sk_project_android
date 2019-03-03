@@ -122,6 +122,14 @@ INSERT INTO stages(
     plot, 
     stage
 ) VALUES (
+    2,
+    ''
+);
+
+INSERT INTO stages(
+    plot, 
+    stage
+) VALUES (
     3,
     '現実世界と空想世界と、その狭間を舞台に物語を描いている
 ・現実世界：我々のいる世界・場所。

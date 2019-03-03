@@ -3,7 +3,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    5,
+    9,
     'プロローグ１',
     '眠り続けるリヒトの隣で、イルゼとナハトが『ナイトメア』の本を開いている。その中には、まるでメモのような文字がいくつも手書きで書かれている。
 
@@ -24,7 +24,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    5,
+    9,
     'プロローグ2',
     '※冒頭で情景描写を入れてみる。狭間の雰囲気について。
 
@@ -50,7 +50,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    5,
+    9,
     '第一章「自分らしく生きる物語」',
     'さくれなの話
 
@@ -123,7 +123,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    6,
+    10,
     '第二章「身勝手な二人の物語」',
     '追加ストーリー　もえりくの話　
 ここで双子が初登場
@@ -213,7 +213,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    6,
+    10,
     '第三章「家族の絆を確かめる物語」',
     '拓斗の話
 
@@ -286,7 +286,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    6,
+    10,
     '第四章「共依存する物語」',
     'りんやよの話
 
@@ -415,7 +415,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    6,
+    10,
     '第五章の冒頭',
     '本棚で男が伯の本を見つけたシーンから
 「こんなところに……」
@@ -456,7 +456,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    6,
+    10,
     '第五章「捨てられた物語（仮）」',
     '没となった葵の話
 イヴァンが間違えて、没の方を渡してしまった。
@@ -560,7 +560,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    6,
+    10,
     '第五章救済後',
     '『物語変更（葵救済）後』
 青年が物語救済後、次話へ進んでこれが始まる。
@@ -591,7 +591,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    6,
+    10,
     '第五章の終盤',
     '双子と青年が会話
 「デモ、ヨカッタノ？」
@@ -630,7 +630,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    7,
+    11,
     '第六章「悪夢を食べる物語」冒頭',
     '伯の話
 双子は全てを把握していながら、敢えて止めずにメアを物語の中に入れる。
@@ -684,7 +684,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    7,
+    11,
     '第六章　メアと伯が接触',
     'メアが現れた際
 「……そこに、誰かいるのですか？」
@@ -777,7 +777,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    7,
+    11,
     '第六章　リヒトの記憶',
     'リヒトが夢から覚めた瞬間から始まる
 　夢を見ていた気がする。とても、長い夢。
@@ -791,7 +791,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    8,
+    12,
     '最終章　リヒト回想後',
     '終わったあと、
 イヴァン「っ……今の、は……？」
@@ -850,7 +850,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    8,
+    12,
     'エピローグ　双子の会話',
     '最後に双子が会話してる
 
@@ -889,7 +889,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    9,
+    13,
     'プロローグ一つ目',
     '昔、読んでいた少女漫画の中で恋をする少女たちは、みんなきらきらと輝いていた。
 誰かのことを好きになって、その好きという感情を理解して。自分の気持ちに嘘がつけなくて、時には悩んだり悲しんだりもして。そして、最後は幸せになる。
@@ -910,7 +910,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    9,
+    13,
     'プロローグ（4/10）',
     '起
 4.10（月）始業式、クラス替え（高校二年生）
@@ -949,7 +949,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    9,
+    13,
     '第一話「変化への恐怖」',
     '学校に到着
 始業式が始まるまで去年の教室で待機
@@ -1021,7 +1021,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    9,
+    13,
     '第二話',
     '
 始業式が終わり、ほんの少しの休憩時間。
@@ -1069,7 +1069,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    9,
+    13,
     '第三話「隣の男子生徒」',
     '教室に入ると、意外にも人が少ない。
 廊下が混んでいるから、理子のようにみんな以前同じクラスだった人と話しているのかも。
@@ -1150,7 +1150,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    9,
+    13,
     '第四話「見覚えのある顔」',
     '
 「じゃあね、怜奈。また明日―」
@@ -1222,7 +1222,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    9,
+    13,
     '第五話「操り人形（逆らえない）」',
     '
 「ただいま」
@@ -1309,7 +1309,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    10,
+    14,
     '第六章「彼への印象」',
     '翌日 4.11（火）
 
@@ -1397,7 +1397,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    10,
+    14,
     '第七章「本当の再会」',
     '
 朔夜の歩くスピードは大して速くなかったらしい。
@@ -1489,7 +1489,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    10,
+    14,
     '第八話「封じてしまった記憶」',
     '　東堂朔夜とは幼なじみだった
 朔夜との関係性、経緯をざっくり解説する話
@@ -1535,7 +1535,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    10,
+    14,
     '第九話',
     '朔夜の提案で、道中にある公園のベンチで一休み
 
@@ -1680,7 +1680,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    10,
+    14,
     '第十話',
     '夜、寝る前。ベッドの中。
 
@@ -1739,7 +1739,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    10,
+    14,
     '第十一話',
     '4.13（木）対面式・スタディサポート
 
@@ -1795,7 +1795,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    10,
+    14,
     '第十二話',
     'テストが終わり、理子とも別れた怜奈は駆け足で公園へと向かう
 着くと、一昨日と同じベンチで朔夜が座っていた
@@ -1949,7 +1949,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    10,
+    14,
     '第十三話',
     '朔夜の口癖が「大丈夫」になったのは、いつからだったろうか。
 怜奈に笑いかけるのが癖になったのは、いつからだったか。
@@ -2039,7 +2039,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    10,
+    14,
     '第十四話',
     '4.14（金）部活オリエン・授業開始
 
@@ -2214,7 +2214,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    10,
+    14,
     '第十五話',
     '放課後、部活へ向かった理子と別れた怜奈は保健室へ向かっていた
 去年も担当していたし楽だから、という理由で選んだ保健委員だったが、今は過去の自分の軽率さに感謝している
@@ -2400,7 +2400,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    10,
+    14,
     '第十六話',
     '朔夜のことは好きだ
 それは間違いない
@@ -2491,7 +2491,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    11,
+    15,
     '第十七話',
     'あのあと家に帰ってから気がついたが、朔夜からメッセージが来ていた
 
@@ -2559,7 +2559,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    11,
+    15,
     '第十八話',
     '「え……う、そ……」
 
@@ -2739,7 +2739,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    11,
+    15,
     '第十九話',
     'えっ、と怜奈は顔を上げる
 まさか、そんなはずがないと、声を聞いただけでは信じられなかったから
@@ -2914,7 +2914,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    11,
+    15,
     '第二十話',
     '「この後、何か予定あったんじゃない？　もしかして、川北と会うとか？」
 
@@ -3283,7 +3283,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    11,
+    15,
     'サイド：朔夜',
     '※三人称（あくまでこの物語は怜奈視点）であるため朔夜の心情は控えめに
 
@@ -3332,7 +3332,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    12,
+    16,
     '第二十一話',
     '月日の流れとはあっという間なもので
 朔夜に告白されてからもうすぐ二ヶ月が経とうとしていた
@@ -3671,7 +3671,7 @@ INSERT INTO stories(
     title,
     story
 ) VALUES (
-    12,
+    16,
     'エピローグ',
     'あれからあっという間に夏休みが来て、朔夜はお父さんのところへと帰ってしまった
 しかしあの家は一切の変化がなく、やっぱり最初から住んでなかったんじゃないかと思ってしまう

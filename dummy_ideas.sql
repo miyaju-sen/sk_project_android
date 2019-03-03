@@ -43,6 +43,46 @@ INSERT INTO ideas(
     idea,
     note
 ) VALUES (
+    2,
+    1,
+    ''
+);
+
+INSERT INTO ideas(
+    plot,
+    idea,
+    note
+) VALUES (
+    2,
+    2,
+    ''
+);
+
+INSERT INTO ideas(
+    plot,
+    idea,
+    note
+) VALUES (
+    2,
+    3,
+    ''
+);
+
+INSERT INTO ideas(
+    plot,
+    idea,
+    note
+) VALUES (
+    2,
+    4,
+    ''
+);
+
+INSERT INTO ideas(
+    plot,
+    idea,
+    note
+) VALUES (
     3,
     1,
     'イヴァンがいる『狭間』にメアが現れる。意識がないメアの傍には『ナイトメア』というタイトルの本が転がっており、イヴァンはそれを手に取る。大まかな内容を理解したイヴァンは、メアの力は利用できると考え、笑みを浮かべる。
